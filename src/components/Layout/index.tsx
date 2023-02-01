@@ -1,11 +1,12 @@
-import Footer from "./Footer/Footer";
-import Header from "./Header/Header";
+import Footer from "./Footer/index";
+import Header from "./Header/index";
 
-export default function Layout() {
+export default function Layout({ children }) {
   return (
     <>
-      <Footer />
       <Header />
+      <div>{children}</div>
+      <Footer />
     </>
   );
 }
