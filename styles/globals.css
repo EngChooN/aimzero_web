@@ -26,3 +26,15 @@ a {
   font-family: Garamond;
   src: url("../public/fonts/Garamond Becker No2 Caps Med Regular.ttf");
 }
+
+/* 본문 타이틀 폰트 */
+@font-face {
+  font-family: AbrilFatface;
+  src: url("../public/fonts/AbrilFatface-Regular.ttf");
+}
+
+/* 본문 하이라이트 폰트 */
+@font-face {
+  font-family: MarckScript;
+  src: url("../public/fonts/MarckScript-Regular.ttf");
+}
