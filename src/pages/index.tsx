@@ -23,13 +23,29 @@ const Img = styled.img`
 
 const Right = styled.div`
   width: 50%;
+  padding-left: 100px;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-family: AbrilFatface;
+  font-size: 45px;
+`;
 
-const Content = styled.p``;
+const MiniTitle = styled.h3`
+  font-family: AbrilFatface;
+  font-size: 24px;
+`;
 
-const Highlight = styled.b``;
+const Content = styled.p`
+  font-family: serif;
+  font-size: 18px;
+`;
+
+const Highlight = styled.b`
+  font-family: MarckScript;
+  font-size: 27px;
+  font-weight: 200;
+`;
 
 export default function Home() {
   return (
@@ -40,8 +56,12 @@ export default function Home() {
         </Left>
         <Right>
           <Title>{landingData[0].title}</Title>
-          <Content>{landingData[0].content}</Content>
           <Highlight>{landingData[0].highlight}</Highlight>
+          <MiniTitle>{landingData[0].miniTitle}</MiniTitle>
+          <Content>{landingData[0].content}</Content>
+          <MiniTitle>{landingData[0].miniTitle2}</MiniTitle>
+          <Content>{landingData[0].content2}</Content>
+          <Content>{landingData[0].content3}</Content>
         </Right>
       </Section01>
     </Wrapper>
