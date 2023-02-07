@@ -1,6 +1,8 @@
-import React from "react";
+// import React from "react";
 import styled from "@emotion/styled";
-import { landingData } from "../common/ts/landing";
+// import landingData from "../../public/locales/en/landing.json";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 const Wrapper = styled.main`
   max-width: 1200px;
@@ -47,23 +49,35 @@ const Highlight = styled.b`
   font-weight: 200;
 `;
 
-export default function Home() {
+const Home = () => {
+  const { t } = useTranslation("common");
   return (
     <Wrapper>
       <Section01>
         <Left>
-          <Img src={landingData[0].img} />
+          <Img src={t("section01.img[0]")} />
         </Left>
         <Right>
-          <Title>{landingData[0].title}</Title>
-          <Highlight>{landingData[0].highlight}</Highlight>
-          <MiniTitle>{landingData[0].miniTitle}</MiniTitle>
-          <Content>{landingData[0].content}</Content>
-          <MiniTitle>{landingData[0].miniTitle2}</MiniTitle>
-          <Content>{landingData[0].content2}</Content>
-          <Content>{landingData[0].content3}</Content>
+          <Title>{t("section01.title")}</Title>
+          <Highlight>{t("section01.highlight[0]")}</Highlight>
+          <MiniTitle>{t("section01.miniTitle[0]")}</MiniTitle>
+          <Content>{t("section01.content[0]")}</Content>
+          <MiniTitle>{t("section01.miniTitle[1]")}</MiniTitle>
+          <Content>{t("section01.content[1]")}</Content>
+          <Content>{t("section01.content[2]")}</Content>
         </Right>
       </Section01>
     </Wrapper>
   );
-}
+};
+
+export const getStaticProps = async ({ locale }) => {
+  console.log("locale of getStaticProps", locale);
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+};
+
+export default Home;
