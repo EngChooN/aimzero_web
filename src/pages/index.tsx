@@ -55,16 +55,16 @@ const Home = () => {
     <Wrapper>
       <Section01>
         <Left>
-          <Img src={t("section01.img[0]")} />
+          <Img src={t("section01.img.0")} />
         </Left>
         <Right>
           <Title>{t("section01.title")}</Title>
-          <Highlight>{t("section01.highlight[0]")}</Highlight>
-          <MiniTitle>{t("section01.miniTitle[0]")}</MiniTitle>
-          <Content>{t("section01.content[0]")}</Content>
-          <MiniTitle>{t("section01.miniTitle[1]")}</MiniTitle>
-          <Content>{t("section01.content[1]")}</Content>
-          <Content>{t("section01.content[2]")}</Content>
+          <Highlight>{t("section01.highlight.0")}</Highlight>
+          <MiniTitle>{t("section01.miniTitle.0")}</MiniTitle>
+          <Content>{t("section01.content.0")}</Content>
+          <MiniTitle>{t("section01.miniTitle.1")}</MiniTitle>
+          <Content>{t("section01.content.1")}</Content>
+          <Content>{t("section01.content.2")}</Content>
         </Right>
       </Section01>
     </Wrapper>
