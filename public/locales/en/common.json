@@ -11,5 +11,30 @@
     "highlight": [
       "I'm Joonyoung Cho, a front-end developer who writes code from the user's point of view!"
     ]
+  },
+  "section02": {
+    "title": "A memorable event",
+    "img01": {
+      "src": "images/landing/IMG_0239.jpeg",
+      "place": "in Ganghwado",
+      "desc": "I rode luge with my friends on a trip to Ganghwado.",
+      "date": "2022.07.22 ~ 2022.07.23"
+    },
+    "img02": {
+      "src": "images/landing/IMG_4710.JPG",
+      "place": "in Gapyeong",
+      "desc": "I went to Gapyeong with my friends and played in the pool in front of the accommodation.",
+      "date": "2020.08.09 ~ 2020.08.10"
+    },
+    "img03": {
+      "src": "images/landing/IMG_4319_Original.jpeg",
+      "place": "in Guwol-dong",
+      "desc": "I took a picture in Guwol-dong wearing military uniform with my friends.",
+      "date": "2020.06.30 "
+    }
+  },
+  "languageButton": {
+    "lang01": "english",
+    "lang02": "korean"
   }
 }
