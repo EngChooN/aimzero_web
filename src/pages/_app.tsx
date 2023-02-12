@@ -5,14 +5,19 @@ import LocaleButton from "../components/LocaleButton/LocaleButton";
 // recoil
 import { RecoilRoot } from "recoil";
 
+import { PortfolioProvider } from "../../src/common/context/context";
+import { prefix } from "../../src/common/config/config";
+
 function MyApp({ Component, pageProps }) {
   return (
-    <RecoilRoot>
-      <Layout>
-        <LocaleButton />
-        <Component {...pageProps} />
-      </Layout>
-    </RecoilRoot>
+    <PortfolioProvider value={{ prefix }}>
+      <RecoilRoot>
+        <Layout>
+          <LocaleButton />
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+    </PortfolioProvider>
   );
 }
 

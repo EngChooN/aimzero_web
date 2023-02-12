@@ -2,11 +2,13 @@
   "name": "aimzero_web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://EngChooN.github.io/aimzero_web",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "next build && next export && touch out/.nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

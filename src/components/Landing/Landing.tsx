@@ -7,9 +7,10 @@ import "react-awesome-slider/dist/custom-animations/fall-animation.css";
 import { useTranslation } from "next-i18next";
 // antd
 import { Image } from "antd";
-import { List, Space } from "antd";
+import { List } from "antd";
 // log data length
 import commonData from "../../../public/locales/en/common.json";
+import { prefix } from "../../common/config/config";
 
 const LandingComponent = () => {
   const { t } = useTranslation("common");
@@ -20,20 +21,11 @@ const LandingComponent = () => {
       title: t(`section03.log.${i}.date`),
       description: t(`section03.log.${i}.desc`),
       content: t(`section03.log.${i}.content`),
-      img: t(`section03.log.${i}.img`),
+      img: `${prefix}` + t(`section03.log.${i}.img`),
     })
   );
 
-  const data2 = t("section03.log.4.date");
-
-  console.log(data2);
-
-  const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
+  console.log(prefix);
   return (
     <Landing.Wrapper>
       {/* slider */}
@@ -41,7 +33,7 @@ const LandingComponent = () => {
         {/* section01 */}
         <Landing.Section01>
           <Landing.Sec01Left>
-            <Landing.Sec01Img src={t("section01.img.0")} />
+            <Landing.Sec01Img src={`${prefix}` + t("section01.img.0")} />
           </Landing.Sec01Left>
           <Landing.Sec01Right>
             <Landing.Sec01TitleBox>
@@ -87,7 +79,10 @@ const LandingComponent = () => {
             <Landing.Sec02ContentsBox>
               {/* picture01 */}
               <Landing.Sec02ImgBox>
-                <Image width={250} src={t("section02.img01.src")} />
+                <Image
+                  width={250}
+                  src={`${prefix}` + t("section02.img01.src")}
+                />
                 <Landing.Sec02ImgPlace>
                   {t("section02.img01.place")}
                 </Landing.Sec02ImgPlace>
@@ -100,7 +95,10 @@ const LandingComponent = () => {
               </Landing.Sec02ImgBox>
               {/* picture02 */}
               <Landing.Sec02ImgBox>
-                <Image width={250} src={t("section02.img02.src")} />
+                <Image
+                  width={250}
+                  src={`${prefix}` + t("section02.img02.src")}
+                />
                 <Landing.Sec02ImgPlace>
                   {t("section02.img02.place")}
                 </Landing.Sec02ImgPlace>
@@ -113,7 +111,10 @@ const LandingComponent = () => {
               </Landing.Sec02ImgBox>
               {/* picture03 */}
               <Landing.Sec02ImgBox>
-                <Image width={250} src={t("section02.img03.src")} />
+                <Image
+                  width={250}
+                  src={`${prefix}` + t("section02.img03.src")}
+                />
                 <Landing.Sec02ImgPlace>
                   {t("section02.img03.place")}
                 </Landing.Sec02ImgPlace>
