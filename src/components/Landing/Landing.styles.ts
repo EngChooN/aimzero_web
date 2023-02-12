@@ -102,7 +102,6 @@ export const Section02 = styled.section`
 export const Sec02Top = styled.div`
   width: 100%;
   height: 10%;
-  border-bottom: 1px solid black;
 
   display: flex;
   justify-content: center;
@@ -129,7 +128,8 @@ export const Sec02TitleBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin-bottom: 20px; */
+
+  border-bottom: 1px solid black;
 `;
 
 export const Sec02SectionText = styled.h1`
@@ -186,5 +186,45 @@ export const Sec02ImgDate = styled.div`
   font-family: serif;
   font-size: 14px;
   margin-top: 10px;
+  color: darkgray;
+`;
+
+export const Section03 = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Sec03Top = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 20%;
+`;
+
+export const Sec03Bottom = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 80%;
+`;
+
+export const Sec03Title = styled.h1`
+  font-family: AbrilFatface;
+  font-size: 40px;
+  margin: 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
+`;
+
+export const Sec03MiniTitle = styled.h3`
+  font-family: Garamond;
+  font-size: 20px;
+  margin: 0;
   color: darkgray;
 `;
