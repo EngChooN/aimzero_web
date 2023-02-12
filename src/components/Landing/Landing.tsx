@@ -10,6 +10,7 @@ import { Image } from "antd";
 import { List } from "antd";
 // log data length
 import commonData from "../../../public/locales/en/common.json";
+// import commonData from "../../locales/en/common.json";
 import { prefix } from "../../common/config/config";
 
 const LandingComponent = () => {
