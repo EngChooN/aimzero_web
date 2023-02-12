@@ -33,6 +33,54 @@
       "date": "2023.01.01 친구들이랑"
     }
   },
+  "section03": {
+    "title": "Page Development News",
+    "miniTitle": "You can see the history and changes to this page in Section Three.",
+    "log": [
+      {
+        "date": "2023.02.13",
+        "desc": "배포 테스트",
+        "content": "랜딩 페이지만 있는 상태에서 테스트 배포가 수행되었습니다.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.12",
+        "desc": "랜딩페이지 섹션3 추가 (랜딩페이지 개발 완료)",
+        "content": "랜딩 페이지의 개발 로그를 볼 수 있는 섹션3을 추가하여 랜딩 페이지의 개발이 완료되었습니다.",
+        "img": "images/landing/logImg/log4.png"
+      },
+      {
+        "date": "2023.02.09",
+        "desc": "다국어 지원 버튼 추가",
+        "content": "다국어 변경 단추가 추가되었습니다. 그러나 '/ko'에서만 작동하는 문제가 있습니다.",
+        "img": "images/landing/logImg/log3.png"
+      },
+      {
+        "date": "2023.02.08",
+        "desc": "랜딩페이지 섹션2 추가",
+        "content": "랜딩 페이지에 내가 가장 기억에 남는 사건들을 나열한 섹션2를 추가했습니다.",
+        "img": "images/landing/logImg/log2.png"
+      },
+      {
+        "date": "2023.02.07",
+        "desc": "랜딩페이지 섹션1 추가 및 다국어화 지원",
+        "content": "페이지의 URL을 '/en' 또는 '/ko'로 변경하여 해당 국가의 언어로 볼 수 있는 다국어 기능과 랜딩 페이지에 자신을 소개하는 섹션1을 추가했습니다.",
+        "img": "images/landing/logImg/log1.png"
+      },
+      {
+        "date": "2023.02.06",
+        "desc": "랜딩페이지 개발 시작",
+        "content": "랜딩페이지 개발을 시작했습니다.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.02",
+        "desc": "프로젝트 시작",
+        "content": "프로젝트 개발환경 세팅",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      }
+    ]
+  },
   "languageButton": {
     "lang01": "영어",
     "lang02": "한국어"

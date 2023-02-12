@@ -33,6 +33,54 @@
       "date": "2020.06.30 "
     }
   },
+  "section03": {
+    "title": "Page Development News",
+    "miniTitle": "You can see the history and changes to this page in Section Three.",
+    "log": [
+      {
+        "date": "2023.02.13",
+        "desc": "Deploying Test",
+        "content": "Test distribution was performed with only landing page present.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.12",
+        "desc": "Add Section 03 to Landing Page (Landing Page Development Completed)",
+        "content": "By adding section 3 where you can view the development log of the landing page, the development of the landing page has been completed.",
+        "img": "images/landing/logImg/log4.png"
+      },
+      {
+        "date": "2023.02.09",
+        "desc": "add Multilingual support button.",
+        "content": "The Change Multilingual button has been added. However, there is an issue that only works with '/ko'.",
+        "img": "images/landing/logImg/log3.png"
+      },
+      {
+        "date": "2023.02.08",
+        "desc": "Add Section 02 to Landing Page",
+        "content": "I added section 2 which lists my most memorable events on the landing page.",
+        "img": "images/landing/logImg/log2.png"
+      },
+      {
+        "date": "2023.02.07",
+        "desc": "Add Section 01 to Landing Page & Multilingual support",
+        "content": "Added multilingual features that can be viewed in your country's language by changing the url on the page to '/en' or '/ko' and section 1 that simply introduces yourself on the landing page.",
+        "img": "images/landing/logImg/log1.png"
+      },
+      {
+        "date": "2023.02.06",
+        "desc": "Start Landing Page Development",
+        "content": "We started developing landing page.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.02",
+        "desc": "Start a project",
+        "content": "Project development environment setting",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      }
+    ]
+  },
   "languageButton": {
     "lang01": "english",
     "lang02": "korean"

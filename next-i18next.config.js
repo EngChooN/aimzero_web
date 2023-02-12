@@ -3,8 +3,5 @@ module.exports = {
     locales: ["en", "ko"],
     defaultLocale: "en",
     localeDetection: false,
-    pages: {
-      "*": ["common"],
-    },
   },
 };
