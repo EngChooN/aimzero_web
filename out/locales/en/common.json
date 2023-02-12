@@ -1,0 +1,88 @@
+{
+  "section01": {
+    "img": ["images/landing/IMG_7604.jpeg"],
+    "title": "Who I am?",
+    "miniTitle": ["Why did you become a front-end developer?", "Afterwards..."],
+    "content": [
+      "As I came across Facebook, where individuals produce content and communicate in both directions while using web services, and services that are more comfortable than existing logins such as social logins, I became interested in this field, and learned state-funded Java Spring FullStec as my first coding. When I first encountered web development, I felt that the front end that gives users a direct experience depending on how I write the code was right for me.",
+      "After graduation, after deciding to become a front-end developer, I completed a 12-week front-end boot camp code camp using the latest technology stack, including React Hooks. (2022. 03. 14 ~ 2022. 06. 03)",
+      "After completion, I am in charge of the front-end of the 'Papaya Play' platform at a company called VertigoGames."
+    ],
+    "highlight": [
+      "I'm Joonyoung Cho, a front-end developer who writes code from the user's point of view!"
+    ]
+  },
+  "section02": {
+    "title": "A memorable event",
+    "img01": {
+      "src": "images/landing/IMG_0239.jpeg",
+      "place": "in Ganghwado",
+      "desc": "I rode luge with my friends on a trip to Ganghwado.",
+      "date": "2022.07.22 ~ 2022.07.23"
+    },
+    "img02": {
+      "src": "images/landing/IMG_4710.JPG",
+      "place": "in Gapyeong",
+      "desc": "I went to Gapyeong with my friends and played in the pool in front of the accommodation.",
+      "date": "2020.08.09 ~ 2020.08.10"
+    },
+    "img03": {
+      "src": "images/landing/IMG_4319_Original.jpeg",
+      "place": "in Guwol-dong",
+      "desc": "I took a picture in Guwol-dong wearing military uniform with my friends.",
+      "date": "2020.06.30 "
+    }
+  },
+  "section03": {
+    "title": "Page Development News",
+    "miniTitle": "You can see the history and changes to this page in Section Three.",
+    "log": [
+      {
+        "date": "2023.02.13",
+        "desc": "Deploying Test",
+        "content": "However, i18n multilingual support does not support 'next-export' and the problem with 'gh-pages', which does not support dynamic deployment, removes multilingual features and deploys tests.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.12",
+        "desc": "Add Section 03 to Landing Page (Landing Page Development Completed)",
+        "content": "By adding section 3 where you can view the development log of the landing page, the development of the landing page has been completed.",
+        "img": "images/landing/logImg/log4.png"
+      },
+      {
+        "date": "2023.02.09",
+        "desc": "add Multilingual support button.",
+        "content": "The Change Multilingual button has been added. However, there is an issue that only works with '/ko'.",
+        "img": "images/landing/logImg/log3.png"
+      },
+      {
+        "date": "2023.02.08",
+        "desc": "Add Section 02 to Landing Page",
+        "content": "I added section 2 which lists my most memorable events on the landing page.",
+        "img": "images/landing/logImg/log2.png"
+      },
+      {
+        "date": "2023.02.07",
+        "desc": "Add Section 01 to Landing Page & Multilingual support",
+        "content": "Added multilingual features that can be viewed in your country's language by changing the url on the page to '/en' or '/ko' and section 1 that simply introduces yourself on the landing page.",
+        "img": "images/landing/logImg/log1.png"
+      },
+      {
+        "date": "2023.02.06",
+        "desc": "Start Landing Page Development",
+        "content": "We started developing landing page.",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      },
+      {
+        "date": "2023.02.02",
+        "desc": "Start a project",
+        "content": "Project development environment setting",
+        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+      }
+    ]
+  },
+  "languageButton": {
+    "lang01": "english",
+    "lang02": "korean"
+  }
+}
