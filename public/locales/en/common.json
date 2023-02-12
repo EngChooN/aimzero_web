@@ -40,7 +40,7 @@
       {
         "date": "2023.02.13",
         "desc": "Deploying Test",
-        "content": "Test distribution was performed with only landing page present.",
+        "content": "However, i18n multilingual support does not support 'next-export' and the problem with 'gh-pages', which does not support dynamic deployment, removes multilingual features and deploys tests.",
         "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
       },
       {

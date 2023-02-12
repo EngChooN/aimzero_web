@@ -3,7 +3,8 @@ import type { MenuProps } from "antd";
 import { Dropdown, Space } from "antd";
 import styled from "@emotion/styled";
 // il18
-import { useTranslation, i18n } from "next-i18next";
+// import { useTranslation, i18n } from "next-i18next";
+import commonData from "../../../public/locales/en/common.json";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -16,24 +17,24 @@ const DisplayText = styled(Space)`
 `;
 
 export default function LocaleButton() {
-  const { t } = useTranslation("common");
+  // const { t } = useTranslation("common");
 
   // click func
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-  };
+  // const changeLanguage = (lang: string) => {
+  //   i18n.changeLanguage(lang);
+  // };
 
   const items: MenuProps["items"] = [
     {
       label: (
         <a
           rel="noopener noreferrer"
-          onClick={() => {
-            changeLanguage("en");
-          }}
+          // onClick={() => {
+          //   changeLanguage("en");
+          // }}
           style={{ fontFamily: "serif" }}
         >
-          🏴󠁧󠁢󠁥󠁮󠁧󠁿 {t("languageButton.lang01")}
+          🏴󠁧󠁢󠁥󠁮󠁧󠁿 {commonData.languageButton.lang01}
         </a>
       ),
       key: "0",
@@ -45,12 +46,12 @@ export default function LocaleButton() {
       label: (
         <a
           rel="noopener noreferrer"
-          onClick={() => {
-            changeLanguage("ko");
-          }}
+          // onClick={() => {
+          //   changeLanguage("ko");
+          // }}
           style={{ fontFamily: "serif" }}
         >
-          🇰🇷 {t("languageButton.lang02")}
+          🇰🇷 {commonData.languageButton.lang02}
         </a>
       ),
       key: "1",

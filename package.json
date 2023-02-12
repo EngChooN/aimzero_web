@@ -2,16 +2,20 @@
   "name": "aimzero_web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://EngChooN.github.io/aimzero_web",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-deploy": "next build && next export",
+    "deploy": "next build && next export && touch out/ .nojekyll && git add -f out/ && git commit -m 'deploy to gh-pages' && git subtree push --prefix out origin gh-pages"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "antd": "^5.2.0",
+    "gh-pages": "^5.0.0",
     "i18next": "^22.4.9",
     "next": "13.1.6",
     "next-i18next": "^13.1.5",
