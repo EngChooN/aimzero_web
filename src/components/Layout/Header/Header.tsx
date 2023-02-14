@@ -52,15 +52,30 @@ const List = styled.div`
 `;
 
 export default function Header() {
-  const headerList = ["about", "project", "photo", "guest book"];
+  const headerList = [
+    "about",
+    "skills",
+    "projects",
+    "photo",
+    "visit log",
+    "login",
+  ];
   return (
     <Wrapper>
       <Menu>
         <List>{headerList[0]}</List>
         <List>{headerList[1]}</List>
-        <Logo>AimZero</Logo>
         <List>{headerList[2]}</List>
-        <List>{headerList[3]}</List>
+        <Logo>
+          <a href="/">AimZero</a>
+        </Logo>
+        <List>
+          <a href="/photo">{headerList[3]}</a>
+        </List>
+        <List>{headerList[4]}</List>
+        <List>
+          <a href="/login">{headerList[5]}</a>
+        </List>
       </Menu>
     </Wrapper>
   );

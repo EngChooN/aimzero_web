@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
       <Layout>
-        <LocaleButton />
+        {/* <LocaleButton /> */}
         <Component {...pageProps} />
       </Layout>
     </RecoilRoot>

@@ -50,7 +50,9 @@ export default function Footer() {
   return (
     <Wrapper>
       <ContentsWrapper>
-        <Logo>AimZero</Logo>
+        <Logo>
+          <a href="/">AimZero</a>
+        </Logo>
         <IconWrapper>
           <FaBlogger style={{ fontSize: "30px", cursor: "pointer" }} />
           <FaGithub style={{ fontSize: "30px", cursor: "pointer" }} />

@@ -22,8 +22,8 @@ const LandingComponent = () => {
       // content: t(`section03.log.${i}.content`),
       // img: t(`section03.log.${i}.img`),
       href: commonData.section03.log[i].img,
-      title: commonData.section03.log[i].date,
-      description: commonData.section03.log[i].desc,
+      title: commonData.section03.log[i].desc,
+      description: commonData.section03.log[i].date,
       content: commonData.section03.log[i].content,
       img: commonData.section03.log[i].img,
     })
@@ -154,7 +154,7 @@ const LandingComponent = () => {
                 >
                   <List.Item.Meta
                     style={{ width: "600px", fontFamily: "serif" }}
-                    title={<a href={item.href}>{item.title}</a>}
+                    title={item.title}
                     description={item.description}
                   />
                   <p style={{ width: "600px" }}>{item.content}</p>
