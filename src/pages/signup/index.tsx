@@ -1,18 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-// firebase
-import {
-  createUserWithEmailAndPassword,
-  getRedirectResult,
-  GithubAuthProvider,
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithRedirect,
-  signOut,
-} from "firebase/auth";
-import { authService } from "../../../firebase.config";
 import { loginState } from "../../common/Recoil/loginState";
 import { useRecoilState } from "recoil";
+// firebase
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 const Wrapper = styled.section`
   max-width: 1200px;
@@ -95,7 +86,7 @@ const Btn = styled.button`
   padding-top: 15px;
   padding-bottom: 15px;
   margin-top: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   font-family: serif;
   color: white;
@@ -131,29 +122,53 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-export default function Login() {
+export default function Signup() {
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
+  const [rePass, setRePass] = useState("");
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
 
-  // logIn func (email & pass 6 length up)
-  async function loginWithEmail(id: string, pass: string) {
+  // signUp func
+  const signUp = async (id, pass) => {
     try {
-      await signInWithEmailAndPassword(authService, id, pass);
-      setLoginStatus(true);
-    } catch (e) {
-      return e.message.replace("Firebase: Error ", "");
+      const auth = getAuth();
+      const { user } = await createUserWithEmailAndPassword(auth, id, pass);
+      const { stsTokenManager, uid } = user;
+      setAuthInfo({ uid, id, authToken: stsTokenManager });
+      navigate("/");
+    } catch ({ code, message }) {
+      alert(errorMessage[code]);
     }
-  }
-
-  const goToLogin = () => {
-    loginWithEmail;
   };
+
+  const goToSignUp = () => {
+    const reg =
+      /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    // e-mail check
+    if (reg.test(id) == false || id == "") {
+      alert("Plz check your e-mail");
+      return;
+    }
+    // pass check
+    if (pass.length < 6 || pass == "") {
+      alert("Password must be at least 6 digits");
+      return;
+    }
+    // confirm pass check
+    if (pass !== rePass || rePass == "") {
+      alert("Must be the same as the password");
+      return;
+    }
+
+    console.log("success!!");
+  };
+
   return (
     <Wrapper>
       <LoginBox>
         <TitleBox>
-          <Title>Log In</Title>
+          <Title>Sign Up</Title>
         </TitleBox>
         <InputBox>
           <Input
@@ -178,11 +193,20 @@ export default function Login() {
           {/* input underline */}
           <div></div>
         </InputBox>
+        <InputBox>
+          <Input
+            placeholder="confirm password"
+            type={"password"}
+            onChange={(e) => {
+              setRePass(e.target.value);
+              console.log(pass);
+            }}
+          />
+          {/* input underline */}
+          <div></div>
+        </InputBox>
         <BottomSection>
-          <Btn onClick={goToLogin}>LogIn</Btn>
-          <a href="/signup" style={{ fontFamily: "serif" }}>
-            SignUp
-          </a>
+          <Btn onClick={goToSignUp}>OK</Btn>
         </BottomSection>
       </LoginBox>
     </Wrapper>

@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useRecoilState } from "recoil";
+import { loginState } from "../../../common/Recoil/loginState";
 
 const Wrapper = styled.section`
   display: flex;
@@ -52,14 +54,9 @@ const List = styled.div`
 `;
 
 export default function Header() {
-  const headerList = [
-    "about",
-    "skills",
-    "projects",
-    "photo",
-    "visit log",
-    "login",
-  ];
+  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
+
+  const headerList = ["about", "skills", "projects", "photo", "visit log"];
   return (
     <Wrapper>
       <Menu>
@@ -74,7 +71,7 @@ export default function Header() {
         </List>
         <List>{headerList[4]}</List>
         <List>
-          <a href="/login">{headerList[5]}</a>
+          {loginStatus == false ? <a href="/login">login</a> : <a>logout</a>}
         </List>
       </Menu>
     </Wrapper>

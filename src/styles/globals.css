@@ -38,3 +38,29 @@ a {
   font-family: MarckScript;
   src: url("../../public/fonts/MarckScript-Regular.ttf");
 }
+
+:where(.css-dev-only-do-not-override-diro6f).ant-pagination
+  .ant-pagination-item-active
+  a {
+  color: black;
+}
+
+:where(.css-dev-only-do-not-override-diro6f) a {
+  color: black;
+}
+
+:where(.css-dev-only-do-not-override-diro6f).ant-pagination
+  .ant-pagination-item-active {
+  border-color: black;
+}
+
+:where(.css-dev-only-do-not-override-diro6f).ant-pagination
+  .ant-pagination-item-active:hover {
+  border-color: black;
+}
+
+:where(.css-dev-only-do-not-override-diro6f).ant-pagination
+  .ant-pagination-item-active:hover
+  a {
+  color: black;
+}
