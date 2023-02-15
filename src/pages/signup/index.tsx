@@ -129,17 +129,17 @@ export default function Signup() {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
 
   // signUp func
-  const signUp = async (id, pass) => {
-    try {
-      const auth = getAuth();
-      const { user } = await createUserWithEmailAndPassword(auth, id, pass);
-      const { stsTokenManager, uid } = user;
-      setAuthInfo({ uid, id, authToken: stsTokenManager });
-      navigate("/");
-    } catch ({ code, message }) {
-      alert(errorMessage[code]);
-    }
-  };
+  // const signUp = async (id, pass) => {
+  //   try {
+  //     const auth = getAuth();
+  //     const { user } = await createUserWithEmailAndPassword(auth, id, pass);
+  //     const { stsTokenManager, uid } = user;
+  //     setAuthInfo({ uid, id, authToken: stsTokenManager });
+  //     navigate("/");
+  //   } catch ({ code, message }) {
+  //     alert(errorMessage[code]);
+  //   }
+  // };
 
   const goToSignUp = () => {
     const reg =
