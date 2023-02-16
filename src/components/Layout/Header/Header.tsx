@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import { useRecoilState } from "recoil";
+import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
 
 const Wrapper = styled.section`
@@ -10,11 +12,6 @@ const Wrapper = styled.section`
   width: 100%;
   height: 130px;
   background-color: white;
-  /* border-bottom: 1px solid black; */
-
-  /* 헤더 상단 고징인데 생각보다 미관상 별로더라..
-  position: sticky;
-  top: 0px; */
 `;
 
 const Menu = styled.div`
@@ -55,8 +52,15 @@ const List = styled.div`
 
 export default function Header() {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
-
   const headerList = ["about", "skills", "projects", "photo", "visit log"];
+
+  // logOut func
+  const logOut = async () => {
+    firebaseAuth.signOut();
+    setLoginStatus(false);
+    location.reload();
+  };
+
   return (
     <Wrapper>
       <Menu>
@@ -64,14 +68,18 @@ export default function Header() {
         <List>{headerList[1]}</List>
         <List>{headerList[2]}</List>
         <Logo>
-          <a href="/">AimZero</a>
+          <Link href={"/"}>AimZero</Link>
         </Logo>
         <List>
-          <a href="/photo">{headerList[3]}</a>
+          <Link href="/photo">{headerList[3]}</Link>
         </List>
         <List>{headerList[4]}</List>
         <List>
-          {loginStatus == false ? <a href="/login">login</a> : <a>logout</a>}
+          {loginStatus == false ? (
+            <Link href="/login">login</Link>
+          ) : (
+            <div onClick={logOut}>logout</div>
+          )}
         </List>
       </Menu>
     </Wrapper>

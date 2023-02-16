@@ -84,5 +84,13 @@
   "languageButton": {
     "lang01": "english",
     "lang02": "korean"
+  },
+  "photo": {
+    "profileInfo": {
+      "mail": "aimzero9303@gmail.com",
+      "blog": "https://velog.io/@aimzero9303",
+      "github": "https://github.com/EngChooN",
+      "instagram": "https://www.instagram.com/aim_zero__/"
+    }
   }
 }

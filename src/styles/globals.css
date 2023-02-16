@@ -39,6 +39,7 @@ a {
   src: url("../../public/fonts/MarckScript-Regular.ttf");
 }
 
+/* antd custom */
 :where(.css-dev-only-do-not-override-diro6f).ant-pagination
   .ant-pagination-item-active
   a {
@@ -63,4 +64,9 @@ a {
   .ant-pagination-item-active:hover
   a {
   color: black;
+}
+
+:where(.css-dev-only-do-not-override-diro6f).ant-pagination {
+  position: fixed;
+  bottom: 30px;
 }

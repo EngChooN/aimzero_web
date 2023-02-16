@@ -207,11 +207,12 @@ export const Sec03Top = styled.section`
 
 export const Sec03Bottom = styled.section`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 
   width: 100%;
   height: 80%;
+  padding-top: 70px;
 `;
 
 export const Sec03Title = styled.h1`
