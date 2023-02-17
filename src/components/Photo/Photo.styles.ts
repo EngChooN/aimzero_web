@@ -11,8 +11,16 @@ export const Wrapper = styled.section`
 
 export const TopSection = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+`;
+
+export const Title = styled.h3`
+  margin: 0;
+  font-family: AbrilFatface;
+  font-size: 40px;
+  margin-bottom: 20px;
 `;
 
 export const ProfileBox = styled.div`
@@ -35,11 +43,23 @@ export const ProfileImg = styled.img`
 
 export const InfoBox = styled.div``;
 
-export const Name = styled.div``;
+export const Name = styled.div`
+  font-family: Garamond;
+  font-size: 25px;
+  margin-bottom: 15px;
+`;
 
 export const Posts = styled.div``;
 
-export const Info = styled.div``;
+export const Info = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  font-family: serif;
+`;
 
 export const BottomSection = styled.div`
   padding-bottom: 20px;
@@ -49,12 +69,19 @@ export const BottomSection = styled.div`
 `;
 
 export const Additional = styled.div`
-  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 250px;
   height: 250px;
+  background-color: lightgray;
+  cursor: pointer;
+  transition: all 0.3s;
 
-  margin: 10px;
+  :hover {
+    background-color: darkgray;
+  }
 `;
 
 export const PostImg = styled.img``;
