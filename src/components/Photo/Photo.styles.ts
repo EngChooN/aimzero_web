@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,4 +89,40 @@ export const PostImg = styled.img``;
 
 export const ImgBox = styled.div`
   margin: 7px;
+`;
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  z-index: 99999;
+`;
+
+export const ModalBtnWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const ModalBtn = styled.button`
+  max-width: 70px;
+  width: 100%;
+  height: 30px;
+`;
+
+export const SelImg = styled.img`
+  width: 250px;
+  height: 250px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;

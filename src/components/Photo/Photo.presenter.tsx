@@ -10,6 +10,17 @@ import { RxGithubLogo } from "react-icons/rx";
 export default function PhotoUI(props: any) {
   return (
     <Photos.Wrapper>
+      {/* selected img modal window */}
+      {/* 근데 왜 state 초깃값이 ""인데, 조건이 undefined여야 안보이는거냐 넌? */}
+      {props.uploadStep == 2 ? (
+        <Photos.Modal>
+          <Photos.SelImg src={props.uploadImg} />
+          <Photos.ModalBtnWrapper>
+            <Photos.ModalBtn>Cancle</Photos.ModalBtn>
+            <Photos.ModalBtn>Ok</Photos.ModalBtn>
+          </Photos.ModalBtnWrapper>
+        </Photos.Modal>
+      ) : null}
       <Photos.TopSection>
         <Photos.Title>Photo</Photos.Title>
         <Photos.ProfileBox>
@@ -45,8 +56,9 @@ export default function PhotoUI(props: any) {
               <input
                 type={"file"}
                 style={{ display: "none" }}
+                accept="image/*"
                 ref={props.fileInput}
-                onChange={props.selectFile}
+                onChange={(e) => props.selectFile(e.target.files[0])}
               />
             </Photos.Additional>
           </Photos.ImgBox>
@@ -59,47 +71,7 @@ export default function PhotoUI(props: any) {
             src={"/images/landing/IMG_4710.JPG"}
           />
         </Photos.ImgBox>
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
       </Photos.BottomSection>
     </Photos.Wrapper>
   );
 }
-
-// mail FiMail
-// blog FaBlog
-// github RxGithubLogo
-// insta FiInstagram
