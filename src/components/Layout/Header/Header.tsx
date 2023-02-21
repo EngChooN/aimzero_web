@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
@@ -41,18 +42,31 @@ const List = styled.div`
   color: black;
 
   padding-bottom: 3px;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
   cursor: pointer;
+
+  div {
+    width: ${(props: any) => (props.currentUrl ? "100%" : "0%")};
+    height: 1px;
+    border-bottom: 1px solid
+      ${(props: any) => (props.currentUrl ? "black" : "white")};
+    transition: all 0.3s;
+  }
+
   :hover {
-    border-bottom: 1px solid black;
-    color: black;
+    div {
+      width: 100%;
+      border-bottom: 1px solid black;
+    }
   }
 `;
 
 export default function Header() {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const headerList = ["about", "skills", "projects", "photo", "visit log"];
+  const router = useRouter();
+  const crrUrl = router.pathname;
+
+  console.log(crrUrl);
 
   // logOut func
   const logOut = async () => {
@@ -64,21 +78,48 @@ export default function Header() {
   return (
     <Wrapper>
       <Menu>
-        <List>{headerList[0]}</List>
-        <List>{headerList[1]}</List>
-        <List>{headerList[2]}</List>
+        {/* about */}
+        <List currentUrl={crrUrl === "/about"}>
+          <Link href="/about">{headerList[0]}</Link>
+          <div></div>
+        </List>
+        {/* skills */}
+        <List currentUrl={crrUrl === "/skills"}>
+          <Link href="/skills">{headerList[1]}</Link>
+          <div></div>
+        </List>
+        {/* project */}
+        <List currentUrl={crrUrl === "/projects"}>
+          <Link href="/projects">{headerList[2]}</Link>
+          <div></div>
+        </List>
+        {/* home */}
         <Logo>
           <Link href={"/"}>AimZero</Link>
         </Logo>
-        <List>
-          <Link href="/photo">{headerList[3]}</Link>
+        {/* photo */}
+        <List currentUrl={crrUrl === "/photo"}>
+          <Link href="/photo">
+            {headerList[3]}
+            <div></div>
+          </Link>
         </List>
-        <List>{headerList[4]}</List>
-        <List>
+        {/* visit log */}
+        <List currentUrl={crrUrl === "/visit+log"}>
+          <Link href="/visit+log">{headerList[4]}</Link>
+          <div></div>
+        </List>
+        {/* login */}
+        <List currentUrl={crrUrl === "/login"}>
           {loginStatus == false ? (
-            <Link href="/login">login</Link>
+            <Link href="/login">
+              login<div></div>
+            </Link>
           ) : (
-            <div onClick={logOut}>logout</div>
+            // logout
+            <Link href={"#"} onClick={logOut}>
+              logout<div></div>
+            </Link>
           )}
         </List>
       </Menu>

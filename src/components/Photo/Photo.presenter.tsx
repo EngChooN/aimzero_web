@@ -10,17 +10,6 @@ import { RxGithubLogo } from "react-icons/rx";
 export default function PhotoUI(props: any) {
   return (
     <Photos.Wrapper>
-      {/* selected img modal window */}
-      {/* 근데 왜 state 초깃값이 ""인데, 조건이 undefined여야 안보이는거냐 넌? */}
-      {props.uploadStep == 2 ? (
-        <Photos.Modal>
-          <Photos.SelImg src={props.uploadImg} />
-          <Photos.ModalBtnWrapper>
-            <Photos.ModalBtn>Cancle</Photos.ModalBtn>
-            <Photos.ModalBtn>Ok</Photos.ModalBtn>
-          </Photos.ModalBtnWrapper>
-        </Photos.Modal>
-      ) : null}
       <Photos.TopSection>
         <Photos.Title>Photo</Photos.Title>
         <Photos.ProfileBox>
@@ -51,16 +40,32 @@ export default function PhotoUI(props: any) {
       <Photos.BottomSection>
         {props.userInfo?.email == "aimzero9303@gmail.com" ? (
           <Photos.ImgBox>
-            <Photos.Additional onClick={() => props.fileInput.current.click()}>
-              <AiOutlinePlus color={"white"} fontSize={60} />
-              <input
-                type={"file"}
-                style={{ display: "none" }}
-                accept="image/*"
-                ref={props.fileInput}
-                onChange={(e) => props.selectFile(e.target.files[0])}
-              />
-            </Photos.Additional>
+            {props.uploadStep == 1 ? (
+              <Photos.Additional
+                onClick={() => props.fileInput.current.click()}
+              >
+                {/* file add btn */}
+                <AiOutlinePlus color={"white"} fontSize={60} />
+                {/* file input */}
+                <input
+                  type={"file"}
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  ref={props.fileInput}
+                  onChange={(e) => props.selectFile(e.target.files[0])}
+                />
+              </Photos.Additional>
+            ) : (
+              // img preview
+              <Photos.SelImgWrapper>
+                <AiOutlinePlus
+                  color={"white"}
+                  fontSize={60}
+                  style={{ position: "absolute" }}
+                />
+                <Photos.SelImg />
+              </Photos.SelImgWrapper>
+            )}
           </Photos.ImgBox>
         ) : null}
         {/* <Photos.PostImg /> */}

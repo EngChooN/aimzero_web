@@ -106,21 +106,25 @@ export const Modal = styled.div`
   z-index: 99999;
 `;
 
-export const ModalBtnWrapper = styled.div`
-  width: 100%;
+export const SelImgWrapper = styled.div`
   display: flex;
   justify-content: center;
-`;
+  align-items: center;
 
-export const ModalBtn = styled.button`
-  max-width: 70px;
-  width: 100%;
-  height: 30px;
+  width: 250px;
+  height: 250px;
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  :hover {
+    background-color: darkgray;
+  }
 `;
 
 export const SelImg = styled.img`
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
 
   background-size: cover;
   background-repeat: no-repeat;

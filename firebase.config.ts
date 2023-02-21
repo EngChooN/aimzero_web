@@ -25,5 +25,5 @@ export {
   firebaseAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  getFirestore,
+  firebaseDb,
 };
