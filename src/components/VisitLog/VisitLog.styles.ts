@@ -9,12 +9,15 @@ export const Wrapper = styled.section`
   align-items: center;
   padding-bottom: 30px;
 `;
+
 export const ProfileWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+  max-width: 80px;
+  width: 100%;
 `;
 
 export const NoneProfile = styled.img`
@@ -25,13 +28,21 @@ export const NoneProfile = styled.img`
 
 export const ListLog = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
   overflow-y: scroll;
   width: 100%;
 
   border-bottom: 1px solid darkgray;
   padding-bottom: 30px;
   margin-bottom: 30px;
+`;
+
+export const CommentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
 `;
 
 export const LogBox = styled.div`
@@ -42,11 +53,12 @@ export const LogBox = styled.div`
 `;
 
 export const Name = styled.p`
-  font-family: Garamond;
-  font-size: 17px;
+  font-family: serif;
+  font-size: 15px;
   display: flex;
   align-items: center;
   margin: 0;
+  margin-top: 7px;
 `;
 export const Title = styled.h1`
   font-family: AbrilFatface;
