@@ -1,7 +1,6 @@
 import * as Photos from "./Photo.styles";
 import profileData from "../../../public/locales/en/common.json";
 import { Image } from "antd";
-import styled from "@emotion/styled";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMail, FiInstagram } from "react-icons/fi";
 import { FaBlog } from "react-icons/fa";
@@ -15,7 +14,7 @@ export default function PhotoUI(props: any) {
         <Photos.ProfileBox>
           <Photos.ProfileImg src={"/images/photo/profile.GIF"} />
           <Photos.InfoBox>
-            <Photos.Name>joonyoung cho</Photos.Name>
+            <Photos.Name>Joonyoung Cho</Photos.Name>
             <Photos.Posts></Photos.Posts>
             {/* contact info */}
             <Photos.Info>

@@ -26,4 +26,5 @@ export {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   firebaseDb,
+  firebaseApp,
 };

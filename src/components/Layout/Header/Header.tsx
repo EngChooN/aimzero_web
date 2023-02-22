@@ -35,7 +35,7 @@ const Logo = styled.div`
   cursor: pointer;
 `;
 
-const List = styled.div`
+const List = styled.div<{ currentUrl: boolean }>`
   font-family: Garamond;
   font-weight: 400;
   font-size: 25px;
@@ -45,10 +45,10 @@ const List = styled.div`
   cursor: pointer;
 
   div {
-    width: ${(props: any) => (props.currentUrl ? "100%" : "0%")};
+    width: ${(props) => (props.currentUrl ? "100%" : "0%")};
     height: 1px;
     border-bottom: 1px solid
-      ${(props: any) => (props.currentUrl ? "black" : "white")};
+      ${(props) => (props.currentUrl ? "black" : "white")};
     transition: all 0.3s;
   }
 
