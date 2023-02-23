@@ -32,7 +32,7 @@ export const ListLog = styled.div`
 
   overflow-y: scroll;
   width: 100%;
-  height: 500px;
+  height: 690px;
 
   border-bottom: 1px solid darkgray;
   padding-bottom: 30px;

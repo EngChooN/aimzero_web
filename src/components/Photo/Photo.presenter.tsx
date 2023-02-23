@@ -44,7 +44,11 @@ export default function PhotoUI(props: any) {
                 onClick={() => props.fileInput.current.click()}
               >
                 {/* file add btn */}
-                <AiOutlinePlus color={"white"} fontSize={60} />
+                <AiOutlinePlus
+                  color={"white"}
+                  fontSize={60}
+                  style={{ position: "absolute" }}
+                />
                 {/* file input */}
                 <input
                   type={"file"}
@@ -56,13 +60,13 @@ export default function PhotoUI(props: any) {
               </Photos.Additional>
             ) : (
               // img preview
-              <Photos.SelImgWrapper>
+              <Photos.SelImgWrapper onClick={props.uploadImgUrl}>
                 <AiOutlinePlus
-                  color={"white"}
+                  color={"black"}
                   fontSize={60}
-                  style={{ position: "absolute" }}
+                  style={{ position: "absolute", zIndex: 9999999 }}
                 />
-                <Photos.SelImg />
+                <Photos.SelImg src={props.image} />
               </Photos.SelImgWrapper>
             )}
           </Photos.ImgBox>

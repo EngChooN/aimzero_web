@@ -70,6 +70,7 @@ export const BottomSection = styled.div`
 `;
 
 export const Additional = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -5,9 +5,7 @@ import { useRouter } from "next/router";
 import {
   addDoc,
   collection,
-  doc,
   getFirestore,
-  setDoc,
   getDocs,
   query,
   orderBy,
