@@ -40,33 +40,27 @@ a {
 }
 
 /* antd custom */
-:where(.css-dev-only-do-not-override-diro6f).ant-pagination
-  .ant-pagination-item-active
-  a {
+.ant-pagination .ant-pagination-item-active a {
   color: black;
 }
 
-:where(.css-dev-only-do-not-override-diro6f) a {
+a {
   color: black;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-pagination
-  .ant-pagination-item-active {
+.ant-pagination .ant-pagination-item-active {
   border-color: black;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-pagination
-  .ant-pagination-item-active:hover {
+.ant-pagination .ant-pagination-item-active:hover {
   border-color: black;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-pagination
-  .ant-pagination-item-active:hover
-  a {
+.ant-pagination .ant-pagination-item-active:hover a {
   color: black;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-pagination {
+.ant-pagination {
   position: fixed;
   bottom: 30px;
 }

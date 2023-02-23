@@ -31,6 +31,7 @@ export default function VisitLog() {
         comment: comment,
       });
       fetchComments();
+      setComment("");
     } else {
       router.push("/login");
     }
@@ -76,6 +77,7 @@ export default function VisitLog() {
             setComment(e.target.value);
           }}
           placeholder="Write your comment"
+          value={comment}
         />
         <Visit.SubmitBtn onClick={submitComment}>submit</Visit.SubmitBtn>
       </Visit.WriteBox>
