@@ -1,5 +1,5 @@
 import * as Visit from "./VisitLog.styles";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 // firebase
 import {
@@ -9,6 +9,8 @@ import {
   getFirestore,
   setDoc,
   getDocs,
+  query,
+  orderBy,
 } from "firebase/firestore";
 import { firebaseApp, firebaseDb } from "../../../firebase.config";
 // recoil
@@ -23,42 +25,41 @@ export default function VisitLog() {
   const [commentsData, setCommentsData] = useState([]);
   const name = userInfo?.email.split("@")[0];
   const router = useRouter();
+  const listRef = useRef(null);
 
+  // create comment func
   const submitComment = async () => {
     if (loginStatus == true && userInfo.email != "") {
       await addDoc(collection(firebaseDb, "visitlog"), {
         name: name,
         comment: comment,
+        timestamp: new Date(),
       });
       fetchComments();
       setComment("");
+      listRef.current.scrollTop = 0;
     } else {
       router.push("/login");
     }
   };
 
-  const fetchComments = async () => {
-    const querySnapshot = await getDocs(collection(firebaseDb, "visitlog"));
-    let fetchData = [];
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-      fetchData = [...fetchData, doc.data()];
-    });
+  // fetch comments func
+  async function fetchComments() {
+    const visitlog = collection(getFirestore(firebaseApp), "visitlog");
+    const result = await getDocs(query(visitlog, orderBy("timestamp", "desc")));
+    const fetchData = result.docs.map((el) => el.data());
     setCommentsData(fetchData);
-  };
+  }
 
+  // first time fetch
   useEffect(() => {
-    const fetching = async () => {
-      await fetchComments();
-    };
-
-    fetching();
+    fetchComments();
   }, []);
 
   return (
     <Visit.Wrapper>
       <Visit.Title>Visit Log</Visit.Title>
-      <Visit.ListLog>
+      <Visit.ListLog ref={listRef}>
         {commentsData.map((el, index) => (
           <Visit.CommentWrapper>
             <Visit.ProfileWrapper>
