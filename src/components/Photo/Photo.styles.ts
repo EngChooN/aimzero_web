@@ -117,10 +117,6 @@ export const SelImgWrapper = styled.div`
 
   cursor: pointer;
   transition: all 0.3s;
-
-  :hover {
-    background-color: darkgray;
-  }
 `;
 
 export const SelImg = styled.img`
@@ -130,4 +126,10 @@ export const SelImg = styled.img`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  transition: all 0.3s;
+
+  :hover {
+    filter: invert(25%);
+  }
 `;

@@ -62,7 +62,7 @@ export default function PhotoUI(props: any) {
               // img preview
               <Photos.SelImgWrapper onClick={props.uploadImgUrl}>
                 <AiOutlinePlus
-                  color={"black"}
+                  color={"darkGray"}
                   fontSize={60}
                   style={{ position: "absolute", zIndex: 9999999 }}
                 />
@@ -72,13 +72,11 @@ export default function PhotoUI(props: any) {
           </Photos.ImgBox>
         ) : null}
         {/* <Photos.PostImg /> */}
-        <Photos.ImgBox>
-          <Image
-            width={250}
-            height={250}
-            src={"/images/landing/IMG_4710.JPG"}
-          />
-        </Photos.ImgBox>
+        {props.images?.map((el, index) => (
+          <Photos.ImgBox key={index}>
+            <Image width={250} height={250} src={el.imgUrl} />
+          </Photos.ImgBox>
+        ))}
       </Photos.BottomSection>
     </Photos.Wrapper>
   );
