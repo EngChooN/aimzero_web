@@ -149,10 +149,22 @@ export const Sec02Title = styled.h1`
 
 export const Sec02ImgBox = styled.div`
   padding: 15px;
+  padding-top: 50px;
   border: 1px solid black;
+
+  position: relative;
 
   display: flex;
   flex-direction: column;
+`;
+
+export const PinImg = styled.img`
+  position: absolute;
+  width: 70px;
+
+  top: 0px;
+  left: 53%;
+  transform: translate(-50%, -50%);
 `;
 
 export const Sec02Img = styled.img`
@@ -160,12 +172,20 @@ export const Sec02Img = styled.img`
   width: 100%;
 `;
 
+export const Sec02Video = styled.video`
+  z-index: 1;
+  max-width: 700px;
+  width: 100%;
+
+  border: 1px solid black;
+`;
+
 export const Sec02ImgPlace = styled.div`
-  max-width: 250px;
+  /* max-width: 250px; */
   width: 100%;
 
   font-family: AbrilFatface;
-  font-size: 20px;
+  font-size: 25px;
 
   margin-top: 10px;
 `;
@@ -180,11 +200,11 @@ export const Sec02ImgDesc = styled.div`
 `;
 
 export const Sec02ImgDate = styled.div`
-  max-width: 250px;
+  /* max-width: 250px; */
   width: 100%;
 
   font-family: serif;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
   color: darkgray;
 `;

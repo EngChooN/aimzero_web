@@ -84,43 +84,24 @@ const LandingComponent = () => {
           </Landing.Sec02Top>
           <Landing.Sec02Bottom>
             <Landing.Sec02ContentsBox>
-              {/* picture01 */}
+              {/* picture || video 01 */}
               <Landing.Sec02ImgBox>
-                <Image width={250} src={commonData.section02.img01.src} />
+                <Landing.PinImg src={"images/landing/pin.png"} />
+                {/* <Image width={250} src={commonData.section02.img01.src} /> */}
+                <Landing.Sec02Video
+                  src={commonData.section02.img01.src}
+                  controls
+                  autoPlay
+                  muted
+                />
                 <Landing.Sec02ImgPlace>
                   {commonData.section02.img01.place}
                 </Landing.Sec02ImgPlace>
-                <Landing.Sec02ImgDesc>
+                {/* <Landing.Sec02ImgDesc>
                   {commonData.section02.img01.desc}
-                </Landing.Sec02ImgDesc>
+                </Landing.Sec02ImgDesc> */}
                 <Landing.Sec02ImgDate>
                   {commonData.section02.img01.date}
-                </Landing.Sec02ImgDate>
-              </Landing.Sec02ImgBox>
-              {/* picture02 */}
-              <Landing.Sec02ImgBox>
-                <Image width={250} src={commonData.section02.img02.src} />
-                <Landing.Sec02ImgPlace>
-                  {commonData.section02.img02.place}
-                </Landing.Sec02ImgPlace>
-                <Landing.Sec02ImgDesc>
-                  {commonData.section02.img02.desc}
-                </Landing.Sec02ImgDesc>
-                <Landing.Sec02ImgDate>
-                  {commonData.section02.img02.date}
-                </Landing.Sec02ImgDate>
-              </Landing.Sec02ImgBox>
-              {/* picture03 */}
-              <Landing.Sec02ImgBox>
-                <Image width={250} src={commonData.section02.img03.src} />
-                <Landing.Sec02ImgPlace>
-                  {commonData.section02.img03.place}
-                </Landing.Sec02ImgPlace>
-                <Landing.Sec02ImgDesc>
-                  {commonData.section02.img03.desc}
-                </Landing.Sec02ImgDesc>
-                <Landing.Sec02ImgDate>
-                  {commonData.section02.img03.date}
                 </Landing.Sec02ImgDate>
               </Landing.Sec02ImgBox>
             </Landing.Sec02ContentsBox>
