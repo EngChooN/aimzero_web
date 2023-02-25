@@ -18,6 +18,7 @@ const Wrapper = styled.section`
   background-color: white;
 
   @media (max-width: 1100px) {
+    flex-direction: column;
     height: auto;
   }
 `;
@@ -44,12 +45,29 @@ const MobileMenu = styled.div`
   width: 100%;
 
   display: none;
+  background-color: white;
+  z-index: 12;
 
   @media (max-width: 1100px) {
     display: block;
     display: flex;
     justify-content: space-between;
   }
+`;
+
+const DropDown = styled.div<{ menuFlag: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  transition: all 0.3s;
+  top: ${(props: any) => (props.menuFlag == true ? "-500px" : "63.5px")};
+  z-index: 11;
+  background-color: white;
+  box-shadow: 0 4px 4px -4px black;
 `;
 
 const Logo = styled.div`
@@ -170,13 +188,13 @@ export default function Header() {
           <RxHamburgerMenu
             fontSize={35}
             onClick={onClickMenu}
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: "10px", cursor: "pointer" }}
           />
         ) : (
           <MdOutlineCancel
             fontSize={35}
             onClick={onClickMenu}
-            style={{ marginLeft: "10px" }}
+            style={{ marginLeft: "10px", cursor: "pointer" }}
           />
         )}
         <Logo>
@@ -196,6 +214,35 @@ export default function Header() {
           )}
         </List>
       </MobileMenu>
+      <DropDown menuFlag={menuFlag}>
+        {/* about */}
+        <List currentUrl={crrUrl === "/about"}>
+          <Link href="/about">{headerList[0]}</Link>
+          <div></div>
+        </List>
+        {/* skills */}
+        <List currentUrl={crrUrl === "/skills"}>
+          <Link href="/skills">{headerList[1]}</Link>
+          <div></div>
+        </List>
+        {/* project */}
+        <List currentUrl={crrUrl === "/projects"}>
+          <Link href="/projects">{headerList[2]}</Link>
+          <div></div>
+        </List>
+        {/* photo */}
+        <List currentUrl={crrUrl === "/photo"}>
+          <Link href="/photo">
+            {headerList[3]}
+            <div></div>
+          </Link>
+        </List>
+        {/* visit log */}
+        <List currentUrl={crrUrl === "/visit+log"}>
+          <Link href="/visit+log">{headerList[4]}</Link>
+          <div></div>
+        </List>
+      </DropDown>
     </Wrapper>
   );
 }

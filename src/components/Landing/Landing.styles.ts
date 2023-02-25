@@ -24,6 +24,10 @@ export const Sec01Img = styled.img`
   left: 0;
   bottom: 0;
 
+  @media (max-width: 1100px) {
+    width: 46%;
+  }
+
   /* width: 100%; */
 `;
 
@@ -34,6 +38,11 @@ export const Sec01Right = styled.div`
   bottom: 10%;
   width: 50%;
   padding-right: 100px;
+
+  @media (max-width: 1100px) {
+    bottom: 0%;
+    top: 9%;
+  }
 
   /* width: 50%; */
   /* padding-left: 100px; */
