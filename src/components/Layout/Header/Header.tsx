@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
@@ -13,6 +16,10 @@ const Wrapper = styled.section`
   width: 100%;
   height: 130px;
   background-color: white;
+
+  @media (max-width: 1100px) {
+    height: auto;
+  }
 `;
 
 const Menu = styled.div`
@@ -22,6 +29,27 @@ const Menu = styled.div`
 
   max-width: 1200px;
   width: 100%;
+
+  @media (max-width: 1100px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  max-width: 1200px;
+  width: 100%;
+
+  display: none;
+
+  @media (max-width: 1100px) {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const Logo = styled.div`
@@ -33,6 +61,11 @@ const Logo = styled.div`
   padding-bottom: 5px;
 
   cursor: pointer;
+
+  @media (max-width: 1100px) {
+    margin-top: 7px;
+    margin-left: 20px;
+  }
 `;
 
 const List = styled.div<{ currentUrl: boolean }>`
@@ -65,8 +98,13 @@ export default function Header() {
   const headerList = ["about", "skills", "projects", "photo", "visit log"];
   const router = useRouter();
   const crrUrl = router.pathname;
+  // mobile
+  const [menuFlag, setMenuFlag] = useState(true);
 
-  console.log(crrUrl);
+  // mobile menuFlag func
+  const onClickMenu = () => {
+    setMenuFlag(!menuFlag);
+  };
 
   // logOut func
   const logOut = async () => {
@@ -77,6 +115,7 @@ export default function Header() {
 
   return (
     <Wrapper>
+      {/* pc heder */}
       <Menu>
         {/* about */}
         <List currentUrl={crrUrl === "/about"}>
@@ -123,6 +162,40 @@ export default function Header() {
           )}
         </List>
       </Menu>
+
+      {/* mobile header */}
+      <MobileMenu>
+        {/* hamburger menu icon */}
+        {menuFlag == true ? (
+          <RxHamburgerMenu
+            fontSize={35}
+            onClick={onClickMenu}
+            style={{ marginLeft: "10px" }}
+          />
+        ) : (
+          <MdOutlineCancel
+            fontSize={35}
+            onClick={onClickMenu}
+            style={{ marginLeft: "10px" }}
+          />
+        )}
+        <Logo>
+          <Link href={"/"}>AimZero</Link>
+        </Logo>
+        {/* login */}
+        <List currentUrl={crrUrl === "/login"} style={{ marginRight: "10px" }}>
+          {loginStatus == false ? (
+            <Link href="/login">
+              login<div></div>
+            </Link>
+          ) : (
+            // logout
+            <Link href={"#"} onClick={logOut}>
+              logout<div></div>
+            </Link>
+          )}
+        </List>
+      </MobileMenu>
     </Wrapper>
   );
 }
