@@ -3,6 +3,10 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.section`
   max-width: 1200px;
   width: 100%;
+  height: calc(100vh - 300px);
+  @media (max-width: 1100px) {
+    height: calc(100vh - 64.5px - 170px);
+  }
 
   display: flex;
   flex-direction: column;
@@ -32,7 +36,7 @@ export const ListLog = styled.div`
 
   overflow-y: scroll;
   width: 100%;
-  height: 690px;
+  height: 100%;
 
   border-bottom: 1px solid darkgray;
   padding-bottom: 30px;
@@ -66,7 +70,8 @@ export const Title = styled.h1`
   font-size: 40px;
 
   margin: 0;
-  margin-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 40px;
 `;
 
 export const Comment = styled.span`
