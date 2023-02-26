@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.section`
   max-width: 1200px;
   width: 100%;
-  max-height: 720px;
-  height: 100%;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  height: calc(100vh - 300px);
+  @media (max-width: 1100px) {
+    height: calc(100vh - 64.5px - 170px);
+  }
 
   display: flex;
   justify-content: center;
@@ -21,6 +21,7 @@ export const LoginBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const InputBox = styled.div`

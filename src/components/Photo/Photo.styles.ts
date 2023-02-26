@@ -8,6 +8,10 @@ export const Wrapper = styled.section`
 
   max-width: 1200px;
   width: 100%;
+  height: calc(100vh - 300px);
+  @media (max-width: 1100px) {
+    height: calc(100vh - 64.5px - 170px);
+  }
 `;
 
 export const TopSection = styled.div`
@@ -19,9 +23,10 @@ export const TopSection = styled.div`
 
 export const Title = styled.h3`
   margin: 0;
+  margin-bottom: 20px;
+  padding-top: 40px;
   font-family: AbrilFatface;
   font-size: 40px;
-  margin-bottom: 20px;
 `;
 
 export const ProfileBox = styled.div`
@@ -67,6 +72,11 @@ export const BottomSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 66%;
+  @media (max-width: 1100px) {
+    width: 72%;
+  }
+
+  overflow-y: scroll;
 `;
 
 export const Additional = styled.div`

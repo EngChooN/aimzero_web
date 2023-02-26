@@ -64,3 +64,19 @@ a {
   position: fixed;
   bottom: 30px;
 }
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: black;
+}
+
+.ant-tabs .ant-tabs-tab {
+  color: darkgray;
+}
+
+.ant-tabs .ant-tabs-tab:hover {
+  color: black;
+}
+
+.ant-tabs .ant-tabs-ink-bar {
+  background: black;
+}

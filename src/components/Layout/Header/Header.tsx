@@ -128,6 +128,7 @@ export default function Header() {
   const logOut = async () => {
     firebaseAuth.signOut();
     setLoginStatus(false);
+    setMenuFlag(true);
     location.reload();
   };
 
@@ -198,12 +199,24 @@ export default function Header() {
           />
         )}
         <Logo>
-          <Link href={"/"}>AimZero</Link>
+          <Link
+            href={"/"}
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
+            AimZero
+          </Link>
         </Logo>
         {/* login */}
         <List currentUrl={crrUrl === "/login"} style={{ marginRight: "10px" }}>
           {loginStatus == false ? (
-            <Link href="/login">
+            <Link
+              href="/login"
+              onClick={() => {
+                setMenuFlag(true);
+              }}
+            >
               login<div></div>
             </Link>
           ) : (
@@ -217,29 +230,62 @@ export default function Header() {
       <DropDown menuFlag={menuFlag}>
         {/* about */}
         <List currentUrl={crrUrl === "/about"}>
-          <Link href="/about">{headerList[0]}</Link>
+          <Link
+            href="/about"
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
+            {headerList[0]}
+          </Link>
           <div></div>
         </List>
         {/* skills */}
         <List currentUrl={crrUrl === "/skills"}>
-          <Link href="/skills">{headerList[1]}</Link>
+          <Link
+            href="/skills"
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
+            {headerList[1]}
+          </Link>
           <div></div>
         </List>
         {/* project */}
         <List currentUrl={crrUrl === "/projects"}>
-          <Link href="/projects">{headerList[2]}</Link>
+          <Link
+            href="/projects"
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
+            {headerList[2]}
+          </Link>
           <div></div>
         </List>
         {/* photo */}
         <List currentUrl={crrUrl === "/photo"}>
-          <Link href="/photo">
+          <Link
+            href="/photo"
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
             {headerList[3]}
             <div></div>
           </Link>
         </List>
         {/* visit log */}
         <List currentUrl={crrUrl === "/visit+log"}>
-          <Link href="/visit+log">{headerList[4]}</Link>
+          <Link
+            href="/visit+log"
+            onClick={() => {
+              setMenuFlag(true);
+            }}
+          >
+            {headerList[4]}
+          </Link>
           <div></div>
         </List>
       </DropDown>

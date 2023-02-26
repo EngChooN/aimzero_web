@@ -4,8 +4,13 @@ import AwesomeSlider from "react-awesome-slider";
 export const Wrapper = styled.main`
   max-width: 1200px;
   width: 100%;
+  height: calc(100vh - 300px);
+  @media (max-width: 1100px) {
+    height: calc(100vh - 64.5px - 170px);
+  }
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const Section01 = styled.section`
