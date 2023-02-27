@@ -8,10 +8,10 @@ export const Wrapper = styled.section`
 
   max-width: 1200px;
   width: 100%;
-  height: calc(100vh - 300px);
+  /* height: calc(100vh - 130px);
   @media (max-width: 1100px) {
-    height: calc(100vh - 64.5px - 170px);
-  }
+    height: calc(100vh - 64.5px);
+  } */
 `;
 
 export const TopSection = styled.div`
@@ -41,8 +41,8 @@ export const ProfileBox = styled.div`
 `;
 
 export const ProfileImg = styled.img`
-  width: 170px;
-  height: 170px;
+  width: 150px;
+  height: 150px;
   border-radius: 100px;
   border: 3px solid darkgray;
 `;
@@ -51,7 +51,7 @@ export const InfoBox = styled.div``;
 
 export const Name = styled.div`
   font-family: Garamond;
-  font-size: 25px;
+  font-size: 23px;
   margin-bottom: 15px;
 `;
 
@@ -65,15 +65,16 @@ export const Info = styled.div`
   margin-bottom: 5px;
 
   font-family: serif;
+  font-size: 16px;
 `;
 
 export const BottomSection = styled.div`
   padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
-  width: 66%;
+  width: 61%;
   @media (max-width: 1100px) {
-    width: 72%;
+    width: 67%;
   }
 
   overflow-y: scroll;
@@ -85,8 +86,8 @@ export const Additional = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   background-color: lightgray;
   cursor: pointer;
   transition: all 0.3s;

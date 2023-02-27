@@ -13,17 +13,17 @@ export default function Main() {
     {
       key: "1",
       label: `Blog`,
-      children: <Board menu={1} />,
+      children: <Board menu={"blog"} />,
     },
     {
       key: "2",
       label: `Q&A`,
-      children: <Board menu={2} />,
+      children: <Board menu={"qna"} />,
     },
     {
       key: "3",
       label: `News`,
-      children: <Board menu={3} />,
+      children: <Board menu={"news"} />,
     },
   ];
 

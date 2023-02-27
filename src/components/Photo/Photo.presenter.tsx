@@ -10,7 +10,7 @@ export default function PhotoUI(props: any) {
   return (
     <Photos.Wrapper>
       <Photos.TopSection>
-        <Photos.Title>Photo</Photos.Title>
+        {/* <Photos.Title>Photo</Photos.Title> */}
         <Photos.ProfileBox>
           <Photos.ProfileImg src={"/images/photo/profile.GIF"} />
           <Photos.InfoBox>
@@ -23,15 +23,21 @@ export default function PhotoUI(props: any) {
             </Photos.Info>
             <Photos.Info>
               <FaBlog style={{ marginRight: "10px" }} />{" "}
-              {profileData.photo.profileInfo.blog}
+              <a href={profileData.photo.profileInfo.blog} target="_blank">
+                {profileData.photo.profileInfo.blog}
+              </a>
             </Photos.Info>
             <Photos.Info>
               <RxGithubLogo style={{ marginRight: "10px" }} />{" "}
-              {profileData.photo.profileInfo.github}
+              <a href={profileData.photo.profileInfo.github} target="_blank">
+                {profileData.photo.profileInfo.github}
+              </a>
             </Photos.Info>
             <Photos.Info>
               <FiInstagram style={{ marginRight: "10px" }} />{" "}
-              {profileData.photo.profileInfo.instagram}
+              <a href={profileData.photo.profileInfo.instagram} target="_blank">
+                {profileData.photo.profileInfo.instagram}
+              </a>
             </Photos.Info>
           </Photos.InfoBox>
         </Photos.ProfileBox>
@@ -74,7 +80,7 @@ export default function PhotoUI(props: any) {
         {/* <Photos.PostImg /> */}
         {props.images?.map((el, index) => (
           <Photos.ImgBox key={index}>
-            <Image width={250} height={250} src={el.imgUrl} />
+            <Image width={230} height={230} src={el.imgUrl} />
           </Photos.ImgBox>
         ))}
       </Photos.BottomSection>

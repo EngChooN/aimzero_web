@@ -56,7 +56,7 @@ export default function VisitLog() {
 
   return (
     <Visit.Wrapper>
-      <Visit.Title>Visit Log</Visit.Title>
+      {/* <Visit.Title>Visit Log</Visit.Title> */}
       <Visit.ListLog ref={listRef}>
         {commentsData.map((el, index) => (
           <Visit.CommentWrapper>

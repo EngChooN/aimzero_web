@@ -80,3 +80,7 @@ a {
 .ant-tabs .ant-tabs-ink-bar {
   background: black;
 }
+
+.ant-tabs-nav-list {
+  margin-left: 22px;
+}
