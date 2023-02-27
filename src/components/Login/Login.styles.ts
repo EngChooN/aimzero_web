@@ -139,8 +139,8 @@ export const TitleBox = styled.div`
   max-width: 300px;
   width: 100%;
   padding-bottom: 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid black;
+  /* margin-bottom: 20px; */
+  /* border-bottom: 1px solid black; */
 `;
 export const Title = styled.h1`
   font-family: AbrilFatface;
