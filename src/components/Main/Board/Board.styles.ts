@@ -34,12 +34,12 @@ export const BoardNumberInfo = styled.div`
 export const BoardTitleInfo = styled.div`
   display: flex;
   justify-content: center;
-  width: 45%;
+  width: 35%;
   font-weight: 600;
 `;
 
 export const BoardDateInfo = styled.div`
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: center;
   font-weight: 600;
@@ -62,7 +62,7 @@ export const Board = styled.div`
   cursor: pointer;
 
   :hover {
-    background-color: lightgray;
+    background-color: #ededed;
   }
 `;
 
@@ -73,12 +73,12 @@ export const BoardNumber = styled.div`
 `;
 
 export const BoardTitle = styled.div`
-  width: 45%;
+  width: 35%;
   font-family: serif;
 `;
 
 export const BoardDate = styled.div`
-  width: 20%;
+  width: 30%;
   display: flex;
   justify-content: center;
   font-family: serif;

@@ -11,4 +11,39 @@ export const Wrapper = styled.section`
 
   display: flex;
   flex-direction: column;
+  padding: 30px;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const BottomWrapper = styled.div`
+  display: flex;
+  /* align-items: center; */
+
+  width: 100%;
+`;
+
+export const tagWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+`;
+
+export const tag = styled.div`
+  display: flex;
+  align-items: center;
+
+  height: 30px;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: 28px;
+  margin-left: 10px;
+
+  font-family: serif;
 `;

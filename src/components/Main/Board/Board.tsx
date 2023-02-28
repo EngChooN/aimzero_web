@@ -63,7 +63,7 @@ export default function Board(props: any) {
         {/* pagenation */}
         <Boards.BoardWriteBtn
           onClick={() => {
-            router.push("/write");
+            router.push(`/write#${props.menu}`);
           }}
         >
           write
