@@ -66,8 +66,12 @@ export default function BoardWrite(): JSX.Element {
     }
   };
 
-  const submitContent = async () => {
+  const onChangeContent = () => {
     setContent(contentRef.current?.getInstance().getHTML());
+  };
+
+  const submitContent = async () => {
+    // setContent(contentRef.current?.getInstance().getHTML());
     await addDoc(collection(firebaseDb, hash), {
       // not duplicate board id
       id: boardId,
@@ -94,6 +98,7 @@ export default function BoardWrite(): JSX.Element {
       {/* content */}
       <Editor
         ref={contentRef}
+        onChange={onChangeContent}
         initialValue="typing here!"
         previewStyle="vertical"
         height="100%"

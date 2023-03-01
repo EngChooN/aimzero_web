@@ -97,4 +97,33 @@ export const BoardBottomBox = styled.div`
   bottom: 0;
 `;
 
-export const BoardWriteBtn = styled.button``;
+export const BoardWriteBtn = styled.button`
+  height: 40px;
+  background: none;
+  background-color: black;
+  border: none;
+  border: 1px solid black;
+
+  padding: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  font-family: serif;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  :hover {
+    background-color: #2f2f2f;
+  }
+  :active {
+    background-color: black;
+  }
+`;

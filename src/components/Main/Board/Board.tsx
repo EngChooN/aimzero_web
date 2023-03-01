@@ -21,13 +21,13 @@ export default function Board(props: any) {
   // 1, 2, 3으로 불러오는 글이 다르게 보임 (각 게시판 db 컬렉션 명을 1, 2, 3으로 한다던지...)
   // fetch comments func
   const router = useRouter();
-  const [board1Data, setBoard1Data] = useState([]);
+  const [boardData, setBoardData] = useState([]);
 
   async function fetchComments() {
-    const board1 = collection(getFirestore(firebaseApp), props.menu);
-    const result = await getDocs(query(board1, orderBy("timestamp", "desc")));
+    const board = collection(getFirestore(firebaseApp), props.menu);
+    const result = await getDocs(query(board, orderBy("timestamp", "desc")));
     const fetchData = result.docs.map((el) => el.data());
-    setBoard1Data(fetchData);
+    setBoardData(fetchData);
   }
   // first time fetch
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function Board(props: any) {
         </Boards.BoardInfo>
       </Boards.BoardListBox>
       <Boards.BoardListBox>
-        {board1Data.reverse().map((el, index) => (
+        {boardData.reverse().map((el, index) => (
           <Boards.Board key={index} id={el.id} onClick={moveToDetail}>
             <Boards.BoardNumber>{index + 1}</Boards.BoardNumber>
             <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
@@ -72,7 +72,7 @@ export default function Board(props: any) {
               router.push(`/board/write#${props.menu}`);
             }}
           >
-            write1
+            write
           </Boards.BoardWriteBtn>
         ) : null}
         {/* write button qna */}
@@ -82,7 +82,7 @@ export default function Board(props: any) {
               router.push(`/board/write#${props.menu}`);
             }}
           >
-            write2
+            write
           </Boards.BoardWriteBtn>
         ) : null}
         {/* write button news */}
@@ -94,7 +94,7 @@ export default function Board(props: any) {
               router.push(`/board/write#${props.menu}`);
             }}
           >
-            write3
+            write
           </Boards.BoardWriteBtn>
         ) : null}
       </Boards.BoardBottomBox>
