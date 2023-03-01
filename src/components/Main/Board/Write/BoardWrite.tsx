@@ -43,13 +43,18 @@ export default function BoardWrite(): JSX.Element {
   const name = userInfo?.email.split("@")[0];
   // url hash
   let hash;
+  let boardId;
 
   useEffect(() => {
     // get url hash
     // ex) #blog => blog
-    hash = window.location.hash.split("#")[1];
+    hash = window.location.hash.split("#")[1].toString();
+    boardId = uuidv4();
     console.log(hash);
-  }, []);
+    if (userInfo?.email == "" || loginStatus == false) {
+      router.push("/login");
+    }
+  });
 
   // if you press enter, add tag func
   const addTag = (e) => {
@@ -62,20 +67,17 @@ export default function BoardWrite(): JSX.Element {
   };
 
   const submitContent = async () => {
-    // setContent(contentRef.current?.getInstance().getHTMLa());
-    if (loginStatus == true && userInfo.email != "") {
-      await addDoc(collection(firebaseDb, hash), {
-        // not duplicate board id
-        id: uuidv4(),
-        name: name,
-        title: title,
-        tag: tags,
-        content: contentRef.current?.getInstance().getHTMLa(),
-        timestamp: new Date(),
-      });
-    } else {
-      // router.push("/login");
-    }
+    setContent(contentRef.current?.getInstance().getHTML());
+    await addDoc(collection(firebaseDb, hash), {
+      // not duplicate board id
+      id: boardId,
+      name: name,
+      title: title,
+      tag: tags,
+      content: content,
+      timestamp: new Date(),
+    });
+    router.push(`/board/${hash}=${boardId}`);
   };
 
   return (
@@ -124,10 +126,10 @@ export default function BoardWrite(): JSX.Element {
                   }}
                   // delete tag
                   onClick={() => {
-                    let newTags = tags;
+                    const newTags = tags;
                     newTags.splice(index, 1);
                     console.log(newTags);
-                    setTags(newTags);
+                    setTags([...newTags]);
                   }}
                 />
               </Write.tag>

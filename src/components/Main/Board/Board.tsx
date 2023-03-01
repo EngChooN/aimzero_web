@@ -10,10 +10,14 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
-// uuidv4
-import { v4 as uuidv4 } from "uuid";
+// recoil
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../common/Recoil/userInfoState";
+import { loginState } from "../../../common/Recoil/loginState";
 
 export default function Board(props: any) {
+  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   // 1, 2, 3으로 불러오는 글이 다르게 보임 (각 게시판 db 컬렉션 명을 1, 2, 3으로 한다던지...)
   // fetch comments func
   const router = useRouter();
@@ -31,11 +35,9 @@ export default function Board(props: any) {
   }, []);
 
   const moveToDetail = (e) => {
-    router.push(`/${e.currentTarget.id}`);
+    router.push(`/board/${props.menu}=${e.currentTarget.id}`);
     console.log(e.currentTarget.id);
   };
-
-  // console.log(uuidv4());
 
   return (
     <Boards.Wrapper>
@@ -61,13 +63,40 @@ export default function Board(props: any) {
       </Boards.BoardListBox>
       <Boards.BoardBottomBox>
         {/* pagenation */}
-        <Boards.BoardWriteBtn
-          onClick={() => {
-            router.push(`/write#${props.menu}`);
-          }}
-        >
-          write
-        </Boards.BoardWriteBtn>
+        {/* write button blog */}
+        {props.menu == "blog" &&
+        userInfo?.email == "aimzero9303@gmail.com" &&
+        loginStatus == true ? (
+          <Boards.BoardWriteBtn
+            onClick={() => {
+              router.push(`/board/write#${props.menu}`);
+            }}
+          >
+            write1
+          </Boards.BoardWriteBtn>
+        ) : null}
+        {/* write button qna */}
+        {props.menu == "qna" && userInfo?.email != "" && loginStatus == true ? (
+          <Boards.BoardWriteBtn
+            onClick={() => {
+              router.push(`/board/write#${props.menu}`);
+            }}
+          >
+            write2
+          </Boards.BoardWriteBtn>
+        ) : null}
+        {/* write button news */}
+        {props.menu == "news" &&
+        userInfo?.email != "" &&
+        loginStatus == true ? (
+          <Boards.BoardWriteBtn
+            onClick={() => {
+              router.push(`/board/write#${props.menu}`);
+            }}
+          >
+            write3
+          </Boards.BoardWriteBtn>
+        ) : null}
       </Boards.BoardBottomBox>
     </Boards.Wrapper>
   );
