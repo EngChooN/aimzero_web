@@ -21,9 +21,10 @@ export default function VisitLog() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [commentsData, setCommentsData] = useState([]);
-  const name = userInfo?.email.split("@")[0];
   const router = useRouter();
   const listRef = useRef(null);
+  // Uncaught TypeError: Cannot read property 'split' of undefined (fix code)
+  const name = (userInfo?.email || "").split("@")[0];
 
   // create comment func
   const submitComment = async () => {

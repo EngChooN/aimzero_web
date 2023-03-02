@@ -36,7 +36,7 @@ export default function Layout({ children }) {
   }
 
   useEffect(() => {
-    loginCheck();
+    // loginCheck();
   }, []);
 
   return (
