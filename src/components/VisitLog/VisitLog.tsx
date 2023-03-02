@@ -59,7 +59,7 @@ export default function VisitLog() {
       {/* <Visit.Title>Visit Log</Visit.Title> */}
       <Visit.ListLog ref={listRef}>
         {commentsData.map((el, index) => (
-          <Visit.CommentWrapper>
+          <Visit.CommentWrapper key={index}>
             <Visit.ProfileWrapper>
               <Visit.NoneProfile src={"images/profile.png"} />
               <Visit.Name>{el.name}</Visit.Name>

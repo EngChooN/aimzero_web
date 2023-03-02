@@ -26,6 +26,7 @@ const Wrapper = styled.section`
     min-height: calc(100vh - 64.5px - 170px);
   }
   padding-bottom: 30px;
+  padding-top: 30px;
 `;
 
 const ContentBox = styled.article`
