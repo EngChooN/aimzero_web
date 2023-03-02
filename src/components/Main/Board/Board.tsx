@@ -35,7 +35,8 @@ export default function Board(props: any) {
   }, []);
 
   const moveToDetail = (e) => {
-    router.push(`/board/${props.menu}=${e.currentTarget.id}`);
+    // router.push(`/board/${props.menu}=${e.currentTarget.id}`);
+    location.href = `/board/${props.menu}=${e.currentTarget.id}`;
     console.log(e.currentTarget.id);
   };
 
@@ -87,7 +88,7 @@ export default function Board(props: any) {
         ) : null}
         {/* write button news */}
         {props.menu == "news" &&
-        userInfo?.email != "" &&
+        userInfo?.email == "aimzero9303@gmail.com" &&
         loginStatus == true ? (
           <Boards.BoardWriteBtn
             onClick={() => {

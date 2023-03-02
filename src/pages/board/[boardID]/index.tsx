@@ -1,14 +1,37 @@
+import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 // firebase
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
+import Main from "../../../components/Main/Main";
 
 const BoardViewer = dynamic(
   () => import("../../../components/Main/Board/BoardViewer/BoardViewer"),
   { ssr: false }
 );
+
+// styles
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  max-width: 1200px;
+  width: 100%;
+  min-height: calc(100vh - 300px);
+  height: 100%;
+  @media (max-width: 1100px) {
+    min-height: calc(100vh - 64.5px - 170px);
+  }
+  padding-bottom: 30px;
+`;
+
+const ContentBox = styled.article`
+  max-width: 800px;
+  width: 100%;
+`;
 
 export default function BoardDetailPage() {
   const router = useRouter();
@@ -44,8 +67,11 @@ export default function BoardDetailPage() {
   }, [router]);
 
   return (
-    <div>
-      <BoardViewer boardData={boardData} />
-    </div>
+    <Wrapper>
+      <ContentBox>
+        <BoardViewer boardData={boardData} />
+      </ContentBox>
+      <Main />
+    </Wrapper>
   );
 }

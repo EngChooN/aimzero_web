@@ -75,6 +75,7 @@ export default function BoardWrite(): JSX.Element {
     await addDoc(collection(firebaseDb, hash), {
       // not duplicate board id
       id: boardId,
+      email: userInfo.email,
       name: name,
       title: title,
       tag: tags,

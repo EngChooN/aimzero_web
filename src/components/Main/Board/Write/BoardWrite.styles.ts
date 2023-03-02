@@ -38,7 +38,7 @@ export const tag = styled.div`
 
   height: 30px;
   background-color: #f3f3f3;
-  border-radius: 10px;
+  border-radius: 15px;
 
   padding-right: 10px;
   padding-left: 10px;

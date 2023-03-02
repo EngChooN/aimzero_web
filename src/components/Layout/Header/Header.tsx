@@ -7,6 +7,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
+import { userInfoState } from "../../../common/Recoil/userInfoState";
 
 const Wrapper = styled.section`
   display: flex;
@@ -113,6 +114,8 @@ const List = styled.div<{ currentUrl: boolean }>`
 
 export default function Header() {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
   const headerList = ["about", "skills", "projects", "photo", "visit log"];
   const router = useRouter();
   const crrUrl = router.pathname;
@@ -128,8 +131,10 @@ export default function Header() {
   const logOut = async () => {
     firebaseAuth.signOut();
     setLoginStatus(false);
+    setUserInfo("");
     setMenuFlag(true);
-    location.reload();
+    // location.reload();
+    location.href = "/";
   };
 
   return (
