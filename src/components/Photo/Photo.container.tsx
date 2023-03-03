@@ -18,6 +18,8 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+// uuid
+import { uuidv4 } from "@firebase/util";
 
 export default function Photo() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -54,6 +56,7 @@ export default function Photo() {
   // image url add firebase db func
   const uploadImgUrl = async () => {
     await addDoc(collection(firebaseDb, "photo"), {
+      id: uuidv4(),
       imgUrl: image,
       timestamp: new Date(),
     });

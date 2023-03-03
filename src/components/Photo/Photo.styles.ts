@@ -8,10 +8,11 @@ export const Wrapper = styled.section`
 
   max-width: 1200px;
   width: 100%;
-  /* height: calc(100vh - 130px);
+  min-height: calc(100vh - 300px);
+  height: 100%;
   @media (max-width: 1100px) {
-    height: calc(100vh - 64.5px);
-  } */
+    min-height: calc(100vh - 64.5px - 170px);
+  }
 `;
 
 export const TopSection = styled.div`
@@ -123,8 +124,8 @@ export const SelImgWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
 
   cursor: pointer;
   transition: all 0.3s;

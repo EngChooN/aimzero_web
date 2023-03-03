@@ -15,6 +15,8 @@ import { firebaseApp, firebaseDb } from "../../../firebase.config";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../common/Recoil/userInfoState";
 import { loginState } from "../../common/Recoil/loginState";
+// uuid
+import { uuidv4 } from "@firebase/util";
 
 export default function VisitLog() {
   const [comment, setComment] = useState("");
@@ -30,6 +32,7 @@ export default function VisitLog() {
   const submitComment = async () => {
     if (loginStatus == true && userInfo.email != "") {
       await addDoc(collection(firebaseDb, "visitlog"), {
+        id: uuidv4(),
         name: name,
         comment: comment,
         timestamp: new Date(),
