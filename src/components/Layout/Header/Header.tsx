@@ -129,12 +129,13 @@ export default function Header() {
 
   // logOut func
   const logOut = async () => {
-    firebaseAuth.signOut();
-    setLoginStatus(false);
-    setUserInfo("");
-    setMenuFlag(true);
-    // location.reload();
-    location.href = "/";
+    try {
+      await firebaseAuth.signOut();
+      setMenuFlag(true);
+      location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

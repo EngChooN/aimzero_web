@@ -15,7 +15,7 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
@@ -72,7 +72,7 @@ export default function BoardWrite(): JSX.Element {
 
   const submitContent = async () => {
     // setContent(contentRef.current?.getInstance().getHTML());
-    await addDoc(collection(firebaseDb, hash), {
+    await setDoc(doc(firebaseDb, hash, boardId), {
       // not duplicate board id
       id: boardId,
       email: userInfo.email,

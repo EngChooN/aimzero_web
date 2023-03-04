@@ -13,6 +13,9 @@ import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../common/Recoil/userInfoState";
 import { loginState } from "../../../../common/Recoil/loginState";
 import { useRouter } from "next/router";
+import { deleteDoc, doc } from "firebase/firestore";
+import { firebaseDb } from "../../../../../firebase.config";
+import { useEffect } from "react";
 
 // styles
 const Wrapper = styled.article`
@@ -84,8 +87,25 @@ const Tag = styled.div`
 `;
 
 export default function BoardViewer(props: any) {
+  const router = useRouter();
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  // url hash
+  // get url parameter
+  const urlParams = router.query.boardID;
+  // blog, qna, news
+  let boardType;
+
+  useEffect(() => {
+    if (urlParams === undefined) return;
+    // parameter => clicked board type ...ex) blog, qna, news
+    boardType = (urlParams as string).split("=")[0];
+  });
+
+  const deleteBoard = (id) => {
+    deleteDoc(doc(firebaseDb, boardType, id));
+    router.push("/");
+  };
   return (
     <Wrapper>
       {props.boardData.content && (
@@ -114,6 +134,9 @@ export default function BoardViewer(props: any) {
                       marginLeft: "10px",
                       width: "100%",
                       height: "20px",
+                    }}
+                    onClick={() => {
+                      deleteBoard(props.boardData.id);
                     }}
                   >
                     delete

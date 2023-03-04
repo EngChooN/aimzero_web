@@ -51,6 +51,7 @@ export const CommentWrapper = styled.div`
 `;
 
 export const LogBox = styled.div`
+  position: relative;
   width: 60%;
   padding: 20px;
   border-radius: 10px;
@@ -125,4 +126,10 @@ export const SubmitBtn = styled.button`
   :active {
     background-color: black;
   }
+`;
+
+export const BtnWrapper = styled.div`
+  position: absolute;
+  bottom: 1px;
+  right: 5px;
 `;

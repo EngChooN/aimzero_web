@@ -8,6 +8,7 @@ import { firebaseAuth } from "../../../firebase.config";
 import { useRecoilState } from "recoil";
 import { loginState } from "../../common/Recoil/loginState";
 import { userInfoState } from "../../common/Recoil/userInfoState";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Content = styled.section`
   background-color: white;
@@ -19,25 +20,25 @@ export default function Layout({ children }) {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
-  // login check func
-  function loginCheck() {
-    firebaseAuth.onAuthStateChanged((userInfo) => {
-      if (userInfo) {
-        setLoginStatus(true);
-        setUserInfo(userInfo);
-        console.log(userInfo);
-        console.log("check login OK!");
-      } else {
-        setLoginStatus(false);
-        setUserInfo("");
-        console.log("check login NO!");
-      }
-    });
-  }
-
   useEffect(() => {
-    // loginCheck();
-  }, []);
+    // login check func
+    const loginCheck = async () => {
+      await onAuthStateChanged(firebaseAuth, (user) => {
+        if (user) {
+          setLoginStatus(true);
+          setUserInfo(user);
+          console.log(user);
+          console.log("check login OK!");
+        } else {
+          setLoginStatus(false);
+          setUserInfo("");
+          console.log("check login NO!");
+        }
+      });
+    };
+
+    loginCheck();
+  }, [firebaseAuth]);
 
   return (
     <>

@@ -9,6 +9,10 @@ import {
   getDocs,
   query,
   orderBy,
+  deleteDoc,
+  doc,
+  where,
+  setDoc,
 } from "firebase/firestore";
 import { firebaseApp, firebaseDb } from "../../../firebase.config";
 // recoil
@@ -17,6 +21,8 @@ import { userInfoState } from "../../common/Recoil/userInfoState";
 import { loginState } from "../../common/Recoil/loginState";
 // uuid
 import { uuidv4 } from "@firebase/util";
+// icon
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 export default function VisitLog() {
   const [comment, setComment] = useState("");
@@ -31,8 +37,9 @@ export default function VisitLog() {
   // create comment func
   const submitComment = async () => {
     if (loginStatus == true && userInfo.email != "") {
-      await addDoc(collection(firebaseDb, "visitlog"), {
-        id: uuidv4(),
+      const id = uuidv4();
+      await setDoc(doc(firebaseDb, "visitlog", id), {
+        id: id,
         name: name,
         comment: comment,
         timestamp: new Date(),
@@ -43,6 +50,18 @@ export default function VisitLog() {
     } else {
       router.push("/login");
     }
+  };
+
+  // delete comment func
+  const deleteComment = async (id) => {
+    await deleteDoc(doc(firebaseDb, "visitlog", id)).then(() => {
+      try {
+        console.log("done");
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    fetchComments();
   };
 
   // fetch comments func
@@ -70,6 +89,18 @@ export default function VisitLog() {
             </Visit.ProfileWrapper>
             <Visit.LogBox>
               <Visit.Comment>{el.comment}</Visit.Comment>
+              {/* edit option buttons */}
+              {name == el.name && (
+                <Visit.BtnWrapper>
+                  <AiFillEdit style={{ cursor: "pointer" }} />
+                  <AiFillDelete
+                    style={{ cursor: "pointer", marginLeft: "10px" }}
+                    onClick={() => {
+                      deleteComment(el.id);
+                    }}
+                  />
+                </Visit.BtnWrapper>
+              )}
             </Visit.LogBox>
           </Visit.CommentWrapper>
         ))}

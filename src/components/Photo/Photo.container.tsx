@@ -13,10 +13,12 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   getFirestore,
   orderBy,
   query,
+  setDoc,
 } from "firebase/firestore";
 // uuid
 import { uuidv4 } from "@firebase/util";
@@ -55,8 +57,9 @@ export default function Photo() {
 
   // image url add firebase db func
   const uploadImgUrl = async () => {
-    await addDoc(collection(firebaseDb, "photo"), {
-      id: uuidv4(),
+    const id = uuidv4();
+    await setDoc(doc(firebaseDb, "photo", id), {
+      id: id,
       imgUrl: image,
       timestamp: new Date(),
     });
