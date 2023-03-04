@@ -1,7 +1,9 @@
 import * as Photos from "./Photo.styles";
 import profileData from "../../../public/locales/en/common.json";
+// antd
 import { Image } from "antd";
-import { AiOutlinePlus } from "react-icons/ai";
+// icon
+import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
 import { FiMail, FiInstagram } from "react-icons/fi";
 import { FaBlog } from "react-icons/fa";
 import { RxGithubLogo } from "react-icons/rx";
@@ -81,6 +83,20 @@ export default function PhotoUI(props: any) {
         {props.images?.map((el, index) => (
           <Photos.ImgBox key={index}>
             <Image width={230} height={230} src={el.imgUrl} />
+            <AiFillDelete
+              fontSize={30}
+              color={"lightgray"}
+              style={{
+                cursor: "pointer",
+                marginLeft: "10px",
+                position: "absolute",
+                bottom: "3",
+                right: "3",
+              }}
+              onClick={() => {
+                props.deletePhoto(el.id);
+              }}
+            />
           </Photos.ImgBox>
         ))}
       </Photos.BottomSection>

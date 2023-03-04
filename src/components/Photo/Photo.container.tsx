@@ -13,6 +13,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -82,6 +83,12 @@ export default function Photo() {
     fetchImages();
   }, []);
 
+  // delete img{
+  const deletePhoto = async (id) => {
+    await deleteDoc(doc(firebaseDb, "photo", id));
+    fetchImages();
+  };
+
   return (
     <PhotoUI
       userInfo={userInfo}
@@ -91,6 +98,7 @@ export default function Photo() {
       image={image}
       uploadImgUrl={uploadImgUrl}
       images={images}
+      deletePhoto={deletePhoto}
     />
   );
 }

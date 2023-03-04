@@ -101,6 +101,7 @@ export const Additional = styled.div`
 export const PostImg = styled.img``;
 
 export const ImgBox = styled.div`
+  position: relative;
   margin: 7px;
 `;
 
