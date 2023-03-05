@@ -71,18 +71,21 @@ export default function BoardWrite(): JSX.Element {
   };
 
   const submitContent = async () => {
-    // setContent(contentRef.current?.getInstance().getHTML());
-    await setDoc(doc(firebaseDb, hash, boardId), {
-      // not duplicate board id
-      id: boardId,
-      email: userInfo.email,
-      name: name,
-      title: title,
-      tag: tags,
-      content: content,
-      timestamp: new Date(),
-    });
-    router.push(`/board/${hash}=${boardId}`);
+    if (content != "" && title != "") {
+      await setDoc(doc(firebaseDb, hash, boardId), {
+        // not duplicate board id
+        id: boardId,
+        email: userInfo.email,
+        name: name,
+        title: title,
+        tag: tags,
+        content: content,
+        timestamp: new Date(),
+      });
+      router.push(`/board/${hash}=${boardId}`);
+    } else {
+      alert("Please enter a title or content");
+    }
   };
 
   return (

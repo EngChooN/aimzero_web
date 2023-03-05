@@ -37,16 +37,20 @@ export default function VisitLog() {
   // create comment func
   const submitComment = async () => {
     if (loginStatus == true && userInfo.email != "") {
-      const id = uuidv4();
-      await setDoc(doc(firebaseDb, "visitlog", id), {
-        id: id,
-        name: name,
-        comment: comment,
-        timestamp: new Date(),
-      });
-      fetchComments();
-      setComment("");
-      listRef.current.scrollTop = 0;
+      if (comment != "") {
+        const id = uuidv4();
+        await setDoc(doc(firebaseDb, "visitlog", id), {
+          id: id,
+          name: name,
+          comment: comment,
+          timestamp: new Date(),
+        });
+        fetchComments();
+        setComment("");
+        listRef.current.scrollTop = 0;
+      } else {
+        alert("Please enter a comment");
+      }
     } else {
       router.push("/login");
     }
