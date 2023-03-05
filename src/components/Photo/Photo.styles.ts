@@ -12,6 +12,7 @@ export const Wrapper = styled.section`
   height: 100%;
   @media (max-width: 1100px) {
     min-height: calc(100vh - 64.5px - 170px);
+    padding-top: 15px;
   }
 `;
 

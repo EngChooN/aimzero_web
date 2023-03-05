@@ -12,6 +12,10 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   padding: 30px;
+
+  @media (max-width: 400px) {
+    padding: 10px;
+  }
 `;
 
 export const BtnWrapper = styled.div`
@@ -27,9 +31,11 @@ export const BottomWrapper = styled.div`
 `;
 
 export const tagWrapper = styled.div`
+  overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
   width: 50%;
+  height: 100px;
 `;
 
 export const tag = styled.div`

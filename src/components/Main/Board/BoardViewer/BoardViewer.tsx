@@ -24,6 +24,17 @@ const Wrapper = styled.article`
 
   padding-bottom: 70px;
   margin-bottom: 30px;
+
+  height: 100%;
+  @media (max-width: 1100px) {
+    min-height: calc(100vh - 64.5px - 170px);
+    padding-top: 15px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 10px;
+    padding-top: 15px;
+  }
 `;
 
 const Title = styled.div`
@@ -38,6 +49,12 @@ const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
+  @media (max-width: 400px) {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 90px;
+  }
 `;
 
 const Name = styled.div`
@@ -50,6 +67,7 @@ const Date = styled.div`
   font-family: serif;
   font-size: 13px;
   color: gray;
+  text-align: center;
 `;
 
 const Btns = styled.div`

@@ -53,6 +53,7 @@ const MobileMenu = styled.div`
     display: block;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -82,8 +83,9 @@ const Logo = styled.div`
   cursor: pointer;
 
   @media (max-width: 1100px) {
-    margin-top: 7px;
-    margin-left: 20px;
+    font-size: 25px;
+    margin-left: 45px;
+    margin-top: 5px;
   }
 `;
 
@@ -109,6 +111,11 @@ const List = styled.div<{ currentUrl: boolean }>`
       width: 100%;
       border-bottom: 1px solid black;
     }
+  }
+
+  @media (max-width: 1100px) {
+    margin-top: 5px;
+    font-size: 22px;
   }
 `;
 
@@ -193,13 +200,13 @@ export default function Header() {
         {/* hamburger menu icon */}
         {menuFlag == true ? (
           <RxHamburgerMenu
-            fontSize={35}
+            fontSize={25}
             onClick={onClickMenu}
             style={{ marginLeft: "10px", cursor: "pointer" }}
           />
         ) : (
           <MdOutlineCancel
-            fontSize={35}
+            fontSize={25}
             onClick={onClickMenu}
             style={{ marginLeft: "10px", cursor: "pointer" }}
           />

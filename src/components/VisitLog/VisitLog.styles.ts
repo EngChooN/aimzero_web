@@ -6,6 +6,7 @@ export const Wrapper = styled.section`
   height: calc(100vh - 130px);
   @media (max-width: 1100px) {
     height: calc(100vh - 64.5px);
+    padding-top: 20px;
   }
 
   display: flex;
@@ -56,6 +57,9 @@ export const LogBox = styled.div`
   padding: 20px;
   border-radius: 10px;
   border: 1px solid black;
+  @media (max-width: 400px) {
+    width: 70%;
+  }
 `;
 
 export const Name = styled.p`
@@ -82,6 +86,9 @@ export const Comment = styled.span`
 export const WriteBox = styled.div`
   display: flex;
   width: 80%;
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;
 
 export const CommentInput = styled.input`
