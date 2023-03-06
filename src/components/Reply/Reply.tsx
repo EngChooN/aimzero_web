@@ -11,7 +11,7 @@ const ReplyWrite = dynamic(() => import("./Write/ReplyWrite"), { ssr: false });
 export default function Reply(props: any) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
-  const name = userInfo?.email.split("@")[0];
+  const name = (userInfo?.email || "").split("@")[0];
 
   return (
     <Comment.Wrapper>

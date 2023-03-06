@@ -68,7 +68,12 @@ export default function ReplyWrite(props: any): JSX.Element {
       />
       {/* <button onClick={submitComment}>댓글등록</button> */}
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Btn style={{ width: "100%", maxWidth: "130px" }}>submit</Btn>
+        <Btn
+          onClick={submitComment}
+          style={{ width: "100%", maxWidth: "130px" }}
+        >
+          submit
+        </Btn>
       </div>
     </>
   );
