@@ -109,7 +109,7 @@ export default function ReplyViewer(props: any) {
               }}
             >
               <Date>{el.timestamp.toDate().toISOString()}</Date>
-              {loginStatus == true && userInfo.email == el.email ? (
+              {userInfo.email == el.email ? (
                 <div style={{ display: "flex" }}>
                   <Btn
                     style={{
