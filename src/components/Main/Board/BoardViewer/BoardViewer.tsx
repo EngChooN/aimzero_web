@@ -16,6 +16,8 @@ import { useRouter } from "next/router";
 import { deleteDoc, doc } from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 import { useEffect } from "react";
+import Reply from "../../../Reply/Reply";
+import ReplyWrite from "../../../Reply/Write/ReplyWrite";
 
 // styles
 const Wrapper = styled.article`
@@ -173,6 +175,7 @@ export default function BoardViewer(props: any) {
             initialValue={props.boardData.content}
             plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
           />
+          <Reply boardData={props.boardData} />
         </>
       )}
     </Wrapper>

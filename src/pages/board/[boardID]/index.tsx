@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
 import Main from "../../../components/Main/Main";
+import Reply from "../../../components/Reply/Reply";
 
 const BoardViewer = dynamic(
   () => import("../../../components/Main/Board/BoardViewer/BoardViewer"),
@@ -73,9 +74,11 @@ export default function BoardDetailPage() {
 
   return (
     <Wrapper>
+      {/* board detail component */}
       <ContentBox>
         <BoardViewer boardData={boardData} />
       </ContentBox>
+      {/* boards list component */}
       <Main />
     </Wrapper>
   );

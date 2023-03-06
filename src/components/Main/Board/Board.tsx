@@ -23,7 +23,7 @@ export default function Board(props: any) {
   const router = useRouter();
   const [boardData, setBoardData] = useState([]);
 
-  async function fetchComments() {
+  async function fetchBoards() {
     const board = collection(getFirestore(firebaseApp), props.menu);
     const result = await getDocs(query(board, orderBy("timestamp", "desc")));
     const fetchData = result.docs.map((el) => el.data());
@@ -31,7 +31,7 @@ export default function Board(props: any) {
   }
   // first time fetch
   useEffect(() => {
-    fetchComments();
+    fetchBoards();
   }, []);
 
   const moveToDetail = (e) => {

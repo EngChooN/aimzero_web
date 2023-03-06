@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 // firebase
 import {
-  addDoc,
   collection,
   getFirestore,
   getDocs,
@@ -11,7 +10,6 @@ import {
   orderBy,
   deleteDoc,
   doc,
-  where,
   setDoc,
 } from "firebase/firestore";
 import { firebaseApp, firebaseDb } from "../../../firebase.config";
