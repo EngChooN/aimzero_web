@@ -30,13 +30,13 @@ const Wrapper = styled.article`
   display: flex;
   flex-direction: column;
 
-  margin-top: 50px;
+  /* margin-top: 50px; */
 
   height: 100%;
-  @media (max-width: 1100px) {
+  /* @media (max-width: 1100px) {
     min-height: calc(100vh - 64.5px - 170px);
     padding-top: 15px;
-  }
+  } */
 
   @media (max-width: 400px) {
     padding: 10px;
@@ -64,6 +64,20 @@ const Date = styled.div`
   font-size: 13px;
   color: darkgray;
   margin-top: 30px;
+`;
+
+const NoCommentBox = styled.div`
+  padding-top: 70px;
+  padding-bottom: 70px;
+  border-top: 1px solid lightgray;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: AbrilFatface;
+  font-size: 20px;
+  color: darkgray;
 `;
 
 export default function ReplyViewer(props: any) {
@@ -108,7 +122,7 @@ export default function ReplyViewer(props: any) {
                 alignItems: "center",
               }}
             >
-              <Date>{el.timestamp.toDate().toISOString()}</Date>
+              <Date>{el.timestamp.toDate().toISOString().split("T")[0]}</Date>
               {userInfo.email == el.email ? (
                 <div style={{ display: "flex" }}>
                   <Btn
@@ -137,6 +151,9 @@ export default function ReplyViewer(props: any) {
             </div>
           </CommentWrapper>
         ))}
+      {comments[0]?.content == undefined && (
+        <NoCommentBox>There are no comments</NoCommentBox>
+      )}
     </Wrapper>
   );
 }

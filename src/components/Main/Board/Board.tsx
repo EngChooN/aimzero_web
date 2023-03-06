@@ -57,7 +57,7 @@ export default function Board(props: any) {
             <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
             <Boards.Name>{el.name}</Boards.Name>
             <Boards.BoardDate>
-              {el.timestamp.toDate().toISOString()}
+              {el.timestamp.toDate().toISOString().split("T")[0]}
             </Boards.BoardDate>
           </Boards.Board>
         ))}

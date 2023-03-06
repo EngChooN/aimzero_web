@@ -37,6 +37,8 @@ const Wrapper = styled.article`
     padding: 10px;
     padding-top: 15px;
   }
+
+  /* overflow-x: scroll; */
 `;
 
 const Title = styled.div`
@@ -134,47 +136,47 @@ export default function BoardViewer(props: any) {
           <InfoWrapper>
             <div style={{ display: "flex", alignItems: "center" }}>
               <Name>{props.boardData.name}</Name>
-              <Date>{props.boardData.timestamp.toDate().toISOString()}</Date>
+              <Date>
+                {props.boardData.timestamp.toDate().toISOString().split("T")[0]}
+              </Date>
             </div>
-            <Btns>
-              {userInfo?.email == props.boardData.email &&
-              loginStatus == true ? (
-                <>
-                  <SubmitBtn
-                    style={{
-                      marginLeft: "10px",
-                      width: "100%",
-                      height: "20px",
-                    }}
-                  >
-                    update
-                  </SubmitBtn>
-                  <SubmitBtn
-                    style={{
-                      marginLeft: "10px",
-                      width: "100%",
-                      height: "20px",
-                    }}
-                    onClick={() => {
-                      deleteBoard(props.boardData.id);
-                    }}
-                  >
-                    delete
-                  </SubmitBtn>
-                </>
-              ) : null}
-            </Btns>
+            {userInfo?.email == props.boardData.email && loginStatus == true ? (
+              <Btns>
+                <SubmitBtn
+                  style={{
+                    marginLeft: "10px",
+                    width: "100%",
+                    height: "20px",
+                  }}
+                >
+                  update
+                </SubmitBtn>
+                <SubmitBtn
+                  style={{
+                    marginLeft: "10px",
+                    width: "100%",
+                    height: "20px",
+                  }}
+                  onClick={() => {
+                    deleteBoard(props.boardData.id);
+                  }}
+                >
+                  delete
+                </SubmitBtn>
+              </Btns>
+            ) : null}
           </InfoWrapper>
           <Tags>
             {props.boardData.tag?.map((el: any, index: number) => (
               <Tag key={index}>#{el}</Tag>
             ))}
           </Tags>
-
-          <Viewer
-            initialValue={props.boardData.content}
-            plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-          />
+          <div style={{ overflowX: "scroll" }}>
+            <Viewer
+              initialValue={props.boardData.content}
+              plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+            />
+          </div>
           <Reply boardData={props.boardData} />
         </>
       )}
