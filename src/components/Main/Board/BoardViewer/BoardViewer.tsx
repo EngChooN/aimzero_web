@@ -148,6 +148,11 @@ export default function BoardViewer(props: any) {
                     width: "100%",
                     height: "20px",
                   }}
+                  onClick={() => {
+                    router.push(
+                      `/board/write#${boardType}=${props.boardData.id}`
+                    );
+                  }}
                 >
                   update
                 </SubmitBtn>

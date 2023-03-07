@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
 import Main from "../../../components/Main/Main";
-import Reply from "../../../components/Reply/Reply";
 
 const BoardViewer = dynamic(
   () => import("../../../components/Main/Board/BoardViewer/BoardViewer"),

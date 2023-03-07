@@ -31,7 +31,7 @@ export default function ReplyWrite(props: any): JSX.Element {
   const commentId = uuidv4();
 
   useEffect(() => {
-    console.log(props.boardData?.id, "coment-boardId");
+    console.log(props.boardData?.id, "comment-boardId");
   });
 
   const onChangeContent = () => {
@@ -64,6 +64,7 @@ export default function ReplyWrite(props: any): JSX.Element {
         initialEditType="markdown"
         useCommandShortcut={false}
         hideModeSwitch={true}
+        autofocus={false}
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }], colorSyntax]}
       />
       {/* <button onClick={submitComment}>댓글등록</button> */}
