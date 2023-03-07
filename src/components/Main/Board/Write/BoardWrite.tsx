@@ -59,8 +59,10 @@ export default function BoardWrite(): JSX.Element {
     const querySnapshot = await getDocs(condition);
     querySnapshot.forEach((doc) => {
       // fetch title data init staticMethods(title)
+      // @ts-ignore
       setTitle(doc.data().title);
       // fetch content data init editor
+      // @ts-ignore
       contentRef.current?.getInstance().setHTML(doc.data().content);
     });
   }
