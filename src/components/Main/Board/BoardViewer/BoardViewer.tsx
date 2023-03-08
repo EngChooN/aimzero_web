@@ -17,7 +17,6 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 import { useEffect } from "react";
 import Reply from "../../../Reply/Reply";
-import ReplyWrite from "../../../Reply/Write/ReplyWrite";
 
 // styles
 const Wrapper = styled.article`

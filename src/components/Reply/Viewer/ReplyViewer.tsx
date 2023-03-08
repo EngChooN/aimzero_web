@@ -15,14 +15,15 @@ import { loginState } from "../../../common/Recoil/loginState";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import {
   collection,
+  doc,
   getDocs,
-  getFirestore,
-  orderBy,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { firebaseApp, firebaseDb } from "../../../../firebase.config";
 import { Btn } from "../../Login/Login.styles";
+import ReplyEdit from "../Edit/ReplyEdit";
 // firebase
 
 // styles
@@ -86,6 +87,15 @@ export default function ReplyViewer(props: any) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [comments, setCommentsData] = useState([]);
 
+  // update
+  const [content, setContent] = useState("");
+
+  // update flag
+  const [updateState, setUpdateState] = useState({
+    state: false,
+    index: "",
+  });
+
   const fetchComments = async () => {
     const comments = collection(firebaseDb, "comment");
     const result = await getDocs(
@@ -103,18 +113,45 @@ export default function ReplyViewer(props: any) {
     fetchComments();
   }, []);
 
+  const updateComment = async () => {
+    if (content != "") {
+      // update func
+      const userDoc = doc(firebaseDb, "comment", props.boardData.id);
+      const newField = { content: content };
+
+      await updateDoc(userDoc, newField);
+      router.reload();
+    } else {
+      alert("Please enter a title or content");
+    }
+  };
+
   return (
     <Wrapper>
       {props.boardData.content &&
         comments.map((el, index) => (
           <CommentWrapper key={index}>
             <Name>{el.name}</Name>
-            <ViewWrapper>
-              <Viewer
-                initialValue={el.content}
-                plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-              />
-            </ViewWrapper>
+            {updateState.state == false ? (
+              <ViewWrapper>
+                <Viewer
+                  initialValue={el.content}
+                  plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+                />
+              </ViewWrapper>
+            ) : null}
+            {updateState.state == true &&
+            updateState.index == index.toString() ? (
+              <ViewWrapper>
+                <ReplyEdit
+                  boardId={props.boardData.id}
+                  updateComment={updateComment}
+                  setContent={setContent}
+                  commentId={el.commentId}
+                />
+              </ViewWrapper>
+            ) : null}
+
             <div
               style={{
                 display: "flex",
@@ -125,27 +162,66 @@ export default function ReplyViewer(props: any) {
               <Date>{el.timestamp.toDate().toISOString().split("T")[0]}</Date>
               {userInfo.email == el.email ? (
                 <div style={{ display: "flex" }}>
-                  <Btn
-                    style={{
-                      width: "100%",
-                      maxWidth: "100px",
-                      height: "25px",
-                      fontSize: "12px",
-                    }}
-                  >
-                    update
-                  </Btn>
-                  <Btn
-                    style={{
-                      width: "100%",
-                      maxWidth: "100px",
-                      marginLeft: "10px",
-                      height: "25px",
-                      fontSize: "12px",
-                    }}
-                  >
-                    delete
-                  </Btn>
+                  {updateState.state == false && (
+                    <>
+                      <Btn
+                        style={{
+                          width: "100%",
+                          maxWidth: "100px",
+                          height: "25px",
+                          fontSize: "12px",
+                        }}
+                        onClick={(e) => {
+                          setUpdateState({
+                            state: true,
+                            index: index.toString(),
+                          });
+                        }}
+                      >
+                        update
+                      </Btn>
+                      <Btn
+                        style={{
+                          width: "100%",
+                          maxWidth: "100px",
+                          marginLeft: "10px",
+                          height: "25px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        delete
+                      </Btn>
+                    </>
+                  )}
+                  {updateState.state == true &&
+                  updateState.index == index.toString() ? (
+                    <>
+                      <Btn
+                        style={{
+                          width: "100%",
+                          maxWidth: "100px",
+                          height: "25px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        submit
+                      </Btn>
+                      <Btn
+                        style={{
+                          width: "100%",
+                          maxWidth: "100px",
+                          marginLeft: "10px",
+                          height: "25px",
+                          fontSize: "12px",
+                        }}
+                        onClick={() => {
+                          setUpdateState({ state: false, index: "" });
+                        }}
+                      >
+                        cancel
+                      </Btn>
+                    </>
+                  ) : null}
                 </div>
               ) : null}
             </div>

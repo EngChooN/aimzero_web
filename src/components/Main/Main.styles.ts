@@ -5,6 +5,6 @@ export const Wrapper = styled.section`
   width: 100%;
   height: calc(100vh - 300px);
   @media (max-width: 1100px) {
-    height: calc(100vh - 64.5px - 170px);
+    height: calc(100vh - 64.5px - 160px);
   }
 `;

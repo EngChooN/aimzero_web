@@ -42,6 +42,7 @@ export default function ReplyWrite(props: any): JSX.Element {
     if (content != "") {
       await setDoc(doc(firebaseDb, "comment", commentId), {
         id: props.boardData.id,
+        commentId: commentId,
         email: userInfo.email,
         name: name,
         content: content,

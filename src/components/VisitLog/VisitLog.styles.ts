@@ -5,7 +5,7 @@ export const Wrapper = styled.section`
   width: 100%;
   height: calc(100vh - 130px);
   @media (max-width: 1100px) {
-    height: calc(100vh - 64.5px);
+    height: calc(100vh - 54.5px);
     padding-top: 20px;
   }
 
