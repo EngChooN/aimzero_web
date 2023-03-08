@@ -150,7 +150,7 @@ export default function BoardViewer(props: any) {
                   }}
                   onClick={() => {
                     router.push(
-                      `/board/write#${boardType}=${props.boardData.id}`
+                      `/board/${props.boardData.id}/edit#${boardType}`
                     );
                   }}
                 >

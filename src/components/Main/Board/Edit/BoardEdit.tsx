@@ -1,4 +1,4 @@
-import * as Write from "./BoardWrite.styles";
+import * as Edit from "./BoardEdit.styles";
 import { useEffect, useRef, useState } from "react";
 import { CommentInput } from "../../../VisitLog/VisitLog.styles";
 import { Btn } from "../../../Login/Login.styles";
@@ -15,19 +15,26 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../common/Recoil/userInfoState";
 import { loginState } from "../../../../common/Recoil/loginState";
 import { useRouter } from "next/router";
-// uuid
-import { uuidv4 } from "@firebase/util";
 // icon
 import { MdCancel } from "react-icons/md";
 
-export default function BoardWrite(): JSX.Element {
+export default function BoardEdit(): JSX.Element {
   const contentRef = useRef(null);
   const router = useRouter();
 
@@ -41,20 +48,48 @@ export default function BoardWrite(): JSX.Element {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const name = userInfo?.email.split("@")[0];
-  // url hash
-  let hash;
-  let boardId;
+
+  const [boardType, setBoardType] = useState("");
+  const queries = router.query.boardID;
+  const [boardId, setBoardId] = useState("");
+
+  // fetch board detail data func
+  async function fetchBoardDetail(condition) {
+    const querySnapshot = await getDocs(condition);
+    querySnapshot.forEach((doc: any) => {
+      setTitle(doc.data().title);
+      setTags(doc.data().tag);
+      console.log(doc.data().tag);
+      contentRef.current.getInstance().setHTML(doc.data().content);
+    });
+  }
 
   useEffect(() => {
-    // get url hash
-    // ex) #blog => blog
-    hash = window.location.hash.split("#")[1].toString();
-    boardId = uuidv4();
-    console.log(hash);
+    if (!router.isReady) return;
+
+    // get board id from url
+    setBoardId(queries.toString());
+
+    // get board type form url
+    setBoardType(window.location.hash.split("#")[1].toString());
+  }, [queries]);
+
+  useEffect(() => {
     if (userInfo?.email == "" || loginStatus == false) {
       router.push("/login");
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    if (boardType !== "" && boardId !== "") {
+      const condition = query(
+        collection(firebaseDb, boardType),
+        where("id", "==", boardId)
+      );
+
+      fetchBoardDetail(condition);
+    }
+  }, [boardType, boardId]);
 
   // if you press enter, add tag func
   const addTag = (e) => {
@@ -72,24 +107,19 @@ export default function BoardWrite(): JSX.Element {
 
   const submitContent = async () => {
     if (content != "" && title != "") {
-      await setDoc(doc(firebaseDb, hash, boardId), {
-        // not duplicate board id
-        id: boardId,
-        email: userInfo.email,
-        name: name,
-        title: title,
-        tag: tags,
-        content: content,
-        timestamp: new Date(),
-      });
-      router.push(`/board/${hash}=${boardId}`);
+      // update func
+      const userDoc = doc(firebaseDb, boardType, boardId);
+      const newField = { title: title, content: content, tag: tags };
+
+      await updateDoc(userDoc, newField);
+      router.push(`/board/${boardType}=${boardId}`);
     } else {
       alert("Please enter a title or content");
     }
   };
 
   return (
-    <Write.Wrapper>
+    <Edit.Wrapper>
       {/* title input (no comment input) */}
       <CommentInput
         style={{ width: "100%", marginBottom: "20px" }}
@@ -98,6 +128,7 @@ export default function BoardWrite(): JSX.Element {
           setTitle(e.target.value);
           console.log(title);
         }}
+        defaultValue={title}
       />
       {/* content */}
       <Editor
@@ -112,7 +143,7 @@ export default function BoardWrite(): JSX.Element {
         plugins={[[codeSyntaxHighlight, { highlighter: Prism }], colorSyntax]}
       />
       {/* tag input (no comment input) */}
-      <Write.BottomWrapper>
+      <Edit.BottomWrapper>
         <CommentInput
           style={{ width: "50%", marginTop: "20px" }}
           placeholder="tag (typing and press enter)"
@@ -122,11 +153,11 @@ export default function BoardWrite(): JSX.Element {
           onKeyDown={addTag}
           value={tag}
         />
-        <Write.tagWrapper>
+        <Edit.tagWrapper>
           {/* show tags */}
-          {tags.map((el, index) => (
-            <>
-              <Write.tag key={index}>
+          {tags?.map((el, index) => (
+            <div key={index}>
+              <Edit.tag key={index}>
                 #{el}
                 <MdCancel
                   style={{
@@ -141,12 +172,12 @@ export default function BoardWrite(): JSX.Element {
                     setTags([...newTags]);
                   }}
                 />
-              </Write.tag>
-            </>
+              </Edit.tag>
+            </div>
           ))}
-        </Write.tagWrapper>
-      </Write.BottomWrapper>
-      <Write.BtnWrapper>
+        </Edit.tagWrapper>
+      </Edit.BottomWrapper>
+      <Edit.BtnWrapper>
         <Btn
           onClick={submitContent}
           style={{ width: "10%", marginRight: "10px" }}
@@ -161,7 +192,7 @@ export default function BoardWrite(): JSX.Element {
         >
           cancel
         </Btn>
-      </Write.BtnWrapper>
-    </Write.Wrapper>
+      </Edit.BtnWrapper>
+    </Edit.Wrapper>
   );
 }
