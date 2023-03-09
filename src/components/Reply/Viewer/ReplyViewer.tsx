@@ -15,6 +15,7 @@ import { loginState } from "../../../common/Recoil/loginState";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   query,
@@ -96,6 +97,7 @@ export default function ReplyViewer(props: any) {
     index: "",
   });
 
+  // comment list load func
   const fetchComments = async () => {
     const comments = collection(firebaseDb, "comment");
     const result = await getDocs(
@@ -113,17 +115,26 @@ export default function ReplyViewer(props: any) {
     fetchComments();
   }, []);
 
-  const updateComment = async () => {
+  // comment update func
+  const updateComment = async (e) => {
     if (content != "") {
       // update func
-      const userDoc = doc(firebaseDb, "comment", props.boardData.id);
+      const userDoc = doc(firebaseDb, "comment", e.target.id);
       const newField = { content: content };
 
       await updateDoc(userDoc, newField);
-      router.reload();
+      await fetchComments();
+      setUpdateState({ state: false, index: "" });
     } else {
       alert("Please enter a title or content");
     }
+  };
+
+  // comment delete func
+  const deleteComment = (e) => {
+    console.log(e.target.id);
+    deleteDoc(doc(firebaseDb, "comment", e.target.id));
+    fetchComments();
   };
 
   return (
@@ -145,7 +156,6 @@ export default function ReplyViewer(props: any) {
               <ViewWrapper>
                 <ReplyEdit
                   boardId={props.boardData.id}
-                  updateComment={updateComment}
                   setContent={setContent}
                   commentId={el.commentId}
                 />
@@ -188,6 +198,8 @@ export default function ReplyViewer(props: any) {
                           height: "25px",
                           fontSize: "12px",
                         }}
+                        id={el.commentId}
+                        onClick={(e) => deleteComment(e)}
                       >
                         delete
                       </Btn>
@@ -203,6 +215,8 @@ export default function ReplyViewer(props: any) {
                           height: "25px",
                           fontSize: "12px",
                         }}
+                        id={el.commentId}
+                        onClick={(e) => updateComment(e)}
                       >
                         submit
                       </Btn>

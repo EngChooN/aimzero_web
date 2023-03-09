@@ -13,7 +13,14 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
-import { collection, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
@@ -34,10 +41,12 @@ export default function ReplyWrite(props: any): JSX.Element {
     console.log(props.boardData?.id, "comment-boardId");
   });
 
+  // input on change content value
   const onChangeContent = () => {
     setContent(contentRef.current?.getInstance().getHTML());
   };
 
+  // create comment func
   const submitComment = async () => {
     if (content != "") {
       await setDoc(doc(firebaseDb, "comment", commentId), {

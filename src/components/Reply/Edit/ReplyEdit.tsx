@@ -13,14 +13,7 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
-import {
-  collection,
-  doc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
 
 export default function ReplyEdit(props: any): JSX.Element {
@@ -39,7 +32,7 @@ export default function ReplyEdit(props: any): JSX.Element {
     console.log(props.commentId);
     const condition = query(
       collection(firebaseDb, "comment"),
-      where("id", "==", props.commentId)
+      where("commentId", "==", props.commentId)
     );
     fetchBoardDetail(condition);
   }, []);
