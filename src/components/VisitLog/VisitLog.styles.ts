@@ -52,11 +52,14 @@ export const CommentWrapper = styled.div`
 `;
 
 export const LogBox = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   width: 60%;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  background-color: #f3f3f3;
   @media (max-width: 400px) {
     width: 70%;
   }
@@ -64,12 +67,13 @@ export const LogBox = styled.div`
 
 export const Name = styled.p`
   font-family: serif;
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   margin: 0;
   margin-top: 7px;
 `;
+
 export const Title = styled.h1`
   font-family: AbrilFatface;
   font-size: 40px;
@@ -81,6 +85,7 @@ export const Title = styled.h1`
 
 export const Comment = styled.span`
   font-family: serif;
+  font-size: 14px;
 `;
 
 export const WriteBox = styled.div`
@@ -97,7 +102,7 @@ export const CommentInput = styled.input`
   width: 80%;
   height: 45px;
   padding: 10px;
-  font-size: 17px;
+  font-size: 14px;
   font-family: serif;
 
   :focus {
@@ -138,5 +143,5 @@ export const SubmitBtn = styled.button`
 export const BtnWrapper = styled.div`
   position: absolute;
   bottom: 1px;
-  right: 5px;
+  right: 7px;
 `;

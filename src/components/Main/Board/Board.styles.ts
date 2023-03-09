@@ -36,6 +36,10 @@ export const BoardTitleInfo = styled.div`
   justify-content: center;
   width: 35%;
   font-weight: 600;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const BoardDateInfo = styled.div`

@@ -86,16 +86,26 @@ export default function VisitLog() {
         {commentsData.map((el, index) => (
           <Visit.CommentWrapper key={index}>
             <Visit.ProfileWrapper>
-              <Visit.NoneProfile src={"images/profile.png"} />
+              {/* <Visit.NoneProfile src={"images/profile.png"} /> */}
               <Visit.Name>{el.name}</Visit.Name>
+              <div
+                style={{
+                  fontFamily: "serif",
+                  fontSize: "12px",
+                  color: "darkgray",
+                }}
+              >
+                {el.timestamp.toDate().toISOString().split("T")[0]}
+              </div>
             </Visit.ProfileWrapper>
             <Visit.LogBox>
               <Visit.Comment>{el.comment}</Visit.Comment>
               {/* edit option buttons */}
               {name == el.name && (
                 <Visit.BtnWrapper>
-                  <AiFillEdit style={{ cursor: "pointer" }} />
+                  {/* <AiFillEdit color="darkgray" style={{ cursor: "pointer" }} /> */}
                   <AiFillDelete
+                    color="darkgray"
                     style={{ cursor: "pointer", marginLeft: "10px" }}
                     onClick={() => {
                       deleteComment(el.id);
@@ -112,7 +122,7 @@ export default function VisitLog() {
           onChange={(e) => {
             setComment(e.target.value);
           }}
-          placeholder="Write your comment"
+          placeholder="typing your visit log"
           value={comment}
         />
         <Visit.SubmitBtn onClick={submitComment}>submit</Visit.SubmitBtn>

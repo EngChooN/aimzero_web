@@ -18,6 +18,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
   query,
   updateDoc,
   where,
@@ -103,8 +104,8 @@ export default function ReplyViewer(props: any) {
     const result = await getDocs(
       query(
         comments,
-        where("id", "==", props.boardData.id)
-        // orderBy("timestamp", "desc")
+        where("id", "==", props.boardData.id),
+        orderBy("timestamp", "desc")
       )
     );
     const fetchData = result.docs.map((el) => el.data());
