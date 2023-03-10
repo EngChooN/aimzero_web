@@ -83,20 +83,22 @@ export default function PhotoUI(props: any) {
         {props.images?.map((el, index) => (
           <Photos.ImgBox key={index}>
             <Image width={230} height={230} src={el.imgUrl} />
-            <AiFillDelete
-              fontSize={30}
-              color={"lightgray"}
-              style={{
-                cursor: "pointer",
-                marginLeft: "10px",
-                position: "absolute",
-                bottom: "3",
-                right: "3",
-              }}
-              onClick={() => {
-                props.deletePhoto(el.id);
-              }}
-            />
+            {props.userInfo?.email == "aimzero9303@gmail.com" ? (
+              <AiFillDelete
+                fontSize={30}
+                color={"lightgray"}
+                style={{
+                  cursor: "pointer",
+                  marginLeft: "10px",
+                  position: "absolute",
+                  bottom: "3",
+                  right: "3",
+                }}
+                onClick={() => {
+                  props.deletePhoto(el.id);
+                }}
+              />
+            ) : null}
           </Photos.ImgBox>
         ))}
       </Photos.BottomSection>
