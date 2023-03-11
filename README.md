@@ -19,6 +19,7 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 https://aimzero-web.vercel.app/ 
 
 ## Tree
+```
 src
  ┣ common
  ┃ ┣ Recoil
@@ -105,3 +106,4 @@ src
  ┣ styles
  ┃ ┗ globals.css
  ┗ .DS_Store
+```
