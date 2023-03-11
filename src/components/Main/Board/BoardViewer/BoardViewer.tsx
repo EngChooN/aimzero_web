@@ -135,9 +135,7 @@ export default function BoardViewer(props: any) {
           <InfoWrapper>
             <div style={{ display: "flex", alignItems: "center" }}>
               <Name>{props.boardData.name}</Name>
-              <Date>
-                {props.boardData.timestamp.toDate().toISOString().split("T")[0]}
-              </Date>
+              <Date>{props.boardData.timestamp}</Date>
             </div>
             {userInfo?.email == props.boardData.email && loginStatus == true ? (
               <Btns>

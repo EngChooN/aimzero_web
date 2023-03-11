@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 // firebase
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, where } from "firebase/firestore";
+import { doc, getDoc, query as fireQuery } from "@firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
 import Main from "../../../components/Main/Main";
 
@@ -38,38 +39,9 @@ const ContentBox = styled.article`
   width: 100%;
 `;
 
-export default function BoardDetailPage() {
+export default function BoardDetailPage({ boardData }) {
+  console.log("get server side props data: ", boardData);
   const router = useRouter();
-  // get url parameter
-  const urlParams = router.query.boardID;
-  const [boardData, setBoardData] = useState({});
-
-  // fetch board detail data func
-  async function fetchBoardDetail(condition) {
-    const querySnapshot = await getDocs(condition);
-    querySnapshot.forEach((doc) => {
-      setBoardData(doc.data());
-    });
-  }
-
-  useEffect(() => {
-    if (urlParams === undefined) return;
-
-    // parameter => clicked board type ...ex) blog, qna, news
-    const boardType = (urlParams as string).split("=")[0];
-    // parameter => clicked board id
-    const boardId = (urlParams as string).split("=")[1];
-
-    // search board detail data condition
-    if (boardType !== "" && boardId !== "") {
-      const condition = query(
-        collection(firebaseDb, boardType),
-        where("id", "==", boardId)
-      );
-
-      fetchBoardDetail(condition);
-    }
-  }, [router]);
 
   return (
     <Wrapper>
@@ -81,4 +53,42 @@ export default function BoardDetailPage() {
       <Main />
     </Wrapper>
   );
+}
+
+export async function getServerSideProps({ query }) {
+  let data = {};
+
+  const urlParams = query.boardID;
+  const boardType = urlParams.split("=")[0];
+  const boardId = urlParams.split("=")[1];
+
+  const docRef = doc(firebaseDb, boardType, boardId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    data = docSnap.data();
+  } else {
+    console.log("No such document!");
+  }
+
+  let boardData = {
+    // @ts-ignore
+    title: data.title,
+    // @ts-ignore
+    content: data.content,
+    // @ts-ignore
+    tag: data.tag,
+    // @ts-ignore
+    name: data.name,
+    // @ts-ignore
+    id: data.id,
+    // @ts-ignore
+    email: data.email,
+    // @ts-ignore
+    timestamp: data.timestamp.toDate().toISOString().split("T")[0],
+  };
+
+  return {
+    props: { boardData },
+  };
 }
