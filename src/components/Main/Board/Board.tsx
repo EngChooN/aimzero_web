@@ -14,11 +14,13 @@ import {
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { loginState } from "../../../common/Recoil/loginState";
+// antd
+import { Pagination } from "antd";
 
 export default function Board(props: any) {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  // 1, 2, 3으로 불러오는 글이 다르게 보임 (각 게시판 db 컬렉션 명을 1, 2, 3으로 한다던지...)
+
   // fetch comments func
   const router = useRouter();
   const [boardData, setBoardData] = useState([]);
@@ -35,8 +37,8 @@ export default function Board(props: any) {
   }, []);
 
   const moveToDetail = (e) => {
-    // router.push(`/board/${props.menu}=${e.currentTarget.id}`);
-    location.href = `/board/${props.menu}=${e.currentTarget.id}`;
+    router.push(`/board/${props.menu}=${e.currentTarget.id}`);
+    // location.href = `/board/${props.menu}=${e.currentTarget.id}`;
     console.log(e.currentTarget.id);
   };
 
@@ -51,9 +53,9 @@ export default function Board(props: any) {
         </Boards.BoardInfo>
       </Boards.BoardListBox>
       <Boards.BoardListBox>
-        {boardData.reverse().map((el, index) => (
+        {boardData.map((el, index) => (
           <Boards.Board key={index} id={el.id} onClick={moveToDetail}>
-            <Boards.BoardNumber>{index + 1}</Boards.BoardNumber>
+            <Boards.BoardNumber>{boardData.length - index}</Boards.BoardNumber>
             <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
             <Boards.Name>{el.name}</Boards.Name>
             <Boards.BoardDate>
@@ -64,6 +66,7 @@ export default function Board(props: any) {
       </Boards.BoardListBox>
       <Boards.BoardBottomBox>
         {/* pagenation */}
+        <Pagination defaultCurrent={1} total={50} />
         {/* write button blog */}
         {props.menu == "blog" &&
         userInfo?.email == "aimzero9303@gmail.com" &&
