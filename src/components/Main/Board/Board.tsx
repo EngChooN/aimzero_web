@@ -15,10 +15,13 @@ import {
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { loginState } from "../../../common/Recoil/loginState";
+// antd
+import { Skeleton } from "antd";
 
 export default function Board(props: any) {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [isLoading, setIsLoading] = useState(true);
 
   // fetch comments func
   const router = useRouter();
@@ -33,6 +36,7 @@ export default function Board(props: any) {
     const fetchData = result.docs.map((el) => el.data());
     setBoardListData(fetchData);
     setBoardData(fetchData.slice((page - 1) * limit, page * limit));
+    setIsLoading(false);
   }
   // first time fetch
   useEffect(() => {
@@ -57,6 +61,38 @@ export default function Board(props: any) {
           </Boards.BoardInfo>
         </Boards.BoardListBox>
         <Boards.BoardListBox>
+          {isLoading && (
+            <>
+              <Skeleton.Button
+                active={true}
+                size={"large"}
+                shape={"square"}
+                block={true}
+                style={{ marginTop: "20px" }}
+              />
+              <Skeleton.Button
+                active={true}
+                size={"large"}
+                shape={"square"}
+                block={true}
+                style={{ marginTop: "20px" }}
+              />
+              <Skeleton.Button
+                active={true}
+                size={"large"}
+                shape={"square"}
+                block={true}
+                style={{ marginTop: "20px" }}
+              />
+              <Skeleton.Button
+                active={true}
+                size={"large"}
+                shape={"square"}
+                block={true}
+                style={{ marginTop: "20px" }}
+              />
+            </>
+          )}
           {boardData.map((el, index) => (
             <Boards.Board key={index} id={el.id} onClick={moveToDetail}>
               <Boards.BoardNumber>
