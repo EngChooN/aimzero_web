@@ -49,9 +49,61 @@ export default function PaginationBtn(props: PageType) {
     return pageNumber;
   };
 
+  const prevPage = () => {
+    props.setPage(props.page - 1);
+  };
+
+  const quickPrevPage = () => {
+    if (props.page < 5) {
+      props.setPage(1);
+    } else {
+      props.setPage(props.page - 5);
+    }
+  };
+
+  const nextPage = () => {
+    props.setPage(props.page + 1);
+  };
+
+  const quickNextPage = () => {
+    if (props.page >= pageLength - 5) {
+      props.setPage(pageLength);
+    } else {
+      props.setPage(props.page + 5);
+    }
+  };
+
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
+      {props.page < 4 ? (
+        <div style={{ width: "17px", margin: "10px" }}></div>
+      ) : (
+        <PageButton onClick={quickPrevPage} active={true}>
+          {"<<"}
+        </PageButton>
+      )}
+      {props.page == 1 ? (
+        <div style={{ width: "8.5px", margin: "10px" }}></div>
+      ) : (
+        <PageButton onClick={prevPage} active={true}>
+          {"<"}
+        </PageButton>
+      )}
       {renderPageNumbers()}
+      {props.page == pageLength ? (
+        <div style={{ width: "8.5px", margin: "10px" }}></div>
+      ) : (
+        <PageButton onClick={nextPage} active={true}>
+          {">"}
+        </PageButton>
+      )}
+      {props.page <= pageLength - 3 ? (
+        <PageButton onClick={quickNextPage} active={true}>
+          {">>"}
+        </PageButton>
+      ) : (
+        <div style={{ width: "17px", margin: "10px" }}></div>
+      )}
     </div>
   );
 }
