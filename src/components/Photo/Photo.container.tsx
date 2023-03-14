@@ -25,6 +25,9 @@ import {
 import { uuidv4 } from "@firebase/util";
 
 export default function Photo() {
+  // first loading show logo flag
+  const [isLoading, setIsLoading] = useState(true);
+
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   // file input click from custom button
   const fileInput = useRef(null);
@@ -76,6 +79,7 @@ export default function Photo() {
     const result = await getDocs(query(photo, orderBy("timestamp", "desc")));
     const fetchData = result.docs.map((el) => el.data());
     setImages(fetchData);
+    setIsLoading(false);
   }
 
   // first time fetch
@@ -99,6 +103,7 @@ export default function Photo() {
       uploadImgUrl={uploadImgUrl}
       images={images}
       deletePhoto={deletePhoto}
+      isLoading={isLoading}
     />
   );
 }

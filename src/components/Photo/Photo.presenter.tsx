@@ -2,6 +2,7 @@ import * as Photos from "./Photo.styles";
 import profileData from "../../../public/locales/en/common.json";
 // antd
 import { Image } from "antd";
+import { Skeleton } from "antd";
 // icon
 import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
 import { FiMail, FiInstagram } from "react-icons/fi";
@@ -45,7 +46,30 @@ export default function PhotoUI(props: any) {
         </Photos.ProfileBox>
       </Photos.TopSection>
       <Photos.BottomSection>
-        {props.userInfo?.email == "aimzero9303@gmail.com" ? (
+        {props.isLoading == true ? (
+          <div>
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+          </div>
+        ) : props.userInfo?.email == "aimzero9303@gmail.com" ? (
           <Photos.ImgBox>
             {props.uploadStep == 1 ? (
               <Photos.Additional

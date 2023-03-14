@@ -84,7 +84,7 @@ const Logo = styled.div`
 
   @media (max-width: 1100px) {
     font-size: 25px;
-    margin-left: 30px;
+    margin-left: 45px;
     margin-top: 5px;
   }
 `;
@@ -184,7 +184,7 @@ export default function Header() {
         <List currentUrl={crrUrl === "/login"}>
           {loginStatus == false ? (
             <Link href="/login">
-              login<div></div>
+              login_<div></div>
             </Link>
           ) : (
             // logout
@@ -230,7 +230,7 @@ export default function Header() {
                 setMenuFlag(true);
               }}
             >
-              login<div></div>
+              login_<div></div>
             </Link>
           ) : (
             // logout
