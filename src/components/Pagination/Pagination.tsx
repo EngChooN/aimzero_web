@@ -1,33 +1,57 @@
-import { useEffect } from "react";
+import styled from "@emotion/styled";
 
-export interface PageType {
+interface PageType {
   listLength: number;
   limit: number;
   page: number;
   setPage: Function;
-  blockNum: number;
-  setBlockNum: Function;
 }
+
+const PageButton = styled.div<{ active: boolean }>`
+  cursor: pointer;
+  margin: 10px;
+
+  font-size: 17px;
+  font-family: serif;
+  color: ${(props) => (props.active ? "black" : "darkgray")};
+`;
 
 export default function PaginationBtn(props: PageType) {
   const pageLength = Math.ceil(props.listLength / props.limit); // all page length
 
-  const onClickPageBtn = (pageNum) => {
+  const onClickPageBtn = (pageNum: number) => {
     props.setPage(pageNum);
     console.log("click page button", props.page);
   };
 
   const renderPageNumbers = () => {
     const pageNumber = [];
-    for (let i = 1; i <= pageLength; i++) {
+    //
+    const maxPageButtons = 5; // show page button count (5)
+
+    let startPage = Math.max(1, props.page - Math.floor(maxPageButtons / 2)); // show start page button
+    let endPage = Math.min(startPage + maxPageButtons - 1, pageLength); // show end page button
+    if (endPage - startPage + 1 < maxPageButtons) {
+      startPage = Math.max(1, endPage - maxPageButtons + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       pageNumber.push(
-        <button key={i} onClick={() => onClickPageBtn(i)}>
+        <PageButton
+          key={i}
+          onClick={() => onClickPageBtn(i)}
+          active={props.page == i}
+        >
           {i}
-        </button>
+        </PageButton>
       );
     }
     return pageNumber;
   };
 
-  return <div>{renderPageNumbers()}</div>;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      {renderPageNumbers()}
+    </div>
+  );
 }

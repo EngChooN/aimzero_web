@@ -23,10 +23,9 @@ export default function Board(props: any) {
   // fetch comments func
   const router = useRouter();
   const [boardListData, setBoardListData] = useState([]); // list data (board)
-  const [boardData, setBoardData] = useState([]); // page list data (board)
-  const [limit, setLimit] = useState(5); // just per page data
+  const [boardData, setBoardData] = useState([]); // list data per page (board)
+  const [limit, setLimit] = useState(5); // list data length per page
   const [page, setPage] = useState(1); // page value (default = 1)
-  const [blockNum, setBlockNum] = useState(0); // 한 페이지에 보여 줄 페이지네이션의 개수를 block으로 지정하는 state. 초기 값은 0
 
   async function fetchBoards() {
     const board = collection(getFirestore(firebaseApp), props.menu);
@@ -48,38 +47,38 @@ export default function Board(props: any) {
 
   return (
     <Boards.Wrapper>
-      <Boards.BoardListBox>
-        <Boards.BoardInfo>
-          <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
-          <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
-          <Boards.NameInfo>name</Boards.NameInfo>
-          <Boards.BoardDateInfo>date</Boards.BoardDateInfo>
-        </Boards.BoardInfo>
-      </Boards.BoardListBox>
-      <Boards.BoardListBox>
-        {boardData.map((el, index) => (
-          <Boards.Board key={index} id={el.id} onClick={moveToDetail}>
-            <Boards.BoardNumber>
-              {boardListData.length - (page - 1) * limit - index}
-            </Boards.BoardNumber>
-            <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
-            <Boards.Name>{el.name}</Boards.Name>
-            <Boards.BoardDate>
-              {el.timestamp.toDate().toISOString().split("T")[0]}
-            </Boards.BoardDate>
-          </Boards.Board>
-        ))}
-      </Boards.BoardListBox>
+      <div style={{ minHeight: "360px" }}>
+        <Boards.BoardListBox>
+          <Boards.BoardInfo>
+            <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
+            <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
+            <Boards.NameInfo>name</Boards.NameInfo>
+            <Boards.BoardDateInfo>date</Boards.BoardDateInfo>
+          </Boards.BoardInfo>
+        </Boards.BoardListBox>
+        <Boards.BoardListBox>
+          {boardData.map((el, index) => (
+            <Boards.Board key={index} id={el.id} onClick={moveToDetail}>
+              <Boards.BoardNumber>
+                {boardListData.length - (page - 1) * limit - index}
+              </Boards.BoardNumber>
+              <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
+              <Boards.Name>{el.name}</Boards.Name>
+              <Boards.BoardDate>
+                {el.timestamp.toDate().toISOString().split("T")[0]}
+              </Boards.BoardDate>
+            </Boards.Board>
+          ))}
+        </Boards.BoardListBox>
+      </div>
+      {/* pagenation */}
+      <PaginationBtn
+        listLength={boardListData.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+      />
       <Boards.BoardBottomBox>
-        {/* pagenation */}
-        <PaginationBtn
-          listLength={boardListData.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-          blockNum={blockNum}
-          setBlockNum={setBlockNum}
-        />
         {/* write button blog */}
         {props.menu == "blog" &&
         userInfo?.email == "aimzero9303@gmail.com" &&
