@@ -68,28 +68,36 @@ export default function Board(props: any) {
                 size={"large"}
                 shape={"square"}
                 block={true}
-                style={{ marginTop: "20px" }}
+                style={{
+                  marginTop: "20px",
+                }}
               />
               <Skeleton.Button
                 active={true}
                 size={"large"}
                 shape={"square"}
                 block={true}
-                style={{ marginTop: "20px" }}
+                style={{
+                  marginTop: "20px",
+                }}
               />
               <Skeleton.Button
                 active={true}
                 size={"large"}
                 shape={"square"}
                 block={true}
-                style={{ marginTop: "20px" }}
+                style={{
+                  marginTop: "20px",
+                }}
               />
               <Skeleton.Button
                 active={true}
                 size={"large"}
                 shape={"square"}
                 block={true}
-                style={{ marginTop: "20px" }}
+                style={{
+                  marginTop: "20px",
+                }}
               />
             </>
           )}

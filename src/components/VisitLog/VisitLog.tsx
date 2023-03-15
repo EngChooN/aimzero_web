@@ -1,5 +1,5 @@
 import * as Visit from "./VisitLog.styles";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 // firebase
 import {
@@ -20,20 +20,36 @@ import { loginState } from "../../common/Recoil/loginState";
 // uuid
 import { uuidv4 } from "@firebase/util";
 // icon
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiFillDelete } from "react-icons/ai";
+// antd
+import { Skeleton } from "antd";
+// react-query
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 export default function VisitLog() {
-  const [comment, setComment] = useState("");
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
-  const [commentsData, setCommentsData] = useState([]);
-  const router = useRouter();
-  const listRef = useRef(null);
-  // Uncaught TypeError: Cannot read property 'split' of undefined (fix code)
-  const name = (userInfo?.email || "").split("@")[0];
+  // fetch comments func
+  async function fetchComments() {
+    const visitlog = collection(getFirestore(firebaseApp), "visitlog");
+    const result = await getDocs(query(visitlog, orderBy("timestamp", "desc")));
+    const fetchData = result.docs.map((el) => el.data());
+    return fetchData;
+  }
+
+  // delete comment func
+  const deleteCommentFunc = async (id) => {
+    await deleteDoc(doc(firebaseDb, "visitlog", id)).then(() => {
+      try {
+        console.log("done");
+        return;
+      } catch (err) {
+        console.log(err);
+        return;
+      }
+    });
+  };
 
   // create comment func
-  const submitComment = async () => {
+  const createCommentFunc = async () => {
     if (loginStatus == true && userInfo.email != "") {
       if (comment != "") {
         const id = uuidv4();
@@ -43,7 +59,7 @@ export default function VisitLog() {
           comment: comment,
           timestamp: new Date(),
         });
-        fetchComments();
+        // fetchComments();
         setComment("");
         listRef.current.scrollTop = 0;
       } else {
@@ -54,39 +70,58 @@ export default function VisitLog() {
     }
   };
 
-  // delete comment func
-  const deleteComment = async (id) => {
-    await deleteDoc(doc(firebaseDb, "visitlog", id)).then(() => {
-      try {
-        console.log("done");
-      } catch (err) {
-        console.log(err);
-      }
-    });
-    fetchComments();
-  };
+  const queryClient = useQueryClient();
 
-  // fetch comments func
-  async function fetchComments() {
-    const visitlog = collection(getFirestore(firebaseApp), "visitlog");
-    const result = await getDocs(query(visitlog, orderBy("timestamp", "desc")));
-    const fetchData = result.docs.map((el) => el.data());
-    setCommentsData(fetchData);
-  }
+  const { isLoading, data: commentsData } = useQuery("visitlog", fetchComments);
+  const { mutate: deleteComment } = useMutation(deleteCommentFunc, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("visitlog");
+    },
+  });
+  const { mutate: createComment } = useMutation(createCommentFunc, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("visitlog");
+    },
+  });
 
-  // first time fetch
-  useEffect(() => {
-    fetchComments();
-  }, []);
+  const [comment, setComment] = useState("");
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
+  const router = useRouter();
+  const listRef = useRef(null);
+  // Uncaught TypeError: Cannot read property 'split' of undefined (fix code)
+  const name = (userInfo?.email || "").split("@")[0];
 
   return (
     <Visit.Wrapper>
-      {/* <Visit.Title>Visit Log</Visit.Title> */}
       <Visit.ListLog ref={listRef}>
-        {commentsData.map((el, index) => (
+        <>
+          <Skeleton
+            avatar
+            paragraph={{ rows: 2 }}
+            active={true}
+            loading={isLoading}
+            style={{ padding: "30px" }}
+          />
+          <Skeleton
+            avatar
+            paragraph={{ rows: 2 }}
+            active={true}
+            loading={isLoading}
+            style={{ padding: "30px" }}
+          />
+          <Skeleton
+            avatar
+            paragraph={{ rows: 2 }}
+            active={true}
+            loading={isLoading}
+            style={{ padding: "30px" }}
+          />
+        </>
+
+        {commentsData?.map((el, index) => (
           <Visit.CommentWrapper key={index}>
             <Visit.ProfileWrapper>
-              {/* <Visit.NoneProfile src={"images/profile.png"} /> */}
               <Visit.Name>{el.name}</Visit.Name>
               <div
                 style={{
@@ -103,7 +138,6 @@ export default function VisitLog() {
               {/* edit option buttons */}
               {name == el.name && (
                 <Visit.BtnWrapper>
-                  {/* <AiFillEdit color="darkgray" style={{ cursor: "pointer" }} /> */}
                   <AiFillDelete
                     color="darkgray"
                     style={{ cursor: "pointer", marginLeft: "10px" }}
@@ -125,7 +159,7 @@ export default function VisitLog() {
           placeholder="typing your visit log"
           value={comment}
         />
-        <Visit.SubmitBtn onClick={submitComment}>submit</Visit.SubmitBtn>
+        <Visit.SubmitBtn onClick={createComment}>submit</Visit.SubmitBtn>
       </Visit.WriteBox>
     </Visit.Wrapper>
   );
