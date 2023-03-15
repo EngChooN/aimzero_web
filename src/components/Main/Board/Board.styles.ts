@@ -79,6 +79,11 @@ export const BoardNumber = styled.div`
 export const BoardTitle = styled.div`
   width: 35%;
   font-family: serif;
+
+  // text "..." processing
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const BoardDate = styled.div`

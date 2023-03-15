@@ -4,15 +4,20 @@ import { appWithTranslation } from "next-i18next";
 // import LocaleButton from "../components/LocaleButton/LocaleButton";
 // recoil
 import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
-    <RecoilRoot>
-      <Layout>
-        {/* <LocaleButton /> */}
-        <Component {...pageProps} />
-      </Layout>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <Layout>
+          {/* <LocaleButton /> */}
+          <Component {...pageProps} />
+        </Layout>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 

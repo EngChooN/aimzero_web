@@ -74,6 +74,7 @@ export const BottomSection = styled.div`
   padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 61%;
   @media (max-width: 1100px) {
     width: 67%;
@@ -104,6 +105,7 @@ export const PostImg = styled.img``;
 export const ImgBox = styled.div`
   position: relative;
   margin: 7px;
+  margin-left: auto;
 `;
 
 export const Modal = styled.div`

@@ -47,7 +47,17 @@ export default function PhotoUI(props: any) {
       </Photos.TopSection>
       <Photos.BottomSection>
         {props.isLoading == true ? (
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
             <Skeleton.Image
               style={{ width: "230px", height: "230px", margin: "7px" }}
               active={true}
