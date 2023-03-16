@@ -72,12 +72,15 @@ export default function VisitLog() {
 
   const queryClient = useQueryClient();
 
+  // fetch
   const { isLoading, data: commentsData } = useQuery("visitlog", fetchComments);
+  // delete
   const { mutate: deleteComment } = useMutation(deleteCommentFunc, {
     onSuccess: () => {
       queryClient.invalidateQueries("visitlog");
     },
   });
+  // create
   const { mutate: createComment } = useMutation(createCommentFunc, {
     onSuccess: () => {
       queryClient.invalidateQueries("visitlog");

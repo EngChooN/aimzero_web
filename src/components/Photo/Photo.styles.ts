@@ -40,6 +40,11 @@ export const ProfileBox = styled.div`
   padding-bottom: 20px;
   border-bottom: 1px solid black;
   margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 90%;
+  }
 `;
 
 export const ProfileImg = styled.img`
@@ -47,14 +52,36 @@ export const ProfileImg = styled.img`
   height: 150px;
   border-radius: 100px;
   border: 3px solid darkgray;
+  @media (max-width: 730px) {
+    width: 120px;
+    height: 120px;
+  }
+  @media (max-width: 600px) {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 20px;
+  }
 `;
 
-export const InfoBox = styled.div``;
+export const InfoBox = styled.div`
+  @media (max-width: 730px) {
+  }
+`;
 
 export const Name = styled.div`
   font-family: Garamond;
   font-size: 23px;
   margin-bottom: 15px;
+
+  @media (max-width: 730px) {
+    font-size: 19px;
+  }
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const Posts = styled.div``;
@@ -68,6 +95,13 @@ export const Info = styled.div`
 
   font-family: serif;
   font-size: 16px;
+
+  @media (max-width: 730px) {
+    font-size: 13px;
+  }
+  @media (max-width: 730px) {
+    font-size: 15px;
+  }
 `;
 
 export const BottomSection = styled.div`
@@ -75,12 +109,13 @@ export const BottomSection = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 61%;
-  @media (max-width: 1100px) {
-    width: 67%;
-  }
+  width: 80%;
 
   overflow-y: scroll;
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 export const Additional = styled.div`
@@ -105,7 +140,6 @@ export const PostImg = styled.img``;
 export const ImgBox = styled.div`
   position: relative;
   margin: 7px;
-  margin-left: auto;
 `;
 
 export const Modal = styled.div`
