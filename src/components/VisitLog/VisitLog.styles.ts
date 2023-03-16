@@ -67,11 +67,12 @@ export const LogBox = styled.div`
 
 export const Name = styled.p`
   font-family: serif;
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   margin: 0;
   margin-top: 7px;
+  margin-bottom: 5px;
 `;
 
 export const Title = styled.h1`
