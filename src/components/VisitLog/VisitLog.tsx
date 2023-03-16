@@ -70,6 +70,12 @@ export default function VisitLog() {
     }
   };
 
+  // onClick event handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createComment();
+  };
+
   const queryClient = useQueryClient();
 
   // fetch
@@ -162,7 +168,7 @@ export default function VisitLog() {
           placeholder="typing your visit log"
           value={comment}
         />
-        <Visit.SubmitBtn onClick={createComment}>submit</Visit.SubmitBtn>
+        <Visit.SubmitBtn onClick={handleSubmit}>submit</Visit.SubmitBtn>
       </Visit.WriteBox>
     </Visit.Wrapper>
   );
