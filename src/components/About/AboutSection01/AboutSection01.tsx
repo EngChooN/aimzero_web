@@ -5,6 +5,7 @@ const Wrapper = styled.section`
   max-width: 1200px;
   width: 100%;
   display: flex;
+  align-items: center;
 `;
 
 const Left = styled.div`
@@ -14,7 +15,6 @@ const Left = styled.div`
 
 const Right = styled.div`
   width: 60%;
-  padding-top: 20px;
   padding-right: 50px;
   padding-left: 50px;
 `;
