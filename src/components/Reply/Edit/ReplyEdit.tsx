@@ -14,7 +14,8 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { firebaseDb } from "../../../../firebase.config";
+import { firebaseDb, firebaseStorage } from "../../../../firebase.config";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function ReplyEdit(props: any): JSX.Element {
   const contentRef = useRef(null);
@@ -27,6 +28,26 @@ export default function ReplyEdit(props: any): JSX.Element {
       console.log("나와라", doc.data());
     });
   }
+
+  // img upload hook
+  useEffect(() => {
+    const editorIns = contentRef.current.getInstance();
+    editorIns.removeHook("addImageBlobHook"); //<- 제거
+    editorIns.addHook("addImageBlobHook", addImage); //<- 추가 },
+  }, []);
+  // img upload func
+  const addImage = async (file, showImage) => {
+    console.log(file); //이미지 압축 및 서버 업로드 로직 실행
+    let imgUrl;
+    const imageRef = ref(firebaseStorage, `replyPhoto/${file.name}`); // storage directory (path, file name)
+    if (!file) return;
+    await uploadBytes(imageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        imgUrl = url;
+        showImage(imgUrl, "alt_text"); //에디터에 이미지 추가
+      });
+    });
+  };
 
   useEffect(() => {
     console.log(props.commentId);

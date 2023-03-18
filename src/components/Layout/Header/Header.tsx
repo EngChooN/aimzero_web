@@ -119,7 +119,7 @@ const List = styled.div<{ currentUrl: boolean }>`
   }
 `;
 
-export default function Header() {
+export default function PageHeader() {
   const [loginStatus, setLoginStatus] = useRecoilState(loginState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 

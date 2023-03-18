@@ -21,12 +21,13 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
-import { firebaseDb } from "../../../../firebase.config";
+import { firebaseDb, firebaseStorage } from "../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { uuidv4 } from "@firebase/util";
 import { Btn } from "../../Login/Login.styles";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function ReplyWrite(props: any): JSX.Element {
   const contentRef = useRef(null);
@@ -36,6 +37,26 @@ export default function ReplyWrite(props: any): JSX.Element {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const name = userInfo?.email.split("@")[0];
   const commentId = uuidv4();
+
+  // img upload hook
+  useEffect(() => {
+    const editorIns = contentRef.current.getInstance();
+    editorIns.removeHook("addImageBlobHook"); //<- 제거
+    editorIns.addHook("addImageBlobHook", addImage); //<- 추가 },
+  }, []);
+  // img upload func
+  const addImage = async (file, showImage) => {
+    console.log(file); //이미지 압축 및 서버 업로드 로직 실행
+    let imgUrl;
+    const imageRef = ref(firebaseStorage, `replyPhoto/${file.name}`); // storage directory (path, file name)
+    if (!file) return;
+    await uploadBytes(imageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        imgUrl = url;
+        showImage(imgUrl, "alt_text"); //에디터에 이미지 추가
+      });
+    });
+  };
 
   useEffect(() => {
     console.log(props.boardData?.id, "comment-boardId");

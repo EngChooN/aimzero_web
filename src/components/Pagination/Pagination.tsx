@@ -26,7 +26,6 @@ export default function PaginationBtn(props: PageType) {
 
   const renderPageNumbers = () => {
     const pageNumber = [];
-    //
     const maxPageButtons = 5; // show page button count (5)
 
     let startPage = Math.max(1, props.page - Math.floor(maxPageButtons / 2)); // show start page button
@@ -54,7 +53,7 @@ export default function PaginationBtn(props: PageType) {
   };
 
   const quickPrevPage = () => {
-    if (props.page < 5) {
+    if (props.page <= 5) {
       props.setPage(1);
     } else {
       props.setPage(props.page - 5);

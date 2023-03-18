@@ -47,7 +47,7 @@ const Logo = styled.div`
   cursor: pointer;
 `;
 
-export default function Footer() {
+export default function PageFooter() {
   return (
     <Wrapper>
       <ContentsWrapper>
