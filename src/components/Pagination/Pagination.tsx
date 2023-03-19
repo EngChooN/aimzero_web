@@ -75,14 +75,18 @@ export default function PaginationBtn(props: PageType) {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       {props.page < 4 ? (
-        <div style={{ width: "17px", margin: "10px" }}></div>
+        <div style={{ width: "17px", margin: "10px", color: "lightGray" }}>
+          {"<<"}
+        </div>
       ) : (
         <PageButton onClick={quickPrevPage} active={true}>
           {"<<"}
         </PageButton>
       )}
       {props.page == 1 ? (
-        <div style={{ width: "8.5px", margin: "10px" }}></div>
+        <div style={{ width: "8.5px", margin: "10px", color: "lightGray" }}>
+          {"<"}
+        </div>
       ) : (
         <PageButton onClick={prevPage} active={true}>
           {"<"}
@@ -90,7 +94,9 @@ export default function PaginationBtn(props: PageType) {
       )}
       {renderPageNumbers()}
       {props.page == pageLength ? (
-        <div style={{ width: "8.5px", margin: "10px" }}></div>
+        <div style={{ width: "8.5px", margin: "10px", color: "lightGray" }}>
+          {">"}
+        </div>
       ) : (
         <PageButton onClick={nextPage} active={true}>
           {">"}
@@ -101,7 +107,9 @@ export default function PaginationBtn(props: PageType) {
           {">>"}
         </PageButton>
       ) : (
-        <div style={{ width: "17px", margin: "10px" }}></div>
+        <div style={{ width: "17px", margin: "10px", color: "lightGray" }}>
+          {">>"}
+        </div>
       )}
     </div>
   );

@@ -13,29 +13,21 @@
     ]
   },
   "section02": {
-    "title": "A memorable recent event",
-    "img01": {
-      "src": "images/landing/IMG_7603.mov",
-      "place": "My birthday party in Gapyeong",
-      "desc": "I rode luge with my friends on a trip to Ganghwado.",
-      "date": "2022.07.22 ~ 2022.07.23"
+    "one": {
+      "title": "I'm a communicating developer",
+      "content": "I think communication is one of the important factors for developers. As I took the boot camp, I worked on the last team project with the backend and designer. When the first result came out, there was a difference of opinion because each person had a different direction of thinking. In that situation, I felt the importance of communication in collaborating. After that, we had regular meetings to communicate our opinions and compromise on the project's amendments, and to share our work lists and issues that occurred while working. Thanks to the previous efforts, there was no big problem due to differences in opinions while working on the team project after that."
+    },
+    "two": {
+      "title": "I want to give users a more comfortable experience",
+      "contentOne": "From the user's point of view each time you write a code? I'm always thinking of that.",
+      "contentTwo": "While working on the team project, various functions were good, but I tried to approach them in detail in the internal process. I thought a lot about which page to route the text to, whether it is more cumbersome for the user to take the next action, step up the membership authentication method, and where to place the translating button and translation text to fit with the existing text and read it comfortably. After presenting to the next code camp rider, he received good reviews for his convenience and neat design in the part he received feedback."
+    },
+    "three": {
+      "title": "Not satisfied with the current state",
+      "contentOne": "As I said earlier, if there is a good evaluation of team project feedback, there is also a criticism. I can say that I am not satisfied with the status quo.",
+      "contentTwo": "Based on the feedback, we conducted a refactoring of each function. At the time of the project planning, mobile was not considered due to time problems, so I received a lot of criticism. I can't satisfy all 100 people out of 100, but I don't think we should be satisfied with the status quo. We received feedback that the screen on mobile and the search window did not follow during scrolling, so we proceeded with refactoring as much as possible. It also went through some modifications to give a more unified sense of design.",
+      "contentThree": "Since I got a job, I am still trying to study personally and record it on my blog. For the previous reason, I created the current page to use various technologies."
     }
-  },
-  "section03": {
-    "title": "Page Development News",
-    "miniTitle": "You can see the history and changes to this page in Section Three.",
-    "log": [
-      {
-        "date": "2023.02.24",
-        "desc": "(NOTICE) Hello, everyone.",
-        "content": "The project that started on 2023-02-02 is finally available! It's still under development, but it's constantly under development and distribution at the same time. I look forward to your feedback.",
-        "img": "https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-      }
-    ]
-  },
-  "languageButton": {
-    "lang01": "english",
-    "lang02": "korean"
   },
   "photo": {
     "profileInfo": {
