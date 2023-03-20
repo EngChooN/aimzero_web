@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import AboutSection01 from "../../components/About/AboutSection01/AboutSection01";
 import AboutSection02 from "../../components/About/AboutSection02/AboutSection02";
+import PdfViewer from "../../components/PdfViewer/PdfViewer";
 
 const Wrapper = styled.section`
   max-width: 1200px;
@@ -56,9 +57,42 @@ const HighlightLabel = styled.div`
   background-color: darkgray;
 `;
 
+const EtcInfo = styled.div`
+  color: white;
+  font-family: serif;
+  cursor: pointer;
+  :first-child {
+    border-right: 1px solid white;
+    padding-right: 30px;
+  }
+  :last-child {
+    border-left: 1px solid white;
+    padding-left: 30px;
+  }
+`;
+
+const Modal = styled.section`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+`;
+
 export default function AboutPage() {
   return (
     <Wrapper>
+      {/* modal */}
+      {/* <Modal
+        style={{
+          zIndex: "999",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflowY: "scroll",
+        }}
+      >
+        <PdfViewer />
+      </Modal> */}
       <Banner>
         <div
           style={{
@@ -88,6 +122,28 @@ export default function AboutPage() {
         <AboutSection01 />
         <AboutSection02 />
       </div>
+      <HighlightLabel
+        style={{
+          height: "50px",
+          backgroundColor: "black",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "35%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}
+        >
+          <EtcInfo>CONTACT</EtcInfo>
+          <EtcInfo>SKILLS</EtcInfo>
+          <EtcInfo>CAREER</EtcInfo>
+        </div>
+      </HighlightLabel>
     </Wrapper>
   );
 }
