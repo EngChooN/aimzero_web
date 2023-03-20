@@ -6,6 +6,7 @@
     "content": [
       "As I came across Facebook, where individuals produce content and communicate in both directions while using web services, and services that are more comfortable than existing logins such as social logins, I became interested in this field, and learned state-funded Java Spring FullStec as my first coding. When I first encountered web development, I felt that the front end that gives users a direct experience depending on how I write the code was right for me.",
       "After graduation, after deciding to become a front-end developer, I completed a 12-week front-end boot camp code camp using the latest technology stack, including React Hooks. (2022. 03. 14 ~ 2022. 06. 03)",
+      "During the boot camp, the pair was randomly changed every week and a week of evaluation was given by pair. In that area, most of the evaluation was positive in communication and evaluation that the code was creative.",
       "After completion, I am in charge of the front-end of the 'Papaya Play' platform at a company called VertigoGames."
     ],
     "highlight": [
@@ -18,17 +19,72 @@
       "content": "I think communication is one of the important factors for developers. As I took the boot camp, I worked on the last team project with the backend and designer. When the first result came out, there was a difference of opinion because each person had a different direction of thinking. In that situation, I felt the importance of communication in collaborating. After that, we had regular meetings to communicate our opinions and compromise on the project's amendments, and to share our work lists and issues that occurred while working. Thanks to the previous efforts, there was no big problem due to differences in opinions while working on the team project after that."
     },
     "two": {
+      "title": "I want to grow up like this",
+      "content": "I want to be a developer who can develop into a better code with the question 'Why' every time I make the code. I want to develop a mindset that values the user experience and the ability to write maintenance code. I want to be a colleague who wants to work together in an attitude that can gain trust from colleagues without losing a sense of challenge and curiosity about new things."
+    },
+    "three": {
       "title": "I want to give users a more comfortable experience",
       "contentOne": "From the user's point of view each time you write a code? I'm always thinking of that.",
       "contentTwo": "While working on the team project, various functions were good, but I tried to approach them in detail in the internal process. I thought a lot about which page to route the text to, whether it is more cumbersome for the user to take the next action, step up the membership authentication method, and where to place the translating button and translation text to fit with the existing text and read it comfortably. After presenting to the next code camp rider, he received good reviews for his convenience and neat design in the part he received feedback."
     },
-    "three": {
+    "four": {
       "title": "Not satisfied with the current state",
       "contentOne": "As I said earlier, if there is a good evaluation of team project feedback, there is also a criticism. I can say that I am not satisfied with the status quo.",
       "contentTwo": "Based on the feedback, we conducted a refactoring of each function. At the time of the project planning, mobile was not considered due to time problems, so I received a lot of criticism. I can't satisfy all 100 people out of 100, but I don't think we should be satisfied with the status quo. We received feedback that the screen on mobile and the search window did not follow during scrolling, so we proceeded with refactoring as much as possible. It also went through some modifications to give a more unified sense of design.",
       "contentThree": "Since I got a job, I am still trying to study personally and record it on my blog. For the previous reason, I created the current page to use various technologies."
+    },
+    "five": {
+      "title": "I am a developer who does my best to the end even if there is a problem",
+      "contentOne": "I can say that I am a developer who continues to confront any problems rather than giving up.",
+      "contentTwo": "At the time of the team project, we had to implement the chat using socket.io. With three days left until the announcement, socket.io was the first, and I saw a source made with code other than React for the first time, so two days have passed without understanding at all. But on the last day, I kept trying to analyze the source, and maybe because I was googling and trying to analyze it, the codes started to get understood. Thanks to this, I have an experience of successfully implementing the chat function before the presentation. I agree with the saying that skill is the sum of pain. Even if it's hard in the process of solving a problem, I think it will soon become my ability if I have to face it to the end and solve it at the end."
     }
   },
+  "pfReview": [
+    {
+      "one": {
+        "titleOne": "우** 님의 PF-Review 🙋🏻‍♂️",
+        "titleTwo": "🎙 커뮤니케이션 평가",
+        "contentOne": "의사소통시 상대방 또는 본인의 문제와 상황에 대해서 제대로 인지를 하고 소통하시는 것 같습니다. 제가 조준영님께 질문을 하거나, 조준영님이 저에게 질문을 할때 질문의 포인트를 정확하게 잘 잡아내시는것 같습니다. 그리고 상대방의 감정에 대해서도 잘 공감하고 배려와 매너있는 자세가 좋은 것 같습니다.",
+        "titleThree": "👍🏻 잘했던 부분",
+        "contentTwo": "자신이 모르는 부분을 정확히 집어내어 질문을 하고 상대방의 질문의 요지를 잘 집어내는 능력이 있습니다 - 또 다른 PF님이 첫날부터 학습과정에 어려움이 있었는데 그때 마다 도움을 많이 주는 모습이 인상적이었습니다.",
+        "titleFour": "🤔 개선하면 좋을 부분",
+        "contentThree": "1주일의 짧은 시간을 지내면서는 단점보다 장점이 많이 보였기에 개선할 부분은 딱히 보이지 않았습니다."
+      }
+    },
+    {
+      "one": {
+        "titleOne": "우** 님의 PF-Review 🙋🏻‍♂️",
+        "titleTwo": "🎙 커뮤니케이션 평가",
+        "contentOne": "의사소통시 상대방 또는 본인의 문제와 상황에 대해서 제대로 인지를 하고 소통하시는 것 같습니다. 제가 조준영님께 질문을 하거나, 조준영님이 저에게 질문을 할때 질문의 포인트를 정확하게 잘 잡아내시는것 같습니다. 그리고 상대방의 감정에 대해서도 잘 공감하고 배려와 매너있는 자세가 좋은 것 같습니다.",
+        "titleThree": "👍🏻 잘했던 부분",
+        "contentTwo": "자신이 모르는 부분을 정확히 집어내어 질문을 하고 상대방의 질문의 요지를 잘 집어내는 능력이 있습니다 - 또 다른 PF님이 첫날부터 학습과정에 어려움이 있었는데 그때 마다 도움을 많이 주는 모습이 인상적이었습니다.",
+        "titleFour": "🤔 개선하면 좋을 부분",
+        "contentThree": "1주일의 짧은 시간을 지내면서는 단점보다 장점이 많이 보였기에 개선할 부분은 딱히 보이지 않았습니다."
+      }
+    },
+    {
+      "one": {
+        "titleOne": "우** 님의 PF-Review 🙋🏻‍♂️",
+        "titleTwo": "🎙 커뮤니케이션 평가",
+        "contentOne": "의사소통시 상대방 또는 본인의 문제와 상황에 대해서 제대로 인지를 하고 소통하시는 것 같습니다. 제가 조준영님께 질문을 하거나, 조준영님이 저에게 질문을 할때 질문의 포인트를 정확하게 잘 잡아내시는것 같습니다. 그리고 상대방의 감정에 대해서도 잘 공감하고 배려와 매너있는 자세가 좋은 것 같습니다.",
+        "titleThree": "👍🏻 잘했던 부분",
+        "contentTwo": "자신이 모르는 부분을 정확히 집어내어 질문을 하고 상대방의 질문의 요지를 잘 집어내는 능력이 있습니다 - 또 다른 PF님이 첫날부터 학습과정에 어려움이 있었는데 그때 마다 도움을 많이 주는 모습이 인상적이었습니다.",
+        "titleFour": "🤔 개선하면 좋을 부분",
+        "contentThree": "1주일의 짧은 시간을 지내면서는 단점보다 장점이 많이 보였기에 개선할 부분은 딱히 보이지 않았습니다."
+      }
+    },
+    {
+      "one": {
+        "titleOne": "우** 님의 PF-Review 🙋🏻‍♂️",
+        "titleTwo": "🎙 커뮤니케이션 평가",
+        "contentOne": "의사소통시 상대방 또는 본인의 문제와 상황에 대해서 제대로 인지를 하고 소통하시는 것 같습니다. 제가 조준영님께 질문을 하거나, 조준영님이 저에게 질문을 할때 질문의 포인트를 정확하게 잘 잡아내시는것 같습니다. 그리고 상대방의 감정에 대해서도 잘 공감하고 배려와 매너있는 자세가 좋은 것 같습니다.",
+        "titleThree": "👍🏻 잘했던 부분",
+        "contentTwo": "자신이 모르는 부분을 정확히 집어내어 질문을 하고 상대방의 질문의 요지를 잘 집어내는 능력이 있습니다 - 또 다른 PF님이 첫날부터 학습과정에 어려움이 있었는데 그때 마다 도움을 많이 주는 모습이 인상적이었습니다.",
+        "titleFour": "🤔 개선하면 좋을 부분",
+        "contentThree": "1주일의 짧은 시간을 지내면서는 단점보다 장점이 많이 보였기에 개선할 부분은 딱히 보이지 않았습니다."
+      }
+    }
+  ],
   "photo": {
     "profileInfo": {
       "mail": "aimzero9303@gmail.com",
