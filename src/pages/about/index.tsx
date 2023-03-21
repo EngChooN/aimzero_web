@@ -53,6 +53,7 @@ const Title = styled.h2`
   font-size: 60px;
   text-shadow: -1px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
   margin: 0;
+  word-break: break-all;
   @media (max-width: 900px) {
     font-size: 45px;
   }
@@ -64,6 +65,7 @@ const MiniTitle = styled.h3`
   font-family: Garamond;
   text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
   text-align: end;
+  word-break: break-all;
   @media (max-width: 900px) {
     font-size: 30px;
   }
@@ -80,6 +82,7 @@ const Label = styled.div`
   font-family: serif;
   font-size: 14px;
   text-align: center;
+  word-break: break-all;
   @media (max-width: 900px) {
     font-size: 12px;
   }

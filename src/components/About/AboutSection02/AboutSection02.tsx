@@ -35,6 +35,7 @@ const Left01 = styled.div`
   border-right: 1px solid;
   padding: 0px;
   padding-right: 20px;
+  word-break: break-all;
 `;
 
 const Right01 = styled.div`
@@ -47,6 +48,7 @@ const Right01 = styled.div`
   padding-left: 20px;
   font-family: serif;
   font-size: 17px;
+  word-break: break-all;
 `;
 
 const Left02 = styled.div`
@@ -58,6 +60,7 @@ const Left02 = styled.div`
   font-size: 17px;
   padding-left: 20px;
   padding-right: 0px;
+  word-break: break-all;
   @media (max-width: 900px) {
     width: 100%;
     padding-left: 0px;
@@ -74,6 +77,7 @@ const Right02 = styled.div`
   padding: 20px;
   padding-left: 0px;
   padding-right: 20px;
+  word-break: break-all;
   @media (max-width: 900px) {
     display: none;
   }
@@ -87,6 +91,7 @@ const Left03 = styled.div`
   padding-left: 0px;
   font-family: serif;
   font-size: 17px;
+  word-break: break-all;
   @media (max-width: 900px) {
     width: 100%;
     padding-right: 0px;
@@ -102,6 +107,7 @@ const Right03 = styled.div`
   padding: 20px;
   padding-right: 0px;
   width: 35%;
+  word-break: break-all;
   @media (max-width: 900px) {
     display: none;
   }
@@ -116,6 +122,7 @@ const Left04 = styled.div`
   font-size: 17px;
   padding-left: 20px;
   padding-right: 0px;
+  word-break: break-all;
   @media (max-width: 900px) {
     width: 100%;
     padding-left: 0px;
@@ -129,6 +136,7 @@ const Right04 = styled.div`
   padding: 20px;
   padding-left: 0px;
   padding-right: 20px;
+  word-break: break-all;
   @media (max-width: 900px) {
     display: none;
   }

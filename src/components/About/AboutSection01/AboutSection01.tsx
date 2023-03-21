@@ -55,6 +55,7 @@ const Title = styled.h1`
 
   margin: 0;
   margin-bottom: 20px;
+  word-break: break-all;
 `;
 
 const Highlight = styled.b`
@@ -66,11 +67,13 @@ const Highlight = styled.b`
 const MiniTitle = styled.h3`
   font-family: AbrilFatface;
   font-size: 20px;
+  word-break: break-all;
 `;
 
 const Content = styled.p`
   font-family: serif;
   font-size: 16px;
+  word-break: break-all;
 `;
 
 const Img = styled.div`
