@@ -7,24 +7,44 @@ const Wrapper = styled.section`
   width: 100%;
   display: flex;
   margin-bottom: 20px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 `;
 
 const One = styled.div`
   width: 30%;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   padding-right: 20px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    padding-right: 0px;
+  }
 `;
 
 const Two = styled.div`
   width: 35%;
   border-right: 1px solid black;
   padding-right: 20px;
+
+  @media (max-width: 900px) {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin-top: 20px;
+  }
 `;
 
 const Three = styled.div`
   width: 35%;
   padding-left: 20px;
-  padding-right: 20px;
+  /* padding-right: 20px; */
+
+  @media (max-width: 900px) {
+    width: 100%;
+    padding: 0;
+  }
 `;
 
 const TitleBox = styled.div``;
@@ -61,6 +81,10 @@ const Img = styled.div`
   width: 100%;
   height: 720px;
   border: 1px solid black;
+
+  @media (max-width: 900px) {
+    background-position: top;
+  }
 `;
 
 export default function AboutSection01() {

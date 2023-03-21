@@ -12,6 +12,13 @@ const Wrapper = styled.section`
   border: 1px solid black;
   margin-top: 50px;
   margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+
+  @media (max-width: 1200px) {
+    margin: 0px;
+    border: none;
+  }
 `;
 
 const Banner = styled.div`
@@ -64,10 +71,16 @@ const EtcInfo = styled.div`
   :first-child {
     border-right: 1px solid white;
     padding-right: 30px;
+    @media (max-width: 1200px) {
+      border: none;
+    }
   }
   :last-child {
     border-left: 1px solid white;
     padding-left: 30px;
+    @media (max-width: 1200px) {
+      border: none;
+    }
   }
 `;
 
@@ -114,9 +127,10 @@ export default function AboutPage() {
       <HighlightLabel></HighlightLabel>
       <div
         style={{
-          paddingLeft: "30px",
-          paddingRight: "30px",
+          paddingLeft: "20px",
+          paddingRight: "20px",
           paddingTop: "20px",
+          width: "100%",
         }}
       >
         <AboutSection01 />

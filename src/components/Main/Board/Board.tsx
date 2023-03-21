@@ -44,8 +44,8 @@ export default function Board(props: any) {
   }, [page]);
 
   const moveToDetail = (e) => {
-    router.push(`/board/${props.menu}=${e.currentTarget.id}`);
-    // location.href = `/board/${props.menu}=${e.currentTarget.id}`;
+    // router.push(`/board/${props.menu}=${e.currentTarget.id}`);
+    location.href = `/board/${props.menu}=${e.currentTarget.id}`;
     console.log(e.currentTarget.id);
   };
 
