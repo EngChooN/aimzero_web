@@ -63,10 +63,7 @@ export const ProfileImg = styled.img`
   }
 `;
 
-export const InfoBox = styled.div`
-  @media (max-width: 730px) {
-  }
-`;
+export const InfoBox = styled.div``;
 
 export const Name = styled.div`
   font-family: Garamond;
@@ -106,9 +103,10 @@ export const Info = styled.div`
 
 export const BottomSection = styled.div`
   padding-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   width: 80%;
 
   overflow-y: scroll;
@@ -138,6 +136,7 @@ export const Additional = styled.div`
 export const PostImg = styled.img``;
 
 export const ImgBox = styled.div`
+  max-width: 230px;
   position: relative;
   margin: 7px;
 `;

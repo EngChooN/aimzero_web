@@ -66,7 +66,7 @@ const DropDown = styled.div<{ menuFlag: boolean }>`
   height: 400px;
   position: absolute;
   transition: all 0.3s;
-  top: ${(props: any) => (props.menuFlag == true ? "-500px" : "63.5px")};
+  top: ${(props: any) => (props.menuFlag == true ? "-500px" : "53.5px")};
   z-index: 11;
   background-color: white;
   box-shadow: 0 4px 4px -4px black;

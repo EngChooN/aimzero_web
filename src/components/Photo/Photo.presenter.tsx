@@ -47,13 +47,7 @@ export default function PhotoUI(props: any) {
       </Photos.TopSection>
       <Photos.BottomSection>
         {props.isLoading == true ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
+          <>
             <Skeleton.Image
               style={{ width: "230px", height: "230px", margin: "7px" }}
               active={true}
@@ -78,7 +72,7 @@ export default function PhotoUI(props: any) {
               style={{ width: "230px", height: "230px", margin: "7px" }}
               active={true}
             />
-          </div>
+          </>
         ) : props.userInfo?.email == "aimzero9303@gmail.com" ? (
           <Photos.ImgBox>
             {props.uploadStep == 1 ? (
@@ -113,7 +107,6 @@ export default function PhotoUI(props: any) {
             )}
           </Photos.ImgBox>
         ) : null}
-        {/* <Photos.PostImg /> */}
         {props.images?.map((el, index) => (
           <Photos.ImgBox key={index}>
             <Image width={230} height={230} src={el.imgUrl} />
