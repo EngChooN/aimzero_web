@@ -31,11 +31,31 @@ const Banner = styled.div`
   position: relative;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 40px;
+  @media (max-width: 900px) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+    margin-top: 30px;
+  }
+`;
+
 const Title = styled.h2`
   font-family: AbrilFatface;
   font-size: 60px;
   text-shadow: -1px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
   margin: 0;
+  @media (max-width: 900px) {
+    font-size: 45px;
+  }
 `;
 
 const MiniTitle = styled.h3`
@@ -44,6 +64,9 @@ const MiniTitle = styled.h3`
   font-family: Garamond;
   text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
   text-align: end;
+  @media (max-width: 900px) {
+    font-size: 30px;
+  }
 `;
 
 const Label = styled.div`
@@ -56,6 +79,10 @@ const Label = styled.div`
   align-items: center;
   font-family: serif;
   font-size: 14px;
+  text-align: center;
+  @media (max-width: 900px) {
+    font-size: 12px;
+  }
 `;
 
 const HighlightLabel = styled.div`
@@ -107,18 +134,10 @@ export default function AboutPage() {
         <PdfViewer />
       </Modal> */}
       <Banner>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            position: "absolute",
-            top: "0",
-            right: "40px",
-          }}
-        >
+        <TitleWrapper>
           <Title>Introduce my story</Title>
           <MiniTitle>SPRING 2023</MiniTitle>
-        </div>
+        </TitleWrapper>
       </Banner>
       <Label>
         INTRODUCTION AND INFORMATION ABOUT ME FOR FRIENDS WHO ARE CURIOUS ABOUT
