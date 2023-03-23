@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
+import { RxExit } from "react-icons/rx";
 import AboutSection01 from "../../components/About/AboutSection01/AboutSection01";
 import AboutSection02 from "../../components/About/AboutSection02/AboutSection02";
 import PdfViewer from "../../components/PdfViewer/PdfViewer";
@@ -10,10 +12,10 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
+  /* margin-top: 50px; */
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 
   @media (max-width: 1200px) {
     margin: 0px;
@@ -45,17 +47,23 @@ const TitleWrapper = styled.div`
     align-items: center;
     right: 0px;
     margin-top: 30px;
+    @media (max-width: 390px) {
+      margin-top: 40px;
+    }
   }
 `;
 
 const Title = styled.h2`
   font-family: AbrilFatface;
   font-size: 60px;
-  text-shadow: -1px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
+  text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
   margin: 0;
   word-break: break-all;
   @media (max-width: 900px) {
     font-size: 45px;
+  }
+  @media (max-width: 390px) {
+    font-size: 40px;
   }
 `;
 
@@ -63,7 +71,7 @@ const MiniTitle = styled.h3`
   margin: 0;
   font-size: 40px;
   font-family: Garamond;
-  text-shadow: -2px 0px white, 0px 2px white, 2px 0px white, 0px -2px white;
+  text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
   text-align: end;
   word-break: break-all;
   @media (max-width: 900px) {
@@ -116,26 +124,41 @@ const EtcInfo = styled.div`
 
 const Modal = styled.section`
   position: fixed;
+  top: 0;
+  z-index: 9999;
   width: 100vw;
   height: 100vh;
   background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function AboutPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const modalOpenFunc = () => {
+    setModalOpen(false);
+  };
   return (
     <Wrapper>
       {/* modal */}
-      {/* <Modal
-        style={{
-          zIndex: "999",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          overflowY: "scroll",
-        }}
-      >
-        <PdfViewer />
-      </Modal> */}
+      {/* {modalOpen == true ? (
+        <Modal>
+          <RxExit
+            size={35}
+            style={{
+              position: "fixed",
+              top: "20",
+              right: "20",
+              cursor: "pointer",
+            }}
+            onClick={modalOpenFunc}
+          />
+          <PdfViewer />
+        </Modal>
+      ) : null} */}
+
       <Banner>
         <TitleWrapper>
           <Title>Introduce my story</Title>
@@ -156,7 +179,7 @@ export default function AboutPage() {
         }}
       >
         <AboutSection01 />
-        <AboutSection02 />
+        <AboutSection02 setModalOpen={setModalOpen} />
       </div>
       <HighlightLabel
         style={{

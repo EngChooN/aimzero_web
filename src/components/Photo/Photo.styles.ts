@@ -107,12 +107,18 @@ export const BottomSection = styled.div`
   place-items: center;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  width: 80%;
+  width: 61%;
 
   overflow-y: scroll;
 
+  @media (max-width: 1131px) {
+    width: 65%;
+  }
+  @media (max-width: 1061px) {
+    width: 75%;
+  }
   @media (max-width: 600px) {
-    width: 95%;
+    width: 90%;
   }
 `;
 

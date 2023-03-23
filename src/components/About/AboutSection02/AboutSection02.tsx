@@ -148,7 +148,7 @@ const Img = styled.img`
   }
 `;
 
-export default function AboutSection02() {
+export default function AboutSection02(props) {
   return (
     <Wrapper>
       {/* 01 */}
@@ -190,7 +190,10 @@ export default function AboutSection02() {
           <br />
           <br />
           <br />
-          <Btn style={{ margin: "0px", maxWidth: "200px" }}>
+          <Btn
+            style={{ margin: "0px", maxWidth: "200px" }}
+            onClick={props.setModalOpen(true)}
+          >
             Project good assessment
           </Btn>
         </Left02>
@@ -206,7 +209,10 @@ export default function AboutSection02() {
           {commonData.section02.four.contentTwo}
           <br />
           <br />
-          <Btn style={{ margin: "0px", maxWidth: "200px" }}>
+          <Btn
+            style={{ margin: "0px", maxWidth: "200px" }}
+            onClick={props.setModalOpen(true)}
+          >
             Project bad assessment
           </Btn>
           <br />
