@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import commonData from "../../../../public/locales/en/common.json";
 import { Btn } from "../../Login/Login.styles";
+import PdfViewer from "../../PdfViewer/PdfViewer";
+import { RxExit } from "react-icons/rx";
+import { useState } from "react";
 
 const Wrapper = styled.section`
   max-width: 1200px;
@@ -148,9 +151,45 @@ const Img = styled.img`
   }
 `;
 
+const Modal = styled.section`
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+`;
+
 export default function AboutSection02(props) {
+  const [modalOpen, setModalOpen] = useState({
+    state: false,
+    url: "",
+  });
+
+  const modalOpenFunc = () => {
+    setModalOpen({ state: false, url: "" });
+  };
   return (
     <Wrapper>
+      {/* modal */}
+      {modalOpen.state && (
+        <Modal>
+          <RxExit
+            size={35}
+            style={{
+              position: "fixed",
+              top: "20",
+              right: "20",
+              cursor: "pointer",
+            }}
+            onClick={modalOpenFunc}
+          />
+          <PdfViewer url={modalOpen.url} />
+        </Modal>
+      )}
       {/* 01 */}
       <Block
         style={{
@@ -192,7 +231,7 @@ export default function AboutSection02(props) {
           <br />
           <Btn
             style={{ margin: "0px", maxWidth: "200px" }}
-            onClick={props.setModalOpen(true)}
+            onClick={() => setModalOpen({ state: true, url: "good.pdf" })}
           >
             Project good assessment
           </Btn>
@@ -211,7 +250,7 @@ export default function AboutSection02(props) {
           <br />
           <Btn
             style={{ margin: "0px", maxWidth: "200px" }}
-            onClick={props.setModalOpen(true)}
+            onClick={() => setModalOpen({ state: true, url: "bad.pdf" })}
           >
             Project bad assessment
           </Btn>

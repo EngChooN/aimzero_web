@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { RxExit } from "react-icons/rx";
 import AboutSection01 from "../../components/About/AboutSection01/AboutSection01";
 import AboutSection02 from "../../components/About/AboutSection02/AboutSection02";
-import PdfViewer from "../../components/PdfViewer/PdfViewer";
 
 const Wrapper = styled.section`
   max-width: 1200px;
@@ -135,30 +132,8 @@ const Modal = styled.section`
 `;
 
 export default function AboutPage() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const modalOpenFunc = () => {
-    setModalOpen(false);
-  };
   return (
     <Wrapper>
-      {/* modal */}
-      {/* {modalOpen == true ? (
-        <Modal>
-          <RxExit
-            size={35}
-            style={{
-              position: "fixed",
-              top: "20",
-              right: "20",
-              cursor: "pointer",
-            }}
-            onClick={modalOpenFunc}
-          />
-          <PdfViewer />
-        </Modal>
-      ) : null} */}
-
       <Banner>
         <TitleWrapper>
           <Title>Introduce my story</Title>
@@ -179,7 +154,7 @@ export default function AboutPage() {
         }}
       >
         <AboutSection01 />
-        <AboutSection02 setModalOpen={setModalOpen} />
+        <AboutSection02 />
       </div>
       <HighlightLabel
         style={{
