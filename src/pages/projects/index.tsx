@@ -1,5 +1,5 @@
-import NoPage from "../../components/NoPage/NoPage";
+import ProjectsList from "../../components/Projects/ProjectsList";
 
 export default function ProjectsPage() {
-  return <NoPage />;
+  return <ProjectsList />;
 }
