@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Link from "next/link";
 import AboutSection01 from "../../components/About/AboutSection01/AboutSection01";
 import AboutSection02 from "../../components/About/AboutSection02/AboutSection02";
 
@@ -119,6 +120,26 @@ const EtcInfo = styled.div`
   }
 `;
 
+const LinkTag = styled(Link)`
+  color: white;
+  font-family: serif;
+  cursor: pointer;
+  :first-child {
+    border-right: 1px solid white;
+    padding-right: 30px;
+    @media (max-width: 1200px) {
+      border: none;
+    }
+  }
+  :last-child {
+    border-left: 1px solid white;
+    padding-left: 30px;
+    @media (max-width: 1200px) {
+      border: none;
+    }
+  }
+`;
+
 const Modal = styled.section`
   position: fixed;
   top: 0;
@@ -173,8 +194,8 @@ export default function AboutPage() {
             alignItems: "center",
           }}
         >
-          <EtcInfo>CONTACT</EtcInfo>
-          <EtcInfo>SKILLS</EtcInfo>
+          <LinkTag href={"/photo"}>CONTACT</LinkTag>
+          <LinkTag href={"/skills"}>SKILLS</LinkTag>
           <EtcInfo>CAREER</EtcInfo>
         </div>
       </HighlightLabel>

@@ -23,8 +23,14 @@ import {
 } from "firebase/firestore";
 // uuid
 import { uuidv4 } from "@firebase/util";
+// bottom scroll listener
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
 
 export default function Photo() {
+  useBottomScrollListener(() => {
+    console.log("bottom! load new  data..");
+  });
+
   // first loading show logo flag
   const [isLoading, setIsLoading] = useState(true);
 
