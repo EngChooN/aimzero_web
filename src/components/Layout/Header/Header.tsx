@@ -188,7 +188,7 @@ export default function PageHeader() {
             </Link>
           ) : (
             // logout
-            <Link href={"#"} onClick={logOut}>
+            <Link href={""} onClick={logOut}>
               logout<div></div>
             </Link>
           )}
@@ -234,7 +234,7 @@ export default function PageHeader() {
             </Link>
           ) : (
             // logout
-            <Link href={"#"} onClick={logOut}>
+            <Link href={""} onClick={logOut}>
               logout<div></div>
             </Link>
           )}

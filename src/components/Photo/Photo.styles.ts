@@ -188,3 +188,8 @@ export const SelImg = styled.img`
     filter: invert(25%);
   }
 `;
+
+export const DataPresentText = styled.div`
+  margin-top: 75px;
+  margin-bottom: 90px;
+`;

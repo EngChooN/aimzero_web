@@ -136,8 +136,36 @@ export default function PhotoUI(props: any) {
             ) : null}
           </Photos.ImgBox>
         ))}
-        {/* </InfiniteScroll> */}
+        {props.isMoreLoading && (
+          <>
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+            <Skeleton.Image
+              style={{ width: "230px", height: "230px", margin: "7px" }}
+              active={true}
+            />
+          </>
+        )}
       </Photos.BottomSection>
+      <Photos.DataPresentText>{props.dataPresent}</Photos.DataPresentText>
     </Photos.Wrapper>
   );
 }
