@@ -1,6 +1,6 @@
 import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 // firebase
 import { firebaseAuth } from "../../../firebase.config";
@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { loginState } from "../../common/Recoil/loginState";
 import { userInfoState } from "../../common/Recoil/userInfoState";
 import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const Content = styled.section`
   background-color: white;
@@ -17,13 +18,17 @@ const Content = styled.section`
 `;
 
 export default function Layout({ children }) {
-  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [, setLoginStatus] = useRecoilState(loginState);
+  const [, setUserInfo] = useRecoilState(userInfoState);
+  const router = useRouter();
+
+  const footerBlockPath = ["/visit+log"];
+  const [footerFlag, setFooterFlag] = useState(true);
 
   useEffect(() => {
     // login check func
-    const loginCheck = async () => {
-      await onAuthStateChanged(firebaseAuth, (user) => {
+    const loginCheck = () => {
+      onAuthStateChanged(firebaseAuth, (user) => {
         if (user) {
           setLoginStatus(true);
           setUserInfo(user);
@@ -36,15 +41,26 @@ export default function Layout({ children }) {
         }
       });
     };
-
     loginCheck();
   }, [firebaseAuth]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    console.log("path name", router.pathname);
+    if (footerBlockPath.includes(router.pathname)) {
+      console.log("No footer!");
+      setFooterFlag(false);
+    } else {
+      console.log("Yes footer!");
+      setFooterFlag(true);
+    }
+  });
 
   return (
     <>
       <Header />
       <Content>{children}</Content>
-      <Footer />
+      {footerFlag == true ? <Footer /> : null}
     </>
   );
 }
