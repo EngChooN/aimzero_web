@@ -4,7 +4,7 @@ import { Avatar, List, Space } from "antd";
 import styled from "@emotion/styled";
 
 const Wrapper = styled.section`
-  padding: 50px; ;
+  padding: 50px;
 `;
 
 export default function ProjectsList() {
@@ -17,13 +17,6 @@ export default function ProjectsList() {
     content:
       "We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
   }));
-
-  const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
 
   return (
     <Wrapper>
