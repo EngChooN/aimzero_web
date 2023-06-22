@@ -16,12 +16,10 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
 import {
-  addDoc,
   collection,
   doc,
   getDocs,
   query,
-  setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";

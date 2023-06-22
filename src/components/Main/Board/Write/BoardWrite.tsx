@@ -15,7 +15,7 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { firebaseDb, firebaseStorage } from "../../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
@@ -52,6 +52,7 @@ export default function BoardWrite(): JSX.Element {
     editorIns.removeHook("addImageBlobHook"); //<- 제거
     editorIns.addHook("addImageBlobHook", addImage); //<- 추가 },
   }, []);
+
   // img upload func
   const addImage = async (file, showImage) => {
     console.log(file); //이미지 압축 및 서버 업로드 로직 실행
@@ -71,7 +72,7 @@ export default function BoardWrite(): JSX.Element {
     // ex) #blog => blog
     hash = window.location.hash.split("#")[1].toString();
     boardId = uuidv4();
-    console.log(hash);
+    console.log("hash", hash);
     if (userInfo?.email == "" || loginStatus == false) {
       router.push("/login");
     }
@@ -143,7 +144,7 @@ export default function BoardWrite(): JSX.Element {
           onKeyDown={addTag}
           value={tag}
         />
-        <Write.tagWrapper>
+        <Write.TagWrapper>
           {/* show tags */}
           {tags.map((el, index) => (
             <>
@@ -165,7 +166,7 @@ export default function BoardWrite(): JSX.Element {
               </Write.tag>
             </>
           ))}
-        </Write.tagWrapper>
+        </Write.TagWrapper>
       </Write.BottomWrapper>
       <Write.BtnWrapper>
         <Btn

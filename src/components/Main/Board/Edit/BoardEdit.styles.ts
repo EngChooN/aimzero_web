@@ -25,8 +25,6 @@ export const BtnWrapper = styled.div`
 
 export const BottomWrapper = styled.div`
   display: flex;
-  /* align-items: center; */
-
   width: 100%;
 `;
 

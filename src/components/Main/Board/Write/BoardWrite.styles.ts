@@ -30,7 +30,7 @@ export const BottomWrapper = styled.div`
   width: 100%;
 `;
 
-export const tagWrapper = styled.div`
+export const TagWrapper = styled.div`
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;

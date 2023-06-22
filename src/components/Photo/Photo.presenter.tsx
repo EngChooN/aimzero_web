@@ -8,8 +8,6 @@ import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
 import { FiMail, FiInstagram } from "react-icons/fi";
 import { FaBlog } from "react-icons/fa";
 import { RxGithubLogo } from "react-icons/rx";
-// infinite scroll
-import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function PhotoUI(props: any) {
   return (
@@ -109,12 +107,6 @@ export default function PhotoUI(props: any) {
             )}
           </Photos.ImgBox>
         ) : null}
-        {/* <InfiniteScroll
-          dataLength={items.length}
-          next={fetchData}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-        > */}
         {props.images?.map((el, index) => (
           <Photos.ImgBox key={index}>
             <Image width={230} height={230} src={el.imgUrl} />
