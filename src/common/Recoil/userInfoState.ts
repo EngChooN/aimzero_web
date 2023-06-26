@@ -1,6 +1,7 @@
 import { atom } from "recoil";
 
-export const userInfoState = atom({
+// get firebase user information to state
+export const userInfoState = atom<any>({
   key: "userInfoState",
   default: null,
 });
