@@ -14,8 +14,8 @@ import { useRouter } from "next/router";
 export default function Login() {
   const [id, setId] = useState("");
   const [pass, setPass] = useState("");
-  const [loginStatus, setLoginStatus] = useRecoilState(loginState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [, setLoginStatus] = useRecoilState(loginState);
+  const [, setUserInfo] = useRecoilState(userInfoState);
   const router = useRouter();
 
   // logIn func (email & pass 6 length up)
@@ -32,9 +32,8 @@ export default function Login() {
       // change global login status
       setLoginStatus(true);
       router.push("/");
-    } catch (err) {
+    } catch (err: any) {
       setLoginStatus(false);
-      // console.log(err.code);
       if ((err.code = "auth/user-not-found")) {
         alert("User not found!");
       } else if (err.code == "auth/wrong-password") {

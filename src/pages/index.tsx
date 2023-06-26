@@ -1,14 +1,13 @@
 import Main from "../components/Main/Main";
-import { useEffect } from "react";
 // i18n
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+// import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home = () => {
-  return (
-    <>
-      <Main />
-    </>
-  );
+    return (
+        <>
+            <Main />
+        </>
+    );
 };
 
 // export const getStaticProps = async ({ locale }) => {

@@ -5,6 +5,129 @@ import PdfViewer from "../../PdfViewer/PdfViewer";
 import { RxExit } from "react-icons/rx";
 import { useState } from "react";
 
+export default function AboutSection02() {
+  const [modalOpen, setModalOpen] = useState({
+    state: false,
+    url: "",
+  });
+
+  const modalOpenFunc = () => {
+    setModalOpen({ state: false, url: "" });
+  };
+  return (
+    <Wrapper>
+      {/* modal */}
+      {modalOpen.state && (
+        <Modal>
+          <RxExit
+            size={35}
+            style={{
+              position: "fixed",
+              top: "20",
+              right: "20",
+              cursor: "pointer",
+            }}
+            onClick={modalOpenFunc}
+          />
+          <PdfViewer url={modalOpen.url} />
+        </Modal>
+      )}
+      {/* 01 */}
+      <Block
+        style={{
+          alignItems: "flex-start",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+        }}
+      >
+        <Left01>
+          <Title>{commonData.section02.one.title}</Title>
+          {commonData.section02.one.content}
+        </Left01>
+        {/* content */}
+        <Right01>
+          <Title>{commonData.section02.two.title}</Title>
+          {commonData.section02.two.content}
+        </Right01>
+      </Block>
+      {/* 02 */}
+      <Block>
+        <Right02>
+          <Img
+            src={"images/about/section2-02.gif"}
+            style={{
+              width: "100%",
+              border: "1px solid",
+              padding: "20px",
+            }}
+          />
+        </Right02>
+        <Left02>
+          <Title>{commonData.section02.three.title}</Title>
+          {commonData.section02.three.contentOne}
+          <br />
+          <br />
+          {commonData.section02.three.contentTwo}
+          <br />
+          <br />
+          <br />
+          <Btn
+            style={{ margin: "0px", maxWidth: "200px" }}
+            onClick={() => setModalOpen({ state: true, url: "good.pdf" })}
+          >
+            Project good assessment
+          </Btn>
+        </Left02>
+        {/* content */}
+      </Block>
+      {/* 03 */}
+      <Block>
+        <Left03>
+          <Title>{commonData.section02.four.title}</Title>
+          {commonData.section02.four.contentOne}
+          <br />
+          <br />
+          {commonData.section02.four.contentTwo}
+          <br />
+          <br />
+          <Btn
+            style={{ margin: "0px", maxWidth: "200px" }}
+            onClick={() => setModalOpen({ state: true, url: "bad.pdf" })}
+          >
+            Project bad assessment
+          </Btn>
+          <br />
+          {commonData.section02.four.contentThree}
+        </Left03>
+        {/* content */}
+        <Right03>
+          <Img
+            src={"images/about/section2-03.gif"}
+            style={{ width: "100%", border: "1px solid" }}
+          />
+        </Right03>
+      </Block>
+      {/* 04 */}
+      <Block>
+        <Right04>
+          <Img
+            src={"images/about/section2-04.gif"}
+            style={{ width: "100%", border: "1px solid", padding: "10px" }}
+          />
+        </Right04>
+        <Left04>
+          <Title>{commonData.section02.five.title}</Title>
+          {commonData.section02.five.contentOne}
+          <br />
+          <br />
+          {commonData.section02.five.contentTwo}
+        </Left04>
+        {/* content */}
+      </Block>
+    </Wrapper>
+  );
+}
+
 const Wrapper = styled.section`
   max-width: 1200px;
   width: 100%;
@@ -165,126 +288,3 @@ const Modal = styled.section`
   align-items: center;
   padding-top: 80px;
 `;
-
-export default function AboutSection02(props) {
-  const [modalOpen, setModalOpen] = useState({
-    state: false,
-    url: "",
-  });
-
-  const modalOpenFunc = () => {
-    setModalOpen({ state: false, url: "" });
-  };
-  return (
-    <Wrapper>
-      {/* modal */}
-      {modalOpen.state && (
-        <Modal>
-          <RxExit
-            size={35}
-            style={{
-              position: "fixed",
-              top: "20",
-              right: "20",
-              cursor: "pointer",
-            }}
-            onClick={modalOpenFunc}
-          />
-          <PdfViewer url={modalOpen.url} />
-        </Modal>
-      )}
-      {/* 01 */}
-      <Block
-        style={{
-          alignItems: "flex-start",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-        }}
-      >
-        <Left01>
-          <Title>{commonData.section02.one.title}</Title>
-          {commonData.section02.one.content}
-        </Left01>
-        {/* content */}
-        <Right01>
-          <Title>{commonData.section02.two.title}</Title>
-          {commonData.section02.two.content}
-        </Right01>
-      </Block>
-      {/* 02 */}
-      <Block>
-        <Right02>
-          <Img
-            src={"images/about/section2-02.gif"}
-            style={{
-              width: "100%",
-              border: "1px solid",
-              padding: "20px",
-            }}
-          />
-        </Right02>
-        <Left02>
-          <Title>{commonData.section02.three.title}</Title>
-          {commonData.section02.three.contentOne}
-          <br />
-          <br />
-          {commonData.section02.three.contentTwo}
-          <br />
-          <br />
-          <br />
-          <Btn
-            style={{ margin: "0px", maxWidth: "200px" }}
-            onClick={() => setModalOpen({ state: true, url: "good.pdf" })}
-          >
-            Project good assessment
-          </Btn>
-        </Left02>
-        {/* content */}
-      </Block>
-      {/* 03 */}
-      <Block>
-        <Left03>
-          <Title>{commonData.section02.four.title}</Title>
-          {commonData.section02.four.contentOne}
-          <br />
-          <br />
-          {commonData.section02.four.contentTwo}
-          <br />
-          <br />
-          <Btn
-            style={{ margin: "0px", maxWidth: "200px" }}
-            onClick={() => setModalOpen({ state: true, url: "bad.pdf" })}
-          >
-            Project bad assessment
-          </Btn>
-          <br />
-          {commonData.section02.four.contentThree}
-        </Left03>
-        {/* content */}
-        <Right03>
-          <Img
-            src={"images/about/section2-03.gif"}
-            style={{ width: "100%", border: "1px solid" }}
-          />
-        </Right03>
-      </Block>
-      {/* 04 */}
-      <Block>
-        <Right04>
-          <Img
-            src={"images/about/section2-04.gif"}
-            style={{ width: "100%", border: "1px solid", padding: "10px" }}
-          />
-        </Right04>
-        <Left04>
-          <Title>{commonData.section02.five.title}</Title>
-          {commonData.section02.five.contentOne}
-          <br />
-          <br />
-          {commonData.section02.five.contentTwo}
-        </Left04>
-        {/* content */}
-      </Block>
-    </Wrapper>
-  );
-}
