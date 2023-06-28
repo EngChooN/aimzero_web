@@ -155,7 +155,7 @@ export default function Board(props: { menu: string }) {
                 ) : null}
                 {/* write button qna */}
                 {menu == "qna" &&
-                userInfo?.email != "" &&
+                userInfo?.email !== null &&
                 loginStatus == true ? (
                     <Boards.BoardWriteBtn
                         onClick={() => {
@@ -166,8 +166,8 @@ export default function Board(props: { menu: string }) {
                     </Boards.BoardWriteBtn>
                 ) : null}
                 {/* write button news */}
-                {menu == "news" &&
-                userInfo?.email == "aimzero9303@gmail.com" &&
+                {menu === "news" &&
+                userInfo?.email === "aimzero9303@gmail.com" &&
                 loginStatus == true ? (
                     <Boards.BoardWriteBtn
                         onClick={() => {

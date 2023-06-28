@@ -1,5 +1,8 @@
+import { loginState } from "@/common/Recoil/loginState";
+import { userInfoState } from "@/common/Recoil/userInfoState";
 import { Editor } from "@toast-ui/react-editor";
-import { RefObject, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 
 export const useEditor = (initialValue: string) => {
     const [editorContent, setEditorContent] = useState(initialValue);
@@ -20,4 +23,25 @@ export const useEditor = (initialValue: string) => {
     };
 
     return [editorContent, onChangeEditorContent] as const;
+};
+
+export const useBoardWriter = (writer: string) => {
+    const [loginStatus] = useRecoilState(loginState);
+    const [userInfo] = useRecoilState(userInfoState);
+
+    if (writer === userInfo?.email.split("@")[0] && loginStatus === true) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+// useEffect first rendering block
+export const useDidMountEffect = (func: () => void, deps: any) => {
+    const didMount = useRef(false);
+
+    useEffect(() => {
+        if (didMount.current) func();
+        else didMount.current = true;
+    }, deps);
 };

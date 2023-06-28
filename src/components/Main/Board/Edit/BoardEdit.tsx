@@ -95,7 +95,7 @@ export default function BoardEdit(): JSX.Element {
     }, [queries]);
 
     useEffect(() => {
-        if (userInfo?.email == "" || loginStatus == false) {
+        if (userInfo?.email === null || loginStatus == false) {
             router.push("/login");
         }
     }, []);

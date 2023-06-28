@@ -122,7 +122,7 @@ export default function PhotoUI(props: PhotoType) {
                             active={true}
                         />
                     </>
-                ) : userInfo?.email == "aimzero9303@gmail.com" ? (
+                ) : userInfo?.email === "aimzero9303@gmail.com" ? (
                     <Photos.ImgBox>
                         {uploadStep == 1 ? (
                             <Photos.Additional
@@ -164,7 +164,7 @@ export default function PhotoUI(props: PhotoType) {
                 {images?.map((el: DocumentData, index: number) => (
                     <Photos.ImgBox key={index}>
                         <Image width={230} height={230} src={el.imgUrl} />
-                        {userInfo?.email == "aimzero9303@gmail.com" ? (
+                        {userInfo?.email === "aimzero9303@gmail.com" ? (
                             <AiFillDelete
                                 fontSize={30}
                                 color={"lightgray"}

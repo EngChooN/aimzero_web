@@ -54,7 +54,7 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
                             <Name>{boardData.name}</Name>
                             <Date>{boardData.timestamp}</Date>
                         </div>
-                        {userInfo?.email == boardData.email &&
+                        {userInfo?.email === boardData.email &&
                         loginStatus == true ? (
                             <Btns>
                                 <SubmitBtn

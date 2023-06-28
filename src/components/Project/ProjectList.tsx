@@ -25,12 +25,13 @@ export default function ProjectList() {
     };
 
     const data = Array.from({ length: boardData?.length ?? 0 }).map(
-        (item, index) => ({
-            href: `project/${boardData[index]?.id}`,
+        (_, index) => ({
+            href: `/project/${boardData[index]?.id}`,
             title: boardData[index]?.title,
             desc: boardData[index]?.desc,
             timestamp: boardData[index]?.timestamp,
             content: boardData[index]?.content,
+            thumb: boardData[index]?.thumb,
         })
     );
 
@@ -47,7 +48,7 @@ export default function ProjectList() {
                     onChange: (page) => {
                         console.log(page);
                     },
-                    pageSize: 3,
+                    pageSize: 4,
                 }}
                 dataSource={data}
                 renderItem={(item) => (
@@ -55,9 +56,13 @@ export default function ProjectList() {
                         key={item.title}
                         extra={
                             <img
-                                width={272}
-                                alt="logo"
-                                src="/images/photo/profile.GIF"
+                                style={{
+                                    width: "220px",
+                                    height: "150px",
+                                    objectFit: "cover",
+                                }}
+                                alt="thumbnail"
+                                src={item.thumb ?? "/images/no_img.jpg"}
                             />
                         }
                     >

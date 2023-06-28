@@ -37,7 +37,8 @@ export default function Layout(props: { children: ReactNode }) {
                 }
             });
         };
-        loginCheck();
+
+        if (firebaseAuth) loginCheck();
     }, [firebaseAuth]);
 
     useEffect(() => {

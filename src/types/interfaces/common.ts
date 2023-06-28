@@ -54,3 +54,11 @@ export interface SignUpType {
     setPass: React.Dispatch<SetStateAction<string>>;
     setRePass: React.Dispatch<SetStateAction<string>>;
 }
+
+// TopBoardInfo
+export interface TopBoardInfoType {
+    writer: string;
+    timestamp: string;
+    updateFunc?: () => void;
+    deleteFunc?: () => void;
+}
