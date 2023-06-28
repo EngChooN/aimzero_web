@@ -12,6 +12,7 @@ import {
 import { firebaseApp } from "firebase.config";
 import Button from "../commons/Button/Button";
 import { useRouter } from "next/router";
+import { useAuth } from "@/hooks/commons";
 
 export default function ProjectList() {
     const router = useRouter();
@@ -84,16 +85,18 @@ export default function ProjectList() {
                     </List.Item>
                 )}
             />
-            <div className="btnWrapper">
-                <Button
-                    label={"write"}
-                    backgroundColor={"black"}
-                    primary={false}
-                    onClick={() => {
-                        router.push("/project/create");
-                    }}
-                />
-            </div>
+            {useAuth() && (
+                <div className="btnWrapper">
+                    <Button
+                        label={"write"}
+                        backgroundColor={"black"}
+                        primary={false}
+                        onClick={() => {
+                            router.push("/project/create");
+                        }}
+                    />
+                </div>
+            )}
         </Wrapper>
     );
 }
