@@ -10,8 +10,11 @@ import {
     query,
 } from "firebase/firestore";
 import { firebaseApp } from "firebase.config";
+import Button from "../commons/Button/Button";
+import { useRouter } from "next/router";
 
 export default function ProjectList() {
+    const router = useRouter();
     const [boardData, setBoardData] = useState<DocumentData[]>([]);
 
     const fetchBoards = async () => {
@@ -81,6 +84,16 @@ export default function ProjectList() {
                     </List.Item>
                 )}
             />
+            <div className="btnWrapper">
+                <Button
+                    label={"write"}
+                    backgroundColor={"black"}
+                    primary={false}
+                    onClick={() => {
+                        router.push("/project/create");
+                    }}
+                />
+            </div>
         </Wrapper>
     );
 }
@@ -89,6 +102,12 @@ const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
     padding-bottom: 24px;
+
+    > .btnWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
 
     @media (max-width: 680px) {
         > :where(.css-diro6f).ant-list-lg .ant-list-item {
