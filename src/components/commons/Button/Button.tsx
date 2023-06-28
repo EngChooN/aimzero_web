@@ -41,4 +41,8 @@ const Wrapper = styled.button<{ backgroundColor: string; primary: boolean }>`
     cursor: pointer;
 
     ${(props) => props.primary && "opacity: 0.6; cursor: not-allowed;"}
+
+    :hover {
+        background-color: #2f2f2f;
+    }
 `;

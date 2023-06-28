@@ -3,8 +3,8 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { MdCancel } from "react-icons/md";
 
-export default function Tag(options: TagOptions) {
-    const { tags, setTags } = options;
+export default function Tag(props: TagOptions) {
+    const { tags, setTags } = props;
     const [tag, setTag] = useState<string>("");
 
     const addTag = (event: React.KeyboardEvent<HTMLInputElement>) => {
