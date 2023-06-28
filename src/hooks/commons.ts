@@ -45,3 +45,14 @@ export const useDidMountEffect = (func: () => void, deps: any) => {
         else didMount.current = true;
     }, deps);
 };
+
+export const useAuth = () => {
+    const [loginStatus] = useRecoilState(loginState);
+    const [userInfo] = useRecoilState(userInfoState);
+
+    if (loginStatus === true && userInfo.email === "aimzero9303@gmail.com") {
+        return true;
+    } else {
+        return false;
+    }
+};
