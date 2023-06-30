@@ -1,6 +1,7 @@
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import { useRecoilState } from "recoil";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
+import styled from "@emotion/styled";
 
 export default function DarkModeSwitch() {
     const [darkMode, setDarkMode] = useRecoilState(darkModeState);
@@ -11,7 +12,7 @@ export default function DarkModeSwitch() {
     };
 
     return (
-        <>
+        <StyledDarkModeSwitch>
             {darkMode === false ? (
                 <MdLightMode
                     size={30}
@@ -25,6 +26,11 @@ export default function DarkModeSwitch() {
                     onClick={onClickTheme}
                 />
             )}
-        </>
+        </StyledDarkModeSwitch>
     );
 }
+
+const StyledDarkModeSwitch = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
