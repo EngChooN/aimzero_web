@@ -104,6 +104,7 @@ export default function ProjectList() {
 const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
+    height: fit-content;
     padding-bottom: 24px;
 
     > .btnWrapper {

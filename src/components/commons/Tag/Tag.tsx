@@ -1,9 +1,12 @@
+import { darkModeState } from "@/common/Recoil/darkModeState";
 import { TagOptions } from "@/types/interfaces/common";
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { MdCancel } from "react-icons/md";
+import { useRecoilState } from "recoil";
 
 export default function Tag(props: TagOptions) {
+    const [darkMode] = useRecoilState(darkModeState);
     const { tags, setTags } = props;
     const [tag, setTag] = useState<string>("");
 
@@ -27,7 +30,7 @@ export default function Tag(props: TagOptions) {
             <TagWrapper>
                 {tags.map((el, index) => (
                     <div key={index}>
-                        <TagEl key={index}>
+                        <TagEl key={index} isDark={darkMode}>
                             #{el}
                             <MdCancel
                                 style={{
@@ -81,11 +84,12 @@ const TagWrapper = styled.div`
     height: fit-content;
 `;
 
-const TagEl = styled.div`
+const TagEl = styled.div<{ isDark: boolean }>`
     display: flex;
     align-items: center;
 
     height: 30px;
+    border: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     background-color: #f3f3f3;
     border-radius: 15px;
 
