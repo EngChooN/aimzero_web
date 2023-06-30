@@ -32,7 +32,7 @@ export default function PageFooter() {
 const Wrapper = styled.section<{ isDark: boolean }>`
     width: 100%;
     height: 170px;
-    border-top: ${(props) => (!props.isDark ? "" : "1px solid lightgrey")};
+    border-top: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     background-color: #ededed;
     color: black;
 

@@ -15,7 +15,7 @@ import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function Layout(props: { children: ReactNode }) {
     const { children } = props;
-    const [darkMode] = useRecoilState(darkModeState);
+    const [darkMode, setDarkMode] = useRecoilState(darkModeState);
 
     const [, setLoginStatus] = useRecoilState(loginState);
     const [, setUserInfo] = useRecoilState(userInfoState);
@@ -56,6 +56,16 @@ export default function Layout(props: { children: ReactNode }) {
         }
     });
 
+    // theme light? dark? check local storage
+    useEffect(() => {
+        if (localStorage.getItem("dark")) {
+            const localDarkMode = localStorage.getItem("dark");
+            setDarkMode(Boolean(localDarkMode));
+        } else {
+            localStorage.setItem("dark", "false");
+        }
+    }, []);
+
     return (
         <StyledLayout isDark={darkMode}>
             <Header />
@@ -84,11 +94,11 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
         color: lightgrey;
     }
     .ant-pagination .ant-pagination-item-active {
-        border-color: lightgrey;
+        color: lightgrey;
     }
 
     .ant-pagination .ant-pagination-item-active:hover {
-        border-color: lightgrey;
+        color: lightgrey;
     }
 
     .ant-pagination .ant-pagination-item-active:hover a {
@@ -120,6 +130,7 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
     input, textarea {
         background: black;
         color: white;
+        border: 1px solid grey;
     }
     
     .toastui-editor-defaultUI-toolbar button{
@@ -128,13 +139,52 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
     .toastui-editor-md-tab-container {
         background: #18181b;
     }
+
+    .toastui-editor-defaultUI {
+        border: 1px solid grey;
+    }
+
+    .toastui-editor-defaultUI-toolbar {
+        border-bottom: 1px solid grey;
+    }
+
+    .toastui-editor-main .toastui-editor-md-splitter {
+        background-color: grey;
+    }
+
     .ant-empty-description{
         color: lightgrey;
     }
 
-    :where(.css-dev-only-do-not-override-diro6f).ant-pagination .ant-pagination-item a {
+    button {
+        border: 1px solid grey;
+    }
+
+    .ant-list .ant-list-item .ant-list-item-meta .ant-list-item-meta-title >a {
         color: lightgrey;
     }
+
+    .ant-list .ant-list-item .ant-list-item-meta .ant-list-item-meta-description {
+        color: grey;
+    }
+
+    .ant-pagination .ant-pagination-item {
+        background-color: black;
+        border: 1px solid lightgrey;
+    }
+
+    .ant-pagination .ant-pagination-item-active {
+        background-color: grey;
+        border: 1px solid lightgrey;
+    }
+
+    .ant-pagination .ant-pagination-item a {
+        color: lightgrey;
+    }
+
+
+
+
     `}
 `;
 

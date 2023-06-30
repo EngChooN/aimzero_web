@@ -17,10 +17,12 @@ import { DocumentData, deleteDoc, doc } from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 import { useEffect } from "react";
 import Reply from "../../../Reply/Reply";
+import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function BoardViewer(props: { boardData: DocumentData }) {
     const { boardData } = props;
     const router = useRouter();
+    const [darkMode] = useRecoilState(darkModeState);
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
     // url hash
@@ -43,7 +45,7 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
         <Wrapper>
             {boardData.content && (
                 <>
-                    <Title>{boardData.title}</Title>
+                    <Title isDark={darkMode}>{boardData.title}</Title>
                     <InfoWrapper>
                         <div
                             style={{
@@ -86,7 +88,7 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
                             </Btns>
                         ) : null}
                     </InfoWrapper>
-                    <Tags>
+                    <Tags isDark={darkMode}>
                         {boardData.tag?.map((el: any, index: number) => (
                             <Tag key={index}>#{el}</Tag>
                         ))}
@@ -126,12 +128,13 @@ const Wrapper = styled.article`
     }
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ isDark: boolean }>`
     font-family: AbrilFatface;
     font-size: 35px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: ${(props) =>
+        !props.isDark ? "1px solid lightgray" : "1px solid grey"};
 `;
 
 const InfoWrapper = styled.div`
@@ -164,12 +167,13 @@ const Btns = styled.div`
     justify-content: flex-end;
 `;
 
-const Tags = styled.div`
+const Tags = styled.div<{ isDark: boolean }>`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
-    border-bottom: 1px solid lightgray;
+    border-bottom: ${(props) =>
+        !props.isDark ? "1px solid lightgray" : "1px solid grey"};
 `;
 
 const Tag = styled.div`

@@ -152,6 +152,7 @@ export default function Board(props: { menu: string }) {
                         onClick={() => {
                             router.push(`/board/write#${menu}`);
                         }}
+                        isDark={darkMode}
                     >
                         write
                     </Boards.BoardWriteBtn>
@@ -164,6 +165,7 @@ export default function Board(props: { menu: string }) {
                         onClick={() => {
                             router.push(`/board/write#${menu}`);
                         }}
+                        isDark={darkMode}
                     >
                         write
                     </Boards.BoardWriteBtn>
@@ -176,6 +178,7 @@ export default function Board(props: { menu: string }) {
                         onClick={() => {
                             router.push(`/board/write#${menu}`);
                         }}
+                        isDark={darkMode}
                     >
                         write
                     </Boards.BoardWriteBtn>

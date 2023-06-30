@@ -24,7 +24,7 @@ export const BoardInfo = styled.div<{ isDark: boolean }>`
     ${(props) =>
         !props.isDark
             ? "border-bottom: 1px solid black"
-            : "border-bottom: 1px solid lightgrey"};
+            : "border-bottom: 1px solid darkgrey"};
     transition: all 0.3s;
 `;
 
@@ -64,7 +64,8 @@ export const Board = styled.div<{ isDark: boolean }>`
     height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid lightgrey;
+    border-bottom: ${(props) =>
+        !props.isDark ? "1px solid lightgrey" : "1px solid grey"};
     transition: all 0.3s;
     cursor: pointer;
 
@@ -117,12 +118,13 @@ export const BoardBottomBox = styled.div`
     bottom: 0;
 `;
 
-export const BoardWriteBtn = styled.button`
+export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     height: 40px;
     background: none;
     background-color: black;
     border: none;
-    border: 1px solid black;
+    border: ${(props) =>
+        !props.isDark ? "1px solid black" : "1px solid grey"};
 
     padding: 25px;
     padding-top: 15px;
