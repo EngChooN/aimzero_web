@@ -11,9 +11,12 @@ import { loginState } from "../../common/Recoil/loginState";
 import { userInfoState } from "../../common/Recoil/userInfoState";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
+import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function Layout(props: { children: ReactNode }) {
     const { children } = props;
+    const [darkMode] = useRecoilState(darkModeState);
+
     const [, setLoginStatus] = useRecoilState(loginState);
     const [, setUserInfo] = useRecoilState(userInfoState);
     const router = useRouter();
@@ -54,13 +57,86 @@ export default function Layout(props: { children: ReactNode }) {
     });
 
     return (
-        <>
+        <StyledLayout isDark={darkMode}>
             <Header />
             <Content>{children}</Content>
             {footerFlag == true ? <Footer /> : null}
-        </>
+        </StyledLayout>
     );
 }
+
+const StyledLayout = styled.section<{ isDark: boolean }>`
+    ${(props) =>
+        props.isDark &&
+        `a,
+    div,
+    p,
+    section,
+    article,
+    h1,
+    h2,
+    h3,
+    span {
+        color: lightgrey;
+    }
+
+    .ant-pagination .ant-pagination-item-active a {
+        color: lightgrey;
+    }
+    .ant-pagination .ant-pagination-item-active {
+        border-color: lightgrey;
+    }
+
+    .ant-pagination .ant-pagination-item-active:hover {
+        border-color: lightgrey;
+    }
+
+    .ant-pagination .ant-pagination-item-active:hover a {
+        color: lightgrey;
+    }
+
+    .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+        color: lightgrey;
+    }
+
+    .ant-tabs .ant-tabs-tab {
+        color: lightgrey;
+    }
+
+    .ant-tabs .ant-tabs-tab:hover {
+        color: lightgrey;
+    }
+
+    .ant-tabs .ant-tabs-ink-bar {
+        background: lightgrey;
+    }
+
+    div,
+    section,
+    article {
+        background: #18181b;
+    }
+
+    input, textarea {
+        background: black;
+        color: white;
+    }
+    
+    .toastui-editor-defaultUI-toolbar button{
+        border:none;
+    }
+    .toastui-editor-md-tab-container {
+        background: #18181b;
+    }
+    .ant-empty-description{
+        color: lightgrey;
+    }
+
+    :where(.css-dev-only-do-not-override-diro6f).ant-pagination .ant-pagination-item a {
+        color: lightgrey;
+    }
+    `}
+`;
 
 const Content = styled.section`
     background-color: white;

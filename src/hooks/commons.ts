@@ -36,7 +36,7 @@ export const useBoardWriter = (writer: string) => {
     }
 };
 
-// useEffect first rendering block
+// if you want (useEffect first rendering block)
 export const useDidMountEffect = (func: () => void, deps: any) => {
     const didMount = useRef(false);
 
