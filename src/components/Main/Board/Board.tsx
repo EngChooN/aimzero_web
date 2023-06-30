@@ -18,9 +18,11 @@ import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { loginState } from "../../../common/Recoil/loginState";
 // antd
 import { Skeleton } from "antd";
+import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function Board(props: { menu: string }) {
     const { menu } = props;
+    const [darkMode] = useRecoilState(darkModeState);
 
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
@@ -60,7 +62,7 @@ export default function Board(props: { menu: string }) {
         <Boards.Wrapper>
             <div style={{ minHeight: "360px" }}>
                 <Boards.BoardListBox>
-                    <Boards.BoardInfo>
+                    <Boards.BoardInfo isDark={darkMode}>
                         <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
                         <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
                         <Boards.NameInfo>name</Boards.NameInfo>
@@ -113,6 +115,7 @@ export default function Board(props: { menu: string }) {
                             key={index}
                             id={el.id}
                             onClick={moveToDetail}
+                            isDark={darkMode}
                         >
                             <Boards.BoardNumber>
                                 {boardListData.length -

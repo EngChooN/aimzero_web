@@ -6,8 +6,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
+import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function PageHeader() {
+    const [darkMode] = useRecoilState(darkModeState);
     const [loginStatus] = useRecoilState(loginState);
 
     const headerList = ["about", "skills", "project", "photo", "visit log"];
@@ -37,17 +39,17 @@ export default function PageHeader() {
             {/* pc heder */}
             <Menu>
                 {/* about */}
-                <List currentUrl={crrUrl === "/about"}>
+                <List currentUrl={crrUrl === "/about"} isDark={darkMode}>
                     <Link href="/about">{headerList[0]}</Link>
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/skills"}>
+                <List currentUrl={crrUrl === "/skills"} isDark={darkMode}>
                     <Link href="/skills">{headerList[1]}</Link>
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/project"}>
+                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
                     <Link href="/project">{headerList[2]}</Link>
                     <div></div>
                 </List>
@@ -56,19 +58,19 @@ export default function PageHeader() {
                     <Link href={"/"}>AimZero</Link>
                 </Logo>
                 {/* photo */}
-                <List currentUrl={crrUrl === "/photo"}>
+                <List currentUrl={crrUrl === "/photo"} isDark={darkMode}>
                     <Link href="/photo">
                         {headerList[3]}
                         <div></div>
                     </Link>
                 </List>
                 {/* visit log */}
-                <List currentUrl={crrUrl === "/visit+log"}>
+                <List currentUrl={crrUrl === "/visit+log"} isDark={darkMode}>
                     <Link href="/visit+log">{headerList[4]}</Link>
                     <div></div>
                 </List>
                 {/* login */}
-                <List currentUrl={crrUrl === "/login"}>
+                <List currentUrl={crrUrl === "/login"} isDark={darkMode}>
                     {loginStatus == false ? (
                         <Link href="/login">
                             login_<div></div>
@@ -105,6 +107,7 @@ export default function PageHeader() {
                 {/* login */}
                 <List
                     currentUrl={crrUrl === "/login"}
+                    isDark={darkMode}
                     style={{ marginRight: "10px" }}
                 >
                     {loginStatus == false ? (
@@ -124,9 +127,9 @@ export default function PageHeader() {
                     )}
                 </List>
             </MobileMenu>
-            <DropDown menuFlag={menuFlag}>
+            <DropDown menuFlag={menuFlag} isDark={darkMode}>
                 {/* about */}
-                <List currentUrl={crrUrl === "/about"}>
+                <List currentUrl={crrUrl === "/about"} isDark={darkMode}>
                     <Link
                         href="/about"
                         onClick={() => {
@@ -138,7 +141,7 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/skills"}>
+                <List currentUrl={crrUrl === "/skills"} isDark={darkMode}>
                     <Link
                         href="/skills"
                         onClick={() => {
@@ -150,7 +153,7 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/project"}>
+                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
                     <Link
                         href="/project"
                         onClick={() => {
@@ -162,7 +165,7 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* photo */}
-                <List currentUrl={crrUrl === "/photo"}>
+                <List currentUrl={crrUrl === "/photo"} isDark={darkMode}>
                     <Link
                         href="/photo"
                         onClick={() => {
@@ -174,7 +177,7 @@ export default function PageHeader() {
                     </Link>
                 </List>
                 {/* visit log */}
-                <List currentUrl={crrUrl === "/visit+log"}>
+                <List currentUrl={crrUrl === "/visit+log"} isDark={darkMode}>
                     <Link
                         href="/visit+log"
                         onClick={() => {
@@ -238,7 +241,7 @@ const MobileMenu = styled.div`
     }
 `;
 
-const DropDown = styled.div<{ menuFlag: boolean }>`
+const DropDown = styled.div<{ menuFlag: boolean; isDark: boolean }>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -250,7 +253,10 @@ const DropDown = styled.div<{ menuFlag: boolean }>`
     top: ${(props: any) => (props.menuFlag == true ? "-500px" : "53.5px")};
     z-index: 11;
     background-color: white;
-    box-shadow: 0 4px 4px -4px black;
+    ${(props) =>
+        !props.isDark
+            ? "box-shadow: 0 4px 4px -4px black"
+            : "box-shadow: 0 4px 4px -4px lightgray"};
 `;
 
 const Logo = styled.div`
@@ -270,7 +276,7 @@ const Logo = styled.div`
     }
 `;
 
-const List = styled.div<{ currentUrl: boolean }>`
+const List = styled.div<{ currentUrl: boolean; isDark: boolean }>`
     font-family: Garamond;
     font-weight: 400;
     font-size: 25px;
@@ -282,15 +288,24 @@ const List = styled.div<{ currentUrl: boolean }>`
     div {
         width: ${(props) => (props.currentUrl ? "100%" : "0%")};
         height: 1px;
-        border-bottom: 1px solid
-            ${(props) => (props.currentUrl ? "black" : "white")};
+        ${(props) =>
+            !props.isDark
+                ? `border-bottom: 1px solid ${
+                      props.currentUrl ? "black" : "white"
+                  };`
+                : `border-bottom: 1px solid ${
+                      props.currentUrl ? "white" : "black"
+                  };`}
         transition: all 0.3s;
     }
 
     :hover {
         div {
             width: 100%;
-            border-bottom: 1px solid black;
+            ${(props) =>
+                !props.isDark
+                    ? "border-bottom: 1px solid black"
+                    : "border-bottom: 1px solid white"}
         }
     }
 
