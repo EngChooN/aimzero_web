@@ -34,8 +34,10 @@ import { useRouter } from "next/router";
 import { MdCancel } from "react-icons/md";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { HookCallback } from "@toast-ui/editor/types/editor";
+import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function BoardEdit(): JSX.Element {
+    const [darkMode] = useRecoilState(darkModeState);
     const contentRef = useRef<Editor>(null);
     const router = useRouter();
 
@@ -190,7 +192,7 @@ export default function BoardEdit(): JSX.Element {
                     {/* show tags */}
                     {tags?.map((el, index) => (
                         <div key={index}>
-                            <Edit.tag key={index}>
+                            <Edit.tag key={index} isDark={darkMode}>
                                 #{el}
                                 <MdCancel
                                     style={{

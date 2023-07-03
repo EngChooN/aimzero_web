@@ -7,8 +7,9 @@ export default function DarkModeSwitch() {
     const [darkMode, setDarkMode] = useRecoilState(darkModeState);
 
     const onClickTheme = () => {
-        console.log(darkMode);
-        setDarkMode(!darkMode);
+        const newDarkMode = !darkMode;
+        setDarkMode(newDarkMode);
+        localStorage.setItem("dark", JSON.stringify(newDarkMode));
     };
 
     return (
@@ -32,5 +33,4 @@ export default function DarkModeSwitch() {
 
 const StyledDarkModeSwitch = styled.div`
     margin-top: 20px;
-    margin-bottom: 20px;
 `;

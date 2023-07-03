@@ -21,7 +21,7 @@ export default function Layout(props: { children: ReactNode }) {
     const [, setUserInfo] = useRecoilState(userInfoState);
     const router = useRouter();
 
-    const footerBlockPath = ["/visit+log", "/projects/create", "/board/write"];
+    const footerBlockPath = ["/visit+log"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
     const [footerFlag, setFooterFlag] = useState(true);
 
     useEffect(() => {
@@ -58,11 +58,9 @@ export default function Layout(props: { children: ReactNode }) {
 
     // theme light? dark? check local storage
     useEffect(() => {
-        if (localStorage.getItem("dark")) {
-            const localDarkMode = localStorage.getItem("dark");
-            setDarkMode(Boolean(localDarkMode));
-        } else {
-            localStorage.setItem("dark", "false");
+        const localDarkMode = localStorage.getItem("dark");
+        if (localDarkMode !== null) {
+            setDarkMode(JSON.parse(localDarkMode));
         }
     }, []);
 
@@ -152,6 +150,10 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
         background-color: grey;
     }
 
+    .toastui-editor-defaultUI .toastui-editor-md-tab-container {
+        background: #18181b;
+    }
+
     .ant-empty-description{
         color: lightgrey;
     }
@@ -180,12 +182,7 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
 
     .ant-pagination .ant-pagination-item a {
         color: lightgrey;
-    }
-
-
-
-
-    `}
+    }`}
 `;
 
 const Content = styled.section`

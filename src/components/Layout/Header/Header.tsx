@@ -12,7 +12,7 @@ export default function PageHeader() {
     const [darkMode] = useRecoilState(darkModeState);
     const [loginStatus] = useRecoilState(loginState);
 
-    const headerList = ["about", "skills", "project", "photo", "visit log"];
+    const headerList = ["resume", "skills", "project", "photo", "visit log"];
     const router = useRouter();
     const crrUrl = router.pathname;
     // mobile
@@ -38,9 +38,9 @@ export default function PageHeader() {
         <Wrapper>
             {/* pc heder */}
             <Menu>
-                {/* about */}
-                <List currentUrl={crrUrl === "/about"} isDark={darkMode}>
-                    <Link href="/about">{headerList[0]}</Link>
+                {/* resume */}
+                <List currentUrl={crrUrl === "/resume"} isDark={darkMode}>
+                    <Link href="/resume">{headerList[0]}</Link>
                     <div></div>
                 </List>
                 {/* skills */}
@@ -128,10 +128,10 @@ export default function PageHeader() {
                 </List>
             </MobileMenu>
             <DropDown menuFlag={menuFlag} isDark={darkMode}>
-                {/* about */}
-                <List currentUrl={crrUrl === "/about"} isDark={darkMode}>
+                {/* resume */}
+                <List currentUrl={crrUrl === "/resume"} isDark={darkMode}>
                     <Link
-                        href="/about"
+                        href="/resume"
                         onClick={() => {
                             setMenuFlag(true);
                         }}

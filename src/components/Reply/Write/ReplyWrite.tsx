@@ -22,6 +22,7 @@ import { uuidv4 } from "@firebase/util";
 import { Btn } from "../../Login/Login.styles";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { HookCallback } from "@toast-ui/editor/types/editor";
+import emailjs from "emailjs-com";
 
 export default function ReplyWrite(props: {
     boardData: DocumentData;
@@ -58,6 +59,7 @@ export default function ReplyWrite(props: {
 
     useEffect(() => {
         console.log(boardData?.id, "comment-boardId");
+        console.log("from reply boardData", boardData);
     });
 
     // input on change content value
@@ -68,18 +70,53 @@ export default function ReplyWrite(props: {
     // create comment func
     const submitComment = async () => {
         if (content != "") {
-            await setDoc(doc(firebaseDb, "comment", commentId), {
-                id: boardData.id,
-                commentId: commentId,
-                email: userInfo.email,
-                name: name,
-                content: content,
-                timestamp: new Date(),
-            });
-            router.reload();
+            try {
+                await setDoc(doc(firebaseDb, "comment", commentId), {
+                    id: boardData.id,
+                    commentId: commentId,
+                    email: userInfo.email,
+                    name: name,
+                    content: content,
+                    timestamp: new Date(),
+                });
+                console.log(
+                    "넘길 값들",
+                    boardData.email,
+                    boardData.title,
+                    name,
+                    content
+                );
+                await sendEmail();
+            } catch (error) {
+                console.error(error);
+            }
         } else {
             alert("Please enter a title or content");
         }
+    };
+
+    const sendEmail = async () => {
+        const templateParams = {
+            board_writer: boardData.email,
+            board_title: boardData.title,
+            comment_writer: name,
+            comment: content.replace(/<\/?[^>]+(>|$)/g, ""),
+        };
+
+        emailjs
+            .send(
+                "service_v3rhrfx",
+                "template_wzkj3wc",
+                templateParams,
+                "Gs-3owh7O5wBJ3qkR"
+            )
+            .then((response: any) => {
+                router.reload();
+            })
+            .catch((error: any) => {
+                console.log(templateParams);
+                console.error("댓글 알림 이메일 전송 실패:", error);
+            });
     };
 
     return (

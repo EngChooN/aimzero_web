@@ -1,4 +1,4 @@
-import Input from "@/components/Input/Input";
+import Input from "@/components/commons/Input/Input";
 import Tag from "@/components/commons/Tag/Tag";
 import { useDidMountEffect, useEditor } from "@/hooks/commons";
 import styled from "@emotion/styled";

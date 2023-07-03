@@ -90,7 +90,9 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
                     </InfoWrapper>
                     <Tags isDark={darkMode}>
                         {boardData.tag?.map((el: any, index: number) => (
-                            <Tag key={index}>#{el}</Tag>
+                            <Tag key={index} isDark={darkMode}>
+                                #{el}
+                            </Tag>
                         ))}
                     </Tags>
                     <div style={{ overflowX: "scroll" }}>
@@ -99,6 +101,7 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
                             plugins={[
                                 [codeSyntaxHighlight, { highlighter: Prism }],
                             ]}
+                            theme={darkMode ? "dark" : "light"}
                         />
                     </div>
                     <Reply boardData={boardData} />
@@ -176,12 +179,13 @@ const Tags = styled.div<{ isDark: boolean }>`
         !props.isDark ? "1px solid lightgray" : "1px solid grey"};
 `;
 
-const Tag = styled.div`
+const Tag = styled.div<{ isDark: boolean }>`
     display: flex;
     align-items: center;
 
     height: 30px;
     background-color: #f3f3f3;
+    border: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     border-radius: 15px;
 
     padding-right: 10px;
