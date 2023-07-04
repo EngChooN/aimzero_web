@@ -2,7 +2,8 @@ import { darkModeState } from "@/common/Recoil/darkModeState";
 import DarkModeSwitch from "@/components/commons/DarkModeSwitch/DarkModeSwitch";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { FaBlogger, FaGithub, FaDiscord } from "react-icons/fa";
+import { FaBlogger, FaGithub } from "react-icons/fa";
+import { FiInstagram } from "react-icons/fi";
 import { useRecoilState } from "recoil";
 
 export default function PageFooter() {
@@ -14,13 +15,24 @@ export default function PageFooter() {
                     <Link href="/">AimZero</Link>
                 </Logo>
                 <IconWrapper>
-                    <FaBlogger
-                        style={{ fontSize: "22px", cursor: "pointer" }}
-                    />
-                    <FaGithub style={{ fontSize: "22px", cursor: "pointer" }} />
-                    <FaDiscord
-                        style={{ fontSize: "22px", cursor: "pointer" }}
-                    />
+                    <a href="https://velog.io/@aimzero9303" target="_blank">
+                        <FaBlogger
+                            style={{ fontSize: "22px", cursor: "pointer" }}
+                        />
+                    </a>
+                    <a href="https://github.com/EngChooN" target="_blank">
+                        <FaGithub
+                            style={{ fontSize: "22px", cursor: "pointer" }}
+                        />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/j00n0__/"
+                        target="_blank"
+                    >
+                        <FiInstagram
+                            style={{ fontSize: "22px", cursor: "pointer" }}
+                        />
+                    </a>
                 </IconWrapper>
                 <Desc>Copyright(c)2023 by Joonyoung Cho</Desc>
                 <DarkModeSwitch />

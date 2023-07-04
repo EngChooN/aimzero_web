@@ -115,7 +115,7 @@ export const Name = styled.div`
 export const BoardBottomBox = styled.div`
     position: absolute;
     right: 0;
-    bottom: 0;
+    top: -99px;
 `;
 
 export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
@@ -131,7 +131,7 @@ export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     padding-bottom: 15px;
     margin-top: 40px;
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-right: 8px;
 
     font-family: serif;
     color: white;
