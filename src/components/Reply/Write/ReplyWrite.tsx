@@ -60,6 +60,7 @@ export default function ReplyWrite(props: {
     useEffect(() => {
         console.log(boardData?.id, "comment-boardId");
         console.log("from reply boardData", boardData);
+        console.log("currentPath", document.location.href);
     });
 
     // input on change content value
@@ -101,6 +102,7 @@ export default function ReplyWrite(props: {
             board_title: boardData.title,
             comment_writer: name,
             comment: content.replace(/<\/?[^>]+(>|$)/g, ""),
+            board_url: document.location.href,
         };
 
         emailjs
