@@ -62,7 +62,7 @@ export default function ProjectList() {
                             <img
                                 style={{
                                     width: "220px",
-                                    height: "150px",
+                                    height: "130px",
                                     objectFit: "cover",
                                 }}
                                 alt="thumbnail"
@@ -71,17 +71,9 @@ export default function ProjectList() {
                         }
                     >
                         <List.Item.Meta
-                            title={
-                                <a href={item.href}>{`${item.title} ${
-                                    item.timestamp
-                                        .toDate()
-                                        .toISOString()
-                                        .split("T")[0]
-                                }`}</a>
-                            }
+                            title={<a href={item.href}>{`${item.title}`}</a>}
                             description={item.desc}
                         />
-                        <p>{item.content.slice(0, 150)}...</p>
                     </List.Item>
                 )}
             />

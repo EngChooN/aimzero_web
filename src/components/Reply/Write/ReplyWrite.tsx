@@ -87,7 +87,11 @@ export default function ReplyWrite(props: {
                     name,
                     content
                 );
-                await sendEmail();
+                if (boardData.email !== userInfo.email) {
+                    await sendEmail();
+                } else {
+                    router.reload();
+                }
             } catch (error) {
                 console.error(error);
             }
@@ -112,10 +116,10 @@ export default function ReplyWrite(props: {
                 templateParams,
                 "Gs-3owh7O5wBJ3qkR"
             )
-            .then((response: any) => {
+            .then(() => {
                 router.reload();
             })
-            .catch((error: any) => {
+            .catch((error) => {
                 console.log(templateParams);
                 console.error("댓글 알림 이메일 전송 실패:", error);
             });
