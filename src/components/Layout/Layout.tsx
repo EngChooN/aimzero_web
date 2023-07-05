@@ -137,9 +137,6 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
     .toastui-editor-contents p{
         color: lightgrey;
     }
-    .toastui-editor-contents span{
-        color: lightgrey;
-    }
     .toastui-editor-contents h1{
         color: lightgrey;
     }
