@@ -2,6 +2,7 @@ import Button from "@/components/commons/Button/Button";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
+import { ButtonWrapper } from "../FloatingButton/FloatingButton";
 
 export default function Feedback() {
     const [modalState, setModalState] = useState(false);
@@ -38,15 +39,19 @@ export default function Feedback() {
 
     useEffect(() => {
         const buttonWrapper = document.querySelector(
-            ".buttonWrapper"
+            ".feedback"
         ) as HTMLElement;
         if (buttonWrapper) {
-            buttonWrapper.style.right = "15px";
+            buttonWrapper.style.bottom = "100px";
         }
     }, []);
     return (
         <StyledFeedback>
-            <ButtonWrapper className="buttonWrapper" onClick={onClickFeedback}>
+            <ButtonWrapper
+                className="feedback"
+                onClick={onClickFeedback}
+                style={{ right: "15px" }}
+            >
                 Feedback
             </ButtonWrapper>
             {/* modal */}
@@ -72,7 +77,11 @@ export default function Feedback() {
                             label="submit"
                             backgroundColor="black"
                             primary={feedbackContent === ""}
-                            onClick={sendEmail}
+                            onClick={() => {
+                                if (feedbackContent !== "") {
+                                    sendEmail();
+                                }
+                            }}
                         />
                     </div>
                 </ModalWrapper>
@@ -85,32 +94,6 @@ const StyledFeedback = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
-`;
-
-const ButtonWrapper = styled.div`
-    position: fixed;
-    bottom: 15px;
-    right: -200px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 70px;
-    height: 70px;
-    border-radius: 100px;
-    background-color: black;
-    box-shadow: 0px 0px 20px grey;
-
-    color: white;
-    font-family: serif;
-    font-size: 12px;
-
-    transition: all 0.3s ease;
-    cursor: pointer;
-
-    :hover {
-        scale: 0.9;
-    }
 `;
 
 const ModalWrapper = styled.section`
@@ -128,7 +111,7 @@ const ModalWrapper = styled.section`
     height: 550px;
     border-radius: 25px;
     background: white;
-    box-shadow: 0px 0px 40px grey;
+    box-shadow: 0px 0px 10px grey;
 
     font-family: serif;
     z-index: 12;
@@ -150,6 +133,7 @@ const ModalWrapper = styled.section`
         resize: none;
         font-size: 15px;
         padding: 10px;
+        outline: unset;
     }
 
     > div {

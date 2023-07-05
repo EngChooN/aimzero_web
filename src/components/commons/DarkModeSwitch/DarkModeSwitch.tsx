@@ -2,6 +2,8 @@ import { darkModeState } from "@/common/Recoil/darkModeState";
 import { useRecoilState } from "recoil";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import styled from "@emotion/styled";
+import { ButtonWrapper } from "@/components/Layout/FloatingButton/FloatingButton";
+import { useEffect } from "react";
 
 export default function DarkModeSwitch() {
     const [darkMode, setDarkMode] = useRecoilState(darkModeState);
@@ -12,25 +14,34 @@ export default function DarkModeSwitch() {
         localStorage.setItem("dark", JSON.stringify(newDarkMode));
     };
 
+    useEffect(() => {
+        const buttonWrapper = document.querySelector(
+            ".darkMode"
+        ) as HTMLElement;
+        if (buttonWrapper) {
+            buttonWrapper.style.bottom = "185px";
+        }
+    }, []);
+
     return (
         <StyledDarkModeSwitch>
-            {darkMode === false ? (
-                <MdLightMode
-                    size={30}
-                    style={{ cursor: "pointer" }}
-                    onClick={onClickTheme}
-                />
-            ) : (
-                <MdDarkMode
-                    size={30}
-                    style={{ cursor: "pointer" }}
-                    onClick={onClickTheme}
-                />
-            )}
+            <ButtonWrapper
+                className="darkMode"
+                onClick={onClickTheme}
+                style={{ right: "15px" }}
+            >
+                {darkMode === false ? (
+                    <MdLightMode size={30} style={{ cursor: "pointer" }} />
+                ) : (
+                    <MdDarkMode size={30} style={{ cursor: "pointer" }} />
+                )}
+            </ButtonWrapper>
         </StyledDarkModeSwitch>
     );
 }
 
 const StyledDarkModeSwitch = styled.div`
-    margin-top: 20px;
+    position: relative;
+    width: 100%;
+    height: 100%;
 `;

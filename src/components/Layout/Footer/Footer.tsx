@@ -35,7 +35,6 @@ export default function PageFooter() {
                     </a>
                 </IconWrapper>
                 <Desc>Copyright(c)2023 by Joonyoung Cho</Desc>
-                <DarkModeSwitch />
             </ContentsWrapper>
         </Wrapper>
     );
@@ -66,7 +65,8 @@ const ContentsWrapper = styled.div`
 const IconWrapper = styled.div`
     max-width: 200px;
     width: 100%;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
 
     display: flex;
     justify-content: space-evenly;

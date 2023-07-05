@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import Feedback from "./Feedback/Feedback";
+import FloatingButton from "./FloatingButton/FloatingButton";
 
 export default function Layout(props: { children: ReactNode }) {
     const { children } = props;
@@ -70,7 +71,8 @@ export default function Layout(props: { children: ReactNode }) {
             <Header />
             <Content>{children}</Content>
             {footerFlag == true ? <Footer /> : null}
-            <Feedback />
+            {/* <Feedback /> */}
+            <FloatingButton />
         </StyledLayout>
     );
 }
