@@ -12,7 +12,6 @@ import { userInfoState } from "../../common/Recoil/userInfoState";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import { darkModeState } from "@/common/Recoil/darkModeState";
-import Feedback from "./Feedback/Feedback";
 import FloatingButton from "./FloatingButton/FloatingButton";
 
 export default function Layout(props: { children: ReactNode }) {
@@ -133,6 +132,25 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
         background: black;
         color: white;
         border: 1px solid grey;
+    }
+
+    .toastui-editor-contents p{
+        color: lightgrey;
+    }
+    .toastui-editor-contents span{
+        color: lightgrey;
+    }
+    .toastui-editor-contents h1{
+        color: lightgrey;
+    }
+    .toastui-editor-contents h2{
+        color: lightgrey;
+    }
+    .toastui-editor-contents h3{
+        color: lightgrey;
+    }
+    .toastui-editor-contents h4{
+        color: lightgrey;
     }
     
     .toastui-editor-defaultUI-toolbar button{

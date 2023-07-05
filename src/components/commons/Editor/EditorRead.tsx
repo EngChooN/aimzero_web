@@ -13,6 +13,7 @@ import { darkModeState } from "@/common/Recoil/darkModeState";
 export default function EditorRead(props: { initialValue: string }) {
     const { initialValue } = props;
     const [darkMode] = useRecoilState(darkModeState);
+
     return (
         <StyledViewer>
             {initialValue && (

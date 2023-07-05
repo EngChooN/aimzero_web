@@ -31,9 +31,9 @@ export default function DarkModeSwitch() {
                 style={{ right: "15px" }}
             >
                 {darkMode === false ? (
-                    <MdLightMode size={30} style={{ cursor: "pointer" }} />
-                ) : (
                     <MdDarkMode size={30} style={{ cursor: "pointer" }} />
+                ) : (
+                    <MdLightMode size={30} style={{ cursor: "pointer" }} />
                 )}
             </ButtonWrapper>
         </StyledDarkModeSwitch>

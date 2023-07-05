@@ -101,7 +101,6 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
                             plugins={[
                                 [codeSyntaxHighlight, { highlighter: Prism }],
                             ]}
-                            theme={darkMode ? "dark" : "light"}
                         />
                     </div>
                     <Reply boardData={boardData} />
