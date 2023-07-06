@@ -1,22 +1,25 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
 import { darkModeState } from "@/common/Recoil/darkModeState";
+import { useOutSideRef } from "@/hooks/commons";
 
 export default function PageHeader() {
     const [darkMode] = useRecoilState(darkModeState);
     const [loginStatus] = useRecoilState(loginState);
 
-    const headerList = ["resume", "skills", "project", "photo", "visit log"];
+    const headerList = ["resume", "project", "blog", "photo", "visit log"];
     const router = useRouter();
     const crrUrl = router.pathname;
     // mobile
     const [menuFlag, setMenuFlag] = useState(true);
+    const dropdownRef = useRef(null);
+    useOutSideRef(dropdownRef, setMenuFlag);
 
     // mobile menuFlag func
     const onClickMenu = () => {
@@ -44,13 +47,13 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/skills"} isDark={darkMode}>
-                    <Link href="/skills">{headerList[1]}</Link>
+                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
+                    <Link href="/project">{headerList[1]}</Link>
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
-                    <Link href="/project">{headerList[2]}</Link>
+                <List currentUrl={crrUrl === "/blog"} isDark={darkMode}>
+                    <Link href="/blog">{headerList[2]}</Link>
                     <div></div>
                 </List>
                 {/* home */}
@@ -90,8 +93,11 @@ export default function PageHeader() {
 
                 <RxHamburgerMenu
                     fontSize={25}
-                    onClick={onClickMenu}
                     style={{ marginLeft: "10px", cursor: "pointer" }}
+                    onClick={(event) => {
+                        onClickMenu();
+                        event.stopPropagation();
+                    }}
                 />
 
                 <Logo>
@@ -127,7 +133,7 @@ export default function PageHeader() {
                     )}
                 </List>
             </MobileMenu>
-            <DropDown menuFlag={menuFlag} isDark={darkMode}>
+            <DropDown menuFlag={menuFlag} isDark={darkMode} ref={dropdownRef}>
                 {/* resume */}
                 <List currentUrl={crrUrl === "/resume"} isDark={darkMode}>
                     <Link
@@ -141,9 +147,9 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/skills"} isDark={darkMode}>
+                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
                     <Link
-                        href="/skills"
+                        href="/project"
                         onClick={() => {
                             setMenuFlag(true);
                         }}
@@ -153,9 +159,9 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
+                <List currentUrl={crrUrl === "/blog"} isDark={darkMode}>
                     <Link
-                        href="/project"
+                        href="/blog"
                         onClick={() => {
                             setMenuFlag(true);
                         }}

@@ -32,6 +32,10 @@ export const BoardNumberInfo = styled.div`
     width: 15%;
     font-weight: 600;
     margin-left: 30px;
+
+    @media (max-width: 460px) {
+        display: none;
+    }
 `;
 
 export const BoardTitleInfo = styled.div`
@@ -43,6 +47,11 @@ export const BoardTitleInfo = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    @media (max-width: 460px) {
+        width: 50%;
+        margin-left: 10px;
+    }
 `;
 
 export const BoardDateInfo = styled.div`
@@ -86,6 +95,10 @@ export const BoardNumber = styled.div`
     width: 15%;
     margin-left: 30px;
     font-family: serif;
+
+    @media (max-width: 460px) {
+        display: none;
+    }
 `;
 
 export const BoardTitle = styled.div`
@@ -96,6 +109,11 @@ export const BoardTitle = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @media (max-width: 460px) {
+        width: 50%;
+        margin-left: 10px;
+    }
 `;
 
 export const BoardDate = styled.div`
@@ -110,15 +128,22 @@ export const Name = styled.div`
     display: flex;
     justify-content: center;
     font-family: serif;
+
+    @media (max-width: 460px) {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 `;
 
 export const BoardBottomBox = styled.div`
-    position: absolute;
-    right: 0;
-    top: -99px;
+    position: relative;
 `;
 
 export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
+    position: absolute;
+    bottom: -30px;
+    right: 10px;
+
     height: 40px;
     background: none;
     background-color: black;
@@ -129,9 +154,6 @@ export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     padding: 25px;
     padding-top: 15px;
     padding-bottom: 15px;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    margin-right: 8px;
 
     font-family: serif;
     color: white;

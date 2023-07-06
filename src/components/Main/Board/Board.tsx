@@ -58,6 +58,24 @@ export default function Board(props: { menu: string }) {
         console.log(e.currentTarget.id);
     };
 
+    const skeleton = () => {
+        const skeletonUi = [];
+        for (let i = 1; i < 6; i++) {
+            skeletonUi.push(
+                <Skeleton.Button
+                    active={true}
+                    size={"large"}
+                    shape={"square"}
+                    block={true}
+                    style={{
+                        marginTop: "20px",
+                    }}
+                />
+            );
+        }
+        return skeletonUi;
+    };
+
     return (
         <Boards.Wrapper>
             <div style={{ minHeight: "360px" }}>
@@ -70,46 +88,7 @@ export default function Board(props: { menu: string }) {
                     </Boards.BoardInfo>
                 </Boards.BoardListBox>
                 <Boards.BoardListBox>
-                    {isLoading && (
-                        <>
-                            <Skeleton.Button
-                                active={true}
-                                size={"large"}
-                                shape={"square"}
-                                block={true}
-                                style={{
-                                    marginTop: "20px",
-                                }}
-                            />
-                            <Skeleton.Button
-                                active={true}
-                                size={"large"}
-                                shape={"square"}
-                                block={true}
-                                style={{
-                                    marginTop: "20px",
-                                }}
-                            />
-                            <Skeleton.Button
-                                active={true}
-                                size={"large"}
-                                shape={"square"}
-                                block={true}
-                                style={{
-                                    marginTop: "20px",
-                                }}
-                            />
-                            <Skeleton.Button
-                                active={true}
-                                size={"large"}
-                                shape={"square"}
-                                block={true}
-                                style={{
-                                    marginTop: "20px",
-                                }}
-                            />
-                        </>
-                    )}
+                    {isLoading && <>{skeleton()}</>}
                     {boardData.map((el, index) => (
                         <Boards.Board
                             key={index}
@@ -137,13 +116,13 @@ export default function Board(props: { menu: string }) {
                 </Boards.BoardListBox>
             </div>
             {/* pagenation */}
-            <PaginationBtn
-                listLength={boardListData.length}
-                limit={limit}
-                page={page}
-                setPage={setPage}
-            />
             <Boards.BoardBottomBox>
+                <PaginationBtn
+                    listLength={boardListData.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                />
                 {/* write button blog */}
                 {menu == "blog" &&
                 userInfo?.email == "aimzero9303@gmail.com" &&

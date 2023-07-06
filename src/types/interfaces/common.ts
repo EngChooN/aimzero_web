@@ -45,6 +45,7 @@ export interface PhotoType {
     isMoreLoading: boolean;
     dataPresent: string;
     deletePhoto: (id: string) => void;
+    windowWidth: number;
 }
 
 // SignUp

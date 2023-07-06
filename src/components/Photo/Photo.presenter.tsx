@@ -25,11 +25,36 @@ export default function PhotoUI(props: PhotoType) {
         isMoreLoading,
         dataPresent,
         deletePhoto,
+        windowWidth,
     } = props;
+
+    const skeleton = () => {
+        const skeletonUi = [];
+        let width = "230px";
+
+        if (windowWidth <= 600) {
+            width = "200px";
+        } else if (windowWidth <= 460) {
+            width = "160px";
+        }
+
+        for (let i = 0; i < 7; i++) {
+            skeletonUi.push(
+                <Skeleton.Image
+                    style={{
+                        width: width,
+                        height: width,
+                    }}
+                    active={true}
+                />
+            );
+        }
+        return skeletonUi;
+    };
+
     return (
         <Photos.Wrapper>
             <Photos.TopSection>
-                {/* <Photos.Title>Photo</Photos.Title> */}
                 <Photos.ProfileBox>
                     <Photos.ProfileImg src={"/images/photo/profile.GIF"} />
                     <Photos.InfoBox>
@@ -72,56 +97,7 @@ export default function PhotoUI(props: PhotoType) {
             </Photos.TopSection>
             <Photos.BottomSection>
                 {isLoading == true ? (
-                    <>
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                    </>
+                    <>{skeleton()}</>
                 ) : userInfo?.email === "aimzero9303@gmail.com" ? (
                     <Photos.ImgBox>
                         {uploadStep == 1 ? (
@@ -163,7 +139,7 @@ export default function PhotoUI(props: PhotoType) {
                 ) : null}
                 {images?.map((el: DocumentData, index: number) => (
                     <Photos.ImgBox key={index}>
-                        <Image width={230} height={230} src={el.imgUrl} />
+                        <Image width={"100%"} height={"100%"} src={el.imgUrl} />
                         {userInfo?.email === "aimzero9303@gmail.com" ? (
                             <AiFillDelete
                                 fontSize={30}
@@ -182,58 +158,7 @@ export default function PhotoUI(props: PhotoType) {
                         ) : null}
                     </Photos.ImgBox>
                 ))}
-                {isMoreLoading && (
-                    <>
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                        <Skeleton.Image
-                            style={{
-                                width: "230px",
-                                height: "230px",
-                                margin: "7px",
-                            }}
-                            active={true}
-                        />
-                    </>
-                )}
+                {isMoreLoading && <>{skeleton()}</>}
             </Photos.BottomSection>
             <Photos.DataPresentText>{dataPresent}</Photos.DataPresentText>
         </Photos.Wrapper>

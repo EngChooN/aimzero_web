@@ -109,6 +109,11 @@ const reset = css`
     .toastui-editor-defaultUI {
         border-radius: 0px;
     }
+
+    .ant-list-item-extra {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 export default reset;

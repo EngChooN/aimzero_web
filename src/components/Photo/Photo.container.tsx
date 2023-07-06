@@ -29,6 +29,7 @@ import { uuidv4 } from "@firebase/util";
 import { useBottomScrollListener } from "react-bottom-scroll-listener";
 // lodash
 import _ from "lodash";
+import { useWindowWidth } from "@/hooks/commons";
 
 export default function Photo() {
     // first loading show skeleton flag
@@ -51,6 +52,7 @@ export default function Photo() {
     const [images, setImages] = useState<DocumentData[]>([]);
     // image upload step flag
     const [uploadStep, setUploadStep] = useState(1);
+    const [windowWidth] = useWindowWidth(0);
 
     // select fileInput func (onChange)
     const selectFile = (file: File) => {
@@ -156,6 +158,7 @@ export default function Photo() {
             isLoading={isLoading}
             isMoreLoading={isMoreLoading}
             dataPresent={dataPresent}
+            windowWidth={windowWidth}
         />
     );
 }

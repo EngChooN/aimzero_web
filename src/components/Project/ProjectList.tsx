@@ -49,9 +49,6 @@ export default function ProjectList() {
                 itemLayout="vertical"
                 size="large"
                 pagination={{
-                    onChange: (page) => {
-                        console.log(page);
-                    },
                     pageSize: 4,
                 }}
                 dataSource={data}

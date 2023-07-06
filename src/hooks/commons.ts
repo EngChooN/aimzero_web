@@ -1,7 +1,13 @@
 import { loginState } from "@/common/Recoil/loginState";
 import { userInfoState } from "@/common/Recoil/userInfoState";
 import { Editor } from "@toast-ui/react-editor";
-import { RefObject, useEffect, useRef, useState } from "react";
+import {
+    MutableRefObject,
+    RefObject,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { useRecoilState } from "recoil";
 
 export const useEditor = (initialValue: string) => {
@@ -56,3 +62,46 @@ export const useAuth = () => {
         return false;
     }
 };
+
+export const useWindowWidth = (initialValue: number) => {
+    const [windowWidth, setWindowWidth] = useState(initialValue);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        if (typeof window !== "undefined") {
+            setWindowWidth(window.innerWidth);
+            window.addEventListener("resize", handleResize);
+        }
+
+        return () => {
+            if (typeof window !== "undefined") {
+                window.removeEventListener("resize", handleResize);
+            }
+        };
+    }, []);
+
+    return [windowWidth];
+};
+
+export function useOutSideRef(
+    ref: RefObject<HTMLElement>,
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+) {
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (ref.current && !ref.current.contains(event.target as Node)) {
+                setIsOpen(true);
+            }
+        }
+        document.addEventListener("click", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    });
+
+    return ref as MutableRefObject<HTMLElement | null>;
+}
