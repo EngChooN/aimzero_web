@@ -76,6 +76,26 @@ export default function Layout(props: { children: ReactNode }) {
                         }
                     `}
                 </style>
+                <meta charSet="UTF-8" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                <meta
+                    name="description"
+                    content="주니어 프론트엔드 개발자 조준영의 이력서, 포폴 및 블로그 사이트"
+                />
+                <meta property="og:title" content="Aimzero" />
+                <meta
+                    property="og:description"
+                    content="주니어 프론트엔드 개발자 조준영의 이력서, 포폴 및 블로그 사이트"
+                />
+                <meta property="og:image" content="/images/Logo.png" />
+                <meta
+                    property="og:url"
+                    content="https://aimzero-web.vercel.app/"
+                />
+                <title>Aimzero</title>
             </Head>
             <StyledLayout isDark={darkMode}>
                 <Header />
