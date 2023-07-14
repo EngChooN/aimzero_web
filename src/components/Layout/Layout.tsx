@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import FloatingButton from "./FloatingButton/FloatingButton";
+import Head from "next/head";
 
 export default function Layout(props: { children: ReactNode }) {
     const { children } = props;
@@ -66,13 +67,24 @@ export default function Layout(props: { children: ReactNode }) {
     }, []);
 
     return (
-        <StyledLayout isDark={darkMode}>
-            <Header />
-            <Content>{children}</Content>
-            {footerFlag == true ? <Footer /> : null}
-            {/* <Feedback /> */}
-            <FloatingButton />
-        </StyledLayout>
+        <>
+            <Head>
+                <style>
+                    {`
+                        body {
+                            background: ${darkMode ? "#18181b" : "white"};
+                        }
+                    `}
+                </style>
+            </Head>
+            <StyledLayout isDark={darkMode}>
+                <Header />
+                <Content>{children}</Content>
+                {footerFlag == true ? <Footer /> : null}
+                {/* <Feedback /> */}
+                <FloatingButton />
+            </StyledLayout>
+        </>
     );
 }
 
@@ -89,6 +101,10 @@ const StyledLayout = styled.section<{ isDark: boolean }>`
     h3,
     span {
         color: lightgrey;
+    }
+
+    html, body {
+        background: red;
     }
 
     .ant-pagination .ant-pagination-item-active a {

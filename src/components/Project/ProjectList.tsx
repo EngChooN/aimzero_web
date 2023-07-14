@@ -93,13 +93,18 @@ export default function ProjectList() {
 const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
-    height: fit-content;
+    min-height: calc(100vh - 300px);
+    height: 100%;
     padding-bottom: 24px;
 
     > .btnWrapper {
         width: 100%;
         display: flex;
         justify-content: flex-end;
+    }
+
+    @media (max-width: 1100px) {
+        min-height: calc(100vh - 224px);
     }
 
     @media (max-width: 680px) {

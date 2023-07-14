@@ -11,14 +11,16 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <QueryClientProvider client={queryClient}>
-            <RecoilRoot>
-                <Global styles={reset} />
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
-            </RecoilRoot>
-        </QueryClientProvider>
+        <>
+            <QueryClientProvider client={queryClient}>
+                <RecoilRoot>
+                    <Global styles={reset} />
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </RecoilRoot>
+            </QueryClientProvider>
+        </>
     );
 }
 
