@@ -29,6 +29,7 @@ export default function Home() {
                                 top: viewHeight * (i + 1),
                                 behavior: "smooth",
                             });
+                            console.log(i + 1, "섹션으로 이동..");
                         }
                     }
                 }
@@ -41,9 +42,10 @@ export default function Home() {
                             scrollTop <= viewHeight * (i + 1)
                         ) {
                             scrollRef.current.scrollTo({
-                                top: viewHeight * (i - 1),
+                                top: viewHeight * i,
                                 behavior: "smooth",
                             });
+                            console.log(i - 1, "섹션으로 이동..");
                         }
                     }
                 }
