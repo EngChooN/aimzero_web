@@ -94,7 +94,7 @@ const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
     min-height: calc(100vh - 300px);
-    height: 100%;
+    height: fit-content;
     padding-bottom: 24px;
 
     > .btnWrapper {
