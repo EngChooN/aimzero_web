@@ -21,6 +21,7 @@ export default function Layout(props: { children: ReactNode }) {
 
     const [, setLoginStatus] = useRecoilState(loginState);
     const [, setUserInfo] = useRecoilState(userInfoState);
+    const [currentPath, setCurrentPath] = useState("");
     const router = useRouter();
 
     const footerBlockPath = ["/visit+log", "/photo", "/"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
@@ -49,6 +50,7 @@ export default function Layout(props: { children: ReactNode }) {
     useEffect(() => {
         if (!router.isReady) return;
         console.log("path name", router.pathname);
+        setCurrentPath(router.pathname);
         if (footerBlockPath.includes(router.pathname)) {
             console.log("No footer!");
             setFooterFlag(false);
@@ -98,7 +100,7 @@ export default function Layout(props: { children: ReactNode }) {
                 <title>Aimzero</title>
             </Head>
             <StyledLayout isDark={darkMode}>
-                <Header />
+                <Header currentPath={currentPath} />
                 <Content>{children}</Content>
                 {footerFlag == true ? <Footer /> : null}
                 {/* <Feedback /> */}
@@ -108,6 +110,7 @@ export default function Layout(props: { children: ReactNode }) {
     );
 }
 
+// dark theme
 const StyledLayout = styled.section<{ isDark: boolean }>`
     ${(props) =>
         props.isDark &&

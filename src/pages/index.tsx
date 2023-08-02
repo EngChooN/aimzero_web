@@ -90,7 +90,6 @@ export default function Home() {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log("scrollY", window.scrollY);
             setScrollY(window.scrollY);
         };
 
@@ -111,7 +110,9 @@ export default function Home() {
                     <h1>안녕하세요.</h1>
                     <img className="bg2" src={"images/landing/bg2.png"} />
                     <img className="bg1" src={"images/landing/bg1.png"} />
+                    <img className="star" src={"images/landing/bg4.png"} />
                 </BgWrapper>
+                <DivideBox></DivideBox>
             </Sec01>
             <Sec02></Sec02>
         </StyledHome>
@@ -122,14 +123,27 @@ const extend = keyframes`
         transform: scale(0.7);    
     }
     50% {
-        transform: scale(0.75);
+        transform: scale(0.73);
     }
     100% {
         transform: scale(0.7);
     }
 `;
 
+const twinkle = keyframes`
+    0% {
+        opacity: 0;    
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+`;
+
 const StyledHome = styled.div`
+    background-color: rgb(28, 5, 34);
     width: 100%;
     height: fit-content;
     display: flex;
@@ -149,17 +163,17 @@ const BgWrapper = styled.div<{ scrollY: number }>`
     display: flex;
     justify-content: center;
     position: relative;
-    background: linear-gradient(to bottom, rgb(117, 151, 222), transparent);
+    background: linear-gradient(to top, rgb(117, 151, 222), transparent);
 
     > h1 {
-        font-size: 60px;
+        font-size: 5rem;
+        color: white;
         position: absolute;
-        margin-top: 250px;
         top: ${(props) => props.scrollY * 1 + "px"};
         left: 1;
         margin-right: ${(props) => props.scrollY * 1.5 + "px"};
-        /* margin-top: ${(props) => props.scrollY * 1.5 + "px"}; */
-        z-index: 1;
+        margin-top: ${(props) => 300 + props.scrollY * 0.3 + "px"};
+        z-index: 3;
     }
 
     // 가운데 작은 산 배경
@@ -168,6 +182,8 @@ const BgWrapper = styled.div<{ scrollY: number }>`
         width: 100%;
         height: 100%;
         top: ${(props) => props.scrollY * 0.5 + "px"};
+        object-fit: cover;
+        z-index: 2;
     }
 
     // 큰 산 배경
@@ -177,7 +193,19 @@ const BgWrapper = styled.div<{ scrollY: number }>`
         height: 100%;
         left: 0;
         top: ${(props) => props.scrollY * 1 + "px"};
-        z-index: 2;
+        z-index: 4;
+        object-fit: cover;
+    }
+
+    // 별
+    .star {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: ${(props) => props.scrollY * 0.5 + "px"};
+        bottom: ${(props) => props.scrollY * 0.5 + "px"};
+        animation: ${twinkle} 2s ease-in-out infinite;
+        z-index: 0;
     }
 
     // 달
@@ -186,6 +214,20 @@ const BgWrapper = styled.div<{ scrollY: number }>`
         mix-blend-mode: screen;
         animation: ${extend} 3s ease-in-out infinite;
         top: ${(props) => -200 + props.scrollY * 2 + "px"};
+        z-index: 1;
+    }
+`;
+
+const DivideBox = styled.div`
+    position: absolute;
+    bottom: -130px;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to top, rgb(28, 5, 34), transparent);
+    z-index: 999;
+
+    @media (max-width: 1100px) {
+        bottom: -54px;
     }
 `;
 

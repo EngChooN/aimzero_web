@@ -55,6 +55,7 @@ export const ButtonWrapper = styled.div`
     font-size: 12px;
 
     transition: all 0.3s ease;
+    z-index: 999;
     cursor: pointer;
 
     :hover {

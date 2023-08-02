@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
@@ -9,7 +9,10 @@ import { loginState } from "../../../common/Recoil/loginState";
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import { useOutSideRef } from "@/hooks/commons";
 
-export default function PageHeader() {
+export default function PageHeader(props: { currentPath: string }) {
+    const { currentPath } = props;
+    const [specialFlag, setSpecialFlag] = useState(false); // 헤더의 특별한 스타일을 적용
+
     const [darkMode] = useRecoilState(darkModeState);
     const [loginStatus] = useRecoilState(loginState);
 
@@ -37,43 +40,80 @@ export default function PageHeader() {
         }
     };
 
+    useEffect(() => {
+        if (currentPath) {
+            if (currentPath === "/") {
+                console.log("special header style..");
+                setSpecialFlag(true);
+            } else {
+                console.log("common header style..");
+                setSpecialFlag(false);
+            }
+            console.log("specialFlag", specialFlag);
+        }
+    });
+
     return (
-        <Wrapper>
+        <Wrapper specialFlag={specialFlag}>
             {/* pc heder */}
             <Menu>
                 {/* resume */}
-                <List currentUrl={crrUrl === "/resume"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/resume"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link href="/resume">{headerList[0]}</Link>
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/project"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link href="/project">{headerList[1]}</Link>
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/blog"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/blog"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link href="/blog">{headerList[2]}</Link>
                     <div></div>
                 </List>
                 {/* home */}
-                <Logo>
+                <Logo specialFlag={specialFlag}>
                     <Link href={"/"}>AimZero</Link>
                 </Logo>
                 {/* photo */}
-                <List currentUrl={crrUrl === "/photo"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/photo"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link href="/photo">
                         {headerList[3]}
                         <div></div>
                     </Link>
                 </List>
                 {/* visit log */}
-                <List currentUrl={crrUrl === "/visit+log"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/visit+log"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link href="/visit+log">{headerList[4]}</Link>
                     <div></div>
                 </List>
                 {/* login */}
-                <List currentUrl={crrUrl === "/login"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/login"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     {loginStatus == false ? (
                         <Link href="/login">
                             login_<div></div>
@@ -88,10 +128,11 @@ export default function PageHeader() {
             </Menu>
 
             {/* mobile header */}
-            <MobileMenu>
+            <MobileMenu specialFlag={specialFlag}>
                 {/* hamburger menu icon */}
 
                 <RxHamburgerMenu
+                    color={specialFlag ? "white" : "black"}
                     fontSize={25}
                     style={{ marginLeft: "10px", cursor: "pointer" }}
                     onClick={(event) => {
@@ -100,7 +141,7 @@ export default function PageHeader() {
                     }}
                 />
 
-                <Logo>
+                <Logo specialFlag={specialFlag}>
                     <Link
                         href={"/"}
                         onClick={() => {
@@ -114,6 +155,7 @@ export default function PageHeader() {
                 <List
                     currentUrl={crrUrl === "/login"}
                     isDark={darkMode}
+                    specialFlag={specialFlag}
                     style={{ marginRight: "10px" }}
                 >
                     {loginStatus == false ? (
@@ -133,9 +175,18 @@ export default function PageHeader() {
                     )}
                 </List>
             </MobileMenu>
-            <DropDown menuFlag={menuFlag} isDark={darkMode} ref={dropdownRef}>
+            <DropDown
+                menuFlag={menuFlag}
+                isDark={darkMode}
+                ref={dropdownRef}
+                specialFlag={specialFlag}
+            >
                 {/* resume */}
-                <List currentUrl={crrUrl === "/resume"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/resume"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link
                         href="/resume"
                         onClick={() => {
@@ -147,7 +198,11 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* skills */}
-                <List currentUrl={crrUrl === "/project"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/project"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link
                         href="/project"
                         onClick={() => {
@@ -159,7 +214,11 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* project */}
-                <List currentUrl={crrUrl === "/blog"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/blog"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link
                         href="/blog"
                         onClick={() => {
@@ -171,7 +230,11 @@ export default function PageHeader() {
                     <div></div>
                 </List>
                 {/* photo */}
-                <List currentUrl={crrUrl === "/photo"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/photo"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link
                         href="/photo"
                         onClick={() => {
@@ -183,7 +246,11 @@ export default function PageHeader() {
                     </Link>
                 </List>
                 {/* visit log */}
-                <List currentUrl={crrUrl === "/visit+log"} isDark={darkMode}>
+                <List
+                    currentUrl={crrUrl === "/visit+log"}
+                    isDark={darkMode}
+                    specialFlag={specialFlag}
+                >
                     <Link
                         href="/visit+log"
                         onClick={() => {
@@ -199,7 +266,7 @@ export default function PageHeader() {
     );
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.section<{ specialFlag: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,6 +274,9 @@ const Wrapper = styled.section`
     width: 100%;
     height: 130px;
     background-color: white;
+
+    ${(props) =>
+        props.specialFlag ? "background-color: rgb(28, 5, 34);" : null};
 
     @media (max-width: 1100px) {
         flex-direction: column;
@@ -227,7 +297,7 @@ const Menu = styled.div`
     }
 `;
 
-const MobileMenu = styled.div`
+const MobileMenu = styled.div<{ specialFlag: boolean }>`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -237,6 +307,8 @@ const MobileMenu = styled.div`
 
     display: none;
     background-color: white;
+    ${(props) =>
+        props.specialFlag ? "background-color: rgb(28, 5, 34);" : null};
     z-index: 12;
 
     @media (max-width: 1100px) {
@@ -247,7 +319,11 @@ const MobileMenu = styled.div`
     }
 `;
 
-const DropDown = styled.div<{ menuFlag: boolean; isDark: boolean }>`
+const DropDown = styled.div<{
+    menuFlag: boolean;
+    isDark: boolean;
+    specialFlag: boolean;
+}>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -260,16 +336,19 @@ const DropDown = styled.div<{ menuFlag: boolean; isDark: boolean }>`
     z-index: 11;
     background-color: white;
     ${(props) =>
+        props.specialFlag ? "background-color: rgb(28, 5, 34);" : null};
+    ${(props) =>
         !props.isDark
             ? "box-shadow: 0 4px 4px -4px black"
             : "box-shadow: 0 4px 4px -4px lightgray"};
 `;
 
-const Logo = styled.div`
+const Logo = styled.div<{ specialFlag: boolean }>`
     font-family: Pacifico;
     font-weight: 200;
     font-size: 30px;
     color: black;
+    color: ${(props) => (props.specialFlag ? "white" : null)};
 
     padding-bottom: 5px;
 
@@ -282,11 +361,16 @@ const Logo = styled.div`
     }
 `;
 
-const List = styled.div<{ currentUrl: boolean; isDark: boolean }>`
+const List = styled.div<{
+    currentUrl: boolean;
+    isDark: boolean;
+    specialFlag: boolean;
+}>`
     font-family: Garamond;
     font-weight: 400;
     font-size: 25px;
     color: black;
+    color: ${(props) => (props.specialFlag ? "white" : null)};
 
     padding-bottom: 3px;
     cursor: pointer;
