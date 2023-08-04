@@ -115,7 +115,7 @@ const ModalWrapper = styled.section`
     box-shadow: 0px 0px 10px grey;
 
     font-family: serif;
-    z-index: 12;
+    z-index: 999;
 
     > h1 {
         font-size: 23px;

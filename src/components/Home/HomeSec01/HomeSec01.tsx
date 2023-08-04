@@ -154,6 +154,6 @@ const DivideBox = styled.div`
     z-index: 999;
 
     @media (max-width: 1100px) {
-        bottom: -55px;
+        bottom: -1px;
     }
 `;
