@@ -94,6 +94,7 @@ const StyledFeedback = styled.div`
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 999;
 `;
 
 const ModalWrapper = styled.section`
