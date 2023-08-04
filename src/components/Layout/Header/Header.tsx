@@ -132,7 +132,7 @@ export default function PageHeader(props: { currentPath: string }) {
                 {/* hamburger menu icon */}
 
                 <RxHamburgerMenu
-                    color={specialFlag ? "white" : "black"}
+                    color={specialFlag ? "white" : ""}
                     fontSize={25}
                     style={{ marginLeft: "10px", cursor: "pointer" }}
                     onClick={(event) => {

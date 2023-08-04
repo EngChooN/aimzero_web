@@ -92,7 +92,7 @@ export const SkillsData = [
     },
     {
         name: "Redux & Redux Toolkit",
-        desc: "Vanilla JS에서 Redux를 사용함으로 어떻게 동작하는지, React에서 예전에 사용하던 방식은 mapStateToProps 함수를 사용한 방법을 사용한 뒤, Redux Toolkit을 사용함으로 어떻게 발전해 왔는지를 공부했습니다. 또한 Local Storage를 이용한 Redux Persist를 사용하여 새로고침 이후에도 State를 유지시킨 경험이 있습니다.",
+        desc: "Vanilla JS에서 Redux를 사용함으로 어떻게 동작하는지, React에서 예전에 사용하던 방식인 mapStateToProps 함수를 사용한 방법을 사용한 뒤, Redux Toolkit을 사용함으로 어떻게 발전해 왔는지를 공부했습니다. 또한 Local Storage를 이용한 Redux Persist를 사용하여 새로고침 이후에도 State를 유지시킨 경험이 있습니다.",
         img: "/images/landing/skills/redux.png",
         imgStyle: { borderRadius: "10px", width: "70px" },
         proficiency: 1, // 1: 하, 2:중, 3:상

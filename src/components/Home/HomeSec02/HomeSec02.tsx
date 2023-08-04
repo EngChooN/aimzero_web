@@ -158,6 +158,10 @@ const SkillBox = styled.div`
     @media (max-width: 910px) {
         max-width: 100%;
     }
+
+    @media (max-width: 600px) {
+        min-height: fit-content;
+    }
 `;
 
 const ImgWrapper = styled.div`

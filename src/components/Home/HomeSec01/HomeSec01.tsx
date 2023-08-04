@@ -46,21 +46,6 @@ export default function HomeSec01() {
                     ></DivideBox>
                 )}
             </BgWrapper>
-            {/* {!darkMode ? (
-                <DivideBox
-                    style={{
-                        background:
-                            "linear-gradient(to top, rgb(28, 5, 34), transparent)",
-                    }}
-                ></DivideBox>
-            ) : (
-                <DivideBox
-                    style={{
-                        background:
-                            "linear-gradient(to top, #18181b, transparent)",
-                    }}
-                ></DivideBox>
-            )} */}
         </Section>
     );
 }
@@ -166,7 +151,6 @@ const DivideBox = styled.div`
     bottom: 0px;
     width: 100%;
     height: 80px;
-    /* background: linear-gradient(to top, rgb(28, 5, 34), transparent); */
     z-index: 999;
 
     @media (max-width: 1100px) {
