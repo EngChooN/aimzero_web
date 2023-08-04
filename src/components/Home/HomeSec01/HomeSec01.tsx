@@ -30,8 +30,23 @@ export default function HomeSec01() {
                 <img className="bg2" src={"images/landing/bg2.png"} />
                 <img className="bg1" src={"images/landing/bg1.png"} />
                 <img className="star" src={"images/landing/bg4.png"} />
+                {!darkMode ? (
+                    <DivideBox
+                        style={{
+                            background:
+                                "linear-gradient(to top, rgb(28, 5, 34), transparent)",
+                        }}
+                    ></DivideBox>
+                ) : (
+                    <DivideBox
+                        style={{
+                            background:
+                                "linear-gradient(to top, #18181b, transparent)",
+                        }}
+                    ></DivideBox>
+                )}
             </BgWrapper>
-            {!darkMode ? (
+            {/* {!darkMode ? (
                 <DivideBox
                     style={{
                         background:
@@ -45,7 +60,7 @@ export default function HomeSec01() {
                             "linear-gradient(to top, #18181b, transparent)",
                     }}
                 ></DivideBox>
-            )}
+            )} */}
         </Section>
     );
 }
@@ -148,7 +163,7 @@ const BgWrapper = styled.div<{ scrollY: number }>`
 
 const DivideBox = styled.div`
     position: absolute;
-    bottom: -130px;
+    bottom: 0px;
     width: 100%;
     height: 80px;
     /* background: linear-gradient(to top, rgb(28, 5, 34), transparent); */

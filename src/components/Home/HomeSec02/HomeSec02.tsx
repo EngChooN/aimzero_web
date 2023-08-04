@@ -21,6 +21,7 @@ export default function HomeSec02() {
         // AOS 라이브러리 init
         AOS.init();
     }, []);
+
     return (
         <Section>
             <h1 data-aos="zoom-in">🛠️ Skills</h1>
@@ -102,10 +103,22 @@ const Section = styled.section`
 `;
 
 const SkillsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 
     > h2 {
+        max-width: 970px;
+        width: 100%;
+        margin-bottom: 10px;
         font-size: 30px;
+    }
+
+    > h3 {
+        max-width: 970px;
+        width: 100%;
+        margin-top: 0px;
     }
 
     @media (max-width: 600px) {
@@ -136,7 +149,7 @@ const SkillBox = styled.div`
     display: flex;
     max-width: 500px;
     width: 100%;
-    min-height: 200px;
+    min-height: 210px;
     height: fit-content;
     box-shadow: 0px 0px 10px white;
     border-radius: 15px;
