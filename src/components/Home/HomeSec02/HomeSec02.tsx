@@ -1,61 +1,10 @@
+import { SkillsData } from "@/common/data/skillsData";
 import styled from "@emotion/styled";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 export default function HomeSec02() {
-    const SkillsData = [
-        {
-            name: "HTML",
-            desc: "마크업을 통하여 웹페이지를 만들고 구조를 짤 수 있습니다.",
-            img: "/images/landing/skills/html.png",
-            imgStyle: { width: "80px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "CSS",
-            desc: "요청에 맞게 페이지 구조를 잡을 수 있고, 꾸미거나 애니메이션을 적용해 인터렉티브 한 페이지를 만들 수 있습니다.",
-            img: "/images/landing/skills/css.png",
-            imgStyle: { width: "80px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "JavaScript",
-            desc: "데이터의 가공과 DOM을 제어할 수 있으며, 이벤트또는 동적인 처리를 할 수 있습니다.",
-            img: "/images/landing/skills/js.png",
-            imgStyle: { width: "65px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "NextJS",
-            desc: "React 프레임워크인 Next.JS를 사용하여, SSR을 이용한 웹페이지 개발을 할 수 있습니다. 그 외 페이지 기반 라우팅 등등 저에게 가장 익숙한 방식입니다.",
-            img: "/images/landing/skills/next.png",
-            imgStyle: { width: "70px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "React/React-Hooks",
-            desc: "React 16 때 나온 Hooks를 사용하여 개발 할 수 있습니다. 또한 Custom-Hook를 만들어서 복잡하고 반복되는 로직을 재사용이 가능하게 개발하는것을 지향합니다. 함수형 프로그래밍은 개발은 저에게 가장 익숙한 방법입니다.",
-            img: "/images/landing/skills/react.png",
-            imgStyle: { width: "70px" },
-            proficiency: 2, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "Recoil",
-            desc: "Recoil을 이용하여, 전역 State를 관리 할 수 있습니다. 따라서 Props drilling 없이, State를 불러오거나 수정 할 수 있습니다.",
-            img: "/images/landing/skills/recoil.svg",
-            imgStyle: { width: "60px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-        {
-            name: "Emotion",
-            desc: "CSS-in-JS를 사용하여 JavaScript 코드 내에서 CSS를 다룰 수 있고, 컴포넌트에 Props Data를 전달하여 스타일을 동적으로 변경 할 수 있습니다.",
-            img: "/images/landing/skills/emotion.png",
-            imgStyle: { width: "65px" },
-            proficiency: 3, // 1: 하, 2:중, 3:상
-        },
-    ];
-
     const proficiency3 = SkillsData.filter((el) => {
         return el.proficiency === 3;
     });
@@ -74,7 +23,7 @@ export default function HomeSec02() {
     }, []);
     return (
         <Section>
-            <h1>🛠️ Skills</h1>
+            <h1 data-aos="zoom-in">🛠️ Skills</h1>
             <SkillsWrapper>
                 <h2 data-aos="fade-right">🥇 Proficient</h2>
                 <h3 data-aos="fade-right">
@@ -137,20 +86,49 @@ const Section = styled.section`
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    max-width: 1200px;
     width: 100%;
     height: fit-content;
     color: white;
+
+    > h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+
+        @media (max-width: 600px) {
+            font-size: 30px;
+        }
+    }
 `;
 
 const SkillsWrapper = styled.div`
     width: 100%;
+
+    > h2 {
+        font-size: 30px;
+    }
+
+    @media (max-width: 600px) {
+        > h2 {
+            font-size: 25px;
+        }
+
+        > h3 {
+            font-size: 17px;
+        }
+    }
 `;
 
 const SkillsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    /* grid-template-columns: 1fr 1fr 1fr; */
+    margin-bottom: 80px;
+
+    @media (max-width: 910px) {
+        display: flex;
+        flex-direction: column;
+    }
 `;
 
 const SkillBox = styled.div`
@@ -163,6 +141,10 @@ const SkillBox = styled.div`
     box-shadow: 0px 0px 10px white;
     border-radius: 15px;
     transition: 0.3s all ease;
+
+    @media (max-width: 910px) {
+        max-width: 100%;
+    }
 `;
 
 const ImgWrapper = styled.div`
@@ -173,7 +155,6 @@ const ImgWrapper = styled.div`
     padding: 5px;
 
     > img {
-        border-radius: 10px;
         height: 100%;
     }
 `;
@@ -187,7 +168,17 @@ const DescWrapper = styled.div`
 
     > h1 {
         font-size: 20px;
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 910px) {
+        max-width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        > span {
+            font-size: 15px;
+        }
     }
 `;

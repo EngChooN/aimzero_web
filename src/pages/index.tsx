@@ -36,4 +36,5 @@ const StyledHome = styled.div`
     height: fit-content;
     display: flex;
     flex-direction: column;
+    align-items: center;
 `;
