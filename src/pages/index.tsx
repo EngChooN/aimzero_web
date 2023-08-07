@@ -25,7 +25,7 @@ export default function Home() {
         <StyledHome>
             <HomeSec01 />
             <HomeSec02 />
-            <FullPageScroll pageSection={pageSection} />
+            {/* <FullPageScroll pageSection={pageSection} /> */}
         </StyledHome>
     );
 }

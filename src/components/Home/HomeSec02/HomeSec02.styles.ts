@@ -1,0 +1,183 @@
+import styled from "@emotion/styled";
+
+export const Section = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    max-width: 1200px;
+    width: 100%;
+    height: fit-content;
+    color: white;
+
+    > h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 80px;
+
+        @media (max-width: 600px) {
+            font-size: 30px;
+        }
+    }
+`;
+
+export const SkillsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    > h2 {
+        max-width: 970px;
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top: 0px;
+        font-size: 30px;
+    }
+
+    > h3 {
+        max-width: 970px;
+        width: 100%;
+        margin-top: 0px;
+    }
+
+    @media (max-width: 600px) {
+        > h2 {
+            font-size: 25px;
+        }
+
+        > h3 {
+            font-size: 17px;
+        }
+    }
+`;
+
+export const SkillsGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 80px;
+
+    @media (max-width: 910px) {
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+export const SkillBox = styled.div`
+    padding: 10px;
+    display: flex;
+    max-width: 500px;
+    width: 100%;
+    min-height: 210px;
+    height: fit-content;
+    box-shadow: 0px 0px 10px white;
+    border-radius: 15px;
+    transition: 0.3s all ease;
+
+    @media (max-width: 910px) {
+        max-width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        min-height: fit-content;
+    }
+`;
+
+export const ImgWrapper = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    width: 100px;
+    height: 100%;
+    padding: 5px;
+
+    > img {
+        height: 100%;
+    }
+`;
+
+export const DescWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 350px;
+    width: 100%;
+    padding: 5px;
+
+    > h1 {
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 910px) {
+        max-width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        > span {
+            font-size: 15px;
+        }
+    }
+`;
+
+export const IntroWrapper = styled.div`
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px white;
+    max-width: 970px;
+    width: 100%;
+
+    > img {
+        border-radius: 15px;
+        /* max-width: 400px; */
+        width: 40%;
+        height: 100%;
+    }
+
+    @media (max-width: 760px) {
+        flex-direction: column;
+        align-items: center;
+        font-size: 15px;
+
+        > img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+`;
+
+export const IntroDescWrapper = styled.div`
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 60%;
+
+    > ul {
+        padding-left: 20px;
+    }
+
+    @media (max-width: 760px) {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+`;
+
+export const MoreButton = styled.div`
+    width: 100%;
+    height: 50px;
+    box-shadow: 0px 0px 5px white;
+    background-color: black;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    :hover {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+`;
