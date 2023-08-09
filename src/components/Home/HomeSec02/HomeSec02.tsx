@@ -25,7 +25,7 @@ export default function HomeSec02() {
     return (
         <HomeSection02.Section>
             <h1 data-aos="zoom-in">🙋🏻‍♂️ Introduce</h1>
-            <h2>
+            <h2 data-aos="fade-right">
                 🔥 배움의 <span style={{ color: "red" }}>열정</span>이
                 흘러넘치는 <span style={{ color: "yellow" }}>1년차</span> 주니어
                 프론트엔드 개발자
