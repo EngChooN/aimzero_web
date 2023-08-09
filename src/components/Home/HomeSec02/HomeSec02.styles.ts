@@ -19,6 +19,20 @@ export const Section = styled.section`
             font-size: 30px;
         }
     }
+
+    > h2 {
+        max-width: 970px;
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: 0px;
+        font-size: 30px;
+    }
+
+    @media (max-width: 600px) {
+        > h2 {
+            font-size: 25px;
+        }
+    }
 `;
 
 export const SkillsWrapper = styled.div`
@@ -69,7 +83,7 @@ export const SkillBox = styled.div`
     display: flex;
     max-width: 500px;
     width: 100%;
-    min-height: 210px;
+    min-height: 213px;
     height: fit-content;
     box-shadow: 0px 0px 10px white;
     border-radius: 15px;
@@ -126,16 +140,17 @@ export const IntroWrapper = styled.div`
     display: flex;
     justify-content: center;
     border-radius: 15px;
-    padding: 20px;
+    /* padding: 20px; */
     box-shadow: 0px 0px 10px white;
     max-width: 970px;
     width: 100%;
 
     > img {
-        border-radius: 15px;
-        /* max-width: 400px; */
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         width: 40%;
-        height: 100%;
+        /* height: 100%; */
+        object-fit: cover;
     }
 
     @media (max-width: 760px) {
@@ -146,17 +161,23 @@ export const IntroWrapper = styled.div`
         > img {
             width: 100%;
             margin-bottom: 20px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 0px;
         }
     }
 `;
 
 export const IntroDescWrapper = styled.div`
-    padding-left: 20px;
-    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
     width: 60%;
 
-    > ul {
-        padding-left: 20px;
+    > div {
+        > ul {
+            padding-left: 20px;
+        }
     }
 
     @media (max-width: 760px) {
@@ -167,9 +188,11 @@ export const IntroDescWrapper = styled.div`
 `;
 
 export const MoreButton = styled.div`
+    margin-top: 20px;
     width: 100%;
     height: 50px;
-    box-shadow: 0px 0px 5px white;
+    /* box-shadow: 0px 0px 3px white; */
+    border: 1px solid grey;
     background-color: black;
     border-radius: 15px;
     display: flex;
@@ -178,6 +201,6 @@ export const MoreButton = styled.div`
     cursor: pointer;
 
     :hover {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.4);
     }
 `;
