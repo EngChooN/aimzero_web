@@ -182,8 +182,8 @@ export const IntroDescWrapper = styled.div`
 
     @media (max-width: 760px) {
         width: 100%;
-        padding-left: 0px;
-        padding-right: 0px;
+        /* padding-left: 0px;
+        padding-right: 0px; */
     }
 `;
 
