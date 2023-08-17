@@ -35,8 +35,12 @@ export const useBoardWriter = (writer: string) => {
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
 
-    if (writer === userInfo?.email.split("@")[0] && loginStatus === true) {
-        return true;
+    if (loginState && userInfo) {
+        if (writer === userInfo?.email.split("@")[0] && loginStatus === true) {
+            return true;
+        } else {
+            return false;
+        }
     } else {
         return false;
     }

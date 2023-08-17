@@ -91,7 +91,7 @@ export default function Photo() {
     async function fetchImages() {
         const photo = collection(getFirestore(firebaseApp), "photo");
         const result = await getDocs(
-            query(photo, orderBy("timestamp", "desc"), limit(10))
+            query(photo, orderBy("timestamp", "desc"), limit(11))
         );
 
         const fetchData = result.docs.map((el) => el.data());
