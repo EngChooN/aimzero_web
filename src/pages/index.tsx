@@ -4,6 +4,8 @@ import HomeSec02 from "@/components/Home/HomeSec02/HomeSec02";
 import FullPageScroll, {
     FullPageElement,
 } from "@/components/commons/FullPageScroll/FullPageScroll";
+import Splash from "@/components/Home/Splash/Splash";
+import { useState } from "react";
 
 export default function Home() {
     const pageSection = [
@@ -22,11 +24,14 @@ export default function Home() {
     ];
 
     return (
-        <StyledHome>
-            <HomeSec01 />
-            <HomeSec02 />
-            {/* <FullPageScroll pageSection={pageSection} /> */}
-        </StyledHome>
+        <>
+            <Splash />
+            <StyledHome>
+                <HomeSec01 />
+                <HomeSec02 />
+                {/* <FullPageScroll pageSection={pageSection} /> */}
+            </StyledHome>
+        </>
     );
 }
 

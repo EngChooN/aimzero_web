@@ -15,7 +15,9 @@ export default function AboutPage() {
         <StyledAboutPage>
             <ProfileBox>
                 <h1>
-                    🔥 배움의 열정이 흘러넘치는 1년차 주니어 프론트엔드 개발자{" "}
+                    🔥 배움의 <span style={{ color: "red" }}>열정</span>이
+                    흘러넘치는 <span style={{ color: "#ced500" }}>1년차</span>{" "}
+                    주니어 프론트엔드 개발자{" "}
                     <span style={{ color: "#0fae00" }}>조준영</span> 입니다!
                 </h1>
                 <MainSec>
