@@ -53,6 +53,7 @@
         "@storybook/react": "^7.0.20",
         "@storybook/testing-library": "^0.0.14-next.2",
         "@types/aos": "^3.0.4",
+        "@types/gtag.js": "^0.0.13",
         "@types/lodash": "^4.14.194",
         "@types/node": "^18.11.18",
         "@types/react": "^18.0.27",

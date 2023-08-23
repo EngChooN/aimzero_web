@@ -11,12 +11,10 @@ export default function Splash() {
 
     useEffect(() => {
         setTimeout(() => {
-            console.log("애니메이션페이드");
             setAnimationFlag(true);
             setTimeout(() => {
                 setSplashFlag(false);
-                console.log("스플래시 스크린 꺼짐");
-            }, 1000);
+            }, 500);
         }, 2000);
     }, []);
     return (
@@ -62,7 +60,7 @@ const StyledSplash = styled.section<{ isFadeOut: boolean }>`
     ${(props) =>
         props.isFadeOut
             ? css`
-                  animation: ${fadeOut} 1s ease-in-out;
+                  animation: ${fadeOut} 0.5s ease-in-out;
               `
             : null};
     z-index: 999999;

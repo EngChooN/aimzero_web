@@ -267,6 +267,7 @@ export default function PageHeader(props: { currentPath: string }) {
 }
 
 const Wrapper = styled.section<{ specialFlag: boolean }>`
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,6 +283,8 @@ const Wrapper = styled.section<{ specialFlag: boolean }>`
         flex-direction: column;
         height: auto;
     }
+
+    z-index: 1000;
 `;
 
 const Menu = styled.div`

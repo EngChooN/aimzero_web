@@ -24,7 +24,7 @@ export default function Layout(props: { children: ReactNode }) {
     const [currentPath, setCurrentPath] = useState("");
     const router = useRouter();
 
-    const footerBlockPath = ["/visit+log", "/photo", "/"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
+    const footerBlockPath = ["/visit+log", "/photo"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
     const [footerFlag, setFooterFlag] = useState(true);
 
     useEffect(() => {
@@ -247,4 +247,9 @@ const Content = styled.section`
     background-color: white;
     display: flex;
     justify-content: center;
+
+    padding-top: 130px;
+    @media (max-width: 1100px) {
+        padding-top: 54px;
+    }
 `;
