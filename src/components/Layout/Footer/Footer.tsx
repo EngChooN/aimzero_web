@@ -6,12 +6,14 @@ import { FaBlogger, FaGithub } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
 import { useRecoilState } from "recoil";
 
-export default function PageFooter() {
+export default function PageFooter(props: { specialColor?: string }) {
+    const { specialColor } = props;
     const [darkMode] = useRecoilState(darkModeState);
+
     return (
-        <Wrapper isDark={darkMode}>
+        <Wrapper isDark={darkMode} specialColor={specialColor}>
             <ContentsWrapper>
-                <Logo>
+                <Logo specialColor={specialColor}>
                     <Link href="/">AimZero</Link>
                 </Logo>
                 <IconWrapper>
@@ -40,12 +42,17 @@ export default function PageFooter() {
     );
 }
 
-const Wrapper = styled.section<{ isDark: boolean }>`
+const Wrapper = styled.section<{
+    isDark: boolean;
+    specialColor: string | undefined;
+}>`
     width: 100%;
     height: 170px;
     border-top: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     background-color: #ededed;
+    ${(props) => props.specialColor && "background-color: rgb(28, 5, 34);"}
     color: black;
+    ${(props) => props.specialColor && "color: white;"}
 
     display: flex;
     flex-direction: column;
@@ -76,11 +83,12 @@ const Desc = styled.span`
     font-family: Garamond;
 `;
 
-const Logo = styled.div`
+const Logo = styled.div<{ specialColor: string | undefined }>`
     font-family: Pacifico;
     font-weight: 200;
     font-size: 30px;
     color: black;
+    ${(props) => props.specialColor && "color: white;"}
 
     cursor: pointer;
 `;

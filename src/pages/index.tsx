@@ -5,7 +5,7 @@ import FullPageScroll, {
     FullPageElement,
 } from "@/components/commons/FullPageScroll/FullPageScroll";
 import Splash from "@/components/Home/Splash/Splash";
-import { useState } from "react";
+import Footer from "@/components/Layout/Footer/Footer";
 
 export default function Home() {
     const pageSection = [
@@ -30,6 +30,7 @@ export default function Home() {
                 <HomeSec01 />
                 <HomeSec02 />
                 {/* <FullPageScroll pageSection={pageSection} /> */}
+                <Footer specialColor={"rgb(28, 5, 34)"} />
             </StyledHome>
         </>
     );

@@ -8,6 +8,7 @@ import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import { useOutSideRef } from "@/hooks/commons";
+import Head from "next/head";
 
 export default function PageHeader(props: { currentPath: string }) {
     const { currentPath } = props;
@@ -54,220 +55,233 @@ export default function PageHeader(props: { currentPath: string }) {
     });
 
     return (
-        <Wrapper specialFlag={specialFlag}>
-            {/* pc heder */}
-            <Menu>
-                {/* resume */}
-                <List
-                    currentUrl={crrUrl === "/resume"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link href="/resume">{headerList[0]}</Link>
-                    <div></div>
-                </List>
-                {/* skills */}
-                <List
-                    currentUrl={crrUrl === "/project"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link href="/project">{headerList[1]}</Link>
-                    <div></div>
-                </List>
-                {/* project */}
-                <List
-                    currentUrl={crrUrl === "/blog"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link href="/blog">{headerList[2]}</Link>
-                    <div></div>
-                </List>
-                {/* home */}
-                <Logo specialFlag={specialFlag}>
-                    <Link href={"/"}>AimZero</Link>
-                </Logo>
-                {/* photo */}
-                <List
-                    currentUrl={crrUrl === "/photo"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link href="/photo">
-                        {headerList[3]}
-                        <div></div>
-                    </Link>
-                </List>
-                {/* visit log */}
-                <List
-                    currentUrl={crrUrl === "/visit+log"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link href="/visit+log">{headerList[4]}</Link>
-                    <div></div>
-                </List>
-                {/* login */}
-                <List
-                    currentUrl={crrUrl === "/login"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    {loginStatus == false ? (
-                        <Link href="/login">
-                            login_<div></div>
-                        </Link>
-                    ) : (
-                        // logout
-                        <Link href={""} onClick={logOut}>
-                            logout<div></div>
-                        </Link>
-                    )}
-                </List>
-            </Menu>
-
-            {/* mobile header */}
-            <MobileMenu specialFlag={specialFlag}>
-                {/* hamburger menu icon */}
-
-                <RxHamburgerMenu
-                    color={specialFlag ? "white" : ""}
-                    fontSize={25}
-                    style={{ marginLeft: "10px", cursor: "pointer" }}
-                    onClick={(event) => {
-                        onClickMenu();
-                        event.stopPropagation();
-                    }}
-                />
-
-                <Logo specialFlag={specialFlag}>
-                    <Link
-                        href={"/"}
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
+        <>
+            <Head>
+                <style>
+                    {`
+                        body {
+                            background: ${specialFlag && "rgb(28, 5, 34)"};
+                            background: ${darkMode && "#18181b"};
+                        }
+                    `}
+                </style>
+            </Head>
+            <Wrapper specialFlag={specialFlag}>
+                {/* pc heder */}
+                <Menu>
+                    {/* resume */}
+                    <List
+                        currentUrl={crrUrl === "/resume"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
                     >
-                        AimZero
-                    </Link>
-                </Logo>
-                {/* login */}
-                <List
-                    currentUrl={crrUrl === "/login"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                    style={{ marginRight: "10px" }}
-                >
-                    {loginStatus == false ? (
+                        <Link href="/resume">{headerList[0]}</Link>
+                        <div></div>
+                    </List>
+                    {/* skills */}
+                    <List
+                        currentUrl={crrUrl === "/project"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link href="/project">{headerList[1]}</Link>
+                        <div></div>
+                    </List>
+                    {/* project */}
+                    <List
+                        currentUrl={crrUrl === "/blog"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link href="/blog">{headerList[2]}</Link>
+                        <div></div>
+                    </List>
+                    {/* home */}
+                    <Logo specialFlag={specialFlag}>
+                        <Link href={"/"}>AimZero</Link>
+                    </Logo>
+                    {/* photo */}
+                    <List
+                        currentUrl={crrUrl === "/photo"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link href="/photo">
+                            {headerList[3]}
+                            <div></div>
+                        </Link>
+                    </List>
+                    {/* visit log */}
+                    <List
+                        currentUrl={crrUrl === "/visit+log"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link href="/visit+log">{headerList[4]}</Link>
+                        <div></div>
+                    </List>
+                    {/* login */}
+                    <List
+                        currentUrl={crrUrl === "/login"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        {loginStatus == false ? (
+                            <Link href="/login">
+                                login_<div></div>
+                            </Link>
+                        ) : (
+                            // logout
+                            <Link href={""} onClick={logOut}>
+                                logout<div></div>
+                            </Link>
+                        )}
+                    </List>
+                </Menu>
+
+                {/* mobile header */}
+                <MobileMenu specialFlag={specialFlag}>
+                    {/* hamburger menu icon */}
+
+                    <RxHamburgerMenu
+                        color={specialFlag ? "white" : ""}
+                        fontSize={25}
+                        style={{ marginLeft: "10px", cursor: "pointer" }}
+                        onClick={(event) => {
+                            onClickMenu();
+                            event.stopPropagation();
+                        }}
+                    />
+
+                    <Logo specialFlag={specialFlag}>
                         <Link
-                            href="/login"
+                            href={"/"}
                             onClick={() => {
                                 setMenuFlag(true);
                             }}
                         >
-                            login_<div></div>
+                            AimZero
                         </Link>
-                    ) : (
-                        // logout
-                        <Link href={""} onClick={logOut}>
-                            logout<div></div>
+                    </Logo>
+                    {/* login */}
+                    <List
+                        currentUrl={crrUrl === "/login"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                        style={{ marginRight: "10px" }}
+                    >
+                        {loginStatus == false ? (
+                            <Link
+                                href="/login"
+                                onClick={() => {
+                                    setMenuFlag(true);
+                                }}
+                            >
+                                login_<div></div>
+                            </Link>
+                        ) : (
+                            // logout
+                            <Link href={""} onClick={logOut}>
+                                logout<div></div>
+                            </Link>
+                        )}
+                    </List>
+                </MobileMenu>
+                <DropDown
+                    menuFlag={menuFlag}
+                    isDark={darkMode}
+                    ref={dropdownRef}
+                    specialFlag={specialFlag}
+                >
+                    {/* resume */}
+                    <List
+                        currentUrl={crrUrl === "/resume"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link
+                            href="/resume"
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            {headerList[0]}
                         </Link>
-                    )}
-                </List>
-            </MobileMenu>
-            <DropDown
-                menuFlag={menuFlag}
-                isDark={darkMode}
-                ref={dropdownRef}
-                specialFlag={specialFlag}
-            >
-                {/* resume */}
-                <List
-                    currentUrl={crrUrl === "/resume"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link
-                        href="/resume"
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
-                    >
-                        {headerList[0]}
-                    </Link>
-                    <div></div>
-                </List>
-                {/* skills */}
-                <List
-                    currentUrl={crrUrl === "/project"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link
-                        href="/project"
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
-                    >
-                        {headerList[1]}
-                    </Link>
-                    <div></div>
-                </List>
-                {/* project */}
-                <List
-                    currentUrl={crrUrl === "/blog"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link
-                        href="/blog"
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
-                    >
-                        {headerList[2]}
-                    </Link>
-                    <div></div>
-                </List>
-                {/* photo */}
-                <List
-                    currentUrl={crrUrl === "/photo"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link
-                        href="/photo"
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
-                    >
-                        {headerList[3]}
                         <div></div>
-                    </Link>
-                </List>
-                {/* visit log */}
-                <List
-                    currentUrl={crrUrl === "/visit+log"}
-                    isDark={darkMode}
-                    specialFlag={specialFlag}
-                >
-                    <Link
-                        href="/visit+log"
-                        onClick={() => {
-                            setMenuFlag(true);
-                        }}
+                    </List>
+                    {/* skills */}
+                    <List
+                        currentUrl={crrUrl === "/project"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
                     >
-                        {headerList[4]}
-                    </Link>
-                    <div></div>
-                </List>
-            </DropDown>
-        </Wrapper>
+                        <Link
+                            href="/project"
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            {headerList[1]}
+                        </Link>
+                        <div></div>
+                    </List>
+                    {/* project */}
+                    <List
+                        currentUrl={crrUrl === "/blog"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link
+                            href="/blog"
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            {headerList[2]}
+                        </Link>
+                        <div></div>
+                    </List>
+                    {/* photo */}
+                    <List
+                        currentUrl={crrUrl === "/photo"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link
+                            href="/photo"
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            {headerList[3]}
+                            <div></div>
+                        </Link>
+                    </List>
+                    {/* visit log */}
+                    <List
+                        currentUrl={crrUrl === "/visit+log"}
+                        isDark={darkMode}
+                        specialFlag={specialFlag}
+                    >
+                        <Link
+                            href="/visit+log"
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            {headerList[4]}
+                        </Link>
+                        <div></div>
+                    </List>
+                </DropDown>
+            </Wrapper>
+        </>
     );
 }
 
 const Wrapper = styled.section<{ specialFlag: boolean }>`
     position: fixed;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;

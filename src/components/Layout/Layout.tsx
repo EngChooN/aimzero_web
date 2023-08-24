@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Footer from "./Footer/Footer";
-import Header from "./Header/Header";
+import Footer from "@/components/Layout/Footer/Footer";
+import Header from "@/components/Layout/Header/Header";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 // firebase
@@ -24,7 +24,7 @@ export default function Layout(props: { children: ReactNode }) {
     const [currentPath, setCurrentPath] = useState("");
     const router = useRouter();
 
-    const footerBlockPath = ["/visit+log", "/photo"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
+    const footerBlockPath = ["/visit+log", "/photo", "/"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
     const [footerFlag, setFooterFlag] = useState(true);
 
     useEffect(() => {
@@ -248,8 +248,8 @@ const Content = styled.section`
     display: flex;
     justify-content: center;
 
-    padding-top: 130px;
+    margin-top: 130px;
     @media (max-width: 1100px) {
-        padding-top: 54px;
+        margin-top: 54px;
     }
 `;

@@ -46,7 +46,7 @@ const fadeOut = keyframes`
 `;
 
 const StyledSplash = styled.section<{ isFadeOut: boolean }>`
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
 
@@ -56,6 +56,8 @@ const StyledSplash = styled.section<{ isFadeOut: boolean }>`
 
     width: 100vw;
     height: 100vh;
+
+    overflow: hidden;
 
     ${(props) =>
         props.isFadeOut
