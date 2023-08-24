@@ -1,5 +1,4 @@
 import { darkModeState } from "@/common/Recoil/darkModeState";
-import DarkModeSwitch from "@/components/commons/DarkModeSwitch/DarkModeSwitch";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { FaBlogger, FaGithub } from "react-icons/fa";

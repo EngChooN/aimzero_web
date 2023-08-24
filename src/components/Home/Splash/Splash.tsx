@@ -24,11 +24,18 @@ export default function Splash() {
                     style={{ backgroundColor: "white" }}
                     isFadeOut={animationFlag === true}
                 >
-                    <Image
+                    {/* <Image
                         src={"/images/landing/animation_hi.gif"}
                         alt="splash"
                         width={200}
                         height={200}
+                    /> */}
+                    <video
+                        src={"/images/landing/animation_rocket.mp4"}
+                        width={400}
+                        height={400}
+                        muted
+                        autoPlay
                     />
                 </StyledSplash>
             ) : null}
