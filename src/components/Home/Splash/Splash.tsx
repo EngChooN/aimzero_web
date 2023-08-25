@@ -36,6 +36,8 @@ export default function Splash() {
                         height={400}
                         muted
                         autoPlay
+                        loop
+                        playsInline
                     />
                 </StyledSplash>
             ) : null}
