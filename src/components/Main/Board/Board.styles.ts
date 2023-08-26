@@ -3,10 +3,11 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
-    height: calc(100vh - 64.5px - 298px);
+    /* height: fit-content;
+    min-height: calc(100vh - 64.5px - 298px);
     @media (max-width: 1100px) {
-        height: calc(100vh - 300px);
-    }
+        min-height: calc(100vh - 300px);
+    } */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -102,6 +103,7 @@ export const BoardNumber = styled.div`
 `;
 
 export const BoardTitle = styled.div`
+    text-align: center;
     width: 35%;
     font-family: serif;
 
@@ -141,8 +143,9 @@ export const BoardBottomBox = styled.div`
 
 export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     position: absolute;
-    bottom: -30px;
-    right: 10px;
+    margin-right: 10px;
+    top: 0px;
+    right: 0px;
 
     height: 40px;
     background: none;
@@ -150,6 +153,7 @@ export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     border: none;
     border: ${(props) =>
         !props.isDark ? "1px solid black" : "1px solid grey"};
+    border-radius: 20px;
 
     padding: 25px;
     padding-top: 15px;

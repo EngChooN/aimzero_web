@@ -1,4 +1,4 @@
-import * as Home from "./Main.styles";
+import styled from "@emotion/styled";
 // atnd
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
@@ -28,8 +28,20 @@ export default function Main() {
     ];
 
     return (
-        <Home.Wrapper>
+        <Wrapper>
             <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-        </Home.Wrapper>
+        </Wrapper>
     );
 }
+
+export const Wrapper = styled.section`
+    max-width: 1200px;
+    width: 100%;
+
+    height: fit-content;
+    min-height: calc(100vh - 300px);
+
+    @media (max-width: 1100px) {
+        min-height: calc(100vh - 224px);
+    }
+`;

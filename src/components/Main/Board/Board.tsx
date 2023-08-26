@@ -19,6 +19,8 @@ import { loginState } from "../../../common/Recoil/loginState";
 // antd
 import { Skeleton } from "antd";
 import { darkModeState } from "@/common/Recoil/darkModeState";
+import SearchBoardInput from "../SearchBoardInput";
+import { useBoardSearch } from "@/hooks/commons";
 
 export default function Board(props: { menu: string }) {
     const { menu } = props;
@@ -34,6 +36,11 @@ export default function Board(props: { menu: string }) {
     const [boardData, setBoardData] = useState<DocumentData[]>([]); // list data per page (board)
     const [limit] = useState(5); // list data length per page
     const [page, setPage] = useState(1); // page value (default = 1)
+    // search board
+    const [searchKeyword, setSearchKeyword, searchResult] =
+        useBoardSearch(menu);
+
+    console.log("searchResult", searchResult);
 
     async function fetchBoards() {
         const board = collection(getFirestore(firebaseApp), menu);
@@ -47,6 +54,7 @@ export default function Board(props: { menu: string }) {
         setBoardData(fetchData.slice((page - 1) * limit, page * limit));
         setIsLoading(false);
     }
+
     // first time fetch
     useEffect(() => {
         fetchBoards();
@@ -78,51 +86,8 @@ export default function Board(props: { menu: string }) {
 
     return (
         <Boards.Wrapper>
-            <div style={{ minHeight: "360px" }}>
-                <Boards.BoardListBox>
-                    <Boards.BoardInfo isDark={darkMode}>
-                        <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
-                        <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
-                        <Boards.NameInfo>name</Boards.NameInfo>
-                        <Boards.BoardDateInfo>date</Boards.BoardDateInfo>
-                    </Boards.BoardInfo>
-                </Boards.BoardListBox>
-                <Boards.BoardListBox>
-                    {isLoading && <>{skeleton()}</>}
-                    {boardData.map((el, index) => (
-                        <Boards.Board
-                            key={index}
-                            id={el.id}
-                            onClick={moveToDetail}
-                            isDark={darkMode}
-                        >
-                            <Boards.BoardNumber>
-                                {boardListData.length -
-                                    (page - 1) * limit -
-                                    index}
-                            </Boards.BoardNumber>
-                            <Boards.BoardTitle>{el.title}</Boards.BoardTitle>
-                            <Boards.Name>{el.name}</Boards.Name>
-                            <Boards.BoardDate>
-                                {
-                                    el.timestamp
-                                        .toDate()
-                                        .toISOString()
-                                        .split("T")[0]
-                                }
-                            </Boards.BoardDate>
-                        </Boards.Board>
-                    ))}
-                </Boards.BoardListBox>
-            </div>
-            {/* pagenation */}
-            <Boards.BoardBottomBox>
-                <PaginationBtn
-                    listLength={boardListData.length}
-                    limit={limit}
-                    page={page}
-                    setPage={setPage}
-                />
+            <div style={{ position: "relative" }}>
+                <SearchBoardInput setSearchKeyword={setSearchKeyword} />
                 {/* write button blog */}
                 {menu == "blog" &&
                 userInfo?.email == "aimzero9303@gmail.com" &&
@@ -162,6 +127,83 @@ export default function Board(props: { menu: string }) {
                         write
                     </Boards.BoardWriteBtn>
                 ) : null}
+            </div>
+            <div style={{ minHeight: "360px" }}>
+                <Boards.BoardListBox>
+                    <Boards.BoardInfo isDark={darkMode}>
+                        <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
+                        <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
+                        <Boards.NameInfo>name</Boards.NameInfo>
+                        <Boards.BoardDateInfo>date</Boards.BoardDateInfo>
+                    </Boards.BoardInfo>
+                </Boards.BoardListBox>
+                <Boards.BoardListBox>
+                    {isLoading && <>{skeleton()}</>}
+                    {!searchKeyword &&
+                        boardData.map((el, index) => (
+                            <Boards.Board
+                                key={index}
+                                id={el.id}
+                                onClick={moveToDetail}
+                                isDark={darkMode}
+                            >
+                                <Boards.BoardNumber>
+                                    {boardListData.length -
+                                        (page - 1) * limit -
+                                        index}
+                                </Boards.BoardNumber>
+                                <Boards.BoardTitle>
+                                    {el.title}
+                                </Boards.BoardTitle>
+                                <Boards.Name>{el.name}</Boards.Name>
+                                <Boards.BoardDate>
+                                    {
+                                        el.timestamp
+                                            .toDate()
+                                            .toISOString()
+                                            .split("T")[0]
+                                    }
+                                </Boards.BoardDate>
+                            </Boards.Board>
+                        ))}
+
+                    {searchKeyword &&
+                        searchResult.map((el, index) => (
+                            <Boards.Board
+                                key={index}
+                                id={el.id}
+                                onClick={moveToDetail}
+                                isDark={darkMode}
+                            >
+                                <Boards.BoardNumber>
+                                    {searchResult.length - index}
+                                </Boards.BoardNumber>
+                                <Boards.BoardTitle>
+                                    {el.title}
+                                </Boards.BoardTitle>
+                                <Boards.Name>{el.name}</Boards.Name>
+                                <Boards.BoardDate>
+                                    {
+                                        el.timestamp
+                                            .toDate()
+                                            .toISOString()
+                                            .split("T")[0]
+                                    }
+                                </Boards.BoardDate>
+                            </Boards.Board>
+                        ))}
+                </Boards.BoardListBox>
+            </div>
+            {/* pagenation */}
+            <Boards.BoardBottomBox>
+                {!searchKeyword && (
+                    <PaginationBtn
+                        listLength={boardListData.length}
+                        limit={limit}
+                        page={page}
+                        setPage={setPage}
+                    />
+                )}
             </Boards.BoardBottomBox>
         </Boards.Wrapper>
     );

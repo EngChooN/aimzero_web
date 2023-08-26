@@ -24,6 +24,7 @@ const Wrapper = styled.button<{ backgroundColor: string; primary: boolean }>`
     background-color: ${(props) => props.backgroundColor};
     border: unset;
     border: 1px solid black;
+    border-radius: 20px;
     padding: 25px;
     padding-top: 15px;
     padding-bottom: 15px;

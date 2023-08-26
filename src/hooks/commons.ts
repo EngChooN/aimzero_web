@@ -1,6 +1,16 @@
 import { loginState } from "@/common/Recoil/loginState";
 import { userInfoState } from "@/common/Recoil/userInfoState";
 import { Editor } from "@toast-ui/react-editor";
+import { firebaseDb } from "firebase.config";
+import {
+    DocumentData,
+    collection,
+    endAt,
+    getDocs,
+    orderBy,
+    query,
+    startAt,
+} from "firebase/firestore";
 import {
     MutableRefObject,
     RefObject,
@@ -109,3 +119,24 @@ export function useOutSideRef(
 
     return ref as MutableRefObject<HTMLElement | null>;
 }
+
+export const useBoardSearch = (menu: string) => {
+    const [searchKeyword, setSearchKeyword] = useState("");
+    const [searchResult, setSearchResult] = useState<DocumentData[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            const q = query(
+                collection(firebaseDb, menu), // 포스트 컬렉션
+                orderBy("title"), // 제목 정렬
+                startAt(searchKeyword),
+                endAt(searchKeyword + "\uf8ff")
+            );
+            const resSnap = await getDocs(q);
+            const searchData = resSnap.docs.map((doc) => doc.data());
+            setSearchResult(searchData);
+        })();
+    }, [searchKeyword]);
+
+    return [searchKeyword, setSearchKeyword, searchResult] as const;
+};
