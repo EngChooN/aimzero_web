@@ -39,7 +39,7 @@ export default function BoardViewer(props: { boardData: DocumentData }) {
 
     const deleteBoard = (id: string) => {
         deleteDoc(doc(firebaseDb, boardType, id));
-        router.push("/");
+        router.push("/blog");
     };
     return (
         <Wrapper>
