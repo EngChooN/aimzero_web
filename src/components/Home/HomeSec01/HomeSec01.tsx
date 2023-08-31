@@ -90,6 +90,9 @@ const BgWrapper = styled.div<{ scrollY: number }>`
     background: linear-gradient(to top, rgb(117, 151, 222), transparent);
 
     > h1 {
+        display: flex;
+        justify-content: center;
+        width: 100%;
         font-size: 5rem;
         color: white;
         position: absolute;
