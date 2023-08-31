@@ -19,6 +19,8 @@ import {
     useState,
 } from "react";
 import { useRecoilState } from "recoil";
+// lodash
+import _ from "lodash";
 
 export const useEditor = (initialValue: string) => {
     const [editorContent, setEditorContent] = useState(initialValue);
@@ -125,7 +127,7 @@ export const useBoardSearch = (menu: string) => {
     const [searchResult, setSearchResult] = useState<DocumentData[]>([]);
 
     useEffect(() => {
-        (async () => {
+        const searchBoardFunc = _.debounce(async () => {
             const q = query(
                 collection(firebaseDb, menu), // 포스트 컬렉션
                 orderBy("title"), // 제목 정렬
@@ -135,7 +137,8 @@ export const useBoardSearch = (menu: string) => {
             const resSnap = await getDocs(q);
             const searchData = resSnap.docs.map((doc) => doc.data());
             setSearchResult(searchData);
-        })();
+        }, 1000);
+        searchBoardFunc();
     }, [searchKeyword]);
 
     return [searchKeyword, setSearchKeyword, searchResult] as const;
