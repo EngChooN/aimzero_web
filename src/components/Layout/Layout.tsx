@@ -26,6 +26,7 @@ export default function Layout(props: { children: ReactNode }) {
 
     const footerBlockPath = ["/visit+log", "/photo", "/"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
     const [footerFlag, setFooterFlag] = useState(true);
+    const floatingBlockPath = ["/visit+log"]; // 플로팅 버튼을 업애고 싶은 path를 배열에 넣는다.
 
     useEffect(() => {
         // login check func
@@ -104,7 +105,7 @@ export default function Layout(props: { children: ReactNode }) {
                 <Content>{children}</Content>
                 {footerFlag == true ? <Footer /> : null}
                 {/* <Feedback /> */}
-                <FloatingButton />
+                {!floatingBlockPath.includes(currentPath) && <FloatingButton />}
             </StyledLayout>
         </>
     );
