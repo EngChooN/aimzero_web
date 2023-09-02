@@ -34,7 +34,8 @@ export default function PhotoUI(props: PhotoType) {
 
         if (windowWidth <= 600) {
             width = "200px";
-        } else if (windowWidth <= 460) {
+        }
+        if (windowWidth <= 460) {
             width = "160px";
         }
 
