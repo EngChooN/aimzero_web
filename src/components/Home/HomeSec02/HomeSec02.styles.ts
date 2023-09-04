@@ -81,9 +81,10 @@ export const SkillsGrid = styled.div`
 export const SkillBox = styled.div`
     padding: 10px;
     display: flex;
+    align-items: center;
     max-width: 500px;
     width: 100%;
-    min-height: 213px;
+    min-height: 215px;
     height: fit-content;
     box-shadow: 0px 0px 10px white;
     border-radius: 15px;

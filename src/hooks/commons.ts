@@ -143,3 +143,38 @@ export const useBoardSearch = (menu: string) => {
 
     return [searchKeyword, setSearchKeyword, searchResult] as const;
 };
+
+export const useScrollDirection = (
+    downFunc: () => void,
+    upFunc: () => void
+) => {
+    useEffect(() => {
+        // 기준이 되는 상단 스크롤 위치
+        let lastScrollTop = 0;
+
+        const headerVisibleFunc = () => {
+            // 현재 스크롤 위치 가져오기
+            const currentScrollTop = window.scrollY;
+
+            // 스크롤 방향 확인
+            if (currentScrollTop > lastScrollTop) {
+                // 아랫 방향 스크롤
+                downFunc();
+            } else {
+                // 윗 방향 스크롤
+                upFunc();
+            }
+
+            // 기준 스크롤 위치 업데이트
+            lastScrollTop = currentScrollTop;
+        };
+
+        // 스크롤 이벤트 핸들러 등록
+        window.addEventListener("scroll", headerVisibleFunc);
+
+        // 스크롤 이벤트 핸들러 제거
+        return () => {
+            window.removeEventListener("scroll", headerVisibleFunc);
+        };
+    }, []);
+};
