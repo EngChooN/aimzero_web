@@ -149,15 +149,7 @@ export default function PhotoUI(props: PhotoType) {
                             src={el.imgUrl}
                             alt="daily"
                             loading="lazy"
-                            // placeholder={
-                            //     <Image
-                            //         preview={false}
-                            //         src={`${el.imgUrl}?x-oss-process=image/blur,r_50,s_50/quality,q_1/resize,m_mfit,h_200,w_200`}
-                            //         width={"100%"}
-                            //         height={"100%"}
-
-                            //     />
-                            // }
+                            style={{ objectFit: "cover" }}
                         />
                         {userInfo?.email === "aimzero9303@gmail.com" ? (
                             <AiFillDelete
