@@ -151,7 +151,7 @@ export const IntroWrapper = styled.div`
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
         width: 40% !important;
-        /* height: 100%; */
+        height: auto !important;
         object-fit: cover;
     }
 
@@ -161,7 +161,7 @@ export const IntroWrapper = styled.div`
         font-size: 15px;
 
         > img {
-            width: 100%;
+            width: 100% !important;
             margin-bottom: 20px;
             border-top-right-radius: 8px;
             border-bottom-left-radius: 0px;
