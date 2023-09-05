@@ -57,7 +57,10 @@ export default function PhotoUI(props: PhotoType) {
         <Photos.Wrapper>
             <Photos.TopSection>
                 <Photos.ProfileBox>
-                    <Photos.ProfileImg src={"/images/photo/profile.GIF"} />
+                    <Photos.ProfileImg
+                        alt="profile"
+                        src={"/images/photo/profile.GIF"}
+                    />
                     <Photos.InfoBox>
                         <Photos.Name>Joonyoung Cho</Photos.Name>
                         <Photos.Posts></Photos.Posts>
@@ -140,7 +143,22 @@ export default function PhotoUI(props: PhotoType) {
                 ) : null}
                 {images?.map((el: DocumentData, index: number) => (
                     <Photos.ImgBox key={index}>
-                        <Image width={"100%"} height={"100%"} src={el.imgUrl} />
+                        <Image
+                            width={"100%"}
+                            height={"100%"}
+                            src={el.imgUrl}
+                            alt="daily"
+                            loading="lazy"
+                            // placeholder={
+                            //     <Image
+                            //         preview={false}
+                            //         src={`${el.imgUrl}?x-oss-process=image/blur,r_50,s_50/quality,q_1/resize,m_mfit,h_200,w_200`}
+                            //         width={"100%"}
+                            //         height={"100%"}
+
+                            //     />
+                            // }
+                        />
                         {userInfo?.email === "aimzero9303@gmail.com" ? (
                             <AiFillDelete
                                 fontSize={30}

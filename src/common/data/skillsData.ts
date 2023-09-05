@@ -22,14 +22,14 @@ export const SkillsData = [
     },
     {
         name: "NextJS",
-        desc: "React 프레임워크인 Next.JS를 사용하여, SSR을 이용한 웹페이지 개발을 할 수 있습니다. 그 외 페이지 기반 라우팅 등등 저에게 가장 익숙한 방식입니다.",
+        desc: "React의 프레임워크인 Next.JS를 사용하여, SSR을 이용한 웹페이지 개발을 할 수 있습니다. 그 외 페이지 기반 라우팅 등등 저에게 가장 익숙한 방식입니다.",
         img: "/images/landing/skills/next.png",
         imgStyle: { width: "70px" },
         proficiency: 3, // 1: 하, 2:중, 3:상
     },
     {
         name: "React/React-Hooks",
-        desc: "React 16 때 나온 Hooks를 사용하여 개발 할 수 있습니다. 또한 Custom-Hook를 만들어서 복잡하고 반복되는 로직을 재사용이 가능하게 개발하는것을 지향합니다. 함수형 프로그래밍은 개발은 저에게 가장 익숙한 방법입니다.",
+        desc: "Hooks를 사용하여 개발 할 수 있습니다. 또한 Custom-Hook를 만들어서 복잡하고 반복되는 로직은 재사용 가능하게 개발하는 것을 지향합니다.",
         img: "/images/landing/skills/react.png",
         imgStyle: { width: "70px" },
         proficiency: 3, // 1: 하, 2:중, 3:상
@@ -57,14 +57,14 @@ export const SkillsData = [
     },
     {
         name: "VueJS",
-        desc: "VueJS의 특징인 Template, Data, Style 구조를 이해하고 있으며, React와는 다르게 emit을 이용하여 자식컴포넌트에서 부모컴포넌트르 이벤트를 전달 할 수 있습니다. 또한 현재 근무중인 회사에서는 JSP Struts2 기반 프로젝트에서 프론트는 Vue2를 CDN으로 불러와 사용중입니다.",
+        desc: "VueJS의 특징인 Template, Data, Style 구조를 이해하고 있으며, React와는 다르게 emit을 이용하여 자식컴포넌트에서 부모컴포넌트르 이벤트를 전달 할 수 있습니다.",
         img: "/images/landing/skills/vue.png",
         imgStyle: { width: "70px" },
         proficiency: 2, // 1: 하, 2:중, 3:상
     },
     {
         name: "Firebase",
-        desc: "NOSQL인 Firebase를 사용하여, 간단한 웹사이트를 구축해 데이터를 저장하는 것에 사용할 수 있습니다. 현재 페이지도 Firebase를 사용하여 이미지, 게시글 등등의 데이터들을 관리하고 있습니다. ",
+        desc: "Firebase를 사용하여, 간단한 웹사이트를 구축해 데이터를 저장하는 것에 사용할 수 있습니다. 현재 페이지도 Firebase를 사용하여 데이터를 관리하고 있습니다. ",
         img: "/images/landing/skills/fire.png",
         imgStyle: { borderRadius: "10px", width: "70px" },
         proficiency: 2, // 1: 하, 2:중, 3:상
@@ -92,7 +92,7 @@ export const SkillsData = [
     },
     {
         name: "Redux & Redux Toolkit",
-        desc: "Vanilla JS에서 Redux를 사용함으로 어떻게 동작하는지, React에서 예전에 사용하던 방식인 mapStateToProps 함수를 사용한 방법을 사용한 뒤, Redux Toolkit을 사용함으로 어떻게 발전해 왔는지를 공부했습니다. 또한 Local Storage를 이용한 Redux Persist를 사용하여 새로고침 이후에도 State를 유지시킨 경험이 있습니다.",
+        desc: "Vanilla JS에서 Redux 사용부터, React에서 예전에 사용하던 방식인 mapStateToProps 함수를 사용한 방법, Redux Toolkit까지 사용해보면서 발전 과정을 공부했습니다. 또한 Local Storage를 이용한 Redux Persist를 사용하여 새로고침 이후에도 상태를 유지시킨 경험이 있습니다.",
         img: "/images/landing/skills/redux.png",
         imgStyle: { borderRadius: "10px", width: "70px" },
         proficiency: 1, // 1: 하, 2:중, 3:상

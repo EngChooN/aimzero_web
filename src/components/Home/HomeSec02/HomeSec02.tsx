@@ -2,6 +2,7 @@ import { SkillsData } from "@/common/data/skillsData";
 import * as HomeSection02 from "@/components/Home/HomeSec02/HomeSec02.styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -32,7 +33,12 @@ export default function HomeSec02() {
                 <span style={{ color: "green" }}> 조준영</span> 입니다!
             </h2>
             <HomeSection02.IntroWrapper data-aos="fade">
-                <img src="images/resume_img.jpeg" data-aos="fade-up" />
+                <Image
+                    src="/images/resume_img.jpeg"
+                    data-aos="fade-up"
+                    alt="profile"
+                    fill
+                />
                 <HomeSection02.IntroDescWrapper data-aos="fade-left">
                     <div>
                         <span>
@@ -97,7 +103,17 @@ export default function HomeSec02() {
                     {proficiency3.map((el, index) => (
                         <HomeSection02.SkillBox key={index} data-aos="fade-up">
                             <HomeSection02.ImgWrapper>
-                                <img src={el.img} style={el.imgStyle} />
+                                <Image
+                                    src={el.img}
+                                    style={el.imgStyle}
+                                    alt="skills"
+                                    width={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                    height={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                />
                             </HomeSection02.ImgWrapper>
                             <HomeSection02.DescWrapper>
                                 <h1>{el.name}</h1>
@@ -114,7 +130,17 @@ export default function HomeSec02() {
                     {proficiency2.map((el, index) => (
                         <HomeSection02.SkillBox key={index} data-aos="fade-up">
                             <HomeSection02.ImgWrapper>
-                                <img src={el.img} style={el.imgStyle} />
+                                <Image
+                                    src={el.img}
+                                    style={el.imgStyle}
+                                    alt="skills"
+                                    width={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                    height={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                />
                             </HomeSection02.ImgWrapper>
                             <HomeSection02.DescWrapper>
                                 <h1>{el.name}</h1>
@@ -131,7 +157,17 @@ export default function HomeSec02() {
                     {proficiency1.map((el, index) => (
                         <HomeSection02.SkillBox key={index} data-aos="fade-up">
                             <HomeSection02.ImgWrapper>
-                                <img src={el.img} style={el.imgStyle} />
+                                <Image
+                                    src={el.img}
+                                    style={el.imgStyle}
+                                    alt="skills"
+                                    width={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                    height={Number(
+                                        el.imgStyle.width.replace("px", "")
+                                    )}
+                                />
                             </HomeSection02.ImgWrapper>
                             <HomeSection02.DescWrapper>
                                 <h1>{el.name}</h1>

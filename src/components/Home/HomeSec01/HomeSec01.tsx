@@ -1,6 +1,7 @@
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -25,11 +26,35 @@ export default function HomeSec01() {
     return (
         <Section>
             <BgWrapper scrollY={scrollY}>
-                <img className="moon" src={"images/landing/bg3.png"} />
+                <Image
+                    alt="background"
+                    width={1920}
+                    height={1080}
+                    className="moon"
+                    src={"/images/landing/bg3.png"}
+                />
                 <h1>안녕하세요</h1>
-                <img className="bg2" src={"images/landing/bg2.png"} />
-                <img className="bg1" src={"images/landing/bg1.png"} />
-                <img className="star" src={"images/landing/bg4.png"} />
+                <Image
+                    alt="background"
+                    width={1920}
+                    height={1080}
+                    className="bg2"
+                    src={"/images/landing/bg2.png"}
+                />
+                <Image
+                    alt="background"
+                    width={1920}
+                    height={1080}
+                    className="bg1"
+                    src={"/images/landing/bg1.png"}
+                />
+                <Image
+                    alt="background"
+                    width={1920}
+                    height={1080}
+                    className="star"
+                    src={"/images/landing/bg4.png"}
+                />
                 {!darkMode ? (
                     <DivideBox
                         style={{

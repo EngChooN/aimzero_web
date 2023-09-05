@@ -8,6 +8,7 @@ import TagView from "@/components/commons/Tag/TagView";
 import TopBoardInfo from "@/components/commons/Board/TopBoardInfo";
 import ProjectList from "@/components/Project/ProjectList";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
+import Image from "next/image";
 
 const EditorRead = dynamic(
     async () => await import("@/components/commons/Editor/EditorRead"),
@@ -65,7 +66,7 @@ export default function ProjectDetailPage() {
             <TagView tags={boardData?.tag} />
             {boardData?.thumb !== null && (
                 <ThumbnailWrapper>
-                    <img src={boardData?.thumb} />
+                    <Image alt="thumbnail" fill src={boardData?.thumb} />
                 </ThumbnailWrapper>
             )}
 
@@ -93,8 +94,10 @@ const ThumbnailWrapper = styled.div`
     height: fit-content;
 
     > img {
-        max-width: 600px;
-        width: 100%;
+        position: static !important;
+        max-width: 600px !important;
+        width: 100% !important;
+        height: auto !important;
         margin: 20px 0 20px 0;
         border: 4px solid darkgray;
         border-radius: 10px;

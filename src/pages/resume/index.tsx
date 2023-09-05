@@ -1,6 +1,7 @@
 import { darkModeState } from "@/common/Recoil/darkModeState";
 import styled from "@emotion/styled";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useRecoilState } from "recoil";
 
 const EditorRead = dynamic(
@@ -22,7 +23,11 @@ export default function AboutPage() {
                 </h1>
                 <MainSec>
                     <LeftSec>
-                        <img src="images/resume_img.jpeg" />
+                        <Image
+                            alt="profile"
+                            fill
+                            src="/images/resume_img.jpeg"
+                        />
                     </LeftSec>
                     <RightSec darkMode={darkMode}>
                         <p>
@@ -105,6 +110,7 @@ const LeftSec = styled.div`
     flex-direction: column;
 
     > img {
+        width: 100% !important;
         border-radius: 15px;
     }
 

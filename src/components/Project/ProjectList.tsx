@@ -13,6 +13,7 @@ import { firebaseApp } from "firebase.config";
 import Button from "../commons/Button/Button";
 import { useRouter } from "next/router";
 import { useAuth } from "@/hooks/commons";
+import Image from "next/image";
 
 export default function ProjectList() {
     const router = useRouter();
@@ -56,13 +57,15 @@ export default function ProjectList() {
                     <List.Item
                         key={item.title}
                         extra={
-                            <img
+                            <Image
+                                width={220}
+                                height={220}
                                 style={{
                                     width: "220px",
                                     height: "130px",
                                     objectFit: "cover",
                                 }}
-                                alt="thumbnail"
+                                alt="project_thumbnail"
                                 src={item.thumb ?? "/images/no_img.jpg"}
                             />
                         }

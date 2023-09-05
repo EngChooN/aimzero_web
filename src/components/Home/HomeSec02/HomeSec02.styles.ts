@@ -30,7 +30,7 @@ export const Section = styled.section`
 
     @media (max-width: 600px) {
         > h2 {
-            font-size: 25px;
+            font-size: 21px;
         }
     }
 `;
@@ -149,7 +149,7 @@ export const IntroWrapper = styled.div`
     > img {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
-        width: 40%;
+        width: 40% !important;
         /* height: 100%; */
         object-fit: cover;
     }
