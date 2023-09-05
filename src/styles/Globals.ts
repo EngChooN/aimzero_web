@@ -30,24 +30,28 @@ const reset = css`
     @font-face {
         font-family: Pacifico;
         src: url("/fonts/Pacifico-Regular.ttf");
+        font-display: auto;
     }
 
     /* 헤더, 푸터 폰트 */
     @font-face {
         font-family: Garamond;
         src: url("/fonts/Garamond Becker No2 Caps Med Regular.ttf");
+        font-display: auto;
     }
 
     /* 본문 타이틀 폰트 */
     @font-face {
         font-family: AbrilFatface;
         src: url("/fonts/AbrilFatface-Regular.ttf");
+        font-display: auto;
     }
 
     /* 본문 하이라이트 폰트 */
     @font-face {
         font-family: MarckScript;
         src: url("/fonts/MarckScript-Regular.ttf");
+        font-display: auto;
     }
 
     /* antd custom */
