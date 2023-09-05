@@ -147,6 +147,7 @@ export const IntroWrapper = styled.div`
     width: 100%;
 
     > img {
+        position: static !important;
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
         width: 40% !important;

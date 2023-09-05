@@ -110,6 +110,7 @@ const LeftSec = styled.div`
     flex-direction: column;
 
     > img {
+        position: static !important;
         width: 100% !important;
         border-radius: 15px;
     }
