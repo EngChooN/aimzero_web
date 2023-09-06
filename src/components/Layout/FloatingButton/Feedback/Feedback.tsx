@@ -2,7 +2,7 @@ import Button from "@/components/commons/Button/Button";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
-import { ButtonWrapper } from "../FloatingButton/FloatingButton";
+import { ButtonWrapper } from "../FloatingButton";
 
 export default function Feedback() {
     const [modalState, setModalState] = useState(false);
@@ -42,9 +42,10 @@ export default function Feedback() {
             ".feedback"
         ) as HTMLElement;
         if (buttonWrapper) {
-            buttonWrapper.style.bottom = "100px";
+            buttonWrapper.style.bottom = "185px";
         }
     }, []);
+
     return (
         <StyledFeedback>
             <ButtonWrapper

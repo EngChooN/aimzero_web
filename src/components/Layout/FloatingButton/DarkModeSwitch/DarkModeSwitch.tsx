@@ -19,7 +19,7 @@ export default function DarkModeSwitch() {
             ".darkMode"
         ) as HTMLElement;
         if (buttonWrapper) {
-            buttonWrapper.style.bottom = "185px";
+            buttonWrapper.style.bottom = "100px";
         }
     }, []);
 

@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { BiDownArrow, BiUpArrow } from "react-icons/bi";
-import Feedback from "../Feedback/Feedback";
-import DarkModeSwitch from "@/components/commons/DarkModeSwitch/DarkModeSwitch";
+import Feedback from "./Feedback/Feedback";
+import DarkModeSwitch from "@/components/Layout/FloatingButton/DarkModeSwitch/DarkModeSwitch";
 
 export default function FloatingButton() {
     const [buttonsState, setButtonsState] = useState(false);
@@ -26,15 +26,20 @@ export default function FloatingButton() {
                 {buttonsState ? <BiDownArrow /> : <BiUpArrow />}
             </ButtonWrapper>
             {buttonsState && (
-                <>
-                    <Feedback />
+                <div>
+                    {/* <Feedback /> */}
                     <DarkModeSwitch />
-                </>
+                </div>
             )}
         </StyledFloatingButton>
     );
 }
-const StyledFloatingButton = styled.div``;
+const StyledFloatingButton = styled.div`
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
+`;
 
 export const ButtonWrapper = styled.div`
     position: fixed;
