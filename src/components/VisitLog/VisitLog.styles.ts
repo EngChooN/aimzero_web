@@ -93,11 +93,13 @@ export const WriteBox = styled.div`
 `;
 
 export const CommentInput = styled.input`
+    border-radius: 25px;
     background-color: #f3f3f3;
     border: none;
     width: 80%;
     height: 45px;
     padding: 10px;
+    padding-left: 20px;
     font-size: 14px;
     font-family: serif;
 
@@ -107,8 +109,10 @@ export const CommentInput = styled.input`
 `;
 
 export const SubmitBtn = styled.button`
+    border-radius: 25px;
+    margin-left: 10px;
     max-width: 300px;
-    width: 20%;
+    width: 18%;
     height: 45px;
     background: none;
     background-color: black;

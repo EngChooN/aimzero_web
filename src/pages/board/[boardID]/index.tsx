@@ -84,6 +84,8 @@ const Wrapper = styled.section`
     }
     padding-bottom: 30px;
     padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     @media (max-width: 400px) {
         padding: 0px;

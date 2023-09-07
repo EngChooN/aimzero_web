@@ -81,6 +81,8 @@ export default function ProjectDetailPage() {
 const StyledProjectDetail = styled.section`
     max-width: 800px;
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 
     > div {
         /* height: 100px; */
