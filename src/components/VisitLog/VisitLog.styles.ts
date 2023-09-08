@@ -38,6 +38,11 @@ export const ListLog = styled.div`
     overflow-y: scroll;
     width: 100%;
     height: 100%;
+
+    @media (max-width: 600px) {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
 `;
 
 export const CommentWrapper = styled.div`
@@ -137,6 +142,10 @@ export const SubmitBtn = styled.button`
     }
     :active {
         background-color: black;
+    }
+
+    @media (max-width: 600px) {
+        width: 20%;
     }
 `;
 
