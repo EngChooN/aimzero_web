@@ -58,7 +58,11 @@ export default function PageHeader(props: { currentPath: string }) {
 
     useScrollDirection(
         () => {
-            setHeaderMargin(-130);
+            if (window.scrollY <= 100) {
+                setHeaderMargin(0);
+            } else {
+                setHeaderMargin(-130);
+            }
         },
         () => {
             setHeaderMargin(0);
