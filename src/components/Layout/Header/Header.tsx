@@ -298,6 +298,9 @@ export default function PageHeader(props: { currentPath: string }) {
 }
 
 const Wrapper = styled.section<{ specialFlag: boolean; marginTop: number }>`
+    display: flex;
+    flex-direction: column;
+
     position: fixed;
     top: 0;
     display: flex;
@@ -305,7 +308,7 @@ const Wrapper = styled.section<{ specialFlag: boolean; marginTop: number }>`
     align-items: center;
 
     width: 100%;
-    height: 130px;
+    /* height: 130px; */
     background-color: white;
 
     ${(props) =>
