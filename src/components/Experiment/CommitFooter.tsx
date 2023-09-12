@@ -23,7 +23,7 @@ export default function CommitFooter(props: {
                     <>
                         <br />
                         <br />
-                        resolves: ${commitInfo.footer}"
+                        resolves: {commitInfo.footer}"
                     </>
                 ) : (
                     <>"</>
@@ -35,22 +35,24 @@ export default function CommitFooter(props: {
     return (
         <StyledCommitBody>
             <p>참조 할 해당 이슈</p>
-            <Input
-                placeholder="이슈 번호 또는 생략"
-                onChange={(e) => {
-                    setCommitInfo((prev) => ({
-                        ...prev,
-                        footer: e.target.value,
-                    }));
-                }}
-                value={commitInfo?.footer}
-            />
-            <Button
-                label="메세지 만들기"
-                primary={false}
-                backgroundColor="black"
-                onClick={makeCommit}
-            />
+            <div>
+                <Input
+                    placeholder="이슈 번호 또는 생략"
+                    onChange={(e) => {
+                        setCommitInfo((prev) => ({
+                            ...prev,
+                            footer: e.target.value,
+                        }));
+                    }}
+                    value={commitInfo?.footer}
+                />
+                <Button
+                    label="메세지 만들기"
+                    primary={false}
+                    backgroundColor="black"
+                    onClick={makeCommit}
+                />
+            </div>
         </StyledCommitBody>
     );
 }
@@ -68,11 +70,25 @@ const StyledCommitBody = styled.section`
         margin-right: 10px;
     }
 
-    > button {
-        margin: 0px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-            Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-            sans-serif;
+    > div {
+        display: flex;
+        align-items: center;
+
+        > button {
+            margin: 0px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                "Helvetica Neue", sans-serif;
+        }
+    }
+
+    @media (max-width: 645px) {
+        flex-direction: column;
+
+        > div {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
     }
 `;
 

@@ -55,6 +55,15 @@ const StyledCommitBody = styled.section`
         font-family: serif;
         margin: 0;
     }
+
+    @media (max-width: 645px) {
+        flex-direction: column;
+
+        > h2 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    }
 `;
 
 const Input = styled.input`

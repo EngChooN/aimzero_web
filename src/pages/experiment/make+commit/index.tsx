@@ -1,6 +1,7 @@
 import CommitBody from "@/components/Experiment/CommitBody";
 import CommitFooter from "@/components/Experiment/CommitFooter";
 import CommitHeader from "@/components/Experiment/CommitHeader";
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
@@ -64,16 +65,33 @@ export default function MakeCommitPage() {
                 />
             ) : null}
 
-            {step === 2 && commitMs !== "" ? (
-                <article>{commitMs}</article>
-            ) : null}
+            <div>
+                {step === 2 && commitMs !== "" ? (
+                    <article>{commitMs}</article>
+                ) : null}
+            </div>
         </StyledMakeCommitPage>
     );
 }
+const fadeInUp = keyframes`
+    0%{
+        opacity: 0;
+        /* margin-top: 150px; */
+    }
+    25%{
+        /* margin-top: 50px; */
+    }
+    100%{
+        opacity: 1;
+        /* margin-top: 0px; */
+    }
+`;
 
 const StyledMakeCommitPage = styled.article`
     max-width: 1200px;
     width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
 
     height: fit-content;
     min-height: calc(100vh - 300px);
@@ -82,10 +100,20 @@ const StyledMakeCommitPage = styled.article`
         min-height: calc(100vh - 224px);
     }
 
-    > article {
-        background-color: #373737;
-        color: white;
-        padding: 10px;
-        font-family: serif;
+    > div {
+        display: flex;
+        justify-content: center;
+
+        animation: ${fadeInUp} 0.5s ease-in-out;
+
+        > article {
+            max-width: 450px;
+            width: 100%;
+            background-color: #373737;
+            color: white;
+            padding: 10px;
+            font-family: serif;
+            margin-bottom: 60px;
+        }
     }
 `;

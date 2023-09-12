@@ -104,11 +104,19 @@ const StyledCommitTypeSelector = styled.section`
             margin-right: 10px;
         }
     }
+
+    @media (max-width: 645px) {
+        margin-bottom: 40px;
+        margin-top: 30px;
+    }
 `;
 
 const ButtonWrapper = styled.section`
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 
     margin-bottom: 60px;
 `;
