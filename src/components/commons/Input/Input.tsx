@@ -24,7 +24,7 @@ export default function Input(options: {
 const StyledInput = styled.input`
     background-color: #f3f3f3;
     border: unset;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     width: 100%;
     height: 45px;
     padding: 10px;
