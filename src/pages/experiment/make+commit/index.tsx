@@ -11,6 +11,7 @@ export interface CommitInfoTypes {
     body: {
         what: string;
         why: string;
+        besides: string;
     };
     footer: string;
 }
@@ -21,6 +22,7 @@ export default function MakeCommitPage() {
         body: {
             what: "",
             why: "",
+            besides: "",
         },
         footer: "",
     });
@@ -38,8 +40,6 @@ export default function MakeCommitPage() {
             setStep(2);
         }
     }, [commitInfo]);
-
-    console.log(commitInfo);
 
     return (
         <StyledMakeCommitPage>

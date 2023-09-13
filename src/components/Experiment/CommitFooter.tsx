@@ -11,23 +11,74 @@ export default function CommitFooter(props: {
     const { setCommitInfo, commitInfo, setCommitMs } = props;
 
     const makeCommit = () => {
+        // 제목 끝 마침표 제거
+        let updatedHeader = commitInfo.header;
+        if (commitInfo.header[commitInfo.header.length - 1] === ".") {
+            updatedHeader = commitInfo.header.substring(
+                0,
+                commitInfo.header.length - 1
+            );
+        }
+        setCommitInfo((prev) => ({
+            ...prev,
+            header: updatedHeader,
+        }));
+
+        // text-area 75자 이상, 줄바꿈 처리
+        const besides = commitInfo.body.besides;
+        // 글 정보의 \n 찾아서 줄바꿈 처리
+        let updateBesidesArr = besides.split("\n");
+        if (besides !== "") {
+            let newArr = [];
+            for (let i = 0; i < updateBesidesArr.length; i++) {
+                if (updateBesidesArr[i].length > 72) {
+                    const longStr = updateBesidesArr[i];
+                    for (let j = 0; j < longStr.length; j += 72) {
+                        newArr.push(longStr.substring(j, j + 72));
+                    }
+                } else {
+                    newArr.push(updateBesidesArr[i]);
+                }
+            }
+            updateBesidesArr = newArr;
+
+            if (commitInfo.footer === "") {
+                updateBesidesArr[updateBesidesArr.length - 1] =
+                    updateBesidesArr[updateBesidesArr.length - 1] + `"`;
+            }
+        }
+
+        // 최종 만들어진 커밋 메세지
         setCommitMs(
-            <div>
-                git commit -m "{commitInfo.type}: {commitInfo.header}
+            <div style={{ overflowX: "scroll" }}>
+                git commit -m "{commitInfo.type}:{" "}
+                {/* 제목 첫 번째 글자 대문자 처리 */}
+                {updatedHeader[0].toUpperCase() + updatedHeader.substring(1)}
                 <br />
                 <br />
                 {commitInfo.body.why} 때문에,
                 <br />
                 {commitInfo.body.what} 작업 함
-                {commitInfo.footer !== "" ? (
+                {updateBesidesArr.length > 0 && updateBesidesArr[0] !== "" ? (
                     <>
                         <br />
+                        자세한 내용 👇
                         <br />
-                        resolves: {commitInfo.footer}"
+                        {updateBesidesArr.map((el, index) => (
+                            <p style={{ margin: "0px" }} key={index}>
+                                {el}
+                            </p>
+                        ))}
                     </>
                 ) : (
                     <>"</>
                 )}
+                {commitInfo.footer !== "" ? (
+                    <div>
+                        <br />
+                        resolves: {commitInfo.footer}"
+                    </div>
+                ) : null}
             </div>
         );
     };

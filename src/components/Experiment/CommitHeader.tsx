@@ -1,6 +1,8 @@
 import { CommitInfoTypes } from "@/pages/experiment/make+commit";
 import styled from "@emotion/styled";
 import { SetStateAction, useState } from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { Tooltip } from "antd";
 
 export default function CommitHeader(props: {
     setCommitInfo: React.Dispatch<SetStateAction<CommitInfoTypes>>;
@@ -71,8 +73,17 @@ export default function CommitHeader(props: {
                 ))}
             </ButtonWrapper>
             <div>
-                <p>{CommitType[select].desc}</p>
+                <p>
+                    {CommitType[select].desc}{" "}
+                    <Tooltip
+                        placement="top"
+                        title={`과거형이 아닌, 명령문으로 작성합니다.`}
+                    >
+                        <AiOutlineInfoCircle style={{ marginLeft: "5px" }} />
+                    </Tooltip>
+                </p>
                 <Input
+                    maxLength={50}
                     onChange={(event) => {
                         setCommitInfo((prev) => ({
                             ...prev,
@@ -98,8 +109,9 @@ const StyledCommitTypeSelector = styled.section`
         justify-content: center;
 
         > p {
+            display: flex;
+            align-items: center;
             margin: 0px;
-            text-align: center;
             font-size: 16px;
             margin-right: 10px;
         }
@@ -108,6 +120,14 @@ const StyledCommitTypeSelector = styled.section`
     @media (max-width: 645px) {
         margin-bottom: 40px;
         margin-top: 30px;
+
+        > div {
+            flex-direction: column;
+
+            > p {
+                margin-bottom: 20px;
+            }
+        }
     }
 `;
 
@@ -159,5 +179,13 @@ const Input = styled.input`
     :focus {
         max-width: 300px;
         border-color: darkgrey;
+    }
+
+    @media (max-width: 645px) {
+        max-width: 90%;
+
+        :focus {
+            max-width: 90%;
+        }
     }
 `;
