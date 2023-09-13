@@ -60,6 +60,11 @@ export default function CommitBody(props: {
                     />
                 </Tooltip>
             </h2>
+            <p>
+                줄바꿈을 연속 두번 할 필요 없이 칸을 띄워 줍니다. 따라서 연속
+                두번 줄바꿈을 한다면, 결과물에서 각 개행이 두칸씩 떨어져 보이게
+                되니 참고 바랍니다.
+            </p>
             <TextArea
                 placeholder="그 외 추가 설명 또는 생략"
                 onChange={(e) => {
@@ -81,6 +86,12 @@ const StyledCommitBody = styled.section`
     flex-direction: column;
     align-items: center;
     margin-bottom: 60px;
+
+    > p {
+        font-size: 12px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
     > h2 {
         font-size: 28px;
@@ -156,6 +167,9 @@ const TextArea = styled.textarea`
     padding: 10px;
     border: 1px solid lightgrey;
     transition: 0.3s all ease;
+
+    display: block;
+    display: -webkit-box; // fix a chrome specific bug
 
     :hover {
         border-color: darkgrey;

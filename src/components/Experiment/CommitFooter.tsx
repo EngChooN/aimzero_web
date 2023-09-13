@@ -62,12 +62,14 @@ export default function CommitFooter(props: {
                 {updateBesidesArr.length > 0 && updateBesidesArr[0] !== "" ? (
                     <>
                         <br />
-                        자세한 내용 👇
                         <br />
                         {updateBesidesArr.map((el, index) => (
-                            <p style={{ margin: "0px" }} key={index}>
-                                {el}
-                            </p>
+                            <>
+                                <p style={{ margin: "0px" }} key={index}>
+                                    {el}
+                                </p>
+                                <br />
+                            </>
                         ))}
                     </>
                 ) : (
