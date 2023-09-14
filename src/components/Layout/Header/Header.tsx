@@ -140,7 +140,7 @@ export default function PageHeader(props: { specialFlag: boolean }) {
                         color={specialFlag ? "white" : ""}
                         fontSize={25}
                         style={{
-                            marginRight: "20px",
+                            marginRight: "10px",
                             cursor: "pointer",
                         }}
                         onClick={(event) => {
@@ -304,8 +304,7 @@ const Logo = styled.div<{ specialFlag: boolean }>`
     cursor: pointer;
 
     @media (max-width: 1100px) {
-        margin-left: 20px;
-        /* margin-top: 5px; */
+        margin-left: 10px;
     }
 `;
 
