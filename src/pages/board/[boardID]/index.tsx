@@ -78,13 +78,14 @@ const Wrapper = styled.section`
     width: 100%;
     min-height: calc(100vh - 300px);
     height: 100%;
+
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+
     @media (max-width: 1100px) {
         min-height: calc(100vh - 64.5px - 170px);
     }
-    padding-bottom: 30px;
-    padding-top: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
 
     @media (max-width: 400px) {
         padding: 0px;

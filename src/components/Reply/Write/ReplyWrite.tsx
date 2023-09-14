@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 // toast editor
 import { Editor } from "@toast-ui/react-editor";
@@ -19,15 +19,17 @@ import { firebaseDb, firebaseStorage } from "../../../../firebase.config";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { uuidv4 } from "@firebase/util";
-import { Btn } from "../../Login/Login.styles";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { HookCallback } from "@toast-ui/editor/types/editor";
 import emailjs from "emailjs-com";
+import Button from "@/components/commons/Button/Button";
 
 export default function ReplyWrite(props: {
     boardData: DocumentData;
+    setCommentsData: React.Dispatch<SetStateAction<DocumentData[]>>;
+    fetchComments: () => void;
 }): JSX.Element {
-    const { boardData } = props;
+    const { boardData, setCommentsData, fetchComments } = props;
 
     const contentRef = useRef<Editor>(null);
     const router = useRouter();
@@ -35,7 +37,6 @@ export default function ReplyWrite(props: {
 
     const [userInfo] = useRecoilState(userInfoState);
     const name = userInfo?.email.split("@")[0];
-    const commentId = uuidv4();
 
     // img upload hook
     useEffect(() => {
@@ -70,6 +71,7 @@ export default function ReplyWrite(props: {
 
     // create comment func
     const submitComment = async () => {
+        let commentId = uuidv4();
         if (content != "") {
             try {
                 await setDoc(doc(firebaseDb, "comment", commentId), {
@@ -90,7 +92,9 @@ export default function ReplyWrite(props: {
                 if (boardData.email !== userInfo.email) {
                     await sendEmail();
                 } else {
-                    router.reload();
+                    // router.reload();
+                    setCommentsData([]);
+                    fetchComments();
                 }
             } catch (error) {
                 console.error(error);
@@ -117,6 +121,7 @@ export default function ReplyWrite(props: {
                 "Gs-3owh7O5wBJ3qkR"
             )
             .then(() => {
+                alert("이메일전송됨");
                 router.reload();
             })
             .catch((error) => {
@@ -143,12 +148,12 @@ export default function ReplyWrite(props: {
                 ]}
             />
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Btn
+                <Button
+                    label="submit"
+                    primary={false}
+                    backgroundColor="black"
                     onClick={submitComment}
-                    style={{ width: "100%", maxWidth: "130px" }}
-                >
-                    submit
-                </Btn>
+                />
             </div>
         </>
     );

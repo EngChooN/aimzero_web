@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 // toast ui
 import { Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
@@ -12,26 +12,21 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../common/Recoil/userInfoState";
 // firebase
-import {
-    DocumentData,
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    orderBy,
-    query,
-    updateDoc,
-    where,
-} from "firebase/firestore";
+import { DocumentData, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { firebaseDb } from "../../../../firebase.config";
-import { Btn } from "../../Login/Login.styles";
 import ReplyEdit from "../Edit/ReplyEdit";
+import Button from "@/components/commons/Button/Button";
 
-export default function ReplyViewer(props: { boardData: DocumentData }) {
-    const { boardData } = props;
+export default function ReplyViewer(props: {
+    boardData: DocumentData;
+    comments: DocumentData;
+    setCommentsData: React.Dispatch<SetStateAction<DocumentData[]>>;
+    fetchComments: () => void;
+}) {
+    const { boardData, comments, setCommentsData, fetchComments } = props;
 
     const [userInfo] = useRecoilState(userInfoState);
-    const [comments, setCommentsData] = useState<DocumentData[]>([]);
+    // const [comments, setCommentsData] = useState<DocumentData[]>([]);
 
     // update
     const [content, setContent] = useState("");
@@ -42,29 +37,11 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
         index: "",
     });
 
-    // comment list load func
-    const fetchComments = async () => {
-        const comments = collection(firebaseDb, "comment");
-        const result = await getDocs(
-            query(
-                comments,
-                where("id", "==", boardData.id),
-                orderBy("timestamp", "desc")
-            )
-        );
-        const fetchData = result.docs.map((el) => el.data());
-        setCommentsData(fetchData);
-    };
-
-    useEffect(() => {
-        fetchComments();
-    }, []);
-
     // comment update func
-    const updateComment = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const updateComment = async (commentId: string) => {
         if (content !== "") {
             // update func
-            const userDoc = doc(firebaseDb, "comment", e.currentTarget.id);
+            const userDoc = doc(firebaseDb, "comment", commentId);
             const newField = { content: content };
 
             await updateDoc(userDoc, newField);
@@ -75,20 +52,27 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
         }
     };
 
-    // comment delete func
-    const deleteComment = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(e.currentTarget.id);
-        deleteDoc(doc(firebaseDb, "comment", e.currentTarget.id));
-        fetchComments();
+    const deleteComment = async (commentId: string) => {
+        try {
+            const commentDocRef = doc(firebaseDb, "comment", commentId);
+            await deleteDoc(commentDocRef);
+            console.log("문서 삭제 완료: ", commentId);
+            setCommentsData([]);
+            fetchComments(); // 삭제 후 댓글 다시 불러오기
+        } catch (error) {
+            console.error("문서 삭제 오류:", error);
+        }
     };
 
     return (
         <Wrapper>
             {boardData.content &&
-                comments.map((el, index) => (
+                comments.map((el: DocumentData, index: number) => (
                     <CommentWrapper key={index}>
+                        <p>{el.id}</p>
+                        <p>{el.commentId}</p>
                         <Name>{el.name}</Name>
-                        {updateState.state == false ? (
+                        {updateState.state === false ? (
                             <ViewWrapper>
                                 <Viewer
                                     initialValue={el.content}
@@ -101,8 +85,8 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
                                 />
                             </ViewWrapper>
                         ) : null}
-                        {updateState.state == true &&
-                        updateState.index == index.toString() ? (
+                        {updateState.state === true &&
+                        updateState.index === index.toString() ? (
                             <ViewWrapper>
                                 <ReplyEdit
                                     setContent={setContent}
@@ -126,77 +110,53 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
                                         .split("T")[0]
                                 }
                             </Date>
-                            {userInfo.email == el.email ? (
+                            {userInfo.email === el.email ? (
                                 <div style={{ display: "flex" }}>
-                                    {updateState.state == false && (
+                                    {updateState.state === false && (
                                         <>
-                                            <Btn
-                                                style={{
-                                                    width: "100%",
-                                                    maxWidth: "100px",
-                                                    height: "25px",
-                                                    fontSize: "12px",
-                                                }}
+                                            <Button
+                                                label="update"
+                                                primary={false}
+                                                backgroundColor="black"
                                                 onClick={(e) => {
                                                     setUpdateState({
                                                         state: true,
                                                         index: index.toString(),
                                                     });
                                                 }}
-                                            >
-                                                update
-                                            </Btn>
-                                            <Btn
-                                                style={{
-                                                    width: "100%",
-                                                    maxWidth: "100px",
-                                                    marginLeft: "10px",
-                                                    height: "25px",
-                                                    fontSize: "12px",
-                                                }}
-                                                id={el.commentId}
+                                            />
+                                            <Button
+                                                label="delete"
+                                                primary={false}
+                                                backgroundColor="black"
                                                 onClick={(e) =>
-                                                    deleteComment(e)
+                                                    deleteComment(el.commentId)
                                                 }
-                                            >
-                                                delete
-                                            </Btn>
+                                            />
                                         </>
                                     )}
-                                    {updateState.state == true &&
-                                    updateState.index == index.toString() ? (
+                                    {updateState.state === true &&
+                                    updateState.index === index.toString() ? (
                                         <>
-                                            <Btn
-                                                style={{
-                                                    width: "100%",
-                                                    maxWidth: "100px",
-                                                    height: "25px",
-                                                    fontSize: "12px",
-                                                }}
-                                                id={el.commentId}
+                                            <Button
+                                                label="submit"
+                                                primary={false}
+                                                backgroundColor="black"
                                                 onClick={(e) =>
-                                                    updateComment(e)
+                                                    updateComment(el.commentId)
                                                 }
-                                            >
-                                                submit
-                                            </Btn>
-                                            <Btn
-                                                style={{
-                                                    width: "100%",
-                                                    maxWidth: "100px",
-                                                    marginLeft: "10px",
-                                                    height: "25px",
-                                                    fontSize: "12px",
-                                                }}
+                                            />
+                                            <Button
+                                                label="cancel"
+                                                primary={false}
+                                                backgroundColor="black"
                                                 onClick={() => {
                                                     setUpdateState({
                                                         state: false,
                                                         index: "",
                                                     });
                                                 }}
-                                            >
-                                                cancel
-                                            </Btn>
+                                            />
                                         </>
                                     ) : null}
                                 </div>
@@ -204,7 +164,7 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
                         </div>
                     </CommentWrapper>
                 ))}
-            {comments[0]?.content == undefined && (
+            {comments[0]?.content === undefined && (
                 <NoCommentBox>There are no comments</NoCommentBox>
             )}
         </Wrapper>
@@ -215,14 +175,7 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
 const Wrapper = styled.article`
     display: flex;
     flex-direction: column;
-
-    /* margin-top: 50px; */
-
     height: 100%;
-    /* @media (max-width: 1100px) {
-    min-height: calc(100vh - 64.5px - 170px);
-    padding-top: 15px;
-  } */
 
     @media (max-width: 400px) {
         padding: 10px;

@@ -85,8 +85,13 @@ const StyledProjectDetail = styled.section`
     padding-left: 10px;
     padding-right: 10px;
 
-    > div {
-        /* height: 100px; */
+    > h1 {
+        margin: 0px;
+        padding-top: 15px;
+    }
+
+    @media (min-width: 1100px) {
+        padding-top: 30px;
     }
 `;
 
