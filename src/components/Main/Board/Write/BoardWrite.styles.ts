@@ -38,13 +38,12 @@ export const TagWrapper = styled.div`
     height: 100px;
 `;
 
-export const tag = styled.div<{ isDark: boolean }>`
+export const tag = styled.div`
     display: flex;
     align-items: center;
 
     height: 30px;
     background-color: #f3f3f3;
-    border: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     border-radius: 15px;
 
     padding-right: 10px;

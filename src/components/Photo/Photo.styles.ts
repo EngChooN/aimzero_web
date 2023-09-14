@@ -98,6 +98,7 @@ export const Info = styled.div`
 `;
 
 export const BottomSection = styled.div`
+    overflow: hidden;
     padding: 10px;
     padding-bottom: 20px;
 

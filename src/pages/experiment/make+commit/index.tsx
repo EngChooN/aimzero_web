@@ -15,6 +15,7 @@ export interface CommitInfoTypes {
     };
     footer: string;
 }
+
 export default function MakeCommitPage() {
     const [commitInfo, setCommitInfo] = useState({
         type: "fix",

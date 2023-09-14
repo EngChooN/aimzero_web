@@ -59,7 +59,9 @@ export default function ProjectDetailPage() {
             <BoardTitle title={boardData?.title} />
             <TopBoardInfo
                 writer={boardData?.name}
-                timestamp={"2023-06-27"}
+                timestamp={
+                    boardData?.timestamp?.toDate().toISOString().split("T")[0]
+                }
                 updateFunc={onClickUpdate}
                 deleteFunc={onClickDelete}
             />
@@ -71,7 +73,6 @@ export default function ProjectDetailPage() {
             )}
 
             <EditorRead initialValue={boardData?.content} />
-            <div />
             <BoardTitle title={"another project.."} />
             <ProjectList />
         </StyledProjectDetail>

@@ -24,10 +24,11 @@ export default function Input(options: {
 const StyledInput = styled.input`
     background-color: #f3f3f3;
     border: unset;
-    /* margin-bottom: 20px; */
+    border-radius: 25px;
     width: 100%;
     height: 45px;
     padding: 10px;
+    padding-left: 20px;
     font-size: 14px;
     font-family: serif;
 

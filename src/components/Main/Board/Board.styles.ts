@@ -3,11 +3,6 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
-    /* height: fit-content;
-    min-height: calc(100vh - 64.5px - 298px);
-    @media (max-width: 1100px) {
-        min-height: calc(100vh - 300px);
-    } */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -17,15 +12,12 @@ export const BoardListBox = styled.div`
     width: 100%;
 `;
 
-export const BoardInfo = styled.div<{ isDark: boolean }>`
+export const BoardInfo = styled.div`
     width: 100%;
     height: 40px;
     display: flex;
     align-items: center;
-    ${(props) =>
-        !props.isDark
-            ? "border-bottom: 1px solid black"
-            : "border-bottom: 1px solid darkgrey"};
+    border-bottom: 1px solid black;
     transition: all 0.3s;
 `;
 
@@ -69,13 +61,12 @@ export const NameInfo = styled.div`
     font-weight: 600;
 `;
 
-export const Board = styled.div<{ isDark: boolean }>`
+export const Board = styled.div`
     width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
-    border-bottom: ${(props) =>
-        !props.isDark ? "1px solid lightgrey" : "1px solid grey"};
+    border-bottom: 1px solid lightgrey;
     transition: all 0.3s;
     cursor: pointer;
 
@@ -84,11 +75,7 @@ export const Board = styled.div<{ isDark: boolean }>`
     }
 
     :hover {
-        ${(props) => !props.isDark && "background-color: #ededed"};
-        ${(props) => props.isDark && "background-color: black"};
-        > div {
-            ${(props) => props.isDark && "background-color: black"};
-        }
+        background-color: #ededed;
     }
 `;
 
@@ -139,9 +126,11 @@ export const Name = styled.div`
 
 export const BoardBottomBox = styled.div`
     position: relative;
+    margin-top: 30px;
+    margin-bottom: 100px;
 `;
 
-export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
+export const BoardWriteBtn = styled.button`
     position: absolute;
     margin-right: 10px;
     top: 0px;
@@ -151,8 +140,7 @@ export const BoardWriteBtn = styled.button<{ isDark: boolean }>`
     background: none;
     background-color: black;
     border: none;
-    border: ${(props) =>
-        !props.isDark ? "1px solid black" : "1px solid grey"};
+    border: 1px solid black;
     border-radius: 20px;
 
     padding: 25px;

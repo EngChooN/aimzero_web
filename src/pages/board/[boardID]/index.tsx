@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 // firebase
 import {
@@ -8,11 +7,11 @@ import {
     getDoc,
     query as fireQuery,
 } from "@firebase/firestore";
-import { firebaseDb } from "../../../../firebase.config";
-import Main from "../../../components/Main/Main";
+import { firebaseDb } from "firebase.config";
+import Main from "@/components/Main/Main";
 
 const BoardViewer = dynamic(
-    () => import("../../../components/Main/Board/Viewer/BoardViewer"),
+    () => import("../../../components/Main/Board/Detail/BoardDetail"),
     { ssr: false }
 );
 

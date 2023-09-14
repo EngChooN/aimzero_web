@@ -12,8 +12,8 @@ export default function Main() {
     const items: TabsProps["items"] = [
         {
             key: "1",
-            label: `Blog`,
-            children: <Board menu={"blog"} />,
+            label: `Free`,
+            children: <Board menu={"free"} />,
         },
         {
             key: "2",
@@ -22,9 +22,14 @@ export default function Main() {
         },
         {
             key: "3",
-            label: `News`,
-            children: <Board menu={"news"} />,
+            label: `Feedback`,
+            children: <Board menu={"feedback"} />,
         },
+        // {
+        //     key: "3",
+        //     label: `News`,
+        //     children: <Board menu={"news"} />,
+        // },
     ];
 
     return (
@@ -37,11 +42,5 @@ export default function Main() {
 export const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
-
     height: fit-content;
-    min-height: calc(100vh - 300px);
-
-    @media (max-width: 1100px) {
-        min-height: calc(100vh - 224px);
-    }
 `;

@@ -27,11 +27,12 @@ const StyledTextarea = styled.textarea`
     width: 100%;
     height: 70px;
     border: unset;
+    border-radius: 10px;
     outline: unset;
     resize: none;
     background-color: #f3f3f3;
 
-    padding: 10px;
+    padding: 20px;
     font-size: 14px;
     font-family: serif;
 `;

@@ -18,13 +18,11 @@ import { userInfoState } from "../../../common/Recoil/userInfoState";
 import { loginState } from "../../../common/Recoil/loginState";
 // antd
 import { Skeleton } from "antd";
-import { darkModeState } from "@/common/Recoil/darkModeState";
 import SearchBoardInput from "../SearchBoardInput";
 import { useBoardSearch } from "@/hooks/commons";
 
 export default function Board(props: { menu: string }) {
     const { menu } = props;
-    const [darkMode] = useRecoilState(darkModeState);
 
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
@@ -34,13 +32,11 @@ export default function Board(props: { menu: string }) {
     const router = useRouter();
     const [boardListData, setBoardListData] = useState<DocumentData[]>([]); // list data (board)
     const [boardData, setBoardData] = useState<DocumentData[]>([]); // list data per page (board)
-    const [limit] = useState(5); // list data length per page
+    const [limit] = useState(10); // list data length per page
     const [page, setPage] = useState(1); // page value (default = 1)
     // search board
     const [searchKeyword, setSearchKeyword, searchResult] =
         useBoardSearch(menu);
-
-    console.log("searchResult", searchResult);
 
     async function fetchBoards() {
         const board = collection(getFirestore(firebaseApp), menu);
@@ -48,8 +44,6 @@ export default function Board(props: { menu: string }) {
             query(board, orderBy("timestamp", "desc"))
         );
         const fetchData = result.docs.map((el) => el.data());
-        console.log("listData", boardListData);
-        console.log("boardData", boardData);
         setBoardListData(fetchData);
         setBoardData(fetchData.slice((page - 1) * limit, page * limit));
         setIsLoading(false);
@@ -61,9 +55,7 @@ export default function Board(props: { menu: string }) {
     }, [page]);
 
     const moveToDetail = (e: React.MouseEvent<HTMLDivElement>) => {
-        // router.push(`/board/${menu}=${e.currentTarget.id}`);
         location.href = `/board/${menu}=${e.currentTarget.id}`;
-        console.log(e.currentTarget.id);
     };
 
     const skeleton = () => {
@@ -88,41 +80,12 @@ export default function Board(props: { menu: string }) {
         <Boards.Wrapper>
             <div style={{ position: "relative" }}>
                 <SearchBoardInput setSearchKeyword={setSearchKeyword} />
-                {/* write button blog */}
-                {menu == "blog" &&
-                userInfo?.email == "aimzero9303@gmail.com" &&
-                loginStatus == true ? (
+                {/* write button */}
+                {userInfo?.email !== null && loginStatus == true ? (
                     <Boards.BoardWriteBtn
                         onClick={() => {
                             router.push(`/board/write#${menu}`);
                         }}
-                        isDark={darkMode}
-                    >
-                        write
-                    </Boards.BoardWriteBtn>
-                ) : null}
-                {/* write button qna */}
-                {menu == "qna" &&
-                userInfo?.email !== null &&
-                loginStatus == true ? (
-                    <Boards.BoardWriteBtn
-                        onClick={() => {
-                            router.push(`/board/write#${menu}`);
-                        }}
-                        isDark={darkMode}
-                    >
-                        write
-                    </Boards.BoardWriteBtn>
-                ) : null}
-                {/* write button news */}
-                {menu === "news" &&
-                userInfo?.email === "aimzero9303@gmail.com" &&
-                loginStatus == true ? (
-                    <Boards.BoardWriteBtn
-                        onClick={() => {
-                            router.push(`/board/write#${menu}`);
-                        }}
-                        isDark={darkMode}
                     >
                         write
                     </Boards.BoardWriteBtn>
@@ -130,7 +93,7 @@ export default function Board(props: { menu: string }) {
             </div>
             <div style={{ minHeight: "360px" }}>
                 <Boards.BoardListBox>
-                    <Boards.BoardInfo isDark={darkMode}>
+                    <Boards.BoardInfo>
                         <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
                         <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
                         <Boards.NameInfo>name</Boards.NameInfo>
@@ -138,14 +101,22 @@ export default function Board(props: { menu: string }) {
                     </Boards.BoardInfo>
                 </Boards.BoardListBox>
                 <Boards.BoardListBox>
-                    {isLoading && <>{skeleton()}</>}
+                    {isLoading && (
+                        <div
+                            style={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                            }}
+                        >
+                            {skeleton()}
+                        </div>
+                    )}
                     {!searchKeyword &&
                         boardData.map((el, index) => (
                             <Boards.Board
                                 key={index}
                                 id={el.id}
                                 onClick={moveToDetail}
-                                isDark={darkMode}
                             >
                                 <Boards.BoardNumber>
                                     {boardListData.length -
@@ -167,13 +138,13 @@ export default function Board(props: { menu: string }) {
                             </Boards.Board>
                         ))}
 
+                    {/* 검색 결과 */}
                     {searchKeyword &&
                         searchResult.map((el, index) => (
                             <Boards.Board
                                 key={index}
                                 id={el.id}
                                 onClick={moveToDetail}
-                                isDark={darkMode}
                             >
                                 <Boards.BoardNumber>
                                     {searchResult.length - index}

@@ -24,10 +24,10 @@ export default function CommitFooter(props: {
             header: updatedHeader,
         }));
 
-        // text-area 75자 이상, 줄바꿈 처리
+        // besides \n 찾아서 줄바꿈 처리
         const besides = commitInfo.body.besides;
-        // 글 정보의 \n 찾아서 줄바꿈 처리
         let updateBesidesArr = besides.split("\n");
+        // besides 72자 이상 줄바꿈 처리
         if (besides !== "") {
             let newArr = [];
             for (let i = 0; i < updateBesidesArr.length; i++) {
@@ -42,6 +42,7 @@ export default function CommitFooter(props: {
             }
             updateBesidesArr = newArr;
 
+            // footer없이 besides만 존재한다면 마지막 요소에 " <- 를 붙여 줌
             if (commitInfo.footer === "") {
                 updateBesidesArr[updateBesidesArr.length - 1] =
                     updateBesidesArr[updateBesidesArr.length - 1] + `"`;
@@ -58,14 +59,20 @@ export default function CommitFooter(props: {
                 <br />
                 {commitInfo.body.why} 때문에,
                 <br />
-                {commitInfo.body.what} 작업 함
+                {commitInfo.body.what} 작업 함.
                 {updateBesidesArr.length > 0 && updateBesidesArr[0] !== "" ? (
                     <>
                         <br />
                         <br />
                         {updateBesidesArr.map((el, index) => (
                             <>
-                                <p style={{ margin: "0px" }} key={index}>
+                                <p
+                                    style={{
+                                        margin: "0px",
+                                        whiteSpace: "nowrap",
+                                    }}
+                                    key={index}
+                                >
                                     {el}
                                 </p>
                                 <br />
@@ -86,7 +93,7 @@ export default function CommitFooter(props: {
     };
 
     return (
-        <StyledCommitBody>
+        <StyledCommitFooter>
             <p>참조 할 해당 이슈</p>
             <div>
                 <Input
@@ -106,11 +113,11 @@ export default function CommitFooter(props: {
                     onClick={makeCommit}
                 />
             </div>
-        </StyledCommitBody>
+        </StyledCommitFooter>
     );
 }
 
-const StyledCommitBody = styled.section`
+const StyledCommitFooter = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;

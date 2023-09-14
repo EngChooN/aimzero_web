@@ -1,18 +1,15 @@
-import { darkModeState } from "@/common/Recoil/darkModeState";
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { FaBlogger, FaGithub } from "react-icons/fa";
 import { FiInstagram } from "react-icons/fi";
-import { useRecoilState } from "recoil";
 
-export default function PageFooter(props: { specialColor?: string }) {
-    const { specialColor } = props;
-    const [darkMode] = useRecoilState(darkModeState);
+export default function PageFooter(props: { specialFlag: boolean }) {
+    const { specialFlag } = props;
 
     return (
-        <Wrapper isDark={darkMode} specialColor={specialColor}>
+        <Wrapper specialFlag={specialFlag}>
             <ContentsWrapper>
-                <Logo specialColor={specialColor}>
+                <Logo specialFlag={specialFlag}>
                     <Link href="/">AimZero</Link>
                 </Logo>
                 <IconWrapper>
@@ -42,16 +39,14 @@ export default function PageFooter(props: { specialColor?: string }) {
 }
 
 const Wrapper = styled.section<{
-    isDark: boolean;
-    specialColor: string | undefined;
+    specialFlag: boolean;
 }>`
     width: 100%;
     height: 170px;
-    border-top: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     background-color: #ededed;
-    ${(props) => props.specialColor && "background-color: rgb(28, 5, 34);"}
+    ${(props) => props.specialFlag && "background-color: rgb(28, 5, 34);"}
     color: black;
-    ${(props) => props.specialColor && "color: white;"}
+    ${(props) => props.specialFlag && "color: white;"}
 
     display: flex;
     flex-direction: column;
@@ -71,8 +66,8 @@ const ContentsWrapper = styled.div`
 const IconWrapper = styled.div`
     max-width: 200px;
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
     display: flex;
     justify-content: space-evenly;
@@ -82,12 +77,12 @@ const Desc = styled.span`
     font-family: Garamond;
 `;
 
-const Logo = styled.div<{ specialColor: string | undefined }>`
+const Logo = styled.div<{ specialFlag: boolean }>`
     font-family: Pacifico;
     font-weight: 200;
-    font-size: 30px;
+    font-size: 32px;
     color: black;
-    ${(props) => props.specialColor && "color: white;"}
+    ${(props) => props.specialFlag && "color: white;"}
 
     cursor: pointer;
 `;

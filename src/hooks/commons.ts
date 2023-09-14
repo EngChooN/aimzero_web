@@ -43,6 +43,7 @@ export const useEditor = (initialValue: string) => {
     return [editorContent, onChangeEditorContent] as const;
 };
 
+// 글의 작성자와 현재 로그인 중인 유저를 비교하여 true, false 값을 던져줌
 export const useBoardWriter = (writer: string) => {
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
@@ -128,12 +129,14 @@ export const useBoardSearch = (menu: string) => {
 
     useEffect(() => {
         const searchBoardFunc = _.debounce(async () => {
+            console.log("run");
             const q = query(
                 collection(firebaseDb, menu), // 포스트 컬렉션
                 orderBy("title"), // 제목 정렬
                 startAt(searchKeyword),
                 endAt(searchKeyword + "\uf8ff")
             );
+
             const resSnap = await getDocs(q);
             const searchData = resSnap.docs.map((doc) => doc.data());
             setSearchResult(searchData);

@@ -140,13 +140,13 @@ export default function ProjectCreate() {
 
     return (
         <StyledCreate>
-            <h1>title</h1>
+            <h1>Title</h1>
             <Input
                 placeholder={"type title!"}
                 setValue={setTitle}
                 value={title}
             />
-            <h1>description</h1>
+            <h1>Description</h1>
             <Textarea
                 placeholder={
                     "Please enter a brief description in 200 characters"
@@ -154,7 +154,7 @@ export default function ProjectCreate() {
                 setValue={setDesc}
                 value={desc}
             />
-            <h1>content</h1>
+            <h1>Content</h1>
             {/* 삼항연산자를 사용하면 최초 렌더링 시, 
             contents가 undefined이기 때문에(내 예상임 그냥), 
             빈값인 작성하기 경우의 에디터로 렌더링 되는 문제가 있어 다음과 같이 함. */}
@@ -175,9 +175,9 @@ export default function ProjectCreate() {
                 />
             )}
 
-            <h1>thumbnail</h1>
+            <h1>Thumbnail</h1>
             <BoardImgUpload setImgUrl={setImgUrl} imgUrl={imgUrl} />
-            <h1>tag</h1>
+            <h1>Tag</h1>
             <Tag tags={tags} setTags={setTags} />
             <div>
                 <Button
@@ -196,13 +196,15 @@ const StyledCreate = styled.section`
     flex-direction: column;
     align-items: flex-start;
 
-    padding: 30px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 60px;
     max-width: 1200px;
     width: 100%;
 
     > h1 {
         font-family: serif;
+        padding-left: 10px;
+        font-size: 18px;
     }
 
     > div {

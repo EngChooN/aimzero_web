@@ -1,37 +1,30 @@
-import { darkModeState } from "@/common/Recoil/darkModeState";
 import styled from "@emotion/styled";
-import { useRecoilState } from "recoil";
 
 export default function TagView(props: { tags: string[] }) {
-    const [darkMode] = useRecoilState(darkModeState);
     const { tags } = props;
     return (
-        <StyledTagView isDark={darkMode}>
+        <StyledTagView>
             {tags?.map((el, index) => (
-                <Tag key={index} isDark={darkMode}>
-                    #{el}
-                </Tag>
+                <Tag key={index}>#{el}</Tag>
             ))}
         </StyledTagView>
     );
 }
 
-const StyledTagView = styled.div<{ isDark: boolean }>`
+const StyledTagView = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 20px;
-    border-bottom: ${(props) =>
-        !props.isDark ? "1px solid lightgray" : "1px solid grey"};
+    border-bottom: 1px solid lightgray;
 `;
 
-const Tag = styled.div<{ isDark: boolean }>`
+const Tag = styled.div`
     display: flex;
     align-items: center;
 
     height: 30px;
     background-color: #f3f3f3;
-    border: ${(props) => (!props.isDark ? "" : "1px solid grey")};
     border-radius: 15px;
 
     padding-right: 10px;

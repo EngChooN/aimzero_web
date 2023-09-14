@@ -57,10 +57,10 @@ export default function EditorWrite(options: EditorOptions) {
                 initialEditType="markdown"
                 useCommandShortcut={false}
                 hideModeSwitch={true}
-                plugins={[
-                    [codeSyntaxHighlightPlugin, { highlighter: Prism }],
-                    colorSyntax,
-                ]}
+                // plugins={[
+                //     [codeSyntaxHighlightPlugin, { highlighter: Prism }],
+                //     colorSyntax,
+                // ]}
             />
         </StyledEditor>
     );

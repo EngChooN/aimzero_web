@@ -26,11 +26,9 @@ import {
 import { firebaseDb } from "../../../../firebase.config";
 import { Btn } from "../../Login/Login.styles";
 import ReplyEdit from "../Edit/ReplyEdit";
-import { darkModeState } from "@/common/Recoil/darkModeState";
 
 export default function ReplyViewer(props: { boardData: DocumentData }) {
     const { boardData } = props;
-    const [darkMode] = useRecoilState(darkModeState);
 
     const [userInfo] = useRecoilState(userInfoState);
     const [comments, setCommentsData] = useState<DocumentData[]>([]);
@@ -88,7 +86,7 @@ export default function ReplyViewer(props: { boardData: DocumentData }) {
         <Wrapper>
             {boardData.content &&
                 comments.map((el, index) => (
-                    <CommentWrapper key={index} isDark={darkMode}>
+                    <CommentWrapper key={index}>
                         <Name>{el.name}</Name>
                         {updateState.state == false ? (
                             <ViewWrapper>
@@ -232,11 +230,10 @@ const Wrapper = styled.article`
     }
 `;
 
-const CommentWrapper = styled.div<{ isDark: boolean }>`
+const CommentWrapper = styled.div`
     padding-top: 30px;
     padding-bottom: 30px;
-    border-top: ${(props) =>
-        !props.isDark ? "1px solid lightgray" : "1px solid grey"};
+    border-top: 1px solid lightgray;
 `;
 
 const ViewWrapper = styled.div``;

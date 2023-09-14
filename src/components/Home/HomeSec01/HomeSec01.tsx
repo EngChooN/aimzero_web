@@ -1,4 +1,3 @@
-import { darkModeState } from "@/common/Recoil/darkModeState";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
@@ -6,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 export default function HomeSec01() {
-    const [darkMode] = useRecoilState(darkModeState);
     const [scrollY, setScrollY] = useState(0);
 
     useEffect(() => {
@@ -55,21 +53,12 @@ export default function HomeSec01() {
                     className="star"
                     src={"/images/landing/bg4.png"}
                 />
-                {!darkMode ? (
-                    <DivideBox
-                        style={{
-                            background:
-                                "linear-gradient(to top, rgb(28, 5, 34), transparent)",
-                        }}
-                    ></DivideBox>
-                ) : (
-                    <DivideBox
-                        style={{
-                            background:
-                                "linear-gradient(to top, #18181b, transparent)",
-                        }}
-                    ></DivideBox>
-                )}
+                <DivideBox
+                    style={{
+                        background:
+                            "linear-gradient(to top, rgb(28, 5, 34), transparent)",
+                    }}
+                ></DivideBox>
             </BgWrapper>
         </Section>
     );

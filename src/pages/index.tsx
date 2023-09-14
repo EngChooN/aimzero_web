@@ -30,7 +30,6 @@ export default function Home() {
                 <HomeSec01 />
                 <HomeSec02 />
                 {/* <FullPageScroll pageSection={pageSection} /> */}
-                <Footer specialColor={"rgb(28, 5, 34)"} />
             </StyledHome>
         </>
     );

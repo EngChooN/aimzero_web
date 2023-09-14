@@ -6,18 +6,23 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
 import { loginState } from "../../../common/Recoil/loginState";
-import { darkModeState } from "@/common/Recoil/darkModeState";
 import { useOutSideRef, useScrollDirection } from "@/hooks/commons";
 import Head from "next/head";
+import Button from "@/components/commons/Button/Button";
 
-export default function PageHeader(props: { currentPath: string }) {
-    const { currentPath } = props;
-    const [specialFlag, setSpecialFlag] = useState(false); // 헤더의 특별한 스타일을 적용
-
-    const [darkMode] = useRecoilState(darkModeState);
+export default function PageHeader(props: { specialFlag: boolean }) {
+    const { specialFlag } = props;
     const [loginStatus] = useRecoilState(loginState);
 
-    const headerList = ["resume", "project", "blog", "photo", "visit log"];
+    const headerList = [
+        { name: "resume", link: "/resume" },
+        { name: "project", link: "/project" },
+        { name: "blog", link: "/blog" },
+        { name: "photo", link: "/photo" },
+        { name: "experiment", link: "/experiment" },
+        { name: "board", link: "/board" },
+        { name: "visit", link: "/visit" },
+    ];
     const router = useRouter();
     const crrUrl = router.pathname;
     // mobile
@@ -44,18 +49,6 @@ export default function PageHeader(props: { currentPath: string }) {
         }
     };
 
-    useEffect(() => {
-        if (currentPath) {
-            if (currentPath === "/") {
-                // special header style..
-                setSpecialFlag(true);
-            } else {
-                // common header style..
-                setSpecialFlag(false);
-            }
-        }
-    });
-
     useScrollDirection(
         () => {
             if (window.scrollY <= 100) {
@@ -76,7 +69,6 @@ export default function PageHeader(props: { currentPath: string }) {
                     {`
                         body {
                             background: ${specialFlag && "rgb(28, 5, 34)"};
-                            background: ${darkMode && "#18181b"};
                         }
                     `}
                 </style>
@@ -84,92 +76,55 @@ export default function PageHeader(props: { currentPath: string }) {
             <Wrapper specialFlag={specialFlag} marginTop={headerMargin}>
                 {/* pc heder */}
                 <Menu>
-                    {/* resume */}
-                    <List
-                        currentUrl={crrUrl === "/resume"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link href="/resume">{headerList[0]}</Link>
-                        <div></div>
-                    </List>
-                    {/* skills */}
-                    <List
-                        currentUrl={crrUrl === "/project"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link href="/project">{headerList[1]}</Link>
-                        <div></div>
-                    </List>
-                    {/* project */}
-                    <List
-                        currentUrl={crrUrl === "/blog"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link href="/blog">{headerList[2]}</Link>
-                        <div></div>
-                    </List>
-                    {/* home */}
                     <Logo specialFlag={specialFlag}>
-                        <Link href={"/"}>AimZero</Link>
-                    </Logo>
-                    {/* photo */}
-                    <List
-                        currentUrl={crrUrl === "/photo"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link href="/photo">
-                            {headerList[3]}
-                            <div></div>
+                        <Link
+                            href={"/"}
+                            onClick={() => {
+                                setMenuFlag(true);
+                            }}
+                        >
+                            AimZero
                         </Link>
-                    </List>
-                    {/* visit log */}
-                    <List
-                        currentUrl={crrUrl === "/visit+log"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link href="/visit+log">{headerList[4]}</Link>
-                        <div></div>
-                    </List>
-                    {/* login */}
-                    <List
-                        currentUrl={crrUrl === "/login"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        {loginStatus == false ? (
-                            <Link href="/login">
-                                login_<div></div>
+                    </Logo>
+                    {headerList.map((el, index) => (
+                        <List
+                            key={index}
+                            currentUrl={crrUrl.includes(el.link)}
+                            specialFlag={specialFlag}
+                        >
+                            <Link
+                                href={el.link}
+                                onClick={() => {
+                                    setMenuFlag(true);
+                                }}
+                            >
+                                {el.name}
                             </Link>
-                        ) : (
-                            // logout
-                            <Link href={""} onClick={logOut}>
-                                logout<div></div>
-                            </Link>
-                        )}
-                    </List>
+                            <div></div>
+                        </List>
+                    ))}
+                    {loginStatus ? (
+                        <Button
+                            label="logout"
+                            backgroundColor="black"
+                            primary={false}
+                            onClick={logOut}
+                        />
+                    ) : (
+                        <Button
+                            label="login"
+                            backgroundColor="black"
+                            primary={false}
+                            onClick={() => {
+                                router.push("/login");
+                            }}
+                        />
+                    )}
                 </Menu>
 
                 {/* mobile header */}
                 <MobileMenu specialFlag={specialFlag}>
                     {/* hamburger menu icon */}
-
-                    <RxHamburgerMenu
-                        color={specialFlag ? "white" : ""}
-                        fontSize={25}
-                        style={{
-                            marginLeft: "10px",
-                            cursor: "pointer",
-                        }}
-                        onClick={(event) => {
-                            onClickMenu();
-                            event.stopPropagation();
-                        }}
-                    />
 
                     <Logo specialFlag={specialFlag}>
                         <Link
@@ -181,116 +136,58 @@ export default function PageHeader(props: { currentPath: string }) {
                             AimZero
                         </Link>
                     </Logo>
-                    {/* login */}
-                    <List
-                        currentUrl={crrUrl === "/login"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                        style={{ marginRight: "10px" }}
-                    >
-                        {loginStatus == false ? (
+                    <RxHamburgerMenu
+                        color={specialFlag ? "white" : ""}
+                        fontSize={25}
+                        style={{
+                            marginRight: "20px",
+                            cursor: "pointer",
+                        }}
+                        onClick={(event) => {
+                            onClickMenu();
+                            event.stopPropagation();
+                        }}
+                    />
+                </MobileMenu>
+                <DropDown
+                    menuFlag={menuFlag}
+                    ref={dropdownRef}
+                    specialFlag={specialFlag}
+                >
+                    {headerList.map((el, index) => (
+                        <List
+                            key={index}
+                            currentUrl={crrUrl.includes(el.link)}
+                            specialFlag={specialFlag}
+                        >
                             <Link
-                                href="/login"
+                                href={el.link}
                                 onClick={() => {
                                     setMenuFlag(true);
                                 }}
                             >
-                                login_<div></div>
+                                {el.name}
                             </Link>
-                        ) : (
-                            // logout
-                            <Link href={""} onClick={logOut}>
-                                logout<div></div>
-                            </Link>
-                        )}
-                    </List>
-                </MobileMenu>
-                <DropDown
-                    menuFlag={menuFlag}
-                    isDark={darkMode}
-                    ref={dropdownRef}
-                    specialFlag={specialFlag}
-                >
-                    {/* resume */}
-                    <List
-                        currentUrl={crrUrl === "/resume"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link
-                            href="/resume"
-                            onClick={() => {
-                                setMenuFlag(true);
-                            }}
-                        >
-                            {headerList[0]}
-                        </Link>
-                        <div></div>
-                    </List>
-                    {/* skills */}
-                    <List
-                        currentUrl={crrUrl === "/project"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link
-                            href="/project"
-                            onClick={() => {
-                                setMenuFlag(true);
-                            }}
-                        >
-                            {headerList[1]}
-                        </Link>
-                        <div></div>
-                    </List>
-                    {/* project */}
-                    <List
-                        currentUrl={crrUrl === "/blog"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link
-                            href="/blog"
-                            onClick={() => {
-                                setMenuFlag(true);
-                            }}
-                        >
-                            {headerList[2]}
-                        </Link>
-                        <div></div>
-                    </List>
-                    {/* photo */}
-                    <List
-                        currentUrl={crrUrl === "/photo"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link
-                            href="/photo"
-                            onClick={() => {
-                                setMenuFlag(true);
-                            }}
-                        >
-                            {headerList[3]}
                             <div></div>
-                        </Link>
-                    </List>
-                    {/* visit log */}
-                    <List
-                        currentUrl={crrUrl === "/visit+log"}
-                        isDark={darkMode}
-                        specialFlag={specialFlag}
-                    >
-                        <Link
-                            href="/visit+log"
+                        </List>
+                    ))}
+                    {loginStatus ? (
+                        <Button
+                            label="logout"
+                            backgroundColor="black"
+                            primary={false}
+                            onClick={logOut}
+                        />
+                    ) : (
+                        <Button
+                            label="login"
+                            backgroundColor="black"
+                            primary={false}
                             onClick={() => {
-                                setMenuFlag(true);
+                                router.push("/login");
                             }}
-                        >
-                            {headerList[4]}
-                        </Link>
-                        <div></div>
-                    </List>
+                        />
+                    )}
                 </DropDown>
             </Wrapper>
         </>
@@ -329,10 +226,15 @@ const Wrapper = styled.section<{ specialFlag: boolean; marginTop: number }>`
 const Menu = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     max-width: 1200px;
     width: 100%;
+    height: 80px;
+
+    > button {
+        margin: 0px;
+    }
 
     @media (max-width: 1100px) {
         display: none;
@@ -346,6 +248,7 @@ const MobileMenu = styled.div<{ specialFlag: boolean }>`
 
     max-width: 1200px;
     width: 100%;
+    height: 65px;
 
     display: none;
     background-color: white;
@@ -363,15 +266,14 @@ const MobileMenu = styled.div<{ specialFlag: boolean }>`
 
 const DropDown = styled.div<{
     menuFlag: boolean;
-    isDark: boolean;
     specialFlag: boolean;
 }>`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-around;
     width: 100%;
-    height: 400px;
+    height: fit-content;
     position: absolute;
     transition: all 0.3s;
     top: ${(props: any) => (props.menuFlag == true ? "-500px" : "53.5px")};
@@ -379,38 +281,42 @@ const DropDown = styled.div<{
     background-color: white;
     ${(props) =>
         props.specialFlag ? "background-color: rgb(28, 5, 34);" : null};
-    ${(props) =>
-        !props.isDark
-            ? "box-shadow: 0 4px 4px -4px black"
-            : "box-shadow: 0 4px 4px -4px lightgray"};
+    box-shadow: 0 4px 4px -4px black;
+
+    > button {
+        margin: 10px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
+    @media (min-width: 1100px) {
+        display: none;
+        height: -500px;
+    }
 `;
 
 const Logo = styled.div<{ specialFlag: boolean }>`
     font-family: Pacifico;
     font-weight: 200;
-    font-size: 30px;
+    font-size: 32px;
     color: black;
     color: ${(props) => (props.specialFlag ? "white" : null)};
-
-    padding-bottom: 5px;
-
     cursor: pointer;
 
     @media (max-width: 1100px) {
-        font-size: 25px;
-        margin-left: 45px;
-        margin-top: 5px;
+        margin-left: 20px;
+        /* margin-top: 5px; */
     }
 `;
 
 const List = styled.div<{
     currentUrl: boolean;
-    isDark: boolean;
     specialFlag: boolean;
 }>`
+    width: fit-content;
     font-family: Garamond;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 22px;
     color: black;
     color: ${(props) => (props.specialFlag ? "white" : null)};
 
@@ -420,29 +326,21 @@ const List = styled.div<{
     div {
         width: ${(props) => (props.currentUrl ? "100%" : "0%")};
         height: 1px;
-        ${(props) =>
-            !props.isDark
-                ? `border-bottom: 1px solid ${
-                      props.currentUrl ? "black" : "white"
-                  };`
-                : `border-bottom: 1px solid ${
-                      props.currentUrl ? "white" : "black"
-                  };`}
+        border-bottom: 1px solid
+            ${(props) => (props.currentUrl ? "black" : "none")};
+
         transition: all 0.3s;
     }
 
     :hover {
         div {
             width: 100%;
-            ${(props) =>
-                !props.isDark
-                    ? "border-bottom: 1px solid black"
-                    : "border-bottom: 1px solid white"}
+            border-bottom: 1px solid black;
         }
     }
 
     @media (max-width: 1100px) {
-        margin-top: 5px;
-        font-size: 22px;
+        padding-left: 30px;
+        margin-top: 20px;
     }
 `;
