@@ -315,7 +315,7 @@ const List = styled.div<{
     width: fit-content;
     font-family: Garamond;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 23px;
     color: black;
     color: ${(props) => (props.specialFlag ? "white" : null)};
 
@@ -339,7 +339,7 @@ const List = styled.div<{
     }
 
     @media (max-width: 1100px) {
-        padding-left: 30px;
-        margin-top: 20px;
+        padding-left: 20px;
+        margin-top: 30px;
     }
 `;
