@@ -40,7 +40,7 @@ export const useEditor = (initialValue: string) => {
         }
     };
 
-    return [editorContent, onChangeEditorContent] as const;
+    return [editorContent, onChangeEditorContent, setEditorContent] as const;
 };
 
 // 글의 작성자와 현재 로그인 중인 유저를 비교하여 true, false 값을 던져줌

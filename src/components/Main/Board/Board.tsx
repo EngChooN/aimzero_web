@@ -20,6 +20,7 @@ import { loginState } from "../../../common/Recoil/loginState";
 import { Skeleton } from "antd";
 import SearchBoardInput from "../SearchBoardInput";
 import { useBoardSearch } from "@/hooks/commons";
+import BoardBox from "@/components/Main/Board/BoardBox";
 
 export default function Board(props: { menu: string }) {
     const { menu } = props;
@@ -54,8 +55,8 @@ export default function Board(props: { menu: string }) {
         fetchBoards();
     }, [page]);
 
-    const moveToDetail = (e: React.MouseEvent<HTMLDivElement>) => {
-        location.href = `/board/${menu}=${e.currentTarget.id}`;
+    const moveToDetail = (id: string) => {
+        location.href = `/board/${menu}=${id}`;
     };
 
     const skeleton = () => {
@@ -78,7 +79,16 @@ export default function Board(props: { menu: string }) {
 
     return (
         <Boards.Wrapper>
-            <div style={{ position: "relative" }}>
+            <div
+                style={{
+                    position: "sticky",
+                    top: "0px",
+                    background: "white",
+                    borderBottom: "1px solid #ececec",
+                    paddingTop: "15px",
+                    paddingBottom: "15px",
+                }}
+            >
                 <SearchBoardInput setSearchKeyword={setSearchKeyword} />
                 {/* write button */}
                 {userInfo?.email !== null && loginStatus == true ? (
@@ -86,20 +96,13 @@ export default function Board(props: { menu: string }) {
                         onClick={() => {
                             router.push(`/board/write#${menu}`);
                         }}
+                        style={{ marginTop: "15px" }}
                     >
                         write
                     </Boards.BoardWriteBtn>
                 ) : null}
             </div>
             <div style={{ minHeight: "360px" }}>
-                <Boards.BoardListBox>
-                    <Boards.BoardInfo>
-                        <Boards.BoardNumberInfo>No</Boards.BoardNumberInfo>
-                        <Boards.BoardTitleInfo>title</Boards.BoardTitleInfo>
-                        <Boards.NameInfo>name</Boards.NameInfo>
-                        <Boards.BoardDateInfo>date</Boards.BoardDateInfo>
-                    </Boards.BoardInfo>
-                </Boards.BoardListBox>
                 <Boards.BoardListBox>
                     {isLoading && (
                         <div
@@ -113,55 +116,25 @@ export default function Board(props: { menu: string }) {
                     )}
                     {!searchKeyword &&
                         boardData.map((el, index) => (
-                            <Boards.Board
+                            <BoardBox
                                 key={index}
-                                id={el.id}
-                                onClick={moveToDetail}
-                            >
-                                <Boards.BoardNumber>
-                                    {boardListData.length -
-                                        (page - 1) * limit -
-                                        index}
-                                </Boards.BoardNumber>
-                                <Boards.BoardTitle>
-                                    {el.title}
-                                </Boards.BoardTitle>
-                                <Boards.Name>{el.name}</Boards.Name>
-                                <Boards.BoardDate>
-                                    {
-                                        el.timestamp
-                                            .toDate()
-                                            .toISOString()
-                                            .split("T")[0]
-                                    }
-                                </Boards.BoardDate>
-                            </Boards.Board>
+                                boardData={el}
+                                onClick={() => {
+                                    moveToDetail(el.id);
+                                }}
+                            />
                         ))}
 
                     {/* 검색 결과 */}
                     {searchKeyword &&
                         searchResult.map((el, index) => (
-                            <Boards.Board
+                            <BoardBox
                                 key={index}
-                                id={el.id}
-                                onClick={moveToDetail}
-                            >
-                                <Boards.BoardNumber>
-                                    {searchResult.length - index}
-                                </Boards.BoardNumber>
-                                <Boards.BoardTitle>
-                                    {el.title}
-                                </Boards.BoardTitle>
-                                <Boards.Name>{el.name}</Boards.Name>
-                                <Boards.BoardDate>
-                                    {
-                                        el.timestamp
-                                            .toDate()
-                                            .toISOString()
-                                            .split("T")[0]
-                                    }
-                                </Boards.BoardDate>
-                            </Boards.Board>
+                                boardData={el}
+                                onClick={() => {
+                                    moveToDetail(el.id);
+                                }}
+                            />
                         ))}
                 </Boards.BoardListBox>
             </div>

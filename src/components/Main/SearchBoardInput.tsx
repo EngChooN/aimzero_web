@@ -28,7 +28,8 @@ const StyledSearchBoardInput = styled.div`
     > div {
         position: absolute;
         left: 25px;
-        top: 11px;
+        /* top: 11px; */
+        top: 26px;
     }
 `;
 

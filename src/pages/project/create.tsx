@@ -211,5 +211,9 @@ const StyledCreate = styled.section`
         width: 100%;
         display: flex;
         justify-content: flex-end;
+
+        > button {
+            margin: 0px;
+        }
     }
 `;

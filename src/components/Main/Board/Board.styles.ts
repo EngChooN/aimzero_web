@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.section`
-    max-width: 1200px;
-    width: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
+    max-width: 1200px;
+    width: 100%;
 `;
 
 export const BoardListBox = styled.div`
@@ -127,7 +127,7 @@ export const Name = styled.div`
 export const BoardBottomBox = styled.div`
     position: relative;
     margin-top: 30px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
 `;
 
 export const BoardWriteBtn = styled.button`

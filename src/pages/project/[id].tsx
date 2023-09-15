@@ -87,6 +87,7 @@ const StyledProjectDetail = styled.section`
 
     > h1 {
         margin: 0px;
+        margin-bottom: 20px;
         padding-top: 15px;
     }
 

@@ -118,6 +118,13 @@ const reset = css`
         display: flex;
         justify-content: center;
     }
+
+    .css-dev-only-do-not-override-diro6f.ant-tabs-top > .ant-tabs-nav,
+    .css-dev-only-do-not-override-diro6f.ant-tabs-bottom > .ant-tabs-nav,
+    .css-dev-only-do-not-override-diro6f.ant-tabs-top > div > .ant-tabs-nav,
+    .css-dev-only-do-not-override-diro6f.ant-tabs-bottom > div > .ant-tabs-nav {
+        margin: 0px;
+    }
 `;
 
 export default reset;

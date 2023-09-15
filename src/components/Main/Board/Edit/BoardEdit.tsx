@@ -1,17 +1,4 @@
-import * as Edit from "./BoardEdit.styles";
-import { useEffect, useRef, useState } from "react";
-import { CommentInput } from "../../../VisitLog/VisitLog.styles";
-import { Btn } from "../../../Login/Login.styles";
-// toast editor
-import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
-// toast plugin (code highlight)
-import Prism from "prismjs";
-import "prismjs/themes/prism.css";
-import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
-// toast plugin color pick
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+import { useEffect, useState } from "react";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
@@ -24,27 +11,27 @@ import {
     updateDoc,
     where,
 } from "firebase/firestore";
-import { firebaseDb, firebaseStorage } from "../../../../../firebase.config";
+import { firebaseDb } from "../../../../../firebase.config";
 // recoil
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../../../common/Recoil/userInfoState";
 import { loginState } from "../../../../common/Recoil/loginState";
 import { useRouter } from "next/router";
-// icon
-import { MdCancel } from "react-icons/md";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { HookCallback } from "@toast-ui/editor/types/editor";
+import styled from "@emotion/styled";
+import { useEditor } from "@/hooks/commons";
+import Input from "@/components/commons/Input/Input";
+import Textarea from "@/components/commons/Textarea/Textarea";
+import EditorWrite from "@/components/commons/Editor/EditorWrite";
+import Tag from "@/components/commons/Tag/Tag";
+import Button from "@/components/commons/Button/Button";
 
 export default function BoardEdit(): JSX.Element {
-    const contentRef = useRef<Editor>(null);
     const router = useRouter();
 
     const [title, setTitle] = useState("");
-    const [content, setContent] = useState("");
-    // your typing tag
-    const [tag, setTag] = useState("");
-    // tag list
-    const [tags, setTags] = useState<string[]>([]);
+    const [desc, setDesc] = useState("");
+    const [editorContent, onChangeEditorContent, setEditorContent] =
+        useEditor("");
 
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
@@ -58,31 +45,10 @@ export default function BoardEdit(): JSX.Element {
         const querySnapshot = await getDocs(condition);
         querySnapshot.forEach((doc: any) => {
             setTitle(doc.data().title);
-            setTags(doc.data().tag);
-            console.log(doc.data().tag);
-            contentRef.current?.getInstance().setHTML(doc.data().content);
+            setDesc(doc.data().desc);
+            setEditorContent(doc.data().content);
         });
     }
-
-    // img upload hook
-    useEffect(() => {
-        const editorIns = contentRef.current?.getInstance();
-        editorIns?.removeHook("addImageBlobHook"); //<- 제거
-        editorIns?.addHook("addImageBlobHook", addImage); //<- 추가 },
-    }, []);
-    // img upload func
-    const addImage = async (file: File, showImage: HookCallback) => {
-        console.log(file); //이미지 압축 및 서버 업로드 로직 실행
-        let imgUrl;
-        const imageRef = ref(firebaseStorage, `boardPhoto/${file.name}`); // storage directory (path, file name)
-        if (!file) return;
-        await uploadBytes(imageRef, file).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                imgUrl = url;
-                showImage(imgUrl, "alt_text"); //에디터에 이미지 추가
-            });
-        });
-    };
 
     useEffect(() => {
         if (!router.isReady) return;
@@ -111,28 +77,14 @@ export default function BoardEdit(): JSX.Element {
         }
     }, [boardType, boardId]);
 
-    // if you press enter, add tag func
-    const addTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        console.log("enter");
-        // enter code
-        if (e.keyCode == 13) {
-            setTags([...tags, tag]);
-            setTag("");
-        }
-    };
-
-    const onChangeContent = () => {
-        setContent(contentRef.current?.getInstance().getHTML() ?? "");
-    };
-
     const submitContent = async () => {
-        if (content != "" && title != "") {
+        if (editorContent != "" && title != "") {
             // update func
             const userDoc = doc(firebaseDb, boardType, boardId);
             const newField = {
                 title: title,
-                content: content,
-                tag: tags,
+                desc: desc,
+                content: editorContent,
             };
 
             await updateDoc(userDoc, newField);
@@ -143,92 +95,86 @@ export default function BoardEdit(): JSX.Element {
     };
 
     return (
-        <Edit.Wrapper>
-            {/* title input (no comment input) */}
-            <CommentInput
-                style={{
-                    width: "100%",
-                    marginBottom: "20px",
-                }}
-                placeholder="title"
-                onChange={(e) => {
-                    setTitle(e.target.value);
-                    console.log(title);
-                }}
-                defaultValue={title}
+        <StyledBoardWrite>
+            {/* test */}
+            <h1>Title</h1>
+            <Input
+                placeholder={"type title!"}
+                setValue={setTitle}
+                value={title}
             />
-            {/* content */}
-            <Editor
-                ref={contentRef}
-                onChange={onChangeContent}
-                initialValue="typing content here!"
-                previewStyle="vertical"
-                height="100%"
-                initialEditType="markdown"
-                useCommandShortcut={false}
-                hideModeSwitch={true}
-                plugins={[
-                    [codeSyntaxHighlight, { highlighter: Prism }],
-                    colorSyntax,
-                ]}
+            <h1>Description</h1>
+            <Textarea
+                placeholder={
+                    "Please enter a brief description in 200 characters"
+                }
+                setValue={setDesc}
+                value={desc}
             />
-            {/* tag input (no comment input) */}
-            <Edit.BottomWrapper>
-                <CommentInput
-                    style={{
-                        width: "50%",
-                        marginTop: "20px",
-                    }}
-                    placeholder="tag (typing and press enter)"
-                    onChange={(e) => {
-                        setTag(e.target.value);
-                    }}
-                    onKeyDown={addTag}
-                    value={tag}
+            <h1>Content</h1>
+            {/* 삼항연산자를 사용하면 최초 렌더링 시,
+            contents가 undefined이기 때문에(내 예상임 그냥),
+            빈값인 작성하기 경우의 에디터로 렌더링 되는 문제가 있어 다음과 같이 함. */}
+            {editorContent && (
+                <EditorWrite
+                    type={"markdown"}
+                    onChange={onChangeEditorContent}
+                    imgUploadUrl={"projectPhoto"}
+                    initialValue={editorContent ?? ""}
                 />
-                <Edit.tagWrapper>
-                    {/* show tags */}
-                    {tags?.map((el, index) => (
-                        <div key={index}>
-                            <Edit.tag key={index}>
-                                #{el}
-                                <MdCancel
-                                    style={{
-                                        marginLeft: "3px",
-                                        cursor: "pointer",
-                                    }}
-                                    // delete tag
-                                    onClick={() => {
-                                        const newTags = tags;
-                                        newTags.splice(index, 1);
-                                        console.log(newTags);
-                                        setTags([...newTags]);
-                                    }}
-                                />
-                            </Edit.tag>
-                        </div>
-                    ))}
-                </Edit.tagWrapper>
-            </Edit.BottomWrapper>
-            <Edit.BtnWrapper>
-                <Btn
+            )}
+            {!editorContent && (
+                <EditorWrite
+                    type={"markdown"}
+                    onChange={onChangeEditorContent}
+                    imgUploadUrl={"projectPhoto"}
+                    initialValue={editorContent ?? ""}
+                />
+            )}
+            <h1>Tag</h1>
+            <div>
+                <Button
+                    label={"submit"}
+                    primary={false}
+                    backgroundColor={"black"}
                     onClick={submitContent}
-                    style={{
-                        width: "10%",
-                        marginRight: "10px",
-                    }}
-                >
-                    submit
-                </Btn>
-                <Btn
+                />
+                <Button
+                    label={"cancel"}
+                    primary={false}
+                    backgroundColor={"black"}
                     onClick={() => {
                         window.history.back();
                     }}
-                    style={{ width: "10%" }}
-                >
-                    cancel
-                </Btn>
-            </Edit.BtnWrapper>
-        </Edit.Wrapper>
+                />
+            </div>
+        </StyledBoardWrite>
     );
 }
+
+const StyledBoardWrite = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 10px;
+    margin-bottom: 60px;
+    max-width: 1200px;
+    width: 100%;
+
+    > h1 {
+        font-family: serif;
+        padding-left: 10px;
+        font-size: 18px;
+    }
+
+    > div {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        > button {
+            margin: 0px;
+        }
+    }
+`;
