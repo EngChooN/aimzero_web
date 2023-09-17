@@ -81,8 +81,8 @@ export default function Board(props: { menu: string }) {
         <Boards.Wrapper>
             <div
                 style={{
-                    position: "sticky",
-                    top: "0px",
+                    // position: "sticky",
+                    // top: "0px",
                     background: "white",
                     borderBottom: "1px solid #ececec",
                     paddingTop: "15px",

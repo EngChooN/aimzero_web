@@ -73,8 +73,8 @@ export default function ProjectDetailPage() {
             )}
 
             <EditorRead initialValue={boardData?.content} />
-            <BoardTitle title={"another project.."} />
-            <ProjectList />
+            {/* <BoardTitle title={"another project.."} />
+            <ProjectList /> */}
         </StyledProjectDetail>
     );
 }
@@ -84,6 +84,7 @@ const StyledProjectDetail = styled.section`
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    margin-bottom: 60px;
 
     > h1 {
         margin: 0px;

@@ -64,7 +64,6 @@ export default function PhotoUI(props: PhotoType) {
                     <Photos.InfoBox>
                         <Photos.Name>Joonyoung Cho</Photos.Name>
                         <Photos.Posts></Photos.Posts>
-                        {/* contact info */}
                         <Photos.Info>
                             <FiMail style={{ marginRight: "10px" }} />{" "}
                             {profileData.photo.profileInfo.mail}
