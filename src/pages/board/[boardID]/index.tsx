@@ -8,7 +8,6 @@ import {
     query as fireQuery,
 } from "@firebase/firestore";
 import { firebaseDb } from "firebase.config";
-import Main from "@/components/Main/Main";
 
 const BoardViewer = dynamic(
     () => import("../../../components/Main/Board/Detail/BoardDetail"),
@@ -20,12 +19,9 @@ export default function BoardDetailPage({ boardData }: DocumentData) {
 
     return (
         <Wrapper>
-            {/* board detail component */}
             <ContentBox>
                 <BoardViewer boardData={boardData} />
             </ContentBox>
-            {/* boards list component */}
-            <Main />
         </Wrapper>
     );
 }
@@ -51,8 +47,6 @@ export async function getServerSideProps({ query }: DocumentData) {
         title: data.title,
         // @ts-ignore
         content: data.content,
-        // @ts-ignore
-        tag: data.tag,
         // @ts-ignore
         name: data.name,
         // @ts-ignore

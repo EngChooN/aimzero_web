@@ -41,7 +41,6 @@ export default function BoardDetail(props: { boardData: DocumentData }) {
                     deleteBoard(boardData.id);
                 }}
             />
-            <TagView tags={boardData.tag} />
             <EditorRead initialValue={boardData.content} />
             <Reply boardData={boardData} />
         </StyledBoardDetail>

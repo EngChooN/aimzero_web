@@ -26,7 +26,6 @@ export default function ReplyViewer(props: {
     const { boardData, comments, setCommentsData, fetchComments } = props;
 
     const [userInfo] = useRecoilState(userInfoState);
-    // const [comments, setCommentsData] = useState<DocumentData[]>([]);
 
     // update
     const [content, setContent] = useState("");
@@ -69,8 +68,6 @@ export default function ReplyViewer(props: {
             {boardData.content &&
                 comments.map((el: DocumentData, index: number) => (
                     <CommentWrapper key={index}>
-                        <p>{el.id}</p>
-                        <p>{el.commentId}</p>
                         <Name>{el.name}</Name>
                         {updateState.state === false ? (
                             <ViewWrapper>
@@ -91,6 +88,20 @@ export default function ReplyViewer(props: {
                                 <ReplyEdit
                                     setContent={setContent}
                                     commentId={el.commentId}
+                                />
+                            </ViewWrapper>
+                        ) : null}
+                        {updateState.state === true &&
+                        updateState.index !== index.toString() ? (
+                            <ViewWrapper>
+                                <Viewer
+                                    initialValue={el.content}
+                                    plugins={[
+                                        [
+                                            codeSyntaxHighlight,
+                                            { highlighter: Prism },
+                                        ],
+                                    ]}
                                 />
                             </ViewWrapper>
                         ) : null}
