@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { List } from "antd";
 import styled from "@emotion/styled";
 import {
     DocumentData,
@@ -13,11 +12,13 @@ import { firebaseApp } from "firebase.config";
 import Button from "../commons/Button/Button";
 import { useRouter } from "next/router";
 import { useAuth } from "@/hooks/commons";
-import Image from "next/image";
+import AllTagView from "../commons/Tag/AllTagsView";
+import ProjectBox from "./ProjectBox";
 
 export default function ProjectList() {
     const router = useRouter();
     const [boardData, setBoardData] = useState<DocumentData[]>([]);
+    const [filteredData, setFilteredData] = useState<DocumentData[]>([]);
 
     const fetchBoards = async () => {
         const board = collection(getFirestore(firebaseApp), "project");
@@ -26,19 +27,8 @@ export default function ProjectList() {
         );
         const fetchData = result.docs.map((el) => el.data());
         setBoardData(fetchData);
-        console.log(boardData);
+        setFilteredData(fetchData);
     };
-
-    const data = Array.from({ length: boardData?.length ?? 0 }).map(
-        (_, index) => ({
-            href: `/project/${boardData[index]?.id}`,
-            title: boardData[index]?.title,
-            desc: boardData[index]?.desc,
-            timestamp: boardData[index]?.timestamp,
-            content: boardData[index]?.content,
-            thumb: boardData[index]?.thumb,
-        })
-    );
 
     useEffect(() => {
         fetchBoards();
@@ -46,86 +36,51 @@ export default function ProjectList() {
 
     return (
         <Wrapper>
-            <List
-                itemLayout="vertical"
-                size="large"
-                pagination={{
-                    pageSize: 4,
-                }}
-                dataSource={data}
-                renderItem={(item) => (
-                    <List.Item
-                        key={item.title}
-                        extra={
-                            <Image
-                                width={220}
-                                height={220}
-                                style={{
-                                    width: "220px",
-                                    height: "130px",
-                                    objectFit: "cover",
-                                }}
-                                alt="project_thumbnail"
-                                src={item.thumb ?? "/images/no_img.jpg"}
-                            />
-                        }
-                    >
-                        <List.Item.Meta
-                            title={<a href={item.href}>{`${item.title}`}</a>}
-                            description={item.desc}
-                        />
-                    </List.Item>
-                )}
+            <AllTagView
+                collectionName="project"
+                boardData={boardData}
+                setFilteredData={setFilteredData}
             />
-            {useAuth() && (
-                <div className="btnWrapper">
-                    <Button
-                        label={"write"}
-                        backgroundColor={"black"}
-                        primary={false}
-                        onClick={() => {
-                            router.push("/project/create");
-                        }}
-                    />
-                </div>
-            )}
+            <div>
+                {filteredData.map((el, index) => (
+                    <ProjectBox key={index} boardData={el} />
+                ))}
+            </div>
         </Wrapper>
     );
 }
 
 const Wrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     max-width: 1200px;
     width: 100%;
-    min-height: calc(100vh - 300px);
     height: fit-content;
-    padding-bottom: 24px;
+    padding-top: 30px;
+    padding-bottom: 50px;
 
-    > .btnWrapper {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
+    > div {
+        display: grid;
+        grid-template-columns: repeat(2, 400px);
+        gap: 30px;
+        justify-items: center;
+        padding-top: 50px;
+
+        @media (max-width: 900px) {
+            grid-template-columns: repeat(1, 400px);
+        }
+
+        @media (max-width: 450px) {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
     }
 
     @media (max-width: 1100px) {
         min-height: calc(100vh - 224px);
-    }
-
-    @media (max-width: 680px) {
-        > :where(.css-diro6f).ant-list-lg .ant-list-item {
-            padding: 16px 24px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        > :where(.css-diro6f).ant-list-vertical
-            .ant-list-item
-            .ant-list-item-extra {
-            margin: 0px;
-        }
-
-        > :where(.css-diro6f).ant-list img {
-            width: 100%;
-            padding-top: 10px;
-        }
     }
 `;
