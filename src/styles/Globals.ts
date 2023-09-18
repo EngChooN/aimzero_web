@@ -125,6 +125,10 @@ const reset = css`
     .ant-tabs-bottom > div > .ant-tabs-nav {
         margin: 0px;
     }
+
+    .ant-image .ant-image-mask:hover {
+        border-radius: 4px;
+    }
 `;
 
 export default reset;
