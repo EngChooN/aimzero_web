@@ -10,90 +10,11 @@ export const Wrapper = styled.section`
     width: 100%;
     min-height: calc(100vh - 300px);
     height: 100%;
+    padding-top: 40px;
 
     @media (max-width: 1100px) {
         min-height: calc(100vh - 64.5px - 170px);
         padding-top: 15px;
-    }
-`;
-
-export const TopSection = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-`;
-
-export const ProfileBox = styled.div`
-    width: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-
-    padding-bottom: 20px;
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
-
-    @media (max-width: 600px) {
-        flex-direction: column;
-        width: 90%;
-    }
-`;
-
-export const ProfileImg = styled.img`
-    width: 150px;
-    height: 150px;
-    border-radius: 100px;
-    border: 3px solid darkgray;
-
-    @media (max-width: 730px) {
-        width: 120px;
-        height: 120px;
-    }
-
-    @media (max-width: 600px) {
-        width: 130px;
-        height: 130px;
-        margin-bottom: 20px;
-    }
-`;
-
-export const InfoBox = styled.div``;
-
-export const Name = styled.div`
-    font-family: Garamond;
-    font-size: 23px;
-    margin-bottom: 15px;
-
-    @media (max-width: 730px) {
-        font-size: 19px;
-    }
-    @media (max-width: 600px) {
-        display: flex;
-        justify-content: center;
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-`;
-
-export const Posts = styled.div``;
-
-export const Info = styled.div`
-    display: flex;
-    align-items: center;
-
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    font-family: serif;
-    font-size: 16px;
-
-    @media (max-width: 730px) {
-        font-size: 13px;
-    }
-
-    @media (max-width: 730px) {
-        font-size: 15px;
     }
 `;
 
@@ -135,6 +56,7 @@ export const SelImgWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
 `;
 
 export const Additional = styled.div`
@@ -148,6 +70,7 @@ export const Additional = styled.div`
     background-color: lightgray;
     cursor: pointer;
     transition: all 0.3s;
+    border-radius: 4px;
 
     :hover {
         background-color: darkgray;
@@ -163,8 +86,6 @@ export const Additional = styled.div`
         height: 160px;
     }
 `;
-
-// export const PostImg = styled.img``;
 
 export const ImgBox = styled.div`
     width: 230px;
@@ -194,17 +115,14 @@ export const Modal = styled.div`
     width: 100%;
     height: 100vh;
     background-color: white;
-    z-index: 99999;
+    z-index: 1;
 `;
 
 export const SelImg = styled.img`
     width: 100%;
     height: 100%;
-
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-
+    border-radius: 4px;
+    object-fit: cover;
     transition: all 0.3s;
 
     :hover {

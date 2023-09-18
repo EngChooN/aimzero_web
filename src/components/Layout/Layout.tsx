@@ -22,7 +22,7 @@ export default function Layout(props: { children: ReactNode }) {
     const [currentPath, setCurrentPath] = useState("");
     const router = useRouter();
 
-    const footerBlockPath = ["/visit", "/photo"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
+    const footerBlockPath = ["/visit"]; // 푸터를 없애고 싶은 페이지의 path를 배열에 넣는다.
     const [footerFlag, setFooterFlag] = useState(true);
 
     const [specialFlag, setSpecialFlag] = useState(false); // 헤더또는 푸터에 특별한 스타일을 적용
