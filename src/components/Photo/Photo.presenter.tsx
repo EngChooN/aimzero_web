@@ -28,9 +28,9 @@ export default function PhotoUI(props: PhotoType) {
         windowWidth,
     } = props;
 
+    let width = "230px";
     const skeleton = () => {
         const skeletonUi = [];
-        let width = "230px";
 
         if (windowWidth <= 600) {
             width = "200px";
@@ -149,6 +149,16 @@ export default function PhotoUI(props: PhotoType) {
                             alt="daily"
                             loading="lazy"
                             style={{ objectFit: "cover" }}
+                            // 데이터를 불러오고, 이미지가 완전히 로드되 기 전에 표시
+                            placeholder={
+                                <div
+                                    style={{
+                                        width: `${width}`,
+                                        height: `${width}`,
+                                        backgroundColor: "grey",
+                                    }}
+                                ></div>
+                            }
                         />
                         {userInfo?.email === "aimzero9303@gmail.com" ? (
                             <AiFillDelete
