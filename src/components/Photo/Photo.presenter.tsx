@@ -112,6 +112,7 @@ export default function PhotoUI(props: PhotoType) {
                                         width: `${width}`,
                                         height: `${width}`,
                                         backgroundColor: "grey",
+                                        borderRadius: "4px",
                                     }}
                                 >
                                     <p style={{ color: "white" }}>wait..</p>
