@@ -2,7 +2,6 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 
 export default function HomeSec01() {
     const [scrollY, setScrollY] = useState(0);

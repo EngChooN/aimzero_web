@@ -29,6 +29,8 @@ export const Section = styled.section`
     }
 
     @media (max-width: 600px) {
+        padding-left: 15px;
+        padding-right: 15px;
         > h2 {
             font-size: 21px;
         }

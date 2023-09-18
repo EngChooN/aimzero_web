@@ -126,7 +126,7 @@ const reset = css`
         margin: 0px;
     }
 
-    .ant-image .ant-image-mask:hover {
+    .ant-image .ant-image-mask {
         border-radius: 4px;
     }
 `;
