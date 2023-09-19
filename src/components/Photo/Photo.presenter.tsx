@@ -38,6 +38,7 @@ export default function PhotoUI(props: PhotoType) {
         for (let i = 0; i < 7; i++) {
             skeletonUi.push(
                 <Skeleton.Image
+                    key={i}
                     style={{
                         width: width,
                         height: width,

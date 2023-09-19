@@ -66,9 +66,15 @@ export default function ProjectDetailPage() {
                 deleteFunc={onClickDelete}
             />
             <TagView tags={boardData?.tag} />
-            {boardData?.thumb !== null && (
+            {boardData?.thumb && (
                 <ThumbnailWrapper>
-                    <Image alt="thumbnail" fill src={boardData?.thumb} />
+                    <Image
+                        alt="thumbnail"
+                        fill
+                        sizes="100%, 250px"
+                        src={boardData?.thumb}
+                        placeholder="empty"
+                    />
                 </ThumbnailWrapper>
             )}
 

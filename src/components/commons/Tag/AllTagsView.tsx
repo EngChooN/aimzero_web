@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { Skeleton } from "antd";
 import { firebaseDb } from "firebase.config";
 import { DocumentData, collection, getDocs } from "firebase/firestore";
+import { forEach } from "lodash";
 import { SetStateAction, useEffect, useState } from "react";
 
 export default function AllTagsView(props: {
@@ -11,11 +13,13 @@ export default function AllTagsView(props: {
     const { collectionName, boardData, setFilteredData } = props;
     const [allTags, setAllTags] = useState<string[]>([]);
     const [selectedTag, setSelectedTag] = useState<string>("");
+    const [isLoading, setIsLoading] = useState(true);
 
     const getAllTags = async () => {
         const projectCollectionRef = collection(firebaseDb, collectionName);
         const querySnapshot = await getDocs(projectCollectionRef);
         const tags: string[] = [];
+
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             const tag = data.tag;
@@ -25,6 +29,26 @@ export default function AllTagsView(props: {
         });
         const primaryTag = [...new Set(tags)];
         setAllTags(primaryTag);
+        setIsLoading(false);
+    };
+
+    const skeletonRender = () => {
+        const skeletonUi: JSX.Element[] = [];
+        Array(20)
+            .fill(0)
+            .forEach((el, index) => {
+                skeletonUi.push(
+                    <Skeleton.Button
+                        key={index}
+                        style={{ marginRight: "10px", marginBottom: "20px" }}
+                        active={isLoading}
+                        size={"default"}
+                        shape={"round"}
+                        block={false}
+                    />
+                );
+            });
+        return skeletonUi;
     };
 
     useEffect(() => {
@@ -50,25 +74,30 @@ export default function AllTagsView(props: {
 
     return (
         <StyledAllTagView>
-            <Tag
-                onClick={() => {
-                    setSelectedTag("all");
-                    console.log(selectedTag);
-                }}
-            >
-                #all
-            </Tag>
-            {allTags?.map((el, index) => (
-                <Tag
-                    key={index}
-                    onClick={() => {
-                        setSelectedTag(el);
-                        console.log(selectedTag);
-                    }}
-                >
-                    #{el}
-                </Tag>
-            ))}
+            {isLoading && <>{skeletonRender()}</>}
+            {!isLoading && (
+                <>
+                    <Tag
+                        onClick={() => {
+                            setSelectedTag("all");
+                            console.log(selectedTag);
+                        }}
+                    >
+                        #all
+                    </Tag>
+                    {allTags?.map((el, index) => (
+                        <Tag
+                            key={index}
+                            onClick={() => {
+                                setSelectedTag(el);
+                                console.log(selectedTag);
+                            }}
+                        >
+                            #{el}
+                        </Tag>
+                    ))}
+                </>
+            )}
         </StyledAllTagView>
     );
 }
@@ -100,5 +129,10 @@ const Tag = styled.div`
     font-family: serif;
     font-size: 12px;
 
+    transition: all 0.3s ease;
     cursor: pointer;
+
+    :hover {
+        background-color: #d1d1d1;
+    }
 `;
