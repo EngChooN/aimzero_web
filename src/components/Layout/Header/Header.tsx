@@ -16,7 +16,7 @@ export default function PageHeader(props: { specialFlag: boolean }) {
 
     const headerList = [
         { name: "resume", link: "/resume" },
-        { name: "project", link: "/project" },
+        { name: "project", link: "/project?tag=all" },
         { name: "blog", link: "/blog" },
         { name: "photo", link: "/photo" },
         { name: "experiment", link: "/experiment" },

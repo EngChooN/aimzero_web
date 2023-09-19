@@ -46,7 +46,7 @@ export default function ReplyWrite(props: {
     }, []);
     // img upload func
     const addImage = async (file: File, showImage: HookCallback) => {
-        console.log(file); //이미지 압축 및 서버 업로드 로직 실행
+        //이미지 압축 및 서버 업로드 로직 실행
         let imgUrl;
         const imageRef = ref(firebaseStorage, `replyPhoto/${file.name}`); // storage directory (path, file name)
         if (!file) return;
@@ -57,12 +57,6 @@ export default function ReplyWrite(props: {
             });
         });
     };
-
-    useEffect(() => {
-        console.log(boardData?.id, "comment-boardId");
-        console.log("from reply boardData", boardData);
-        console.log("currentPath", document.location.href);
-    });
 
     // input on change content value
     const onChangeContent = () => {
@@ -82,13 +76,7 @@ export default function ReplyWrite(props: {
                     content: content,
                     timestamp: new Date(),
                 });
-                console.log(
-                    "넘길 값들",
-                    boardData.email,
-                    boardData.title,
-                    name,
-                    content
-                );
+
                 if (boardData.email !== userInfo.email) {
                     await sendEmail();
                 } else {
@@ -125,7 +113,6 @@ export default function ReplyWrite(props: {
                 router.reload();
             })
             .catch((error) => {
-                console.log(templateParams);
                 console.error("댓글 알림 이메일 전송 실패:", error);
             });
     };

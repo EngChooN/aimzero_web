@@ -49,10 +49,9 @@ export default function VisitLog() {
     const deleteCommentFunc = async (id: string) => {
         await deleteDoc(doc(firebaseDb, "visitlog", id)).then(() => {
             try {
-                console.log("done");
                 return;
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 return;
             }
         });

@@ -34,12 +34,9 @@ export default function Layout(props: { children: ReactNode }) {
                 if (user) {
                     setLoginStatus(true);
                     setUserInfo(user);
-                    console.log(user);
-                    console.log("check login OK!");
                 } else {
                     setLoginStatus(false);
                     setUserInfo("");
-                    console.log("check login NO!");
                 }
             });
         };
@@ -62,7 +59,6 @@ export default function Layout(props: { children: ReactNode }) {
 
     useEffect(() => {
         if (!router.isReady) return;
-        console.log("path name", router.pathname);
         setCurrentPath(router.pathname);
         if (footerBlockPath.includes(router.pathname)) {
             setFooterFlag(false);

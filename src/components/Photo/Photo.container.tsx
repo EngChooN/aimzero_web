@@ -56,7 +56,6 @@ export default function Photo() {
 
     // select fileInput func (onChange)
     const selectFile = (file: File) => {
-        console.log(file);
         setImageUpload(file);
         setUploadStep(2);
     };
@@ -68,7 +67,6 @@ export default function Photo() {
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
                 setImage(url);
-                console.log(url);
             });
         });
     }, [imageUpload]);
@@ -103,7 +101,6 @@ export default function Photo() {
     useBottomScrollListener(() => {
         const loadData = _.debounce(async () => {
             if (dataPresent == "If you scroll, the data will be loaded.") {
-                console.log("bottom! load new  data..");
                 setIsMoreLoading(true);
                 const lastImg = images[images.length - 1];
                 const photo = collection(getFirestore(firebaseApp), "photo");
@@ -121,12 +118,10 @@ export default function Photo() {
                 if (fetchData.length === 0) {
                     setIsMoreLoading(false);
                     setDataPresent("There is no more data.");
-                    console.log("All images are loaded.");
                     return;
                 }
 
                 setImages([...images, ...fetchData]);
-                console.log(images);
                 setIsMoreLoading(false);
             }
         }, 500);

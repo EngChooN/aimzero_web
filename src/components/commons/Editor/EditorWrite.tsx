@@ -25,7 +25,7 @@ export default function EditorWrite(options: EditorOptions) {
 
     // img upload func
     const addImage = async (file: File, showImage: HookCallback) => {
-        console.log(file); //이미지 압축 및 서버 업로드 로직 실행
+        //이미지 압축 및 서버 업로드 로직 실행
         let imgUrl;
         const imageRef = ref(firebaseStorage, `${imgUploadUrl}/${file.name}`); // storage directory (path, file name)
         if (!file) return;

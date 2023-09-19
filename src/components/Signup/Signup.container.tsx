@@ -25,7 +25,6 @@ export default function Signup() {
                 pass
             );
             alert("Success signUp!");
-            console.log(data);
             router.push("/login");
         } catch (err: any) {
             if (err.code == "auth/email-already-in-use") {
@@ -59,7 +58,6 @@ export default function Signup() {
             return;
         }
 
-        console.log("All check OK!");
         signUp(id, pass);
     };
     return (

@@ -1,19 +1,15 @@
 import styled from "@emotion/styled";
 import { Skeleton } from "antd";
 import { firebaseDb } from "firebase.config";
-import { DocumentData, collection, getDocs } from "firebase/firestore";
-import { forEach } from "lodash";
-import { SetStateAction, useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-export default function AllTagsView(props: {
-    collectionName: string;
-    boardData: DocumentData[];
-    setFilteredData: React.Dispatch<SetStateAction<DocumentData[]>>;
-}) {
-    const { collectionName, boardData, setFilteredData } = props;
+export default function AllTagsView(props: { collectionName: string }) {
+    const { collectionName } = props;
     const [allTags, setAllTags] = useState<string[]>([]);
-    const [selectedTag, setSelectedTag] = useState<string>("");
     const [isLoading, setIsLoading] = useState(true);
+    const router = useRouter();
 
     const getAllTags = async () => {
         const projectCollectionRef = collection(firebaseDb, collectionName);
@@ -55,23 +51,6 @@ export default function AllTagsView(props: {
         getAllTags();
     }, []);
 
-    useEffect(() => {
-        const filteredBoardByTag = () => {
-            if (selectedTag) {
-                if (selectedTag == "all") {
-                    return;
-                } else {
-                    setFilteredData((prev) =>
-                        prev.filter((prev) => prev.tag.includes(selectedTag))
-                    );
-                }
-            }
-        };
-
-        setFilteredData(boardData);
-        filteredBoardByTag();
-    }, [selectedTag]);
-
     return (
         <StyledAllTagView>
             {isLoading && <>{skeletonRender()}</>}
@@ -79,8 +58,7 @@ export default function AllTagsView(props: {
                 <>
                     <Tag
                         onClick={() => {
-                            setSelectedTag("all");
-                            console.log(selectedTag);
+                            router.push("/project?tag=all");
                         }}
                     >
                         #all
@@ -89,8 +67,7 @@ export default function AllTagsView(props: {
                         <Tag
                             key={index}
                             onClick={() => {
-                                setSelectedTag(el);
-                                console.log(selectedTag);
+                                router.push(`/project?tag=${el}`);
                             }}
                         >
                             #{el}
@@ -109,8 +86,14 @@ const StyledAllTagView = styled.section`
     flex-wrap: wrap;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 20px;
     border-bottom: 1px solid lightgray;
+
+    @media (max-width: 840px) {
+        overflow-x: scroll;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        width: 100%;
+    }
 `;
 
 const Tag = styled.div`
@@ -134,5 +117,9 @@ const Tag = styled.div`
 
     :hover {
         background-color: #d1d1d1;
+    }
+
+    @media (max-width: 840px) {
+        min-width: fit-content;
     }
 `;

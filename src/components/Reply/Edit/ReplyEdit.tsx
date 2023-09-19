@@ -29,7 +29,6 @@ export default function ReplyEdit(props: {
         const querySnapshot = await getDocs(condition);
         querySnapshot.forEach((doc: any) => {
             contentRef.current?.getInstance().setHTML(doc.data().content);
-            console.log("나와라", doc.data());
         });
     }
 
@@ -41,7 +40,7 @@ export default function ReplyEdit(props: {
     }, []);
     // img upload func
     const addImage = async (file: File, showImage: HookCallback) => {
-        console.log(file); //이미지 압축 및 서버 업로드 로직 실행
+        //이미지 압축 및 서버 업로드 로직 실행
         let imgUrl;
         const imageRef = ref(firebaseStorage, `replyPhoto/${file.name}`); // storage directory (path, file name)
         if (!file) return;
@@ -54,7 +53,6 @@ export default function ReplyEdit(props: {
     };
 
     useEffect(() => {
-        console.log(commentId);
         const condition = query(
             collection(firebaseDb, "comment"),
             where("commentId", "==", commentId)

@@ -37,7 +37,6 @@ export default function Tag(props: TagOptions) {
                                 onClick={() => {
                                     const newTags = tags;
                                     newTags.splice(index, 1);
-                                    console.log(newTags);
                                     setTags([...newTags]);
                                 }}
                             />

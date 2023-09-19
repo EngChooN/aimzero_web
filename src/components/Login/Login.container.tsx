@@ -28,7 +28,6 @@ export default function Login() {
             );
             // init global user info
             setUserInfo(curUserInfo.user);
-            console.log(curUserInfo.user);
             // change global login status
             setLoginStatus(true);
             router.push("/");
@@ -52,7 +51,7 @@ export default function Login() {
                 window.history.back();
             })
             .catch((err) => {
-                console.log(err);
+                console.error(err);
             });
     };
 

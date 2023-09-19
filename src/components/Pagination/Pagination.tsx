@@ -6,7 +6,6 @@ export default function PaginationBtn(props: PageType) {
 
     const onClickPageBtn = (pageNum: number) => {
         props.setPage(pageNum);
-        console.log("click page button", props.page);
     };
 
     const renderPageNumbers = () => {

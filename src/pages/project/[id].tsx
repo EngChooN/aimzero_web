@@ -26,7 +26,6 @@ export default function ProjectDetailPage() {
             const docRef = doc(firebaseDb, "project", id.toString());
             try {
                 const docSnap = (await getDoc(docRef)).data();
-                console.log("docSnap", docSnap);
                 setBoardData(docSnap);
             } catch (error) {
                 console.error(error);
@@ -47,7 +46,7 @@ export default function ProjectDetailPage() {
         if (id) {
             deleteDoc(doc(firebaseDb, "project", id.toString()));
         }
-        router.push("/project");
+        router.push("/project?tag=all");
     };
 
     useEffect(() => {
@@ -65,7 +64,7 @@ export default function ProjectDetailPage() {
                 updateFunc={onClickUpdate}
                 deleteFunc={onClickDelete}
             />
-            <TagView tags={boardData?.tag} />
+            <TagView tags={boardData?.tag} path="project" />
             {boardData?.thumb && (
                 <ThumbnailWrapper>
                     <Image

@@ -55,7 +55,6 @@ export default function ReplyViewer(props: {
         try {
             const commentDocRef = doc(firebaseDb, "comment", commentId);
             await deleteDoc(commentDocRef);
-            console.log("문서 삭제 완료: ", commentId);
             setCommentsData([]);
             fetchComments(); // 삭제 후 댓글 다시 불러오기
         } catch (error) {

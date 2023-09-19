@@ -33,6 +33,25 @@ export default function ProjectList() {
         setIsLoading(false);
     };
 
+    useEffect(() => {
+        const { tag } = router.query;
+
+        const filteredBoardByTag = () => {
+            if (tag == "all") {
+                return;
+            } else {
+                setFilteredData((prev) =>
+                    prev.filter((prev) => prev.tag.includes(tag))
+                );
+            }
+        };
+
+        if (router.isReady) {
+            setFilteredData(boardData);
+            filteredBoardByTag();
+        }
+    }, [router, boardData]);
+
     const skeletonRender = () => {
         const skeletonUi: JSX.Element[] = [];
         Array(4)
@@ -43,10 +62,6 @@ export default function ProjectList() {
                         key={index}
                         style={{
                             padding: "10px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center",
                         }}
                     >
                         <Skeleton active={isLoading} />
@@ -64,20 +79,19 @@ export default function ProjectList() {
 
     return (
         <Wrapper>
-            <AllTagView
-                collectionName="project"
-                boardData={boardData}
-                setFilteredData={setFilteredData}
-            />
+            <AllTagView collectionName="project" />
             {useAuth() && (
                 <Button
                     label="Create project description post"
                     backgroundColor="black"
                     primary={false}
+                    onClick={() => {
+                        router.push("/project/create");
+                    }}
                 />
             )}
             <div>
-                {isLoading && <>{skeletonRender()}</>}
+                {isLoading && skeletonRender()}
                 {!isLoading &&
                     filteredData.map((el, index) => (
                         <ProjectBox key={index} boardData={el} />
@@ -97,6 +111,10 @@ const Wrapper = styled.section`
     height: fit-content;
     padding-top: 30px;
     padding-bottom: 50px;
+
+    @media (max-width: 840px) {
+        padding-top: 20px;
+    }
 
     > div {
         display: grid;

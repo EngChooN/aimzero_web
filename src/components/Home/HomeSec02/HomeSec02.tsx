@@ -85,7 +85,7 @@ export default function HomeSec02() {
                                 이력서 보기..
                             </HomeSection02.MoreButton>
                         </Link>
-                        <Link href="/project">
+                        <Link href="/project?tag=all">
                             <HomeSection02.MoreButton>
                                 프로젝트 보기..
                             </HomeSection02.MoreButton>

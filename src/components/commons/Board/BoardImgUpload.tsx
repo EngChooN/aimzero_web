@@ -19,7 +19,6 @@ export default function BoardImgUpload(props: {
     // select fileInput func (onChange)
     const selectFile = (file: File) => {
         setImageUpload(file);
-        console.log(file);
         setUploadStep(2);
     };
 
