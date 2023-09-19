@@ -50,7 +50,7 @@ export default function ProjectCreate() {
             userInfo?.email !== "aimzero9303@gmail.com" &&
             loginStatus === true
         ) {
-            router.push("/project");
+            router.push("/project?tag=all");
             return;
         }
     }, [loginStatus, userInfo]);
@@ -125,8 +125,6 @@ export default function ProjectCreate() {
             const docRef = doc(firebaseDb, "project", id.toString());
             try {
                 const docSnap = (await getDoc(docRef)).data();
-                console.log("docSnap", docSnap);
-                console.log(docSnap?.desc);
                 setTitle(docSnap?.title);
                 setImgUrl(docSnap?.thumb);
                 setDesc(docSnap?.desc);

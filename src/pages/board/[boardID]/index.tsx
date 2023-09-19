@@ -15,8 +15,6 @@ const BoardViewer = dynamic(
 );
 
 export default function BoardDetailPage({ boardData }: DocumentData) {
-    console.log("get server side props data: ", boardData);
-
     return (
         <Wrapper>
             <ContentBox>
@@ -38,8 +36,6 @@ export async function getServerSideProps({ query }: DocumentData) {
 
     if (docSnap.exists()) {
         data = docSnap.data();
-    } else {
-        console.log("No such document!");
     }
 
     let boardData = {

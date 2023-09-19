@@ -34,7 +34,7 @@ export default function ProjectBox(props: { boardData?: DocumentData }) {
                     {boardData?.title}
                 </h1>
                 <p>{boardData?.desc}</p>
-                <TagView tags={boardData?.tag} />
+                <TagView tags={boardData?.tag} path="project" />
                 <span>
                     {boardData?.timestamp.toDate().toISOString().split("T")[0]}
                 </span>
@@ -45,6 +45,7 @@ export default function ProjectBox(props: { boardData?: DocumentData }) {
 
 export const StyledProjectBox = styled.article`
     max-width: 400px;
+    min-width: 260px;
     width: 100%;
     min-height: 515px;
     height: fit-content;

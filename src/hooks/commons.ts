@@ -129,7 +129,6 @@ export const useBoardSearch = (menu: string) => {
 
     useEffect(() => {
         const searchBoardFunc = _.debounce(async () => {
-            console.log("run");
             const q = query(
                 collection(firebaseDb, menu), // 포스트 컬렉션
                 orderBy("title"), // 제목 정렬

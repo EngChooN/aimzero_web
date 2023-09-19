@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 
-export default function TagView(props: { tags: string[] }) {
-    const { tags } = props;
+export default function TagView(props: { tags: string[]; path?: string }) {
+    const { tags, path } = props;
+    const router = useRouter();
     return (
         <StyledTagView>
             {tags?.map((el, index) => (
-                <Tag key={index}>#{el}</Tag>
+                <Tag
+                    key={index}
+                    onClick={() => {
+                        if (path) router.push(`/${path}?tag=${el}`);
+                    }}
+                >
+                    #{el}
+                </Tag>
             ))}
         </StyledTagView>
     );
@@ -34,4 +43,11 @@ const Tag = styled.div`
 
     font-family: serif;
     font-size: 12px;
+
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    :hover {
+        background-color: #d1d1d1;
+    }
 `;

@@ -38,7 +38,6 @@ export default function BoardWrite(): JSX.Element {
         // ex) #blog => blog
         hash = window.location.hash.split("#")[1].toString();
         boardId = uuidv4();
-        console.log("hash", hash);
         if (userInfo?.email === null || loginStatus == false) {
             router.push("/login");
         }
