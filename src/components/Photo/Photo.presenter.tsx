@@ -100,7 +100,7 @@ export default function PhotoUI(props: PhotoType) {
                             width={"100%"}
                             height={"100%"}
                             src={el.imgUrl}
-                            alt="daily"
+                            alt="daily photo"
                             loading="lazy"
                             style={{ objectFit: "cover", borderRadius: "4px" }}
                             // 데이터를 불러오고, 이미지가 완전히 로드되 기 전에 표시

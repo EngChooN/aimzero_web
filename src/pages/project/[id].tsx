@@ -9,6 +9,7 @@ import TopBoardInfo from "@/components/commons/Board/TopBoardInfo";
 import ProjectList from "@/components/Project/ProjectList";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
 import Image from "next/image";
+import Button from "@/components/commons/Button/Button";
 
 const EditorRead = dynamic(
     async () => await import("@/components/commons/Editor/EditorRead"),
@@ -56,15 +57,24 @@ export default function ProjectDetailPage() {
     return (
         <StyledProjectDetail>
             <BoardTitle title={boardData?.title} />
-            <TopBoardInfo
-                writer={boardData?.name}
-                timestamp={
-                    boardData?.timestamp?.toDate().toISOString().split("T")[0]
-                }
-                updateFunc={onClickUpdate}
-                deleteFunc={onClickDelete}
-            />
             <TagView tags={boardData?.tag} path="project" />
+            <div
+                className="btnWrapper"
+                style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+                <Button
+                    label="update"
+                    backgroundColor="black"
+                    primary={false}
+                    onClick={onClickUpdate}
+                />
+                <Button
+                    label="delete"
+                    backgroundColor="black"
+                    primary={false}
+                    onClick={onClickDelete}
+                />
+            </div>
             {boardData?.thumb && (
                 <ThumbnailWrapper>
                     <Image
@@ -76,7 +86,6 @@ export default function ProjectDetailPage() {
                     />
                 </ThumbnailWrapper>
             )}
-
             <EditorRead initialValue={boardData?.content} />
             {/* <BoardTitle title={"another project.."} />
             <ProjectList /> */}
@@ -95,6 +104,16 @@ const StyledProjectDetail = styled.section`
         margin: 0px;
         margin-bottom: 20px;
         padding-top: 15px;
+    }
+
+    .btnWrapper {
+        display: flex;
+        justify-content: flex-end;
+
+        > button {
+            margin-top: 0px;
+            margin-bottom: 20px;
+        }
     }
 
     @media (min-width: 1100px) {

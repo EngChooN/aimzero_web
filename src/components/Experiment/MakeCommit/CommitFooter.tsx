@@ -1,7 +1,7 @@
 import { CommitInfoTypes } from "@/pages/experiment/make+commit";
 import styled from "@emotion/styled";
 import { SetStateAction } from "react";
-import Button from "../commons/Button/Button";
+import Button from "@/components/commons/Button/Button";
 
 export default function CommitFooter(props: {
     setCommitInfo: React.Dispatch<SetStateAction<CommitInfoTypes>>;
@@ -48,11 +48,14 @@ export default function CommitFooter(props: {
                     updateBesidesArr[updateBesidesArr.length - 1] + `"`;
             }
         }
+        console.log(updateBesidesArr);
 
         // 최종 만들어진 커밋 메세지
         setCommitMs(
             <div style={{ overflowX: "scroll" }}>
-                git commit -m "{commitInfo.type}:{" "}
+                git commit -m "{commitInfo.type}
+                {/* 스코프 범위 값 유무 확인 */}
+                {commitInfo.scope !== "" ? `(${commitInfo.scope})` : ""}:{" "}
                 {/* 제목 첫 번째 글자 대문자 처리 */}
                 {updatedHeader[0].toUpperCase() + updatedHeader.substring(1)}
                 <br />
@@ -65,18 +68,15 @@ export default function CommitFooter(props: {
                         <br />
                         <br />
                         {updateBesidesArr.map((el, index) => (
-                            <>
-                                <p
-                                    style={{
-                                        margin: "0px",
-                                        whiteSpace: "nowrap",
-                                    }}
-                                    key={index}
-                                >
-                                    {el}
-                                </p>
-                                <br />
-                            </>
+                            <p
+                                key={index}
+                                style={{
+                                    margin: "0px",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
+                                {el === "" ? <br /> : el}
+                            </p>
                         ))}
                     </>
                 ) : (

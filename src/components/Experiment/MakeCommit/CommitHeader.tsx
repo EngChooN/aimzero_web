@@ -93,6 +93,17 @@ export default function CommitHeader(props: {
                     placeholder="커밋 메시지 제목 입력"
                     value={commitInfo.header}
                 ></Input>
+                <Input
+                    maxLength={50}
+                    onChange={(event) => {
+                        setCommitInfo((prev) => ({
+                            ...prev,
+                            scope: event.target.value,
+                        }));
+                    }}
+                    placeholder="작업 범위 또는 생략"
+                    value={commitInfo.scope}
+                ></Input>
             </div>
         </StyledCommitTypeSelector>
     );
@@ -163,6 +174,7 @@ const TypeButton = styled.div<{ isActive: boolean }>`
 const Input = styled.input`
     padding-left: 20px;
     padding-right: 20px;
+    margin-right: 10px;
     max-width: 160px;
     width: 100%;
     height: 40px;
@@ -183,6 +195,8 @@ const Input = styled.input`
 
     @media (max-width: 645px) {
         max-width: 90%;
+        margin-right: 0px;
+        margin-bottom: 20px;
 
         :focus {
             max-width: 90%;

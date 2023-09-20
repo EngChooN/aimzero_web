@@ -1,6 +1,5 @@
 import * as Visit from "./VisitLog.styles";
 import { useRef, useState } from "react";
-import { useRouter } from "next/router";
 // firebase
 import {
     collection,
@@ -13,10 +12,6 @@ import {
     setDoc,
 } from "firebase/firestore";
 import { firebaseApp, firebaseDb } from "../../../firebase.config";
-// recoil
-import { useRecoilState } from "recoil";
-import { userInfoState } from "../../common/Recoil/userInfoState";
-import { loginState } from "../../common/Recoil/loginState";
 // uuid
 import { uuidv4 } from "@firebase/util";
 // icon
@@ -25,13 +20,17 @@ import { AiFillDelete } from "react-icons/ai";
 import { Skeleton } from "antd";
 // react-query
 import { useMutation, useQuery, useQueryClient } from "react-query";
+// recoil
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../common/Recoil/userInfoState";
+import { loginState } from "../../common/Recoil/loginState";
 
 export default function VisitLog() {
     const [comment, setComment] = useState("");
-    const [userInfo] = useRecoilState(userInfoState);
-    const [loginStatus] = useRecoilState(loginState);
-    const router = useRouter();
+    const [deletePassword, setDeletePassword] = useState("");
     const listRef = useRef<any>(null);
+    const [loginStatus] = useRecoilState(loginState);
+    const [userInfo] = useRecoilState(userInfoState);
     // Uncaught TypeError: Cannot read property 'split' of undefined (fix code)
     const name = (userInfo?.email || "").split("@")[0];
 
@@ -46,8 +45,8 @@ export default function VisitLog() {
     }
 
     // delete comment func
-    const deleteCommentFunc = async (id: string) => {
-        await deleteDoc(doc(firebaseDb, "visitlog", id)).then(() => {
+    const deleteCommentFunc = async (el: any) => {
+        await deleteDoc(doc(firebaseDb, "visitlog", el.id)).then(() => {
             try {
                 return;
             } catch (err) {
@@ -59,23 +58,20 @@ export default function VisitLog() {
 
     // create comment func
     const createCommentFunc = async () => {
-        if (loginStatus == true && userInfo.email != "") {
-            if (comment != "") {
-                const id = uuidv4();
-                await setDoc(doc(firebaseDb, "visitlog", id), {
-                    id: id,
-                    name: name,
-                    comment: comment,
-                    timestamp: new Date(),
-                });
-                // fetchComments();
-                setComment("");
-                listRef.current.scrollTop = 0;
-            } else {
-                alert("Please enter a comment");
-            }
+        if (comment !== "") {
+            const id = uuidv4();
+            await setDoc(doc(firebaseDb, "visitlog", id), {
+                id: id,
+                name:
+                    loginStatus == true && userInfo.email ? name : "Anonymous",
+                comment: comment,
+                timestamp: new Date(),
+            });
+            // fetchComments();
+            setComment("");
+            listRef.current.scrollTop = 0;
         } else {
-            router.push("/login");
+            alert("Please enter a comment & password");
         }
     };
 
@@ -114,48 +110,42 @@ export default function VisitLog() {
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
-                        style={{ padding: "30px" }}
                     />
                     <Skeleton
                         avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
-                        style={{ padding: "30px" }}
                     />
                     <Skeleton
                         avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
-                        style={{ padding: "30px" }}
                     />
                 </>
 
                 {commentsData?.map((el, index) => (
                     <Visit.CommentWrapper key={index}>
-                        <Visit.ProfileWrapper>
-                            <Visit.Name>{el.name}</Visit.Name>
-                            <div
-                                style={{
-                                    fontFamily: "serif",
-                                    fontSize: "12px",
-                                    color: "darkgray",
-                                }}
-                            >
-                                {
-                                    el.timestamp
-                                        .toDate()
-                                        .toISOString()
-                                        .split("T")[0]
-                                }
-                            </div>
-                        </Visit.ProfileWrapper>
                         <Visit.LogBox>
                             <Visit.Comment>{el.comment}</Visit.Comment>
-                            {/* edit option buttons */}
-                            {name == el.name && (
-                                <Visit.BtnWrapper>
+                            {/* edit button */}
+                            <Visit.ProfileWrapper>
+                                <Visit.Name>{el.name}</Visit.Name>
+                                <div
+                                    style={{
+                                        fontSize: "12px",
+                                        color: "darkgray",
+                                    }}
+                                >
+                                    {
+                                        el.timestamp
+                                            .toDate()
+                                            .toISOString()
+                                            .split("T")[0]
+                                    }
+                                </div>
+                                {name == el.name && (
                                     <AiFillDelete
                                         color="darkgray"
                                         style={{
@@ -163,11 +153,11 @@ export default function VisitLog() {
                                             marginLeft: "10px",
                                         }}
                                         onClick={() => {
-                                            deleteComment(el.id);
+                                            deleteComment(el);
                                         }}
                                     />
-                                </Visit.BtnWrapper>
-                            )}
+                                )}
+                            </Visit.ProfileWrapper>
                         </Visit.LogBox>
                     </Visit.CommentWrapper>
                 ))}

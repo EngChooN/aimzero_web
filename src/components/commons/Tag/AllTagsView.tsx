@@ -5,8 +5,11 @@ import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function AllTagsView(props: { collectionName: string }) {
-    const { collectionName } = props;
+export default function AllTagsView(props: {
+    collectionName: string;
+    urlTag: string | string[] | undefined;
+}) {
+    const { collectionName, urlTag } = props;
     const [allTags, setAllTags] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
@@ -60,6 +63,7 @@ export default function AllTagsView(props: { collectionName: string }) {
                         onClick={() => {
                             router.push("/project?tag=all");
                         }}
+                        isActive={urlTag === "all"}
                     >
                         #all
                     </Tag>
@@ -69,6 +73,7 @@ export default function AllTagsView(props: { collectionName: string }) {
                             onClick={() => {
                                 router.push(`/project?tag=${el}`);
                             }}
+                            isActive={urlTag === el}
                         >
                             #{el}
                         </Tag>
@@ -96,12 +101,12 @@ const StyledAllTagView = styled.section`
     }
 `;
 
-const Tag = styled.div`
+const Tag = styled.div<{ isActive: boolean }>`
     display: flex;
     align-items: center;
 
     height: 30px;
-    background-color: #f3f3f3;
+    background-color: ${(props) => (props.isActive ? "#d1d1d1" : "#f3f3f3")};
     border-radius: 15px;
 
     padding-right: 10px;
