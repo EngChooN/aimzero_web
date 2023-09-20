@@ -61,9 +61,8 @@ export default function CommitBody(props: {
                 </Tooltip>
             </h2>
             <p>
-                줄바꿈을 연속 두번 할 필요 없이 칸을 띄워 줍니다. 따라서 연속
-                두번 줄바꿈을 한다면, 결과물에서 각 개행이 두칸씩 떨어져 보이게
-                되니 참고 바랍니다.
+                각 행의 글자 수가 72자 이상일 경우 메세지 생성 시, 줄바꿈
+                처리됩니다.
             </p>
             <TextArea
                 placeholder="그 외 추가 설명 또는 생략"

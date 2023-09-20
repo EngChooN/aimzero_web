@@ -1,12 +1,13 @@
-import CommitBody from "@/components/Experiment/CommitBody";
-import CommitFooter from "@/components/Experiment/CommitFooter";
-import CommitHeader from "@/components/Experiment/CommitHeader";
+import CommitBody from "@/components/Experiment/MakeCommit/CommitBody";
+import CommitFooter from "@/components/Experiment/MakeCommit/CommitFooter";
+import CommitHeader from "@/components/Experiment/MakeCommit/CommitHeader";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 
 export interface CommitInfoTypes {
     type: string;
+    scope: string;
     header: string;
     body: {
         what: string;
@@ -19,6 +20,7 @@ export interface CommitInfoTypes {
 export default function MakeCommitPage() {
     const [commitInfo, setCommitInfo] = useState({
         type: "fix",
+        scope: "",
         header: "",
         body: {
             what: "",
@@ -91,14 +93,19 @@ const fadeInUp = keyframes`
 const StyledMakeCommitPage = styled.article`
     max-width: 1200px;
     width: 100%;
+    padding-top: 30px;
     padding-left: 10px;
     padding-right: 10px;
 
     height: fit-content;
-    min-height: calc(100vh - 300px);
+    min-height: calc(100vh - 250px);
 
     @media (max-width: 1100px) {
-        min-height: calc(100vh - 224px);
+        min-height: calc(100vh - 235px);
+    }
+
+    @media (max-width: 645px) {
+        padding-top: 0px;
     }
 
     > div {

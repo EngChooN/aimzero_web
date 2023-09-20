@@ -1,112 +1,82 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.section`
-    max-width: 1200px;
-    width: 100%;
-    height: calc(100vh - 130px);
-    @media (max-width: 1100px) {
-        height: calc(100vh - 54.5px);
-        padding-top: 20px;
-    }
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 30px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 30px 10px 60px 10px;
 `;
 
 export const ProfileWrapper = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
-    max-width: 80px;
+    align-items: flex-end;
+    justify-content: flex-end;
     width: 100%;
-`;
-
-export const NoneProfile = styled.img`
-    margin-top: 5px;
-    width: 35px;
-    height: 35px;
+    margin-top: 10px;
 `;
 
 export const ListLog = styled.div`
     display: flex;
     flex-direction: column;
-
-    overflow-y: scroll;
     width: 100%;
-    height: 100%;
-
-    @media (max-width: 600px) {
-        padding-left: 25px;
-        padding-right: 25px;
-    }
+    overflow-y: scroll;
 `;
 
 export const CommentWrapper = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 50px;
     width: 100%;
 `;
 
 export const LogBox = styled.div`
     display: flex;
-    align-items: center;
-    position: relative;
-    width: 60%;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 20px;
     border-radius: 10px;
     background-color: #f3f3f3;
-    @media (max-width: 400px) {
-        width: 70%;
-    }
+    word-break: break-all;
 `;
 
 export const Name = styled.p`
-    font-family: serif;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
+    font-size: 12px;
     margin: 0;
-    margin-top: 7px;
-    margin-bottom: 5px;
-`;
-
-export const Title = styled.h1`
-    font-family: AbrilFatface;
-    font-size: 40px;
-
-    margin: 0;
-    padding-bottom: 40px;
-    padding-top: 40px;
+    margin-right: 10px;
 `;
 
 export const Comment = styled.span`
-    font-family: serif;
+    height: fit-content;
     font-size: 14px;
 `;
 
 export const WriteBox = styled.div`
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
     display: flex;
-    width: 80%;
-    @media (max-width: 400px) {
-        width: 90%;
-    }
+    max-width: 1200px;
+    width: 100%;
+    padding: 0px 10px 30px 10px;
+    background-color: white;
 `;
 
 export const CommentInput = styled.input`
     border-radius: 25px;
     background-color: #f3f3f3;
     border: none;
-    width: 80%;
+    width: 100%;
     height: 45px;
     padding: 10px;
     padding-left: 20px;
     font-size: 14px;
-    font-family: serif;
+    /* font-family: serif; */
 
     :focus {
         outline: none;
@@ -116,8 +86,8 @@ export const CommentInput = styled.input`
 export const SubmitBtn = styled.button`
     border-radius: 25px;
     margin-left: 10px;
-    max-width: 300px;
-    width: 18%;
+    max-width: fit-content;
+    width: 100%;
     height: 45px;
     background: none;
     background-color: black;
@@ -147,10 +117,4 @@ export const SubmitBtn = styled.button`
     @media (max-width: 600px) {
         width: 20%;
     }
-`;
-
-export const BtnWrapper = styled.div`
-    position: absolute;
-    bottom: 1px;
-    right: 7px;
 `;
