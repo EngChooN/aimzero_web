@@ -20,7 +20,6 @@ export default function ProjectBox(props: { boardData?: DocumentData }) {
                     fill
                     alt="thumbnail"
                     loading="lazy"
-                    quality={30}
                     sizes="100%, 250px"
                     placeholder="empty"
                 />

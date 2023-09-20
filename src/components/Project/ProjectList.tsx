@@ -18,6 +18,7 @@ import { Skeleton } from "antd";
 
 export default function ProjectList() {
     const router = useRouter();
+    const { tag } = router.query;
     const [boardData, setBoardData] = useState<DocumentData[]>([]);
     const [filteredData, setFilteredData] = useState<DocumentData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -34,8 +35,6 @@ export default function ProjectList() {
     };
 
     useEffect(() => {
-        const { tag } = router.query;
-
         const filteredBoardByTag = () => {
             if (tag == "all") {
                 return;
@@ -79,7 +78,7 @@ export default function ProjectList() {
 
     return (
         <Wrapper>
-            <AllTagView collectionName="project" />
+            <AllTagView collectionName="project" urlTag={tag} />
             {useAuth() && (
                 <Button
                     label="Create project description post"
