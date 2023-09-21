@@ -1,36 +1,50 @@
+import TagView from "@/components/commons/Tag/TagView";
 import styled from "@emotion/styled";
 import { DocumentData } from "firebase/firestore";
+import Image from "next/image";
 
 export default function BoardBox(props: {
     boardData: DocumentData;
     onClick: () => void;
+    path?: string;
 }) {
-    const { boardData, onClick } = props;
+    const { boardData, onClick, path } = props;
 
     return (
-        <StyledBoardBox onClick={onClick}>
-            <TopInfoWrapper>
-                <span className="name">{boardData.name}</span>
-                <span className="timestamp">
-                    {boardData.timestamp.toDate().toISOString().split("T")[0]}
-                </span>
-            </TopInfoWrapper>
-            <h1>{boardData.title}</h1>
-            <p>{boardData.desc || " "}</p>
-        </StyledBoardBox>
+        <>
+            {boardData.thumb && boardData.thumb.length > 0 && (
+                <ImgWrapper>
+                    <Image
+                        src={boardData.thumb}
+                        alt="blog thumbnail"
+                        fill
+                        quality={50}
+                        loading="lazy"
+                        onClick={onClick}
+                    />
+                </ImgWrapper>
+            )}
+            <StyledBoardBox>
+                <h1 onClick={onClick}>{boardData.title}</h1>
+                <p>{boardData.desc || " "}</p>
+                {boardData.tag && boardData.tag.length > 0 && (
+                    <TagView tags={boardData.tag} path={"blog"} />
+                )}
+            </StyledBoardBox>
+        </>
     );
 }
 
 const StyledBoardBox = styled.article`
     display: flex;
     flex-direction: column;
-    max-width: 1200px;
+    width: 100%;
     height: fit-content;
     padding: 20px 10px 20px 10px;
+    margin-right: 10px;
     border-bottom: 1px solid lightgrey;
 
     transition: all 0.3s ease;
-    cursor: pointer;
 
     :hover {
         background-color: #ececec;
@@ -44,6 +58,7 @@ const StyledBoardBox = styled.article`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        cursor: pointer;
     }
 
     > p {
@@ -54,19 +69,29 @@ const StyledBoardBox = styled.article`
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    > div {
+        border-bottom: unset;
+        margin-top: 20px;
+        margin-bottom: 0px;
+
+        > div {
+            margin: 0px 10px 10px 0px;
+        }
+    }
 `;
 
-const TopInfoWrapper = styled.div`
-    display: flex;
-    align-items: flex-end;
+const ImgWrapper = styled.article`
+    position: relative;
+    width: 100%;
+    height: 400px;
 
-    .name {
-        font-size: 14px;
-        margin-right: 10px;
+    > img {
+        cursor: pointer;
+        object-fit: cover;
     }
 
-    .timestamp {
-        color: darkgrey;
-        font-size: 12px;
+    @media (max-width: 1100px) {
+        height: 300px;
     }
 `;

@@ -8,13 +8,14 @@ import TagView from "@/components/commons/Tag/TagView";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
 import Image from "next/image";
 import Button from "@/components/commons/Button/Button";
+import Reply from "@/components/Reply/Reply";
 
 const EditorRead = dynamic(
     async () => await import("@/components/commons/Editor/EditorRead"),
     { ssr: false }
 );
 
-export default function ProjectDetailPage() {
+export default function BlogDetailPage() {
     const router = useRouter();
     const { id } = router.query;
     const [boardData, setBoardData] = useState<DocumentData | undefined>({});
@@ -22,7 +23,7 @@ export default function ProjectDetailPage() {
     // fetch board data function
     const fetchBoardData = async (id: string) => {
         if (id.toString()) {
-            const docRef = doc(firebaseDb, "project", id.toString());
+            const docRef = doc(firebaseDb, "blog", id.toString());
             try {
                 const docSnap = (await getDoc(docRef)).data();
                 setBoardData(docSnap);
@@ -35,7 +36,7 @@ export default function ProjectDetailPage() {
     // update function
     const onClickUpdate = () => {
         router.push({
-            pathname: "/project/create",
+            pathname: "/blog/create",
             query: { fetchBoardId: boardData?.id },
         });
     };
@@ -43,9 +44,9 @@ export default function ProjectDetailPage() {
     // delete function
     const onClickDelete = () => {
         if (id) {
-            deleteDoc(doc(firebaseDb, "project", id.toString()));
+            deleteDoc(doc(firebaseDb, "blog", id.toString()));
         }
-        router.push("/project?tag=all");
+        router.push("/blog?tag=all");
     };
 
     useEffect(() => {
@@ -53,9 +54,21 @@ export default function ProjectDetailPage() {
     }, [router]);
 
     return (
-        <StyledProjectDetail>
+        <StyledBlogDetail>
             <BoardTitle title={boardData?.title} />
-            <TagView tags={boardData?.tag} path="project" />
+            {boardData?.tag?.length > 0 ? (
+                <TagView tags={boardData?.tag} path="blog" />
+            ) : (
+                <p
+                    style={{
+                        fontSize: "13px",
+                        color: "lightgrey",
+                        fontFamily: "serif",
+                    }}
+                >
+                    nothing tags..
+                </p>
+            )}
             <div
                 className="btnWrapper"
                 style={{ display: "flex", justifyContent: "flex-end" }}
@@ -85,11 +98,12 @@ export default function ProjectDetailPage() {
                 </ThumbnailWrapper>
             )}
             <EditorRead initialValue={boardData?.content} />
-        </StyledProjectDetail>
+            {boardData && <Reply boardData={boardData} />}
+        </StyledBlogDetail>
     );
 }
 
-const StyledProjectDetail = styled.section`
+const StyledBlogDetail = styled.section`
     max-width: 800px;
     width: 100%;
     padding-left: 10px;

@@ -5,18 +5,16 @@ import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function AllTagsView(props: {
-    collectionName: string;
-    urlTag: string | string[] | undefined;
-}) {
-    const { collectionName, urlTag } = props;
+export default function AllTagsView(props: { collectionName: string }) {
+    const { collectionName } = props;
     const [allTags, setAllTags] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
+    const { tag } = router.query;
 
     const getAllTags = async () => {
-        const projectCollectionRef = collection(firebaseDb, collectionName);
-        const querySnapshot = await getDocs(projectCollectionRef);
+        const collectionRef = collection(firebaseDb, collectionName);
+        const querySnapshot = await getDocs(collectionRef);
         const tags: string[] = [];
 
         querySnapshot.forEach((doc) => {
@@ -61,9 +59,9 @@ export default function AllTagsView(props: {
                 <>
                     <Tag
                         onClick={() => {
-                            router.push("/project?tag=all");
+                            router.push(`/${collectionName}?tag=all`);
                         }}
-                        isActive={urlTag === "all"}
+                        isActive={tag === "all"}
                     >
                         #all
                     </Tag>
@@ -71,9 +69,9 @@ export default function AllTagsView(props: {
                         <Tag
                             key={index}
                             onClick={() => {
-                                router.push(`/project?tag=${el}`);
+                                router.push(`/${collectionName}?tag=${el}`);
                             }}
-                            isActive={urlTag === el}
+                            isActive={tag === el}
                         >
                             #{el}
                         </Tag>
