@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useRecoilState } from "recoil";
 import { firebaseAuth } from "../../../../firebase.config";
@@ -17,7 +17,7 @@ export default function PageHeader(props: { specialFlag: boolean }) {
     const headerList = [
         { name: "resume", link: "/resume" },
         { name: "project", link: "/project?tag=all" },
-        { name: "blog", link: "/blog" },
+        { name: "blog", link: "/blog?tag=all" },
         { name: "photo", link: "/photo" },
         { name: "experiment", link: "/experiment" },
         { name: "board", link: "/board" },
@@ -212,12 +212,16 @@ const Wrapper = styled.section<{ specialFlag: boolean; marginTop: number }>`
         props.specialFlag ? "background-color: rgb(28, 5, 34);" : null};
 
     margin-top: ${(props) => props.marginTop}px;
+    padding-left: 10px;
+    padding-right: 10px;
 
     transition: all 0.3s ease;
 
     @media (max-width: 1100px) {
         flex-direction: column;
         height: auto;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 
     z-index: 1000;

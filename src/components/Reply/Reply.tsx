@@ -16,7 +16,10 @@ import {
 import { firebaseDb } from "firebase.config";
 import { useEffect, useState } from "react";
 
-const ReplyWrite = dynamic(() => import("./Write/ReplyWrite"), { ssr: false });
+const ReplyWrite = dynamic(
+    () => import("@/components/Reply/Write/ReplyWrite"),
+    { ssr: false }
+);
 
 export default function Reply(props: { boardData: DocumentData }) {
     const { boardData } = props;

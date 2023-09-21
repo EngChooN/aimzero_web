@@ -4,7 +4,6 @@ import { DocumentData, deleteDoc, doc } from "firebase/firestore";
 import { firebaseDb } from "../../../../../firebase.config";
 import { useEffect } from "react";
 import Reply from "../../../Reply/Reply";
-import TagView from "@/components/commons/Tag/TagView";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
 import TopBoardInfo from "@/components/commons/Board/TopBoardInfo";
 import EditorRead from "@/components/commons/Editor/EditorRead";

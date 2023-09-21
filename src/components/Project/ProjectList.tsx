@@ -78,7 +78,7 @@ export default function ProjectList() {
 
     return (
         <Wrapper>
-            <AllTagView collectionName="project" urlTag={tag} />
+            <AllTagView collectionName="project" />
             {useAuth() && (
                 <Button
                     label="Create project description post"
