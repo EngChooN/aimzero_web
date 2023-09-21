@@ -53,4 +53,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;

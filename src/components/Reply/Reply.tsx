@@ -1,10 +1,9 @@
-import * as Comment from "./Reply.styles";
+import * as Comment from "@/components/Reply/Reply.styles";
 // recoil
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../common/Recoil/userInfoState";
-import { loginState } from "../../common/Recoil/loginState";
+
 import dynamic from "next/dynamic";
-import ReplyViewer from "./Viewer/ReplyViewer";
+// import ReplyViewer from "@/components/Reply/Viewer/ReplyViewer";
 import {
     DocumentData,
     collection,
@@ -15,9 +14,16 @@ import {
 } from "firebase/firestore";
 import { firebaseDb } from "firebase.config";
 import { useEffect, useState } from "react";
+import { userInfoState } from "@/common/Recoil/userInfoState";
+import { loginState } from "@/common/Recoil/loginState";
 
 const ReplyWrite = dynamic(
     () => import("@/components/Reply/Write/ReplyWrite"),
+    { ssr: false }
+);
+
+const ReplyViewer = dynamic(
+    () => import("@/components/Reply/Viewer/ReplyViewer"),
     { ssr: false }
 );
 

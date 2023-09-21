@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useState } from "react";
 // toast ui
 import { Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
@@ -10,12 +10,12 @@ import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
 // recoil
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../../common/Recoil/userInfoState";
 // firebase
 import { DocumentData, deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { firebaseDb } from "../../../../firebase.config";
-import ReplyEdit from "../Edit/ReplyEdit";
+import ReplyEdit from "@/components/Reply/Edit/ReplyEdit";
 import Button from "@/components/commons/Button/Button";
+import { userInfoState } from "@/common/Recoil/userInfoState";
+import { firebaseDb } from "firebase.config";
 
 export default function ReplyViewer(props: {
     boardData: DocumentData;
