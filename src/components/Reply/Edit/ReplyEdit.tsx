@@ -13,9 +13,9 @@ import "tui-color-picker/dist/tui-color-picker.css";
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 // firebase
 import { Query, collection, getDocs, query, where } from "firebase/firestore";
-import { firebaseDb, firebaseStorage } from "../../../../firebase.config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { HookCallback } from "@toast-ui/editor/types/editor";
+import { firebaseDb, firebaseStorage } from "firebase.config";
 
 export default function ReplyEdit(props: {
     commentId: string;

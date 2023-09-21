@@ -98,7 +98,9 @@ export default function BlogDetailPage() {
                 </ThumbnailWrapper>
             )}
             <EditorRead initialValue={boardData?.content} />
-            {boardData && <Reply boardData={boardData} />}
+            {boardData && boardData.id !== undefined && (
+                <Reply boardData={boardData} />
+            )}
         </StyledBlogDetail>
     );
 }
