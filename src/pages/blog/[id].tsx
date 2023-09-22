@@ -145,7 +145,7 @@ const ThumbnailWrapper = styled.div`
         width: 100% !important;
         height: auto !important;
         margin: 20px 0 20px 0;
-        border: 4px solid darkgray;
+        border: 1px solid darkgray;
         border-radius: 10px;
     }
 `;
