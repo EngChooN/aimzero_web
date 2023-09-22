@@ -21,6 +21,7 @@ const StyledBlogPage = styled.section`
     height: fit-content;
     display: flex;
     justify-content: flex-start;
+    padding-bottom: 50px;
 
     @media (max-width: 1100px) {
         flex-direction: column;
@@ -32,7 +33,6 @@ const StyledBlogPage = styled.section`
 
         @media (max-width: 1100px) {
             width: 100%;
-            max-width: 600px;
         }
     }
 
@@ -47,7 +47,7 @@ const StyledBlogPage = styled.section`
 
         @media (max-width: 1100px) {
             width: 100%;
-            padding-top: 30px;
+            padding-top: 20px;
             background-color: white;
             z-index: 1;
 

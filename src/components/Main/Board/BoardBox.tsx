@@ -6,30 +6,41 @@ import Image from "next/image";
 export default function BoardBox(props: {
     boardData: DocumentData;
     onClick: () => void;
-    path?: string;
 }) {
-    const { boardData, onClick, path } = props;
+    const { boardData, onClick } = props;
 
     return (
         <>
-            {boardData.thumb && boardData.thumb.length > 0 && (
-                <ImgWrapper>
-                    <Image
-                        src={boardData.thumb}
-                        alt="blog thumbnail"
-                        fill
-                        quality={50}
-                        loading="lazy"
-                        onClick={onClick}
-                    />
-                </ImgWrapper>
-            )}
             <StyledBoardBox>
+                {boardData.thumb && boardData.thumb.length > 0 && (
+                    <ImgWrapper>
+                        <Image
+                            src={boardData.thumb}
+                            alt="blog thumbnail"
+                            fill
+                            quality={50}
+                            loading="lazy"
+                            onClick={onClick}
+                        />
+                    </ImgWrapper>
+                )}
+
                 <h1 onClick={onClick}>{boardData.title}</h1>
                 <p>{boardData.desc || " "}</p>
                 {boardData.tag && boardData.tag.length > 0 && (
                     <TagView tags={boardData.tag} path={"blog"} />
                 )}
+                <div style={{ marginTop: "0px", marginBottom: "15px" }}>
+                    <span className="name">{boardData.name}</span>
+                    <span className="timestamp">
+                        {
+                            boardData.timestamp
+                                .toDate()
+                                .toISOString()
+                                .split("T")[0]
+                        }
+                    </span>
+                </div>
             </StyledBoardBox>
         </>
     );
@@ -40,7 +51,7 @@ const StyledBoardBox = styled.article`
     flex-direction: column;
     width: 100%;
     height: fit-content;
-    padding: 20px 10px 20px 10px;
+    padding: 10px;
     margin-right: 10px;
     border-bottom: 1px solid lightgrey;
 
@@ -59,6 +70,11 @@ const StyledBoardBox = styled.article`
         text-overflow: ellipsis;
         white-space: nowrap;
         cursor: pointer;
+        transition: all 0.3s ease;
+
+        :hover {
+            color: grey;
+        }
     }
 
     > p {
@@ -72,8 +88,18 @@ const StyledBoardBox = styled.article`
 
     > div {
         border-bottom: unset;
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 0px;
+
+        .name {
+            font-size: 13px;
+            margin-right: 10px;
+        }
+
+        .timestamp {
+            font-size: 11px;
+            color: darkgrey;
+        }
 
         > div {
             margin: 0px 10px 10px 0px;
@@ -84,14 +110,13 @@ const StyledBoardBox = styled.article`
 const ImgWrapper = styled.article`
     position: relative;
     width: 100%;
-    height: 400px;
+    height: fit-content;
 
     > img {
+        position: static !important;
         cursor: pointer;
         object-fit: cover;
-    }
-
-    @media (max-width: 1100px) {
-        height: 300px;
+        width: 100% !important;
+        height: auto !important;
     }
 `;

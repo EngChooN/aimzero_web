@@ -6,7 +6,6 @@ export const Wrapper = styled.section`
     flex-direction: column;
     max-width: 1200px;
     width: 100%;
-    padding-bottom: 50px;
 `;
 
 export const BoardListBox = styled.div`
