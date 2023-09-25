@@ -22,7 +22,6 @@ import { useEditor } from "@/hooks/commons";
 import Input from "@/components/commons/Input/Input";
 import Textarea from "@/components/commons/Textarea/Textarea";
 import EditorWrite from "@/components/commons/Editor/EditorWrite";
-import Tag from "@/components/commons/Tag/Tag";
 import Button from "@/components/commons/Button/Button";
 
 export default function BoardEdit(): JSX.Element {
@@ -131,7 +130,6 @@ export default function BoardEdit(): JSX.Element {
                     initialValue={editorContent ?? ""}
                 />
             )}
-            <h1>Tag</h1>
             <div>
                 <Button
                     label={"submit"}
@@ -175,6 +173,7 @@ const StyledBoardWrite = styled.section`
 
         > button {
             margin: 0px;
+            margin-right: 10px;
         }
     }
 `;

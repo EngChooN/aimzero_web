@@ -106,7 +106,6 @@ export default function BlogCreate() {
                         desc: desc,
                         content: editorContent,
                         tag: tags,
-                        timestamp: new Date(),
                     };
                     await updateDoc(userDoc, updateField);
                     router.push(`/blog/${fetchBoardId}`);

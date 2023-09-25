@@ -21,6 +21,7 @@ export default function BoardBox(props: {
                             quality={50}
                             loading="lazy"
                             onClick={onClick}
+                            placeholder="empty"
                         />
                     </ImgWrapper>
                 )}

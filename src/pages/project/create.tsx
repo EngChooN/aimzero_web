@@ -106,7 +106,6 @@ export default function ProjectCreate() {
                         desc: desc,
                         content: editorContent,
                         tag: tags,
-                        timestamp: new Date(),
                     };
                     await updateDoc(userDoc, updateField);
                     router.push(`/project/${fetchBoardId}`);

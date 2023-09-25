@@ -7,8 +7,9 @@ import styled from "@emotion/styled";
 import TagView from "@/components/commons/Tag/TagView";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
 import Image from "next/image";
-import Button from "@/components/commons/Button/Button";
+// import Button from "@/components/commons/Button/Button";
 import Reply from "@/components/Reply/Reply";
+import TopBoardInfo from "@/components/commons/Board/TopBoardInfo";
 
 const EditorRead = dynamic(
     async () => await import("@/components/commons/Editor/EditorRead"),
@@ -56,6 +57,18 @@ export default function BlogDetailPage() {
     return (
         <StyledBlogDetail>
             <BoardTitle title={boardData?.title} />
+            <TopBoardInfo
+                writer={boardData?.name}
+                timestamp={
+                    boardData?.timestamp?.toDate().toISOString().split("T")[0]
+                }
+                updateFunc={() => {
+                    onClickUpdate();
+                }}
+                deleteFunc={() => {
+                    onClickDelete();
+                }}
+            />
             {boardData?.tag?.length > 0 ? (
                 <TagView tags={boardData?.tag} path="blog" />
             ) : (
@@ -69,7 +82,7 @@ export default function BlogDetailPage() {
                     nothing tags..
                 </p>
             )}
-            <div
+            {/* <div
                 className="btnWrapper"
                 style={{ display: "flex", justifyContent: "flex-end" }}
             >
@@ -85,7 +98,7 @@ export default function BlogDetailPage() {
                     primary={false}
                     onClick={onClickDelete}
                 />
-            </div>
+            </div> */}
             {boardData?.thumb && (
                 <ThumbnailWrapper>
                     <Image
