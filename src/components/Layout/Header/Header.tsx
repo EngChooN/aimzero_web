@@ -15,13 +15,13 @@ export default function PageHeader(props: { specialFlag: boolean }) {
     const [loginStatus] = useRecoilState(loginState);
 
     const headerList = [
-        { name: "resume", link: "/resume" },
-        { name: "project", link: "/project?tag=all" },
-        { name: "blog", link: "/blog?tag=all" },
-        { name: "photo", link: "/photo" },
-        { name: "experiment", link: "/experiment" },
-        { name: "board", link: "/board" },
-        { name: "visit", link: "/visit" },
+        { name: "resume", link: "/resume", keyword: "/resume" },
+        { name: "project", link: "/project?tag=all", keyword: "/project" },
+        { name: "blog", link: "/blog?tag=all", keyword: "/blog" },
+        { name: "photo", link: "/photo", keyword: "/photo" },
+        { name: "experiment", link: "/experiment", keyword: "/experiment" },
+        { name: "board", link: "/board", keyword: "/board" },
+        { name: "visit", link: "/visit", keyword: "/visit" },
     ];
     const router = useRouter();
     const crrUrl = router.pathname;
@@ -89,7 +89,7 @@ export default function PageHeader(props: { specialFlag: boolean }) {
                     {headerList.map((el, index) => (
                         <List
                             key={index}
-                            currentUrl={crrUrl.includes(el.link)}
+                            currentUrl={crrUrl.includes(el.keyword)}
                             specialFlag={specialFlag}
                         >
                             <Link
@@ -157,7 +157,7 @@ export default function PageHeader(props: { specialFlag: boolean }) {
                     {headerList.map((el, index) => (
                         <List
                             key={index}
-                            currentUrl={crrUrl.includes(el.link)}
+                            currentUrl={crrUrl.includes(el.keyword)}
                             specialFlag={specialFlag}
                         >
                             <Link
