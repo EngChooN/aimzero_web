@@ -4,12 +4,6 @@ import { ReactElement, useEffect, useRef } from "react";
 export default function FullPageScroll(props: { pageSection: ReactElement[] }) {
     const { pageSection } = props;
     const scrollRef = useRef<any>(null);
-    // const pageSection = [
-    //     <FullPageElement style={{ background: "red" }}>1</FullPageElement>,
-    //     <FullPageElement style={{ background: "green" }}>2</FullPageElement>,
-    //     <FullPageElement style={{ background: "blue" }}>3</FullPageElement>,
-    //     <FullPageElement style={{ background: "yellow" }}>4</FullPageElement>,
-    // ];
 
     useEffect(() => {
         const handleScroll = (e: React.WheelEvent) => {

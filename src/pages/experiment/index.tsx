@@ -1,5 +1,6 @@
 import Carousel from "@/components/Experiment/Carousel/Carousel";
 import ExperimentBox from "@/components/Experiment/ExperimentBox/ExperimentBox";
+import BoardTitle from "@/components/commons/Board/BoardTitle";
 import styled from "@emotion/styled";
 
 export interface ExperimentDataType {
@@ -19,7 +20,7 @@ export default function ExperimentPage() {
         },
         {
             name: "원 페이지 스크롤 라이브러리",
-            desc: "하나로 보이는 페이지에 여러개의 섹션을 보여, 스크롤 하면 섹션의 단위로 스크롤이 되는 라이브러리 입니다.",
+            desc: "하나로 보이는 페이지에 여러개의 섹션을 보여, 스크롤 하면 섹션의 단위로 스크롤이 되는 라이브러리 입니다. (pc에서만 동작합니다!!)",
             link: "/experiment/one+page+library",
             thumb: "/images/experiment/experiment02.gif",
         },
@@ -27,6 +28,7 @@ export default function ExperimentPage() {
     return (
         <StyledExperimentPage>
             <Carousel experimentData={experimentData} />
+            <BoardTitle title="more features.." />
             <section>
                 {experimentData.map((el, index) => (
                     <ExperimentBox key={index} experimentData={el} />
@@ -44,15 +46,31 @@ const StyledExperimentPage = styled.section`
     width: 100%;
     min-height: calc(100vh - 250px);
     height: fit-content;
+    padding-top: 20px;
     padding-bottom: 50px;
     overflow-x: hidden;
 
+    @media (max-width: 1100px) {
+        min-height: calc(100vh - 235px);
+    }
+
+    > h1 {
+        margin-top: 100px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        border: unset;
+    }
+
     > section {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 30px;
+
         display: grid;
         grid-template-columns: repeat(3, 400px);
         gap: 30px;
         justify-items: center;
-        padding-top: 70px;
 
         @media (max-width: 1260px) {
             grid-template-columns: repeat(2, 400px);
