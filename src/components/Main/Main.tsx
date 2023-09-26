@@ -34,4 +34,9 @@ export const Wrapper = styled.section`
     max-width: 1200px;
     width: 100%;
     height: fit-content;
+    min-height: calc(100vh - 250px);
+
+    @media (max-width: 1100px) {
+        min-height: calc(100vh - 235px);
+    }
 `;

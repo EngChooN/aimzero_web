@@ -19,6 +19,7 @@ const StyledBlogPage = styled.section`
     max-width: 1200px;
     width: 100%;
     height: fit-content;
+    min-height: calc(100vh - 250px);
     display: flex;
     justify-content: flex-start;
     padding-bottom: 50px;
@@ -26,6 +27,7 @@ const StyledBlogPage = styled.section`
     @media (max-width: 1100px) {
         flex-direction: column;
         align-items: center;
+        min-height: calc(100vh - 235px);
     }
 
     > section {

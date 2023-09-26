@@ -36,7 +36,8 @@ const StyledCarouselBox = styled.article`
         position: static !important;
         height: 300px !important;
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: 15px;
+        border: 1px solid lightgrey;
     }
 
     > div {
@@ -51,8 +52,9 @@ const StyledCarouselBox = styled.article`
         padding: 15px;
         background-color: rgba(255, 255, 255, 0.8);
         backdrop-filter: saturate(180%) blur(20px);
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border: 1px solid lightgrey;
 
         > h1 {
             margin: 0px;
