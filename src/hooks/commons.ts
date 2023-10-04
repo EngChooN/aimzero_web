@@ -1,14 +1,17 @@
 import { loginState } from "@/common/Recoil/loginState";
 import { userInfoState } from "@/common/Recoil/userInfoState";
 import { Editor } from "@toast-ui/react-editor";
-import { firebaseDb } from "firebase.config";
+import { firebaseApp, firebaseDb } from "firebase.config";
 import {
     DocumentData,
     collection,
     endAt,
     getDocs,
+    getFirestore,
+    limit,
     orderBy,
     query,
+    startAfter,
     startAt,
 } from "firebase/firestore";
 import {
@@ -21,6 +24,7 @@ import {
 import { useRecoilState } from "recoil";
 // lodash
 import _ from "lodash";
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
 
 export const useEditor = (initialValue: string) => {
     const [editorContent, setEditorContent] = useState(initialValue);
@@ -179,4 +183,65 @@ export const useScrollDirection = (
             window.removeEventListener("scroll", headerVisibleFunc);
         };
     }, []);
+};
+
+export const useFirebaseBottomScroll = (
+    collectionName: string,
+    limitValue: number
+) => {
+    const [dataList, setDataList] = useState<DocumentData[]>([]);
+    // 더 불러올 데이터가 있는지의 상태
+    const [overDataFlag, setOverDataFlag] = useState(false);
+    // api 호출 상태
+    const [loading, setLoading] = useState(false);
+
+    async function fetchData() {
+        setLoading(true);
+        const photo = collection(getFirestore(firebaseApp), collectionName);
+        const result = await getDocs(
+            query(photo, orderBy("timestamp", "desc"), limit(limitValue))
+        );
+
+        const fetchData = result.docs.map((el) => el.data());
+        setDataList(fetchData);
+        setLoading(false);
+    }
+
+    useBottomScrollListener(() => {
+        if (overDataFlag === false && loading === false) {
+            setLoading(true);
+            const loadData = _.debounce(async () => {
+                const lastData = dataList[dataList.length - 1];
+                const collectionData = collection(
+                    getFirestore(firebaseApp),
+                    collectionName
+                );
+                const result = await getDocs(
+                    query(
+                        collectionData,
+                        orderBy("timestamp", "desc"),
+                        limit(limitValue),
+                        startAfter(lastData.timestamp)
+                    )
+                );
+
+                const fetchData = result.docs.map((el) => el.data());
+                // 마지막 데이터면 더 이상 바닥을 찍어도 로드 되지 않게 하기
+                if (fetchData.length < limitValue) {
+                    setOverDataFlag(true);
+                }
+
+                setDataList((prev) => prev.concat(fetchData));
+                setLoading(false);
+            }, 1000);
+            loadData();
+        }
+    });
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    console.log(dataList);
+    return { dataList, loading };
 };
