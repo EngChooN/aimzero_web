@@ -1,51 +1,36 @@
 import { useEffect, useState } from "react";
 import * as BlogStyle from "./Blog.styles";
 // firebase
-import {
-    DocumentData,
-    collection,
-    getDocs,
-    getFirestore,
-    orderBy,
-    query,
-} from "firebase/firestore";
+import { DocumentData } from "firebase/firestore";
 // recoil
 import { useRecoilState } from "recoil";
 // antd
 import { Skeleton } from "antd";
-import { useBoardSearch } from "@/hooks/commons";
+import {
+    useAuth,
+    useBoardSearch,
+    useFirebaseBottomScroll,
+} from "@/hooks/commons";
 import BoardBox from "@/components/Main/Board/BoardBox";
 import { loginState } from "@/common/Recoil/loginState";
 import { userInfoState } from "@/common/Recoil/userInfoState";
 import { useRouter } from "next/router";
 import SearchBoardInput from "../Main/SearchBoardInput";
-import { firebaseApp } from "firebase.config";
 
 export default function Blog(props: { menu: string }) {
     const { menu } = props;
 
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
-    const [isLoading, setIsLoading] = useState(true);
 
     // fetch comments func
     const router = useRouter();
     const { tag } = router.query;
-    const [boardData, setBoardData] = useState<DocumentData[]>([]); // list data (board)
+    const { dataList, loading } = useFirebaseBottomScroll("blog", 5);
     const [filteredData, setFilteredData] = useState<DocumentData[]>([]);
     // search board
     const [searchKeyword, setSearchKeyword, searchResult] =
         useBoardSearch(menu);
-
-    async function fetchBoards() {
-        const board = collection(getFirestore(firebaseApp), menu);
-        const result = await getDocs(
-            query(board, orderBy("timestamp", "desc"))
-        );
-        const fetchData = result.docs.map((el) => el.data());
-        setBoardData(fetchData);
-        setIsLoading(false);
-    }
 
     const moveToDetail = (id: string) => {
         location.href = `/blog/${id}`;
@@ -63,24 +48,18 @@ export default function Blog(props: { menu: string }) {
         };
 
         if (router.isReady) {
-            setFilteredData(boardData);
+            setFilteredData(dataList);
             filteredBoardByTag();
         }
-    }, [router, boardData]);
-
-    useEffect(() => {
-        fetchBoards();
-    }, []);
+    }, [router, dataList]);
 
     const skeleton = () => {
         const skeletonUi = [];
-        for (let i = 1; i < 6; i++) {
+        for (let i = 1; i < 4; i++) {
             skeletonUi.push(
-                <Skeleton.Button
+                <Skeleton
+                    paragraph={{ rows: 2 }}
                     active={true}
-                    size={"large"}
-                    shape={"square"}
-                    block={true}
                     style={{
                         marginTop: "20px",
                     }}
@@ -102,7 +81,7 @@ export default function Blog(props: { menu: string }) {
             >
                 <SearchBoardInput setSearchKeyword={setSearchKeyword} />
                 {/* write button */}
-                {userInfo?.email !== null && loginStatus == true ? (
+                {useAuth() && (
                     <BlogStyle.BoardWriteBtn
                         onClick={() => {
                             router.push(`/blog/create`);
@@ -111,20 +90,10 @@ export default function Blog(props: { menu: string }) {
                     >
                         write
                     </BlogStyle.BoardWriteBtn>
-                ) : null}
+                )}
             </div>
             <div style={{ minHeight: "360px" }}>
                 <BlogStyle.BoardListBox>
-                    {isLoading && (
-                        <div
-                            style={{
-                                paddingLeft: "10px",
-                                paddingRight: "10px",
-                            }}
-                        >
-                            {skeleton()}
-                        </div>
-                    )}
                     {!searchKeyword &&
                         filteredData.map((el, index) => (
                             <BoardBox
@@ -147,6 +116,17 @@ export default function Blog(props: { menu: string }) {
                                 }}
                             />
                         ))}
+                    {/* 스켈레톤 */}
+                    {loading && (
+                        <div
+                            style={{
+                                paddingLeft: "10px",
+                                paddingRight: "10px",
+                            }}
+                        >
+                            {skeleton()}
+                        </div>
+                    )}
                 </BlogStyle.BoardListBox>
             </div>
         </BlogStyle.Wrapper>

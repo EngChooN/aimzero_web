@@ -82,23 +82,6 @@ export default function BlogDetailPage() {
                     nothing tags..
                 </p>
             )}
-            {/* <div
-                className="btnWrapper"
-                style={{ display: "flex", justifyContent: "flex-end" }}
-            >
-                <Button
-                    label="update"
-                    backgroundColor="black"
-                    primary={false}
-                    onClick={onClickUpdate}
-                />
-                <Button
-                    label="delete"
-                    backgroundColor="black"
-                    primary={false}
-                    onClick={onClickDelete}
-                />
-            </div> */}
             {boardData?.thumb && (
                 <ThumbnailWrapper>
                     <Image

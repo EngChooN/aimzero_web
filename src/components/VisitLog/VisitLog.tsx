@@ -27,7 +27,6 @@ import { loginState } from "../../common/Recoil/loginState";
 
 export default function VisitLog() {
     const [comment, setComment] = useState("");
-    const [deletePassword, setDeletePassword] = useState("");
     const listRef = useRef<any>(null);
     const [loginStatus] = useRecoilState(loginState);
     const [userInfo] = useRecoilState(userInfoState);
@@ -88,6 +87,7 @@ export default function VisitLog() {
         "visitlog",
         fetchComments
     );
+
     // delete
     const { mutate: deleteComment } = useMutation(deleteCommentFunc, {
         onSuccess: () => {
@@ -106,19 +106,16 @@ export default function VisitLog() {
             <Visit.ListLog ref={listRef}>
                 <>
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
                     />
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
                     />
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
