@@ -6,7 +6,11 @@ import { DocumentData } from "firebase/firestore";
 import { useRecoilState } from "recoil";
 // antd
 import { Skeleton } from "antd";
-import { useBoardSearch, useFirebaseBottomScroll } from "@/hooks/commons";
+import {
+    useAuth,
+    useBoardSearch,
+    useFirebaseBottomScroll,
+} from "@/hooks/commons";
 import BoardBox from "@/components/Main/Board/BoardBox";
 import { loginState } from "@/common/Recoil/loginState";
 import { userInfoState } from "@/common/Recoil/userInfoState";
@@ -51,13 +55,11 @@ export default function Blog(props: { menu: string }) {
 
     const skeleton = () => {
         const skeletonUi = [];
-        for (let i = 1; i < 6; i++) {
+        for (let i = 1; i < 4; i++) {
             skeletonUi.push(
-                <Skeleton.Button
+                <Skeleton
+                    paragraph={{ rows: 2 }}
                     active={true}
-                    size={"large"}
-                    shape={"square"}
-                    block={true}
                     style={{
                         marginTop: "20px",
                     }}
@@ -79,7 +81,7 @@ export default function Blog(props: { menu: string }) {
             >
                 <SearchBoardInput setSearchKeyword={setSearchKeyword} />
                 {/* write button */}
-                {userInfo?.email !== null && loginStatus == true ? (
+                {useAuth() && (
                     <BlogStyle.BoardWriteBtn
                         onClick={() => {
                             router.push(`/blog/create`);
@@ -88,7 +90,7 @@ export default function Blog(props: { menu: string }) {
                     >
                         write
                     </BlogStyle.BoardWriteBtn>
-                ) : null}
+                )}
             </div>
             <div style={{ minHeight: "360px" }}>
                 <BlogStyle.BoardListBox>

@@ -106,19 +106,16 @@ export default function VisitLog() {
             <Visit.ListLog ref={listRef}>
                 <>
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
                     />
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}
                     />
                     <Skeleton
-                        avatar
                         paragraph={{ rows: 2 }}
                         active={true}
                         loading={isLoading}

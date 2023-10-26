@@ -8,6 +8,7 @@ import TagView from "@/components/commons/Tag/TagView";
 import BoardTitle from "@/components/commons/Board/BoardTitle";
 import Image from "next/image";
 import Button from "@/components/commons/Button/Button";
+import { useAuth } from "@/hooks/commons";
 
 const EditorRead = dynamic(
     async () => await import("@/components/commons/Editor/EditorRead"),
@@ -56,23 +57,26 @@ export default function ProjectDetailPage() {
         <StyledProjectDetail>
             <BoardTitle title={boardData?.title} />
             <TagView tags={boardData?.tag} path="project" />
-            <div
-                className="btnWrapper"
-                style={{ display: "flex", justifyContent: "flex-end" }}
-            >
-                <Button
-                    label="update"
-                    backgroundColor="black"
-                    primary={false}
-                    onClick={onClickUpdate}
-                />
-                <Button
-                    label="delete"
-                    backgroundColor="black"
-                    primary={false}
-                    onClick={onClickDelete}
-                />
-            </div>
+            {useAuth() && (
+                <div
+                    className="btnWrapper"
+                    style={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                    <Button
+                        label="update"
+                        backgroundColor="black"
+                        primary={false}
+                        onClick={onClickUpdate}
+                    />
+                    <Button
+                        label="delete"
+                        backgroundColor="black"
+                        primary={false}
+                        onClick={onClickDelete}
+                    />
+                </div>
+            )}
+
             {boardData?.thumb && (
                 <ThumbnailWrapper>
                     <Image
